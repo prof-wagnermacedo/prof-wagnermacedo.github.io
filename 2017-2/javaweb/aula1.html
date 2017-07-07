@@ -9,7 +9,7 @@
     <title>reveal.js</title>
 
     <link rel="stylesheet" href="reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="reveal.js/css/theme/black.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
@@ -19,8 +19,23 @@
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        link.href = 'reveal.js/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
         document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!-- Replace current theme by passing in the URL -->
+    <script>
+        function getUrlParameter (name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        var theme = getUrlParameter('theme');
+        if (theme) {
+            document.getElementById('theme').setAttribute('href', 'reveal.js/css/theme/' + theme + '.css');
+        }
     </script>
 </head>
 <body>
@@ -40,14 +55,17 @@
     // - https://github.com/hakimel/reveal.js#configuration
     // - https://github.com/hakimel/reveal.js#dependencies
     Reveal.initialize({
+        slideNumber: true,
+        history: true,
+
         dependencies: [
             {src: 'reveal.js/plugin/markdown/marked.js'},
             {src: 'reveal.js/plugin/markdown/markdown.js'},
             {src: 'reveal.js/plugin/notes/notes.js', async: true},
             {
                 src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            }
+                    hljs.initHighlightingOnLoad();
+                }
             }
         ]
     });

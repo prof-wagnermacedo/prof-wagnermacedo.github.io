@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="../../assets/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../assets/reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../assets/reveal.js/lib/css/zenburn.css">
+
+    <!-- jQuery library -->
+    <script src="../../assets/jquery.js"></script>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../../assets/reveal.js/css/print/'
+            + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!-- Replace current theme by passing in the URL -->
+    <script>
+        function urlParam(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function changeTheme(name) {
+
+        }
+
+        $(function () {
+            var reallyChangeTheme = function (name) {
+                if (name) {
+                    $('#theme').attr('href', '../../assets/reveal.js/css/theme/' + name + '.css');
+                }
+            };
+
+            var themeFromUrl = urlParam('theme');
+            reallyChangeTheme(themeFromUrl);
+
+            if (!themeFromUrl) {
+                changeTheme = reallyChangeTheme;
+            }
+        });
+    </script>
+</head>
+
+<body>
+<div class="reveal">
+    <div id="slides" class="slides">
+        <section>
+            <h3>Programação em Java para WEB</h3>
+            <h4>Fanese - 2017/2</h4>
+            <p></p>
+        </section>
+    </div>
+</div>
+
+<!-- Set the selected lecture -->
+<script>
+    LECTURES = 2;
+
+    jQuery.get(urlParam('q') + '.html').then(
+        function (response) {
+            $('#slides').html(response);
+        },
+        function () {
+            var summary = $('#slides').find('p');
+
+            summary.append('<a href="?q=aula1">Aula 1</a>');
+            for (var i = 2; i <= LECTURES; i++) {
+                summary.append(' - <a href="?q=aula' + i + '">Aula ' + i + '</a>');
+            }
+        }
+    );
+</script>
+
+<script src="../../assets/reveal.js/lib/js/head.min.js"></script>
+<script src="../../assets/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        slideNumber: true,
+        history: true,
+
+        dependencies: [
+            {src: '../../assets/reveal.js/plugin/markdown/marked.js'},
+            {src: '../../assets/reveal.js/plugin/markdown/markdown.js'},
+            {src: '../../assets/reveal.js/plugin/notes/notes.js', async: true},
+            {
+                src: '../../assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

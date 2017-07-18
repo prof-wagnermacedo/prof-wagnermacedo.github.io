@@ -1,0 +1,14 @@
+<!-- jQuery library -->
+<script src="../../assets/jquery.js"></script>
+<script>
+    $(function () {
+        q = window.location.pathname.split(/[\\/]/).pop().replace(/.html$/, '');
+
+        $.get('index.html',
+            function (response) {
+                document.open('text/html', 'replace');
+                document.write(response);
+                document.close();
+            });
+    });
+</script>

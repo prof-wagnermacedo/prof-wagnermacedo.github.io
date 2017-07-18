@@ -61,7 +61,8 @@
         <section>
             <h3>Programação em Java para WEB</h3>
             <h4>Fanese - 2017/2</h4>
-            <p></p>
+            <!--<div style="font-size: 0.7em; columns: 8"></div>-->
+            <div></div>
         </section>
     </div>
 </div>
@@ -70,19 +71,29 @@
 <script>
     LECTURES = 2;
 
-    jQuery.get(urlParam('q') + '.html').then(
-        function (response) {
-            $('#slides').html(response);
-        },
-        function () {
-            var summary = $('#slides').find('p');
+    if (typeof q === 'undefined') {
+        q = urlParam('q');
+    }
 
-            summary.append('<a href="?q=aula1">Aula 1</a>');
-            for (var i = 2; i <= LECTURES; i++) {
-                summary.append(' - <a href="?q=aula' + i + '">Aula ' + i + '</a>');
-            }
+    if (q) {
+        $('#slides').find('>section').empty()
+            .attr('data-markdown', q + '.md');
+    } else {
+        var summary = $('#slides').find('div');
+
+        if (LECTURES > 9) {
+            summary.css('font-size', '0.7em');
         }
-    );
+
+        if (LECTURES > 12) {
+            var n = parseInt(LECTURES / 12) + 1;
+            summary.css('columns', n.toString());
+        }
+
+        for (var i = 1; i <= LECTURES; i++) {
+            summary.append('<div><a href="aula' + i + '.html">Aula ' + i + '</a>');
+        }
+    }
 </script>
 
 <script src="../../assets/reveal.js/lib/js/head.min.js"></script>

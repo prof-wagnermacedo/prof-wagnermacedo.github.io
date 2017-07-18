@@ -71,13 +71,8 @@
 <script>
     LECTURES = 2;
 
-    if (typeof q === 'undefined') {
-        q = urlParam('q');
-    }
-
-    if (q) {
-        $('#slides').find('>section').empty()
-            .attr('data-markdown', q + '.md');
+    if (typeof aula !== 'undefined') {
+        $('#slides').html(aula);
     } else {
         var summary = $('#slides').find('div');
 

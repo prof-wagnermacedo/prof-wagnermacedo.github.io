@@ -1,16 +1,188 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 </head>
 <body>
 
 <div id="aula">
+  <section>
+    <h1>Programação em Java para Web</h1>
+    <h2>O que você precisa saber sobre a disciplina</h2>
+    <h3>Prof. Wagner Macedo</h3></section>
+
+  <section>
+    <img data-src="../../assets/images/tio-sam.jpg" class="stretch">
+    <p>Você conseguiu!</p></section>
+
+  <section id="aprender" data-markdown>
+    <script type="text/template">
+      ## O que você irá aprender
+
+      - Como a web funciona.
+      - Construir sistemas web utilizando Java.
+        - Programação web **tradicional**
+        - Programação web **AJAX**.
+      - Utilizar o padrão de projeto **MVC**.
+      - Separar o lado cliente do lado servidor.
+    </script></section>
+
+  <section id="referencias">
+    <h2>Referências</h2>
+    <object class="stretch" data="../../assets/images/livros/2017-2_javaweb.svg" type="image/svg+xml"></object></section>
+
+  <section id="usar">
+    <h2>O que você irá usar</h2>
+
+    <div class="columns">
+      <div class="col">
+        <p class="fragment" data-fragment-index="1"><strong>Tecnologias</strong></p>
+        <ul>
+          <li class="fragment">Java</li>
+          <li class="fragment">HTML + CSS</li>
+          <li class="fragment">JavaScript
+            <ul>
+              <li class="fragment">jQuery</li>
+            </ul>
+          </li>
+        </ul></div>
+
+      <div class="col">
+        <p class="fragment" data-fragment-index="2"><strong>Ferramentas</strong></p>
+        <ul>
+          <li class="fragment">IDE NetBeans</li>
+          <li class="fragment">Browser web
+            <ul>
+              <li>Google Chrome</li>
+              <li>Mozilla Firefox</li>
+            </ul>
+          </li>
+        </ul></div>
+    </div></section>
+
+  <section id="unidades">
+    <h2>Divisão dos conteúdos</h2>
+
+    <div class="columns">
+      <div class="col">
+        <div id="un1" class="unidade fragment">
+          <p><strong>Unidade 1</strong></p>
+          <ul>
+            <li>Fundamentos de programação web</li>
+            <li>Java Servlets</li>
+            <li>JavaServer Pages (JSP)</li>
+            <li>Separação lógica do código-fonte
+              <ul>
+                <li>Padrão MVC</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col">
+        <div id="un2" class="unidade fragment">
+          <p><strong>Unidade 2</strong></p>
+          <ul>
+            <li>Programação AJAX</li>
+            <li>Camada de dados
+              <ul>
+                <li>JDBC</li>
+                <li>Padrão DAO</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div id="un3" class="unidade fragment">
+          <p><strong>Unidade 3</strong></p>
+          <ul>
+            <li>Projeto individual</li>
+          </ul>
+        </div>
+      </div>
+    </div></section>
+
+  <section>
     <section>
-        <h1>Programação em Java para Web</h1>
-        <h2>O que você precisa saber sobre a disciplina</h2>
-        <h3>Prof. Wagner Macedo</h3>
+      <h2>Como serão as aulas</h2>
+
+      <dl>
+        <dt>Teóricas</dt>
+        <dd>Preleções em <em>sala de aula</em>.</dd>
+        <dd>Assimilação do conteúdo.</dd>
+
+        <dt>Práticas</dt>
+        <dd>Atividades em <em>laboratório</em>.</dd>
+        <dd>Fixação do conteúdo.</dd>
+      </dl></section>
+
+    <section data-background="#ffb080">
+      <h3>Atenção</h3>
+      Muitas das aulas em laboratório terão características de <em>prática</em> e <em>teórica</em> ao mesmo tempo.
     </section>
+  </section>
+
+  <section>
+    <section>
+      <h2>Avaliação</h2>
+    </section>
+
+    <section data-background="#80d0ff">
+      <h3>Cronograma</h3>
+      <table id="cronograma">
+        <tr>
+          <td>Atividade pontuada 1 <td>18/08
+        <tr>
+          <td>Atividade pontuada 2 <td>28/08
+        <tr class="unidade">
+          <td>1ª Prova <td>11/09
+        <tr>
+          <td>Atividade pontuada 3 <td>xx/09
+        <tr>
+          <td>Atividade pontuada 4 <td>xx/10
+        <tr class="unidade">
+          <td>2ª Prova <td>30/10
+        <tr>
+          <td>Atividade pontuada 5 <td>xx/11
+        <tr class="unidade">
+          <td>3ª Prova <td>11/12
+      </table>
+    </section>
+  </section>
+
+  <section class="duvidas" data-markdown>
+    <script type="text/template">
+      ## Dúvidas?
+
+      **Este slide pode ser encontrado em:**<br>
+      http://prof.wagnermacedo.com/2017-2/javaweb/aula1.html
+    </script>
+  </section>
+
+  <style>
+    #un1 { background-color: rgba(0, 255, 0, 0.1); }
+    #un2 { background-color: rgba(0, 0, 255, 0.1); }
+    #un3 { background-color: rgba(255, 0, 0, 0.1); }
+
+    .unidade {
+      border-radius: 20px 20px 20px 20px;
+    }
+
+    #unidades .columns .col:last-child {
+      margin-left: 2%;
+    }
+
+    #cronograma td {
+      border: 0;
+      padding-bottom: 0;
+    }
+
+    #cronograma .unidade {
+      background: yellow;
+      font-weight: bold;
+    }
+  </style>
 </div>
 
 <script src="../../assets/jquery.js"></script>

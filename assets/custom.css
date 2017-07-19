@@ -1,0 +1,11 @@
+.columns {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+}
+
+.duvidas p a {
+    font-size: smaller;
+}

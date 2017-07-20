@@ -18,44 +18,9 @@
     <!-- jQuery library -->
     <script src="../../assets/jquery.js"></script>
 
-    <!-- Printing and PDF exports -->
-    <script>
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = '../../assets/reveal.js/css/print/'
-            + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
-        document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-
-    <!-- Replace current theme by passing in the URL -->
-    <script>
-        function urlParam(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-
-        function changeTheme(name) {
-
-        }
-
-        $(function () {
-            var reallyChangeTheme = function (name) {
-                if (name) {
-                    $('#theme').attr('href', '../../assets/reveal.js/css/theme/' + name + '.css');
-                }
-            };
-
-            var themeFromUrl = urlParam('theme');
-            reallyChangeTheme(themeFromUrl);
-
-            if (!themeFromUrl) {
-                changeTheme = reallyChangeTheme;
-            }
-        });
-    </script>
+    <!-- Utilities -->
+    <script src="../../assets/reveal-utils.js"></script>
+    <script src="../../assets/professor-utils.js"></script>
 </head>
 
 <body>
@@ -69,43 +34,6 @@
         </section>
     </div>
 </div>
-
-<!-- Set the selected lecture -->
-<script>
-    var displaySummary = function () {
-        $.get('Z', function (response) {
-            var summary = $('#slides').find('div');
-
-            if (response > 9) {
-                summary.css('font-size', '0.7em');
-            }
-
-            if (response > 12) {
-                var n = parseInt(response / 12) + 1;
-                summary.css('columns', n.toString());
-            }
-
-            for (var i = 1; i <= response; i++) {
-                summary.append('<div><a href="' + i + '.html">Aula ' + i + '</a>');
-            }
-        });
-    };
-
-    var q = urlParam('aula');
-    if (q) {
-        $.ajax({
-            url: q + '.html',
-            success: function (response) {
-                $('#slides').html(
-                    $(response).filter('#aula').html()
-                );
-            },
-            error: displaySummary
-        });
-    } else {
-        displaySummary();
-    }
-</script>
 
 <script src="../../assets/reveal.js/lib/js/head.min.js"></script>
 <script src="../../assets/reveal.js/js/reveal.js"></script>

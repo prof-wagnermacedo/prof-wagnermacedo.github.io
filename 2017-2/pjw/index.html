@@ -72,25 +72,38 @@
 
 <!-- Set the selected lecture -->
 <script>
-    LECTURES = 2;
+    var displaySummary = function () {
+        $.get('Z', function (response) {
+            var summary = $('#slides').find('div');
 
-    if (typeof aula !== 'undefined') {
-        $('#slides').html(aula);
+            if (response > 9) {
+                summary.css('font-size', '0.7em');
+            }
+
+            if (response > 12) {
+                var n = parseInt(response / 12) + 1;
+                summary.css('columns', n.toString());
+            }
+
+            for (var i = 1; i <= response; i++) {
+                summary.append('<div><a href="' + i + '.html">Aula ' + i + '</a>');
+            }
+        });
+    };
+
+    var q = urlParam('aula');
+    if (q) {
+        $.ajax({
+            url: q + '.html',
+            success: function (response) {
+                $('#slides').html(
+                    $(response).filter('#aula').html()
+                );
+            },
+            error: displaySummary
+        });
     } else {
-        var summary = $('#slides').find('div');
-
-        if (LECTURES > 9) {
-            summary.css('font-size', '0.7em');
-        }
-
-        if (LECTURES > 12) {
-            var n = parseInt(LECTURES / 12) + 1;
-            summary.css('columns', n.toString());
-        }
-
-        for (var i = 1; i <= LECTURES; i++) {
-            summary.append('<div><a href="' + i + '.html">Aula ' + i + '</a>');
-        }
+        displaySummary();
     }
 </script>
 

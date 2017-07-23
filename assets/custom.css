@@ -9,3 +9,29 @@
 .duvidas p a {
     font-size: smaller;
 }
+
+.demo, .coldemo {
+    flex-grow: 0.5;
+}
+
+.demo {
+    background: white;
+}
+
+.demo:not(iframe) {
+    font-size: 0.7em !important;
+    border: 1px solid black !important;
+    padding: 5px !important;
+}
+
+.demo:not(iframe), .demo:not(iframe) * {
+    font-family: serif !important;
+    color: black !important;
+}
+
+.demo:not(iframe) * {
+    margin: 0 !important;
+    text-align: initial;
+    text-transform: none !important;
+    vertical-align: initial !important;
+}

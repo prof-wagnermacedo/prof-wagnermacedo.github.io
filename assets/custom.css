@@ -6,6 +6,10 @@
     flex: 1;
 }
 
+.col.neat {
+    padding: 0.5em !important;
+}
+
 .duvidas p a {
     font-size: smaller;
 }
@@ -34,4 +38,8 @@
     text-align: initial;
     text-transform: none !important;
     vertical-align: initial !important;
+}
+
+iframe.demo {
+    width: 100%;
 }

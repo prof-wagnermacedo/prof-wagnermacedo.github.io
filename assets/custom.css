@@ -25,21 +25,101 @@
 .demo:not(iframe) {
     font-size: 0.7em !important;
     border: 1px solid black !important;
-    padding: 5px !important;
+    padding: 6px !important;
+    margin: 0 2.5% 0 2.5%;
 }
 
 .demo:not(iframe), .demo:not(iframe) * {
     font-family: serif !important;
     color: black !important;
+    text-align: initial;
 }
 
 .demo:not(iframe) * {
     margin: 0 !important;
-    text-align: initial;
     text-transform: none !important;
     vertical-align: initial !important;
 }
 
+.demo:not(iframe) h5 {
+    font-size: 0.9em;
+}
+
+.demo:not(iframe) ul,
+.demo:not(iframe) ol
+{
+    display: inherit;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+    padding-left: 0.5em;
+}
+
+.demo:not(iframe) * + p {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.demo:not(iframe) :last-child {
+    margin-bottom: 0 !important;
+}
+
 iframe.demo {
     width: 100%;
+}
+
+.reveal .slides section pre > code [step].fragment.current-visible,
+.reveal .slides section pre > code [step].fragment.highlight-current-blue.current-fragment,
+.reveal .slides section pre > code [step].fragment.highlight-red.visible,
+.reveal .slides section pre > code [step].fragment.highlight-green.visible,
+.reveal .slides section pre > code [step].fragment.highlight-blue.visible
+{
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: inherit;
+}
+
+pre > code [step].block {
+    display: inline-block;
+    width: 100%;
+}
+
+.sites dd+dt {
+    margin-top: 0.5em;
+}
+
+img.emoji {
+    height: 1em;
+    width: 1em;
+    vertical-align: -0.1em;
+    margin: 0 .05em 0 .1em !important;
+    border: 0 !important;
+    background: inherit !important;
+    box-shadow: none !important;
+}
+
+dialog {
+    font-size: 1.3em;
+}
+
+dialog dt {
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+table.neat {
+    border-collapse: collapse;
+}
+
+table.neat th, table.neat td {
+    border: 2px solid;
+    padding: 0.2em;
+}
+
+.reveal table tbody tr:last-child th, .reveal table tbody tr:last-child td {
+    border: 2px solid;
+    padding: 0.2em;
+}
+
+a[target="_blank"] {
+    color: inherit;
 }

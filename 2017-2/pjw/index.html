@@ -12,8 +12,8 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="../../assets/reveal.js/lib/css/zenburn.css">
 
-    <!-- Emoji CSS -->
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../../assets/jquery-ui/jquery-ui.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../assets/custom.css">
@@ -36,6 +36,10 @@
 
 <!-- jQuery library -->
 <script src="../../assets/jquery.js"></script>
+<script src="../../assets/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Twitter emoji library -->
+<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
 
 <!-- Utilities -->
 <script src="../../assets/reveal-utils.js"></script>
@@ -57,7 +61,8 @@
                 src: '../../assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
                     hljs.initHighlightingOnLoad();
                 }
-            }
+            },
+            {src: '../../assets/reveal.js/plugin/zoom-js/zoom.js', async: true}
         ]
     });
 </script>

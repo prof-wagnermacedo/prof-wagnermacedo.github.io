@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="endereco-pessoa-ip-porta.svg"
+   inkscape:version="0.91 r13725"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 1280 873.99997"
+   height="246.66222mm"
+   width="361.24445mm">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     inkscape:window-maximized="1"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:window-height="700"
+     inkscape:window-width="1366"
+     showgrid="false"
+     inkscape:current-layer="layer4"
+     inkscape:document-units="px"
+     inkscape:cy="436.99999"
+     inkscape:cx="640"
+     inkscape:zoom="0.59038903"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Envelope"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <image
+       sodipodi:absref="/home/wagner/Faculdade/prof.wagnermacedo.com/assets/images/envelope-brasileiro.jpg"
+       xlink:href="envelope-brasileiro.jpg"
+       transform="translate(442.85715,-135.3622)"
+       width="1280"
+       height="874"
+       preserveAspectRatio="none"
+       id="image3363"
+       x="-442.85715"
+       y="135.3622" />
+  </g>
+  <g
+     inkscape:label="Destinatario"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(442.85715,-135.3622)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3335"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:12px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3337"><rect
+           id="rect3339"
+           width="440"
+           height="288.57144"
+           x="117.14286"
+           y="262.57141" /></flowRegion><flowPara
+         id="flowPara3341" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:13.933218px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-301.79041"
+       y="501.40106"
+       id="text3343"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3345"
+         x="-301.79041"
+         y="501.40106"
+         style="font-size:46.44406128px;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">Marina Costa e Silva</tspan><tspan
+         sodipodi:role="line"
+         x="-301.79041"
+         y="559.45612"
+         style="font-size:46.44406128px;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3351">Rua Afonso Camargo, 805</tspan><tspan
+         sodipodi:role="line"
+         x="-301.79041"
+         y="617.51123"
+         style="font-size:46.44406128px;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3355">Guarapuava - PR</tspan><tspan
+         sodipodi:role="line"
+         x="-301.79041"
+         y="675.56628"
+         style="font-size:46.44406128px;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"
+         id="tspan3357">85070-200</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:100;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3361"
+       width="162.85715"
+       height="111.42857"
+       x="185.71426"
+       y="489.36218"
+       rx="12.5"
+       ry="12.5" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="IP"
+     class="fragment">
+    <path
+       transform="translate(442.85715,-135.3622)"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -149.83003,697.70327 0,88.07752 425.14341,0"
+       id="path4193"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4165"
+       d="m 136.85714,559.71426 235.12348,0"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:10.22991467;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <text
+       transform="translate(442.85715,-135.3622)"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="293.38815"
+       y="799.50562"
+       id="text4167"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4169"
+         x="293.38815"
+         y="799.50562"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50px;font-family:cursive;-inkscape-font-specification:cursive;fill:#ff0000">IP</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Porta"
+     class="fragment">
+    <path
+       transform="translate(442.85715,-135.3622)"
+       inkscape:connector-curvature="0"
+       id="path4195"
+       d="m 228.92908,575.74978 -0.59885,30.48837 209.58779,0 0,133.81008"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 607.42857,439.71426 100,0"
+       id="path4163"
+       inkscape:connector-curvature="0" />
+    <text
+       transform="translate(442.85715,-135.3622)"
+       sodipodi:linespacing="125%"
+       id="text4197"
+       y="799.20044"
+       x="345.7525"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50px;font-family:cursive;-inkscape-font-specification:cursive;fill:#ff0000"
+         y="799.20044"
+         x="345.7525"
+         id="tspan4199"
+         sodipodi:role="line"><tspan
+   style="fill:#000000"
+   id="tspan4201">:</tspan>PORTA</tspan></text>
+  </g>
+</svg>

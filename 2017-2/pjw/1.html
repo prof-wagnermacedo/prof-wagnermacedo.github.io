@@ -9,25 +9,66 @@
     <h2>O que você precisa saber sobre a disciplina</h2>
     <h3>Prof. Wagner Macedo</h3></section>
 
-  <section>
-    <img data-src="../../assets/images/tio-sam.jpg" class="stretch">
-    <p>Você conseguiu!</p></section>
+  <section id="sec-caminho-trilhado">
+    <section id="conseguiu">
+      <img data-src="../../assets/images/tio-sam.jpg" class="stretch">
+      <p>Você conseguiu!</p>
+    </section>
+
+    <section id="relacionadas"
+             data-background-color="#fff"
+             data-background-image="../../assets/images/relacionadas-INF062.svg"
+             data-background-size="90%">
+    </section>
+  </section>
+
+  <section id="sec-professor">
+    <section id="professor">
+      <h2>Professor</h2>
+
+      <ul>
+        <li>Mestre em Ciência da Computação <small>UFS</small></li>
+        <li>Graduação e Especialização <small>Fanese</small></li>
+        <li>Desenvolvedor de Software</li>
+      </ul>
+    </section>
+
+    <section id="contato">
+      <h3>Contato</h3>
+
+      <dl>
+        <dd><a href="mailto:wagnermacedo@prof.fanese.edu.br">
+          wagnermacedo@prof.fanese.edu.br</a>
+          <small>
+            E-mail
+            <br>Facebook Messenger
+          </small></dd>
+        <dd><a href="http://telegram.me/wagnermacedo">@wagnermacedo</a>
+          <small>Telegram</small></dd>
+      </dl>
+    </section>
+
+    <section id="avisos">
+      <h4>Avisos</h4>
+
+      <div style="margin: 0 20% 0 20%;">
+        Os avisos serão feitos através do
+        Mural de Recados do Acadêmico.
+      </div>
+    </section>
+  </section>
 
   <section id="aprender" data-markdown>
     <div data-template>
       ## O que você irá aprender
 
       - Como a web funciona.
-      - Construir sistemas web utilizando Java.
+      - Construir aplicativos web utilizando Java.
         - Programação web **tradicional**
         - Programação web **AJAX**.
       - Utilizar o padrão de projeto **MVC**.
       - Separar o lado cliente do lado servidor.
     </div></section>
-
-  <section id="referencias">
-    <h2>Referências</h2>
-    <object class="stretch" data="../../assets/images/livros/2017-2_javaweb.svg" type="image/svg+xml"></object></section>
 
   <section id="usar">
     <h2>O que você irá usar</h2>
@@ -36,27 +77,56 @@
       <div class="col">
         <p class="fragment" data-fragment-index="1"><strong>Tecnologias</strong></p>
         <ul>
-          <li class="fragment">Java</li>
+          <li class="fragment">Java EE</li>
+          <li class="fragment">SQL</li>
+          <li class="fragment">HTTP</li>
           <li class="fragment">HTML + CSS</li>
           <li class="fragment">JavaScript
             <ul>
               <li class="fragment">jQuery</li>
             </ul>
           </li>
-        </ul></div>
+        </ul>
+      </div>
 
       <div class="col">
         <p class="fragment" data-fragment-index="2"><strong>Ferramentas</strong></p>
         <ul>
           <li class="fragment">IDE NetBeans</li>
+          <li class="fragment">Servidor Tomcat</li>
           <li class="fragment">Browser web
             <ul>
               <li>Google Chrome</li>
               <li>Mozilla Firefox</li>
             </ul>
           </li>
-        </ul></div>
+        </ul>
+      </div>
     </div></section>
+
+  <section id="sec-referencias">
+    <section id="referencias">
+      <h2>Referências 📚</h2>
+      <object class="stretch" data="../../assets/images/livros/2017-2_javaweb.svg" type="image/svg+xml"></object>
+    </section>
+
+    <section id="sites">
+      <h3>Sites 🔖</h3>
+
+      <dl class="sites">
+        <dt>HTML/CSS/JavaScript</dt>
+        <dd><a href="https://developer.mozilla.org/">Mozilla Developer Network</a></dd>
+        <dd><a href="https://www.w3schools.com/">W3Schools</a></dd>
+        <dd><a href="http://maujor.com/">Site do Maujor</a></dd>
+        <dd><a href="http://www.criarweb.com/manual-jquery/">Manual de jQuery</a></dd>
+        <dd><a href="http://api.jquery.com/">jQuery API Documentation</a></dd>
+
+        <dt>Java <small>Desktop e Web</small></dt>
+        <dd><a href="https://www.caelum.com.br/">
+          Caelum</a></dd>
+      </dl>
+    </section>
+  </section>
 
   <section id="unidades">
     <h2>Divisão dos conteúdos</h2>
@@ -102,8 +172,8 @@
       </div>
     </div></section>
 
-  <section>
-    <section>
+  <section id="sec-aulas">
+    <section id="como-serao-aulas">
       <h2>Como serão as aulas</h2>
 
       <dl>
@@ -111,34 +181,56 @@
         <dd>Preleções em <em>sala de aula</em>.</dd>
         <dd>Assimilação do conteúdo.</dd>
 
-        <dt>Práticas</dt>
+        <dt>
+          Práticas
+          <!--
+          <dialog title="Atenção" data-link="*" data-width="550">
+            Muitas das aulas em laboratório terão características
+            de <em>prática</em> e <em>teórica</em> ao mesmo tempo.
+          </dialog>
+          -->
+        </dt>
         <dd>Atividades em <em>laboratório</em>.</dd>
         <dd>Fixação do conteúdo.</dd>
-      </dl></section>
+      </dl>
+    </section>
 
-    <section data-background="#ffb080">
-      <h3>Atenção</h3>
-      Muitas das aulas em laboratório terão características de <em>prática</em> e <em>teórica</em> ao mesmo tempo.
+    <section id="pontualidade" data-background="#ffb080">
+      <h3>Pontualidade</h3>
+      <p>Tolerância de 10 minutos para início.</p>
+    </section>
+
+    <section id="faltas" data-background="#FF8080">
+      <h3>Faltas</h3>
+      <p>Máximo de 25% (15 faltas)</p>
+    </section>
+
+    <section id="sabado">
+      <h3>Aulas de sábado</h3>
+      <ul>
+        <li>26/08/2017</li>
+        <li>07/10/2017</li>
+      </ul>
     </section>
   </section>
 
-  <section>
-    <section>
+  <section id="sec-avaliacao">
+    <section id="avaliacao">
       <h2>Avaliação</h2>
 
       <dl>
         <dt>30%</dt>
         <dd>Atividades pontuadas.</dd>
-        <dd>Funcionam como simulados.</dd>
+        <dd>Questões objetivas e dissertativas.</dd>
 
         <dt>70%</dt>
         <dd>Provas da unidade.</dd>
       </dl>
     </section>
 
-    <section data-background="#80d0ff">
+    <section id="cronograma" data-background="#80d0ff">
       <h3>Cronograma</h3>
-      <table id="cronograma">
+      <table>
         <tr>
           <td>Atividade pontuada 1 <td>18/08
         <tr>
@@ -146,13 +238,13 @@
         <tr class="unidade">
           <td>1ª Prova <td>11/09
         <tr>
-          <td>Atividade pontuada 3 <td>xx/09
+          <td>Atividade pontuada 3 <td>29/09
         <tr>
-          <td>Atividade pontuada 4 <td>xx/10
+          <td>Atividade pontuada 4 <td>20/10
         <tr class="unidade">
           <td>2ª Prova <td>30/10
         <tr>
-          <td>Atividade pontuada 5 <td>xx/11
+          <td>Atividade pontuada 5 <td>17/11
         <tr class="unidade">
           <td>3ª Prova <td>11/12
       </table>
@@ -186,9 +278,18 @@
       padding-bottom: 0;
     }
 
-    #cronograma .unidade {
+    #cronograma .unidade td {
       background: yellow;
       font-weight: bold;
+      line-height: normal;
+    }
+
+    #cronograma .unidade td:first-child {
+      border-radius: 15px 0 0 15px;
+    }
+
+    #cronograma .unidade td:last-child {
+      border-radius: 0 15px 15px 0;
     }
   </style>
 </div>

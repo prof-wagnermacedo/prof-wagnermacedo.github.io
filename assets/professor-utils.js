@@ -18,16 +18,38 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
             var summary = $('#slides').find('div');
 
             if (response > 9) {
-                summary.css('font-size', '0.7em');
+                summary.css('font-size', '0.75em');
             }
 
             if (response > 12) {
-                var n = parseInt(response / 12) + 1;
+                var n = Math.ceil(response / 12);
                 summary.css('columns', n.toString());
+
+                // noinspection FallThroughInSwitchStatementJS
+                switch (n) {
+                    case 2:
+                    case 3:
+                    case 4:
+                        summary.css('font-size', '0.9em');
+                    case 5:
+                        summary.css('columns', (n+1).toString());
+                        break;
+
+                    case 6:
+                    case 7:
+                    case 8:
+                        summary.css('columns', (n-1).toString());
+                        summary.css('font-size', '0.65em');
+                        break;
+
+                    default:
+                        summary.css('columns', (n-2).toString());
+                        summary.css('font-size', '0.6em');
+                }
             }
 
             for (var i = 1; i <= response; i++) {
-                summary.append('<div><a href="' + i + '.html">Aula ' + i + '</a>');
+                summary.append('<div><a href="' + i + '.html">Tópico ' + i + '</a>');
             }
         });
     };

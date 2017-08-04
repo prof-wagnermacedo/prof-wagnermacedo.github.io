@@ -29,7 +29,7 @@ function changeTheme(name) {
 (function () {
     var reallyChangeTheme = function (name) {
         if (name) {
-            $('#theme').attr('href', '../../assets/reveal.js/css/theme/' + name + '.css');
+            document.getElementById('theme').href = '../../assets/reveal.js/css/theme/' + name + '.css';
         }
     };
 

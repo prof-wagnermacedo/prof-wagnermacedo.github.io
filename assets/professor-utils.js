@@ -112,32 +112,6 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
             // endregion
         });
 
-        if (!isPrinting()) {
-            $('embed[type="image/svg+xml"]')
-                .on('load', function () {
-                    var svgPath = this.getAttribute('src').replace(/\/[^/]+$/, '');
-                    var svg = this.getSVGDocument();
-
-                    $(svg).find('image:not([xlink\\:href^=data\\:])')
-                        .each(function () {
-                            // noinspection JSPotentiallyInvalidUsageOfThis
-                            var href = this.getAttribute('xlink:href');
-                            if (!absoluteUrl.test(href)) {
-                                this.setAttribute('xlink:href', svgPath + '/' + href);
-                            }
-                        });
-
-                    var $embed = $(this);
-                    var $svgRoot = $(svg.rootElement)
-                        .width($embed.width())
-                        .height($embed.height());
-
-                    $embed.replaceWith($svgRoot);
-                });
-        }
-    }
-
-    $(function () {
         $('pre > code [step]').each(function () {
             var $this = $(this);
             $this.addClass('fragment');
@@ -163,99 +137,134 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
             $(this).after(' <small>' + this.href + '</small>');
         });
 
-        $('.show-dialog > a.open').click(function (event) {
-            event.preventDefault();
-            $(this.getAttribute('href')).dialog('open');
-        });
-    });
+        // Ações para quando os slides estiverem carregados
+        Reveal.addEventListener('ready', function (readyEvent) {
+            // Redimensiona iframe
+            var resizeIframe = function () {
+                var $iframe = $(this);
+                $iframe.height($iframe.contents().height());
+            };
 
-    // Ações para quando os slides estiverem carregados
-    Reveal.addEventListener('ready', function (readyEvent) {
-        // Redimensiona iframe
-        var resizeIframe = function () {
-            var $iframe = $(this);
-            $iframe.height($iframe.contents().height());
-        };
+            // Ativa emojis
+            var activateEmojis = function () {
+                twemoji.parse(this, {
+                    folder: 'svg',
+                    ext: '.svg'
+                });
+            };
 
-        // Ativa emojis
-        var activateEmojis = function () {
-            twemoji.parse(this, {
-                folder: 'svg',
-                ext: '.svg'
-            });
-        };
+            // Ativa jQuery-UI dialogs
+            var createDialogs = function () {
+                var $dialog = $(this).find('dialog');
+                if ($dialog.length === 0) {
+                    return;
+                }
 
-        // Ativa jQuery-UI dialogs
-        var createDialogs = function () {
-            var $dialog = $(this).find('dialog');
-            if ($dialog.length === 0) {
-                return;
-            }
+                $dialog.each(function () {
+                    var $thisDialog = $(this);
 
-            $dialog.each(function () {
-                var $thisDialog = $(this);
-                var openLink;
-
-                // Definição do link
-                var text = $thisDialog.attr('data-link');
-                if (!text) {
-                    var anchor = $thisDialog.find('> a[data-link]').first();
-                    if (anchor.length > 0) {
-                        openLink = anchor.attr('href', '#');
+                    // Definição do link
+                    var openLink;
+                    var text = $thisDialog.attr('data-link');
+                    if (!text) {
+                        var anchor = $thisDialog.find('> a[data-link]').first();
+                        if (anchor.length > 0) {
+                            openLink = anchor.attr('href', '#');
+                        }
                     }
-                }
-                if (!openLink) {
-                    openLink = $('<a href="#"></a>').html(text || "Clique aqui");
-                }
+                    if (!openLink) {
+                        openLink = $('<a href="#"></a>').html(text || "Clique aqui");
+                    }
 
-                // Comportamento do link
-                openLink.click(function (event) {
-                    event.preventDefault();
-                    $thisDialog.dialog('open');
-                });
-
-                // Adiciona link para abrir e ativa UI
-                $thisDialog.before(openLink)
-                    .dialog({
-                        modal: true,
-                        closeOnEscape: false,
-                        autoOpen: false,
-                        width: 800
+                    // Comportamento do link
+                    openLink.click(function (event) {
+                        event.preventDefault();
+                        $thisDialog.dialog('open');
                     });
-            });
-        };
 
-        var slideActions = function () {
-            activateEmojis.call(this);
-            createDialogs.call(this);
-        };
-
-        // Redimensiona todos os iframe.demo corretamente
-        $(readyEvent.currentSlide)
-            .data('processado', true)
-            .each(slideActions)
-            .find('iframe.demo').on('load', resizeIframe);
-
-        // Ações caso esteja imprimindo
-        if (isPrinting()) {
-            // Abre todos os details
-            [].forEach.call(document.getElementsByTagName('details'),
-                function (e) {
-                    e.open = true;
+                    // Adiciona link para abrir e ativa UI
+                    $thisDialog.before(openLink)
+                        .dialog({
+                            modal: true,
+                            closeOnEscape: false,
+                            autoOpen: false,
+                            width: this.getAttribute('data-width') || 800
+                        });
                 });
-            activateEmojis.call(document);
-        }
+            };
 
-        // Redimensiona todos os iframe.demo corretamente
-        Reveal.addEventListener('slidechanged', function (event) {
-            var $currentSlide = $(event.currentSlide);
+            // Ativa links externos para os dialogs
+            var dialogLinks = function () {
+                var id = this.getAttribute('data-dialog');
+                var $el = id.length > 0
+                    ? $(document.getElementById(id))
+                    : $(this.nextElementSibling);
 
-            if (!$currentSlide.data('processado')) {
-                $currentSlide
-                    .data('processado', true)
-                    .each(slideActions)
-                    .find('iframe.demo').each(resizeIframe);
+                if ($el.is('dialog')) {
+                    $(this).attr('href', '#').click(function (event) {
+                        event.preventDefault();
+                        $el.dialog('open');
+                    });
+                }
+            };
+
+            var inlineEmbedSVG = function () {
+                $(this).find('embed[type="image/svg+xml"]')
+                    .each(function () {
+                        var svgPath = this.getAttribute('src').replace(/\/[^/]+$/, '');
+                        var svg = this.getSVGDocument();
+                        $(svg).find('image:not([xlink\\:href^=data\\:])')
+                            .each(function () {
+                                // noinspection JSPotentiallyInvalidUsageOfThis
+                                var href = this.getAttribute('xlink:href');
+                                if (!absoluteUrl.test(href)) {
+                                    this.setAttribute('xlink:href', svgPath + '/' + href);
+                                }
+                            });
+                        var $embed = $(this);
+                        var $svgRoot = $(svg.rootElement)
+                            .width($embed.width())
+                            .height($embed.height());
+                        $embed.replaceWith($svgRoot);
+                    });
+            };
+
+            var slideActions = function () {
+                activateEmojis.call(this);
+                inlineEmbedSVG.call(this);
+            };
+
+            // Redimensiona todos os iframe.demo corretamente
+            $(readyEvent.currentSlide)
+                .data('processado', true)
+                .each(slideActions)
+                .find('iframe.demo').on('load', resizeIframe);
+
+            // Ativa os dialogs e links para abrir
+            $('a[data-dialog]').each(dialogLinks);
+            createDialogs.call(document);
+
+            // Ações caso esteja imprimindo
+            if (isPrinting()) {
+                // Abre todos os details
+                [].forEach.call(document.getElementsByTagName('details'),
+                    function (e) {
+                        e.open = true;
+                    });
+                activateEmojis.call(document);
             }
+
+            // Redimensiona todos os iframe.demo corretamente
+            Reveal.addEventListener('slidechanged', function (event) {
+                var $currentSlide = $(event.currentSlide);
+
+                if (!$currentSlide.data('processado')) {
+                    $currentSlide
+                        .data('processado', true)
+                        .each(slideActions)
+                        .find('iframe.demo').each(resizeIframe);
+                }
+            });
         });
-    });
+    }
 })();

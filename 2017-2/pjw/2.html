@@ -867,12 +867,14 @@
       <embed src="../../assets/images/protocolos-misturados.svg" type="image/svg+xml">
     </section>
 
-    <section id="caracteristicas-http" data-markdown>
-      ### Características de HTTP
+    <section id="caracteristicas-http">
+      <h3>Características de HTTP</h3>
 
-      - Requisição-Resposta
-      - Independente de mídia
-      - Sem estado
+      <ul style="list-style: none; margin-left: 0">
+        <li>🔁 Requisição-Resposta</li>
+        <li>🖼️ Independente de mídia</li>
+        <li>📨 Sem estado</li>
+      </ul>
     </section>
 
     <section id="requisicao-resposta"
@@ -905,10 +907,11 @@
       -->
     </section>
 
-    <section id="equivalencia-nomes" data-background="#222">
+    <section id="equivalencia-nomes" data-background="#fff">
       <h4>Equivalência de Nomes</h4>
 
-      <table border="0" style="font-size: 0.9em; background: linear-gradient(90deg, #555 55%, #5e5e5e 45%); border-radius: 10px">
+      <table border="0"
+             style="font-size: 0.9em; background: linear-gradient(90deg, hsl(0,0%,67%) 55%, hsl(0,0%,75%) 45%); border-radius: 10px">
         <tr style="border-bottom: 2px solid">
           <th style="width: 55%">Português</th>
           <th style="width: 45%"><em>Inglês</em></th>
@@ -1034,6 +1037,7 @@
 
     <section id="uri">
       <h3>URI/URL</h3>
+
       <video data-src="https://media.giphy.com/media/14u2C0jijzIxcA/giphy.mp4" data-autoplay loop></video>
       <p>O identificador de endereços na Internet.</p>
     </section>
@@ -1079,6 +1083,11 @@
       É óbvio que também é possível usar outra porta:
 
       https://www.exemplo.com:7865/
+    </section>
+
+    <section id="http-request" data-background="#fff">
+      <h3>A requisição HTTP</h3>
+      <img src="../../assets/images/requisicao-http.svg" class="stretch">
     </section>
 
     <section id="metodos-http" data-background="#fff">
@@ -1149,8 +1158,26 @@
       </style>
     </section>
 
-    <section id="cabecalhos-http">
+    <section id="cabecalhos-http" style="font-size: 0.9em">
+      <h3>Principais cabeçalhos HTTP</h3>
 
+      <div>
+        <table style="width: 49%; float: left">
+          <thead>
+          <tr>
+            <th colspan="2">Cabeçalhos de Requisição</th>
+          </tr>
+          </thead>
+        </table>
+
+        <table style="width: 49%; float: right">
+          <thead>
+          <tr>
+            <th colspan="2">Cabeçalhos de Resposta</th>
+          </tr>
+          </thead>
+        </table>
+      </div>
     </section>
 
     <section id="negociacao-de-conteudo">
@@ -1159,6 +1186,22 @@
 
     <section id="pratica-http-2" data-background="#000">
 
+    </section>
+
+    <section id="veja-mais-http">
+      <h3>Leitura recomendada 🔖</h3>
+      
+      <dl class="sites">
+        <dt>Métodos HTTP</dt>
+        <dd><a href="http://gabsferreira.com/os-metodos-http-e-a-diferenca-entre-eles/">
+          Os métodos HTTP: quais são e pra que servem</a></dd>
+        <dd><a href="http://www.devfuria.com.br/php/como-funcionam-os-metodos-get-e-post/">
+          Como funcionam os métodos GET e POST</a></dd>
+        <!--
+        <dd><a href="http://blog.alura.com.br/metodos_de_requisicao_do_http/">
+          Métodos de requisição do HTTP</a></dd>
+        -->
+      </dl>
     </section>
   </section>
 

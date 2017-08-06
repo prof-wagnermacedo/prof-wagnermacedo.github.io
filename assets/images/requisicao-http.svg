@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="31.934984mm"
+   height="30.311155mm"
+   viewBox="0 0 113.15546 107.40173"
+   id="svg3736"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="requisicao-http.svg">
+  <defs
+     id="defs3738" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="77.292016"
+     inkscape:cy="-46.299129"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="700"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3741">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-297.70798,-378.66134)">
+    <g
+       id="g16028"
+       transform="translate(135.19657,344.75946)">
+      <rect
+         style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#2a2aff;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect15865-5"
+         width="111.15546"
+         height="105.40173"
+         x="163.51141"
+         y="34.901882"
+         ry="3.9123063" />
+      <g
+         transform="translate(-10.276705,-203.27785)"
+         id="g15876-1">
+        <rect
+           style="opacity:1;fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect15873-3"
+           width="45.898415"
+           height="15.097558"
+           x="178.66286"
+           y="243.08096"
+           ry="0" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="181.39996"
+           y="254.65898"
+           id="text15869-7"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan15871-8"
+             x="181.39996"
+             y="254.65898"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.25px;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff">Método</tspan></text>
+        <rect
+           ry="0"
+           y="243.08096"
+           x="227.8007"
+           height="15.097558"
+           width="52.268135"
+           id="rect16068"
+           style="opacity:1;fill:#666666;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text16062"
+           y="254.65623"
+           x="229.80055"
+           style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.25px;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff"
+             y="254.65623"
+             x="229.80055"
+             id="tspan16064"
+             sodipodi:role="line">Caminho</tspan></text>
+      </g>
+      <g
+         transform="translate(-9.2478088,-185.51453)"
+         id="g15881-0">
+        <rect
+           ry="0"
+           y="243.08096"
+           x="177.63396"
+           height="40.432125"
+           width="101.40598"
+           id="rect15883-9"
+           style="opacity:1;fill:#cc0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text15885-5"
+           y="260.36093"
+           x="181.45721"
+           style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.25px;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff"
+             y="260.36093"
+             x="181.45721"
+             id="tspan15887-2"
+             sodipodi:role="line">Cabeçalhos</tspan><tspan
+             id="tspan15889-1"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.25px;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff"
+             y="274.42343"
+             x="181.45721"
+             sodipodi:role="line">HTTP</tspan></text>
+      </g>
+      <g
+         id="g15891-3"
+         transform="translate(-9.2478088,-142.12545)"
+         style="opacity:0.65">
+        <rect
+           style="opacity:1;fill:#339900;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect15893-2"
+           width="101.40598"
+           height="35.102299"
+           x="177.63396"
+           y="243.08096"
+           ry="0" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="202.00546"
+           y="264.6586"
+           id="text15895-7"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="202.00546"
+             y="264.6586"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.25px;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff"
+             id="tspan15899-3">Conteúdo</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

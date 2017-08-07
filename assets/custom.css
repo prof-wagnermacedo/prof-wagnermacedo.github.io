@@ -38,6 +38,9 @@
 .demo:not(iframe) * {
     margin: 0 !important;
     text-transform: none !important;
+}
+
+.demo:not(iframe) small {
     vertical-align: initial !important;
 }
 

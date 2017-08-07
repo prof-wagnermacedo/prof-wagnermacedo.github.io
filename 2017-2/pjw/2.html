@@ -12,12 +12,12 @@
   <section id="agenda" data-markdown>
     ## Programação Web
 
-    - HTML 5
-    - JavaScript
-    - Como funciona a web
-      - Conteúdo estático e dinâmico
-      - Lado cliente e lado servidor
-    - O protocolo HTTP
+    - [HTML 5](#sec-html)
+    - [JavaScript](#sec-js)
+    - [Como funciona a web](#sec-web)
+      - [Conteúdo estático e dinâmico](#sec-websites)
+      - [Lado cliente e lado servidor](#sec-programacao-web)
+    - [O protocolo HTTP](#sec-http)
   </section>
 
   <section id="sec-html">
@@ -990,7 +990,7 @@
 
               &lt;!DOCTYPE html&gt;
               &lt;html lang=&quot;pt-BR&quot;&gt;
-              ...
+              &hellip;
             </code></pre>
             <div class="fragment" data-markdown
                  style="font-size: 0.67em; text-align: left">
@@ -1084,10 +1084,12 @@
 
       https://www.exemplo.com:7865/
     </section>
+  </section>
 
-    <section id="http-request" data-background="#fff">
+  <section id="sec-requisicao-http">
+    <section id="requisicao-http" data-background="#fff">
       <h3>A requisição HTTP</h3>
-      <img src="../../assets/images/requisicao-http.svg" class="stretch">
+      <object data="../../assets/images/requisicao-http.svg" class="stretch"></object>
     </section>
 
     <section id="metodos-http" data-background="#fff">
@@ -1158,51 +1160,330 @@
       </style>
     </section>
 
-    <section id="cabecalhos-http" style="font-size: 0.9em">
-      <h3>Principais cabeçalhos HTTP</h3>
+    <section id="cabecalhos-requisicao-http"
+             data-background="#fff" style="font-size: 0.9em">
+      <h3>Cabeçalhos de requisição importantes</h3>
 
-      <div>
-        <table style="width: 49%; float: left">
-          <thead>
-          <tr>
-            <th colspan="2">Cabeçalhos de Requisição</th>
-          </tr>
-          </thead>
-        </table>
+      <div style="font-size: 0.9em">
+        <div class="columns">
+          <pre class="col"><code data-trim data-noescape class="lang-http">
+            GET /blog/ HTTP/1.1
+            Host: www.exemplo.com.br
+            User-Agent: Mozilla/5.0 (Linux x86) Chrome/59.0
+            Accept: text/html
+            Accept-Charset: UTF-8
+            Accept-Language: pt-br
+            Cookie: Version=1; Theme=blue;
+            Referer: http://exemplo.com/index.html
+            If-Modified-Since: Sat, 07 Aug 2017 21:18:31 GMT
+            &nbsp;
+          </code></pre>
+          <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.75">
+            <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+              <span class="fragment">↔️ O nome do servidor desejado</span>
+              <span class="fragment">↔️ Uma string que identifica o browser.</span>
+              <span class="fragment">↔️ O tipo de conteúdo esperado pelo browser</span>
+              <span class="fragment">↔️ A codificação de caracteres esperada</span>
+              <span class="fragment">↔️ O idioma esperado pelo browser</span>
+              <span class="fragment">↔️ O browser envia os cookies armazenados</span>
+              <span class="fragment">↔️ Browser envia site que originou a requisição.</span>
+              <span class="fragment">↔️ Faz uma requisição condicional</span>
+            </code></pre>
+        </div>
+        <div class="columns">
+          <pre class="col"><code data-trim data-noescape class="lang-http">
+            POST /blog/cadastro.php HTTP/1.1
+            Host: www.exemplo.com.br
+            Accept: text/html
+            Accept-Charset: UTF-8
+            Accept-Language: pt-br
+            Content-Type: application/x-www-form-urlencoded
+            Content-Length: 35
+            Cookie: Version=1; Theme=blue;
 
-        <table style="width: 49%; float: right">
-          <thead>
-          <tr>
-            <th colspan="2">Cabeçalhos de Resposta</th>
-          </tr>
-          </thead>
-        </table>
+            name=John+Darling&address=Neverland
+          </code></pre>
+          <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.75">
+            <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span class="fragment">↔️ O tipo de conteúdo do corpo da requisição</span>
+              <span class="fragment">↔️ O tamanho em bytes do corpo da requisição</span>
+            </code></pre>
+        </div>
       </div>
     </section>
+  </section>
 
+  <section id="sec-resposta-http">
+    <section id="resposta-http" data-background="#fff">
+      <h3>A resposta HTTP</h3>
+      <object data="../../assets/images/resposta-http.svg" class="stretch"></object>
+    </section>
+
+    <section id="error-404" data-background="#fff" data-autoslide="5000">
+      <img src="../../assets/images/error-404.png" class="stretch">
+    </section>
+
+    <section id="error-403" data-background="#fff" data-autoslide="5000">
+      <img src="../../assets/images/error-403.png" class="stretch">
+    </section>
+
+    <section id="error-404-v2" data-background="#fff" data-autoslide="5000">
+      <img src="../../assets/images/error-404-v2.png" class="stretch">
+    </section>
+
+    <section id="error-500" data-background="#fff" data-autoslide="5000">
+      <img src="../../assets/images/error-500.png" class="stretch">
+    </section>
+
+    <section id="error-404-github" data-background="#fff">
+      <img src="../../assets/images/error-404-github.png" class="stretch">
+    </section>
+
+    <section id="codigos-estado-http">
+      <h3>Códigos de resposta HTTP</h3>
+
+      <dl>
+        <dt>
+          <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#1xx_Informativa"
+             title="Link para Wikipédia" target="_blank">
+            1xx Informativa
+          </a>
+        </dt>
+
+        <dt>
+          <dialog title="2xx Sucesso">
+            <dl>
+              <dt>200 OK</dt>
+              <dd>A maioria dos sites devolvem essa resposta.</dd>
+              <dd>O corpo da resposta geralmente estará preenchido.</dd>
+            </dl>
+
+            <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#2xx_Sucesso">
+              Veja outros códigos dessa classe
+            </a>
+          </dialog>
+        </dt>
+
+        <dt>
+          <dialog title="3xx Redirecionamento">
+            <dl>
+              <dt>301 Moved Permanently (Movido Permanentemente)</dt>
+              <dd>Esta e todas as solicitações futuras devem ser redirecionadas para uma dada URI.</dd>
+
+              <dt>302 Found (Encontrado)</dt>
+              <dd>O site foi movido temporariamente para uma dada URI.</dd>
+
+              <dt>303 See Other (Veja Outro)</dt>
+              <dd>Normalmente os browsers, quando recebem essa resposta, tem o mesmo comportamento do código 302.</dd>
+
+              <dt>304 Not Modified (Não Modificado)</dt>
+              <dd>
+                Indica que o recurso solicitado não foi modificado. Essa resposta é dada quando a requisição tem um
+                cabeçalho <code>If-Modified-Since</code>.
+              </dd>
+
+              <dt>307 Temporary Redirect (Redirecionamento Temporário)</dt>
+              <dd>Semelhante ao código 302, mas o método de requisição não deve mudar.</dd>
+            </dl>
+
+            <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#3xx_Redirecionamento">
+              Veja outros códigos dessa classe
+            </a>
+          </dialog>
+        </dt>
+
+        <dt>
+          <dialog title="4xx Erros de cliente">
+            <dl>
+              <dt>401 Unauthorized (Não autorizado)</dt>
+              <dd>O usuário não está autorizado e deve fornecer um usuário e senha.</dd>
+              <dd>Note que, nesses casos, o navegador vai abrir uma caixa para digitar usuário e senha.</dd>
+
+              <dt>403 Forbidden (Proibido)</dt>
+              <dd>Acesso a um certo recurso é proibido.</dd>
+              <dd>O servidor pode restringir acesso a todos ou a alguns usuários.</dd>
+              <dd>Diferente do código 401, não será solicitado autenticação.</dd>
+
+              <dt>404 Not Found (Não Encontrado)</dt>
+              <dd>O recurso solicitado não existe.</dd>
+              <dd>O segundo código de resposta mais comum, depois de 200.</dd>
+
+              <dt>405 Method Not Allowed (Método Não Permitido)</dt>
+              <dd>O método de requisição usado pelo cliente não é permitido para o recurso atual.</dd>
+
+              <dt>414 URI Too Long (URI Muito Longa)</dt>
+              <dd>A URI fornecida é muito longa.</dd>
+              <dd>Normalmente isso quer dizer que foi feito uma requisição GET, mas deveria ser feita uma requisição POST.</dd>
+            </dl>
+
+            <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#4xx_Erro_de_cliente">
+              Veja outros códigos dessa classe
+            </a>
+          </dialog>
+        </dt>
+
+        <dt>
+          <dialog title="5xx Erros de servidor">
+            <dl>
+              <dt>500 Internal Server Error (Erro Interno do Servidor)</dt>
+              <dd>Indica que houve um erro no servidor ao processar a requisição.</dd>
+              <dd>Por exemplo, uma exceção.</dd>
+            </dl>
+
+            <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#5xx_outros_erros">
+              Veja outros códigos dessa classe
+            </a>
+          </dialog>
+        </dt>
+      </dl>
+    </section>
+
+    <section id="cabecalhos-resposta-http"
+             data-background="#fff" style="font-size: 0.9em">
+      <h3>Cabeçalhos de resposta importantes</h3>
+
+      <div style="font-size: 0.9em">
+        <div class="columns">
+          <pre class="col"><code data-trim data-noescape class="lang-http">
+            HTTP/1.1 200 OK
+            Content-Type: text/html; charset=utf-8
+            Content-Lenght: 27855
+            Set-Cookie: Version=1; Theme=blue;
+            Cache-Control: max-age=3600
+
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang=&quot;pt-BR&quot;&gt;
+            &hellip;
+          </code></pre>
+          <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.95">
+            <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+              <span class="fragment">↔️ O tipo de conteúdo do corpo da resposta</span>
+              <span class="fragment">↔️ O tamanho em bytes do corpo da resposta</span>
+              <span class="fragment">↔️ O servidor envia cookies para o browser armazenar</span>
+              <span class="fragment">↔️ O servidor indicando para o cliente fazer cache</span>
+            </code></pre>
+        </div>
+        <div class="columns">
+          <pre class="col"><code data-trim data-noescape class="lang-http">
+            HTTP/1.1 301 Moved Permanently
+            Location: https://www.wikipedia.org/
+            Content-Type: text/html; charset=iso-8859-1
+            Content-Length: 234
+            <span style="font-size: 0.85em">
+            &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+            &lt;html&gt;&lt;head&gt;
+            &lt;title&gt;301 Moved Permanently&lt;/title&gt;
+            &hellip;</span>
+            </code></pre>
+          <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.95">
+            <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+              <span class="fragment">↔️ Local para onde o browser deve redirecionar</span>
+            </code></pre>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="sec-negociacao-de-conteudo">
     <section id="negociacao-de-conteudo">
+      <h3>Negociação de Conteúdo</h3>
 
+      <object data="../../assets/images/negociacao-de-conteudo.svg" class="stretch"></object>
+
+      <a href="http://blog.claudson.com.br/2014/08/12/entendendo-uma-negociacao-de-conteudo-via-cartas/"
+         title="Uma forma bem humorada de explicar a negociação de conteúdo"
+         target="_blank" class="blank">
+        Entendendo a negociacao de conteúdo via cartas
+      </a>
+    </section>
+
+    <section id="mime-type">
+      <h4>MIME-type</h4>
+
+      <div class="columns">
+        <div class="col">
+          <p>Estrutura geral</p>
+          <pre style="font-size: 1em; text-align: center"><code data-trim class="bash">
+            tipo/subtipo
+          </code></pre>
+        </div>
+        <div class="col">
+          <p>Exemplos</p>
+          <pre><code data-trim class="bash">
+            text/plain
+            text/html
+            text/css
+            text/javascript
+            image/jpeg
+            image/png
+            audio/mpeg
+            audio/ogg
+            audio/*
+            video/mp4
+            application/octet-stream
+          </code></pre>
+        </div>
+      </div>
+
+      <dl class="sites" style="font-size: 0.9em">
+        <dd><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types">
+          Leitura recomendada</a></dd>
+      </dl>
     </section>
 
     <section id="pratica-http-2" data-background="#000">
+      <h4>Prática HTTP 2</h4>
 
-    </section>
+      <div>
+        <p>
+          Usando o <a href="https://www.hurl.it">https://www.hurl.it</a> ou o Postman, faça as seguintes requisições GET
+          e observe as respostas.
+        </p>
 
-    <section id="veja-mais-http">
-      <h3>Leitura recomendada 🔖</h3>
-      
-      <dl class="sites">
-        <dt>Métodos HTTP</dt>
-        <dd><a href="http://gabsferreira.com/os-metodos-http-e-a-diferenca-entre-eles/">
-          Os métodos HTTP: quais são e pra que servem</a></dd>
-        <dd><a href="http://www.devfuria.com.br/php/como-funcionam-os-metodos-get-e-post/">
-          Como funcionam os métodos GET e POST</a></dd>
-        <!--
-        <dd><a href="http://blog.alura.com.br/metodos_de_requisicao_do_http/">
-          Métodos de requisição do HTTP</a></dd>
-        -->
-      </dl>
+        <ol style="font-size: 0.8em">
+          <li>Acesse <em><a>https://wikipedia.org/</a></em></li>
+          <li>
+            Acesse <em><a>https://speakerfight.com/</a></em> usando o cabeçalho<br>
+            <strong>Accept-Language: pt-br</strong>
+            <ul>
+              <li>Refaça a requisição com o valor <strong>en</strong> (de inglês)</li>
+              <li>Refaça a requisição com o valor <strong>fr</strong> (de francês)</li>
+            </ul>
+          </li>
+          <li>
+            Acesse <em><a>http://httpbin.org/image</a></em> usando o cabeçalho<br>
+            <strong>Accept: image/png</strong>
+            <ul>
+              <li>Refaça a requisição com o valor <strong>image/jpeg</strong></li>
+              <li>Refaça a requisição com o valor <strong>image/webp</strong></li>
+            </ul>
+          </li>
+        </ol>
+      </div>
     </section>
+  </section>
+
+  <section id="veja-mais-http">
+    <h3>Leitura recomendada 🔖</h3>
+
+    <dl class="sites">
+      <dt>Métodos HTTP</dt>
+      <dd><a href="http://gabsferreira.com/os-metodos-http-e-a-diferenca-entre-eles/">
+        Os métodos HTTP: quais são e pra que servem</a></dd>
+      <dd><a href="http://www.devfuria.com.br/php/como-funcionam-os-metodos-get-e-post/">
+        Como funcionam os métodos GET e POST</a></dd>
+      <dd><a
+          href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP">
+        Lista de códigos de estado HTTP</a></dd>
+      <!--
+      <dd><a href="http://blog.alura.com.br/metodos_de_requisicao_do_http/">
+        Métodos de requisição do HTTP</a></dd>
+      -->
+    </dl>
   </section>
 
   <section class="duvidas" data-markdown>

@@ -187,7 +187,7 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
 
                     // Definição do link
                     var openLink;
-                    var text = $thisDialog.attr('data-link');
+                    var text = $thisDialog.attr('data-link') || $thisDialog.attr('title');
                     if (!text) {
                         var anchor = $thisDialog.find('> a[data-link]').first();
                         if (anchor.length > 0) {

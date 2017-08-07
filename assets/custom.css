@@ -78,7 +78,7 @@ iframe.demo {
     color: inherit;
 }
 
-pre > code [step].block,
+pre > code .block,
 pre > code [step="block"] {
     display: inline-block;
     width: 100%;

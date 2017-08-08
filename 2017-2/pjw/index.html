@@ -1,71 +1,52 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+---
+layout: reveal-js
+---
 
-    <title>reveal.js</title>
-
-    <link rel="stylesheet" href="../../assets/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../../assets/reveal.js/css/theme/black.css" id="theme">
-
-    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../../assets/reveal.js/lib/css/zenburn.css">
-
-    <!-- jQuery UI -->
-    <link rel="stylesheet" href="../../assets/jquery-ui/jquery-ui.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../assets/custom.css">
-
-    <script src="../../assets/pre-reveal-utils.js"></script>
-</head>
-
-<body>
-<div class="reveal">
-    <div id="slides" class="slides">
-        <section>
-            <h3>Programação em Java para WEB</h3>
-            <h4>Fanese - 2017/2</h4>
-            <!--<div style="font-size: 0.7em; columns: 8"></div>-->
-            <div></div>
-        </section>
-    </div>
-</div>
-
-<script src="../../assets/reveal.js/lib/js/head.min.js"></script>
-<script src="../../assets/reveal.js/js/reveal.js"></script>
-
-<!-- jQuery library -->
-<script src="../../assets/jquery.js"></script>
-<script src="../../assets/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- Twitter emoji library -->
-<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
-
-<!-- Utilities -->
-<script src="../../assets/professor-utils.js"></script>
+<section>
+  <h3>Programação em Java para WEB</h3>
+  <h4>Fanese - 2017/2</h4>
+  <div id="summary"></div>
+</section>
 
 <script>
-    // More info about config & dependencies:
-    // - https://github.com/hakimel/reveal.js#configuration
-    // - https://github.com/hakimel/reveal.js#dependencies
-    Reveal.initialize({
-        slideNumber: true,
-        history: true,
+    (function () {
+        $.get('Z', function (response) {
+            var summary = $('#summary');
 
-        dependencies: [
-            {src: '../../assets/reveal.js/plugin/markdown/marked.js'},
-            {src: '../../assets/reveal.js/plugin/markdown/markdown.js'},
-            {src: '../../assets/reveal.js/plugin/notes/notes.js', async: true},
-            {
-                src: '../../assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
-                    hljs.initHighlightingOnLoad();
+            if (response > 9) {
+                summary.css('font-size', '0.75em');
+            }
+
+            if (response > 12) {
+                var n = Math.ceil(response / 12);
+                summary.css('columns', n.toString());
+
+                // noinspection FallThroughInSwitchStatementJS
+                switch (n) {
+                    case 2:
+                    case 3:
+                    case 4:
+                        summary.css('font-size', '0.9em');
+                    case 5:
+                        summary.css('columns', (n+1).toString());
+                        break;
+
+                    case 6:
+                    case 7:
+                    case 8:
+                        summary.css('columns', (n-1).toString());
+                        summary.css('font-size', '0.65em');
+                        break;
+
+                    default:
+                        summary.css('columns', (n-2).toString());
+                        summary.css('font-size', '0.6em');
                 }
-            },
-            {src: '../../assets/reveal.js/plugin/zoom-js/zoom.js', async: true}
-        ]
-    });
+            }
+
+            for (var i = 1; i <= response; i++) {
+                summary.append('<div><a href="' + i + '.html">Tópico ' + i + '</a>');
+            }
+        });
+    })();
 </script>
-</body>
-</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'pt-BR' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>{{ site.title | default: reveal.js }}</title>
+
+  <link rel="stylesheet" href="{{ '/assets/reveal.js/css/reveal.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/reveal.js/css/theme/black.css' | relative_url }}" id="theme">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="{{ '/assets/reveal.js/lib/css/zenburn.css' | relative_url }}">
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="{{ '/assets/jquery-ui/jquery-ui.min.css' | relative_url }}">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ '/assets/custom.css' | relative_url }}">
+
+  <script src="{{ '/assets/pre-reveal-utils.js' | relative_url }}"></script>
+
+  <!-- jQuery library -->
+  <script src="{{ '/assets/jquery.js' | relative_url }}"></script>
+  <script src="{{ '/assets/jquery-ui/jquery-ui.min.js' | relative_url }}"></script>
+</head>
+<body>
+
+<div class="reveal">
+  <div id="slides" class="slides">
+    {{ content }}
+  </div>
+</div>
+
+<script src="{{ '/assets/reveal.js/lib/js/head.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/reveal.js/js/reveal.js' | relative_url }}"></script>
+
+<!-- Twitter emoji library -->
+<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
+
+<!-- Utilities -->
+<script src="{{ '/assets/professor-utils.js' | relative_url }}"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        slideNumber: true,
+        history: true,
+
+        dependencies: [
+            {src: '{{ "/assets/reveal.js/plugin/markdown/marked.js" | relative_url }}'},
+            {src: '{{ "/assets/reveal.js/plugin/markdown/markdown.js" | relative_url }}'},
+            {src: '{{ "/assets/reveal.js/plugin/notes/notes.js" | relative_url }}', async: true},
+            {
+                src: '{{ "/assets/reveal.js/plugin/highlight/highlight.js" | relative_url }}', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: '{{ "/assets/reveal.js/plugin/zoom-js/zoom.js" | relative_url }}', async: true}
+        ]
+    });
+</script>
+</body>
+</html>

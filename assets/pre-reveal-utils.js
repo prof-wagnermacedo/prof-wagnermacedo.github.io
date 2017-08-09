@@ -27,9 +27,12 @@ function changeTheme(name) {
 
 /* Replace current theme by the passed in the URL */
 (function () {
+    var scripts = document.getElementsByTagName('script');
+    var scriptPath = scripts[scripts.length - 1].src.replace(/\/[^/]+$/, '');
+
     var reallyChangeTheme = function (name) {
         if (name) {
-            document.getElementById('theme').href = '../../assets/reveal.js/css/theme/' + name + '.css';
+            document.getElementById('theme').href = scriptPath + '/reveal.js/css/theme/' + name + '.css';
         }
     };
 

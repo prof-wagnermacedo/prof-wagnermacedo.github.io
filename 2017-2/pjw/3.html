@@ -1,23 +1,67 @@
 ---
+title: Conceitos de Programação em Java para Web
 layout: reveal-js
+draft: true
 ---
 
 <section>
-  <h1>Conceitos de Programação em Java para Web</h1>
+  <h1>{{ page.title }}</h1>
   <h2>Programação Java para Web</h2>
-  <h3>Prof. Wagner Macedo</h3></section>
+  <h3>Prof. Wagner Macedo</h3>
+</section>
 
-<section data-markdown>
-  <script type="text/template">
+<section id="agenda" data-markdown>
+  <div data-template>
     ## Java para Web
 
-    - Container
-      - Java Enterprise Edition (JEE) <!-- .element: style="font-size: 0.75em" -->
-    - Aplicação
-      - web.xml
-    - Framework Servlet
-    - Deploy
-  </script></section>
+    - [Container Web](#)
+    - [Aplicação Java Web](#)
+      - [web.xml](#)
+    - [Framework Servlet](#)
+    - [Deploy](#)
+    - [Java EE](#)
+  </div>
+</section>
+
+<section id="sec-container-web">
+  <section id="container-web">
+    <h2>Container Web</h2>
+    <video data-src="https://media.giphy.com/media/6AFldi5xJQYIo/giphy.mp4" data-autoplay loop></video>
+    <p>
+      É um programa responsável por <b>executar</b> código Java em todas as requisições HTTP recebidas.
+    </p>
+  </section>
+
+  <section id="container-setup-1" data-background="#fff">
+    <h3>Configuração 1: recomendado</h3>
+    <p style="font-size: 0.9em">
+      Servidor web atende requisições a arquivos estáticos e <b>encaminha</b> para o container outras requisições.
+    </p>
+    <object data="../../assets/images/container-web-external.svg" class="stretch"></object>
+  </section>
+
+  <section id="container-setup-2" data-background="#fff">
+    <h3>Configuração 2: mais comum</h3>
+    <p>Container atende a <b>todas</b> as requisições web</p>
+    <object data="../../assets/images/container-web-standalone.svg" class="stretch"></object>
+  </section>
+</section>
+
+<section id="sec-webapp">
+
+</section>
+
+<section id="sec-framework-servlet">
+
+</section>
+
+<section id="sec-deploy">
+
+</section>
+
+<section id="sec-java-ee">
+
+</section>
 
 <section class="duvidas" data-markdown>
   <div data-template>

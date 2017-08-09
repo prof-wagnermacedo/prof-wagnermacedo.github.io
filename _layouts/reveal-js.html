@@ -2,7 +2,9 @@
 <html lang="{{ site.lang | default: 'pt-BR' }}">
 <head>
   {% if page.draft and jekyll.environment == 'production' %}
-  <meta http-equiv="refresh" content="0; url=nao-encontrado">
+  <script>
+      location.href = 'nao-encontrado';
+  </script>
   {% endif %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">

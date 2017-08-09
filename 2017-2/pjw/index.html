@@ -1,52 +1,29 @@
 ---
-layout: reveal-js
+layout: course
 ---
 
-<section>
-  <h3>Programação em Java para WEB</h3>
-  <h4>Fanese - 2017/2</h4>
-  <div id="summary"></div>
-</section>
+<h2>Aulas</h2>
 
-<script>
-    (function () {
-        $.get('Z', function (response) {
-            var summary = $('#summary');
+<ul style="list-style: none">
+  {% for p in site.pages %}
+    {% if p.draft != true and p.url != page.url and p.url contains page.url %}
+      <li><a href="{{ p.url }}">{{ forloop.index }}. {{ p.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
 
-            if (response > 9) {
-                summary.css('font-size', '0.75em');
-            }
+<h2>Exercícios</h2>
 
-            if (response > 12) {
-                var n = Math.ceil(response / 12);
-                summary.css('columns', n.toString());
+<ul style="list-style: none">
+  {% assign urlExercise = page.url | append: 'exercicio' %}
+  {% for p in site.pages %}
+    {% if p.draft != true and p.url contains urlExercise %}
+      {% assign hasExercises = true %}
+      <li><a href="{{ p.url }}">{{ p.quiz-title }}</a></li>
+    {% endif %}
+  {% endfor %}
 
-                // noinspection FallThroughInSwitchStatementJS
-                switch (n) {
-                    case 2:
-                    case 3:
-                    case 4:
-                        summary.css('font-size', '0.9em');
-                    case 5:
-                        summary.css('columns', (n+1).toString());
-                        break;
-
-                    case 6:
-                    case 7:
-                    case 8:
-                        summary.css('columns', (n-1).toString());
-                        summary.css('font-size', '0.65em');
-                        break;
-
-                    default:
-                        summary.css('columns', (n-2).toString());
-                        summary.css('font-size', '0.6em');
-                }
-            }
-
-            for (var i = 1; i <= response; i++) {
-                summary.append('<div><a href="' + i + '.html">Tópico ' + i + '</a>');
-            }
-        });
-    })();
-</script>
+  {% if p.hasExercises != true %}
+    <li>Ainda não há exercícios</li>
+  {% endif %}
+</ul>

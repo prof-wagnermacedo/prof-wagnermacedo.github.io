@@ -1,2 +1,11 @@
 title: prof.wagnermacedo.com
+lang: pt-BR
 theme: jekyll-theme-slate
+
+defaults:
+  -
+    scope:
+      path: "2017-2/pjw"
+    values:
+      title: "Programação em Java para Web"
+      description: "Fanese - 2017/2"

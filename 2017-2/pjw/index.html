@@ -4,13 +4,13 @@ layout: course
 
 <h2>Aulas</h2>
 
-<ul style="list-style: none">
+<ol style="margin-left: 1em">
   {% for p in site.pages %}
     {% if p.draft != true and p.url != page.url and p.url contains page.url %}
-      <li><a href="{{ p.url }}">{{ forloop.index }}. {{ p.title }}</a></li>
+      <li><a href="{{ p.url }}">{{ p.title }}</a></li>
     {% endif %}
   {% endfor %}
-</ul>
+</ol>
 
 <h2>Exercícios</h2>
 

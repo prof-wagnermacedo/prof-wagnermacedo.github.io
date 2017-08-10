@@ -81,6 +81,10 @@ iframe.demo {
     color: inherit;
 }
 
+.reveal .slides section .fragment.highlight-bold.visible {
+    font-weight: bold;
+}
+
 pre > code .block,
 pre > code [step="block"] {
     display: inline-block;

@@ -45,10 +45,68 @@ draft: true
     <p>Container atende a <b>todas</b> as requisições web</p>
     <object data="../../assets/images/container-web-standalone.svg" class="stretch"></object>
   </section>
+
+  <section id="container-independente-fabricante">
+    <h3>Independente de Fabricante</h3>
+
+    <blockquote data-markdown>
+      O container web é, na verdade, uma **especificação** da plataforma Java EE.
+
+      Esta especificação define regras de como um container deve se comportar.
+    </blockquote>
+  </section>
+
+  <section id="container-fabricantes">
+
+  </section>
 </section>
 
 <section id="sec-webapp">
+  <section id="webapp">
+    <h2>Aplicação Java Web</h2>
+    <video data-src="https://media.giphy.com/media/b1TDbfsWLiDAc/giphy.mp4" data-autoplay loop></video>
+    <p>
+      É onde fica o código Java!
+    </p>
+  </section>
 
+  <section id="webapp-implantadas" data-background="#fff">
+    <object data="../../assets/images/webapps-dentro-container.svg" class="stretch"></object>
+    <p>
+      As aplicações são <b>implantadas</b> no container web.
+    </p>
+  </section>
+
+  <section id="webapp-contexto" style="font-size: 0.95em">
+    <p style="margin-bottom: 1em">Cada aplicação tem um caminho raiz chamado <b>contexto</b>.</p>
+
+    <div class="columns">
+      <div class="col">
+        <object data="../../assets/images/webapps-dentro-container.svg"
+                style="width: 100%; filter: drop-shadow(0 0 .25em);"></object>
+      </div>
+      <div class="col" style="font-size: 0.75em; text-align: left; margin: 1em 0 1em 1.5em;">
+        <p>
+          http://site.com:8080<span class="fragment highlight-blue highlight-bold" data-fragment-index="1">/AppLoja</span>/
+        </p>
+        <p>
+          http://site.com:8080<span class="fragment highlight-blue highlight-bold" data-fragment-index="1">/AppSite</span>/</p>
+        <p>
+          http://site.com:8080<span class="fragment highlight-blue highlight-bold" data-fragment-index="1">/AppBlog</span>/</p>
+        <p>
+          http://site.com:8080<span class="fragment highlight-blue highlight-bold" data-fragment-index="1">/AppFarmacia</span>/</p>
+        <p>
+          http://site.com:8080<span class="fragment highlight-blue highlight-bold" data-fragment-index="1">/AppContabil</span>/</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quem-configura-contexto">
+    <blockquote data-markdown>
+      É importante notar que não é o desenvolvedor da aplicação quem escolhe o contexto,
+      mas o técnico de infraestrutura no momento de implantar a aplicação no container.
+    </blockquote>
+  </section>
 </section>
 
 <section id="sec-framework-servlet">

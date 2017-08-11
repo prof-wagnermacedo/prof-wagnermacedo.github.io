@@ -1,7 +1,6 @@
 ---
 title: Conceitos de Programação em Java para Web
 layout: reveal-js
-draft: true
 ---
 
 <section>
@@ -17,7 +16,7 @@ draft: true
     - [Container Web](#)
     - [Aplicação Java Web](#)
       - [web.xml](#)
-    - [Framework Servlet](#)
+    - [Plataforma Servlet](#)
     - [Deploy](#)
     - [Java EE](#)
   </div>
@@ -208,7 +207,7 @@ draft: true
 <section id="sec-framework-servlet">
   <section id="plataforma-servlet">
     <h2>Plataforma Servlet</h2>
-    <video src="https://media.giphy.com/media/GYtsUWtOqwCAg/giphy.mp4" data-autoplay loop></video>
+    <video data-src="https://media.giphy.com/media/GYtsUWtOqwCAg/giphy.mp4" data-autoplay loop></video>
     <p>
       A tecnologia web do ambiente Java
     </p>
@@ -227,33 +226,147 @@ draft: true
     <embed src="../../assets/images/plataforma-servlet.svg" type="image/svg+xml" class="stretch">
   </section>
 
-  <section id="servlet-container" data-background="#ddd">
+  <section id="servlet-container" data-background="#e9e9e9">
     <blockquote data-markdown>
       O container web também é chamado de **Servlet Container**.
     </blockquote>
   </section>
 
-  <section id="framework-servlet">
-    <h2>Framework Servlet</h2>
-    
+  <section id="framework-servlet" data-background="#fff">
+    <h3>Framework Servlet</h3>
+    <embed src="../../assets/images/servlet-classes.svg" type="image/svg+xml" style="height: 550px">
+  </section>
+
+  <section id="exemplo-servlet">
+    <h4>Um Servlet</h4>
+    <div style="font-size: 0.8em">
+      <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+        public <span step>class HelloServlet</span> extends <span step>HttpServlet</span> {
+          @Override
+          protected void <span step>service</span>(<span step>HttpServletRequest request</span>,
+                                 <span step>HttpServletResponse response</span>) throws IOException {
+            <span step>String idioma = request.getHeader("Content-Language");</span>
+
+            <span step>response.setStatus(200);</span>
+            <span step>response.setHeader("Content-Type", "text/html");</span>
+        <span step>
+            PrintWriter conteudo = response.getWriter();
+            conteudo.println(&quot;&lt;!DOCTYPE html&gt;&quot;);
+            conteudo.println(&quot;&lt;html&gt;&quot;);
+            conteudo.println(&quot;&lt;head&gt;&quot;);
+            conteudo.println(&quot;&lt;meta charset=utf-8&gt;&quot;);
+            conteudo.println(&quot;&lt;title&gt;Servlet de Exemplo&lt;/title&gt;&quot;);
+            conteudo.println(&quot;&lt;/head&gt;&quot;);
+            conteudo.println(&quot;&lt;body&gt;&quot;);
+            conteudo.println(&quot;&lt;h1&gt;Servlet de Exemplo&lt;/h1&gt;&quot;);
+            conteudo.println(&quot;&lt;p&gt;Este é o conteúdo de um servlet.&lt;/p&gt;&quot;);
+            conteudo.println(&quot;&lt;p&gt;Idioma solicitado: &quot; + idioma + &quot;&lt;/p&gt;&quot;);
+            conteudo.println(&quot;&lt;/body&gt;&quot;);
+            conteudo.println(&quot;&lt;/html&gt;&quot;);</span>
+          }
+        }
+        </code></pre>
+    </div>
+  </section>
+
+  <section id="exemplo-jsp">
+    <h4>JSP: alternativa bem vinda</h4>
+    <pre><code data-trim data-noescape>
+      &lt;!DOCTYPE html&gt;
+      &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Página do Servlet de Exemplo&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Página do Servlet de Exemplo&lt;/h1&gt;
+        &lt;p&gt;Este é o conteúdo de um servlet.&lt;/p&gt;
+        &lt;p&gt;Idioma solicitado: <span step>${idioma}</span>&lt;/p&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </section>
+
+  <section id="servlet-equivalente-programa">
+    <p>Um Servlet é equivalente a um programa Java</p>
+
+    <pre><code data-trim class="lang-java">
+      public class HelloProgram {
+          public static void main( String[] args ) {
+              Scanner teclado = new Scanner(System.in);
+              String nome = teclado.nextLine();
+              int idade = teclado.nextInt();
+
+              System.out.println("Olá mundo!");
+              System.out.println("Seu nome é " + nome);
+              System.out.println("Sua idade é " + idade);
+          }
+      }
+    </code></pre>
   </section>
 
   <section id="servlet-citacao-2">
     <blockquote>
       <p>
-        É perfeitamente <b>possível</b> desenvolver para web com Java
+        É perfeitamente <strong>possível</strong> desenvolver para web com Java
         sem o uso da tecnologia Servlet, mas é algo pouco&nbsp;comum.
+      </p>
+    </blockquote>
+  </section>
+
+  <section id="biblioteca-vs-framework">
+    <h3>Biblioteca vs Framework</h3>
+    <p><a href="https://pt.wikipedia.org/wiki/Invers%C3%A3o_de_controle" target="_blank" class="blank">
+      Qual a diferença?</a></p>
+  </section>
+</section>
+
+<section id="sec-deploy">
+  <section id="deploy">
+    <h2>Deploy</h2>
+    <video data-src="https://media.giphy.com/media/9jC8zQHxe4y4w/giphy.mp4" data-autoplay loop></video>
+    <p>Prepare a aplicação para executar</p>
+  </section>
+
+  <section id="o-que-e-deploy">
+    <blockquote>
+      <p>
+        <b>Deploy</b> é o processo de disponibilizar uma
+        aplicação web em um servidor&nbsp;web (ou container web).
+      </p>
+      <p>
+        Em português, conhecemos como processo de <b>implantação</b>.
+      </p>
+    </blockquote>
+  </section>
+
+  <section id="deploy-desenvolvimento">
+    <blockquote>
+      <p>
+        Mesmo no servidor de <b>desenvolvimento</b>, é preciso fazer
+        deploy para ver as alterações.
       </p>
     </blockquote>
   </section>
 </section>
 
-<section id="sec-deploy">
-
+<section id="java-ee" data-background="#fff">
+  <h2>Java Enterprise Edition</h2>
+  <embed src="../../assets/images/java-ee.svg" type="image/svg+xml" class="stretch">
 </section>
 
-<section id="sec-java-ee">
-
+<section id="leitura-recomendada">
+  <h5>Leitura Recomendada 🔖</h5>
+  <div class="columns" style="font-size: 0.8em">
+    <div class="col">
+      <img src="../../assets/images/livros/araujo2010-webjava.jpg" style="height: 25rem">
+      <p><b>Capítulo 1:</b> Plataforma Web</p>
+    </div>
+    <div class="col">
+      <img src="../../assets/images/livros/goncalves2007-jsp.jpg" style="height: 25rem">
+      <p><b>Capítulo 3:</b> Java na Web</p>
+    </div>
+  </div>
 </section>
 
 <section class="duvidas" data-markdown>

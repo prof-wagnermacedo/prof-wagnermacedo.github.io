@@ -56,10 +56,33 @@ draft: true
     </blockquote>
   </section>
 
-  <section id="container-fabricantes">
-
+  <section id="container-fabricantes" data-background="#f1f1f1">
+    <h3>Exemplos de Containers Web</h3>
+    <div>
+      <img src="../../assets/images/containers/tomcat.svg">
+      <img src="../../assets/images/containers/jetty.svg">
+      <img src="../../assets/images/containers/weblogic.svg">
+      <img src="../../assets/images/containers/glassfish.svg" style="margin-right: 0.3em">
+      <img src="../../assets/images/containers/jboss.svg">
+      <img src="../../assets/images/containers/wildfly.svg">
+      <img src="../../assets/images/containers/websphere.svg">
+    </div>
   </section>
 </section>
+
+<style>
+  #container-fabricantes > div {
+    columns: 2;
+  }
+
+  #container-fabricantes > div > img {
+    height: 3em;
+    margin: 0.1em;
+    border: 0;
+    box-shadow: none;
+    background: none;
+  }
+</style>
 
 <section id="sec-webapp">
   <section id="webapp">
@@ -82,8 +105,7 @@ draft: true
 
     <div class="columns">
       <div class="col">
-        <object data="../../assets/images/webapps-dentro-container.svg"
-                style="width: 100%; filter: drop-shadow(0 0 .25em);"></object>
+        <object data="../../assets/images/webapps-dentro-container.svg" width="100%"></object>
       </div>
       <div class="col" style="font-size: 0.75em; text-align: left; margin: 1em 0 1em 1.5em;">
         <p>
@@ -104,13 +126,126 @@ draft: true
   <section id="quem-configura-contexto">
     <blockquote data-markdown>
       É importante notar que não é o desenvolvedor da aplicação quem escolhe o contexto,
-      mas o técnico de infraestrutura no momento de implantar a aplicação no container.
+      mas o técnico 👨‍🔧 de infraestrutura no momento de implantar a aplicação no container.
     </blockquote>
+  </section>
+
+  <section id="estrutura-webapp" data-background="#fff">
+    <h3>Estrutura de uma aplicação web</h3>
+    <object data="../../assets/images/webapp-estrutura.svg" class="stretch"></object>
+  </section>
+
+  <section id="estrutura-webinf" data-background="#fff">
+    <h4>Estrutura do subdiretório WEB-INF</h4>
+    <object data="../../assets/images/webinf-estrutura.svg" class="stretch"></object>
+  </section>
+
+  <section id="web-xml" data-background="#fff">
+    <p style="font-family: cursive">
+      <img src="http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Mimetypes-text-xml-icon.png"
+           class="emoji" style="vertical-align: middle">
+      web.xml
+    </p>
+
+    <div style="font-size: 0.9em">
+      <pre><code data-trim class="lang-xml"
+                 style="max-height: 25em">
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        &lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot; version=&quot;3.1&quot;&gt;
+          &lt;display-name&gt;Minha Aplica&ccedil;&atilde;o Web&lt;/display-name&gt;
+          &lt;description&gt;
+            Esta é a versão X.Y.Z de uma super aplicação.
+          &lt;/description&gt;
+
+          &lt;context-param&gt;
+            &lt;param-name&gt;webmaster&lt;/param-name&gt;
+            &lt;param-value&gt;meuendereco@minhaempresa.com&lt;/param-value&gt;
+          &lt;/context-param&gt;
+
+          &lt;servlet&gt;
+            &lt;servlet-name&gt;Saudacao&lt;/servlet-name&gt;
+            &lt;servlet-class&gt;com.minhaempresa.HelloServlet&lt;/servlet-class&gt;
+          &lt;/servlet&gt;
+
+          &lt;servlet&gt;
+            &lt;servlet-name&gt;Registro&lt;/servlet-name&gt;
+            &lt;jsp-file&gt;/registro/iniciar.jsp&lt;/jsp-file&gt;
+          &lt;/servlet&gt;
+
+          &lt;servlet-mapping&gt;
+            &lt;servlet-name&gt;Saudacao&lt;/servlet-name&gt;
+            &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;
+          &lt;/servlet-mapping&gt;
+
+          &lt;servlet-mapping&gt;
+            &lt;servlet-name&gt;Registro&lt;/servlet-name&gt;
+            &lt;url-pattern&gt;/registro/*&lt;/url-pattern&gt;
+          &lt;/servlet-mapping&gt;
+
+          &lt;filter&gt;
+            &lt;filter-name&gt;LogSpecial&lt;/filter-name&gt;
+            &lt;filter-class&gt;com.minhaempresa.LogFilter&lt;/filter-class&gt;
+            &lt;init-param&gt;
+              &lt;param-name&gt;logType&lt;/param-name&gt;
+              &lt;param-value&gt;special&lt;/param-value&gt;
+            &lt;/init-param&gt;
+          &lt;/filter&gt;
+
+          &lt;filter-mapping&gt;
+            &lt;filter-name&gt;LogSpecial&lt;/filter-name&gt;
+            &lt;url-pattern&gt;*.special&lt;/url-pattern&gt;
+          &lt;/filter-mapping&gt;
+
+          &lt;session-config&gt;
+            &lt;session-timeout&gt;30&lt;/session-timeout&gt;
+          &lt;/session-config&gt;
+        &lt;/web-app&gt;
+      </code></pre>
+    </div>
   </section>
 </section>
 
 <section id="sec-framework-servlet">
+  <section id="plataforma-servlet">
+    <h2>Plataforma Servlet</h2>
+    <video src="https://media.giphy.com/media/GYtsUWtOqwCAg/giphy.mp4" data-autoplay loop></video>
+    <p>
+      A tecnologia web do ambiente Java
+    </p>
+  </section>
 
+  <section id="servlet-citacao">
+    <blockquote data-markdown>
+      Servlet é a **tecnologia padrão** do ambiente Java
+      para a construção de aplicativos web, projetado para
+      ser independente do servidor e do sistema.
+    </blockquote>
+  </section>
+
+  <section id="ilustracao-plataforma-servlet" data-background="#fff">
+    <h3>Container Web e os Servlets</h3>
+    <embed src="../../assets/images/plataforma-servlet.svg" type="image/svg+xml" class="stretch">
+  </section>
+
+  <section id="servlet-container" data-background="#ddd">
+    <blockquote data-markdown>
+      O container web também é chamado de **Servlet Container**.
+    </blockquote>
+  </section>
+
+  <section id="framework-servlet">
+    <h2>Framework Servlet</h2>
+    
+  </section>
+
+  <section id="servlet-citacao-2">
+    <blockquote>
+      <p>
+        É perfeitamente <b>possível</b> desenvolver para web com Java
+        sem o uso da tecnologia Servlet, mas é algo pouco&nbsp;comum.
+      </p>
+    </blockquote>
+  </section>
 </section>
 
 <section id="sec-deploy">

@@ -245,7 +245,7 @@ layout: reveal-js
           @Override
           protected void <span step>service</span>(<span step>HttpServletRequest request</span>,
                                  <span step>HttpServletResponse response</span>) throws IOException {
-            <span step>String idioma = request.getHeader("Content-Language");</span>
+            <span step>String idioma = request.getHeader("Accept-Language");</span>
 
             <span step>response.setStatus(200);</span>
             <span step>response.setHeader("Content-Type", "text/html");</span>

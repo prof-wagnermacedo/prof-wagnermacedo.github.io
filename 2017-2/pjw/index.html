@@ -17,8 +17,6 @@ layout: course
   ];
 
   window.addEventListener('load', function() {
-      console.log('load');
-
       const classnotes = document.getElementById("classnotes");
       const exercises = document.getElementById("exercises");
 
@@ -39,6 +37,7 @@ layout: course
       });
 
       if (!exercises.hasChildNodes()) {
+          exercises.style.listStyle = 'none';
           exercises.innerHTML = '<li>Ainda não há exercícios</li>';
       }
   });
@@ -46,8 +45,8 @@ layout: course
 
 <h2>Notas de aula</h2>
 
-<ol id="classnotes" style="margin-left: 1em"></ol>
+<ol id="classnotes"></ol>
 
 <h2>Exercícios</h2>
 
-<ul id="exercises" style="list-style: none"></ul>
+<ol id="exercises" style="list-style-type: upper-roman"></ol>

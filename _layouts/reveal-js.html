@@ -34,6 +34,18 @@
 <div class="reveal">
   <div id="slides" class="slides">
     {{ content }}
+
+    <section class="duvidas">
+      {%- assign pageUrl = page.url | split: "."    | reverse
+                                    | slice: 1, 999 | reverse | join: "."
+                                    | prepend: "http://prof.wagnermacedo.com" %}
+      <h2>Dúvidas?</h2>
+      <p>
+        <strong>Este slide pode ser encontrado em:</strong>
+        <br>
+        <a href="{{ pageUrl }}">{{ pageUrl }}</a>
+      </p>
+    </section>
   </div>
 </div>
 

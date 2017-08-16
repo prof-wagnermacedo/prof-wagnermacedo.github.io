@@ -1,0 +1,18 @@
+---
+layout: course
+---
+
+<h1>Exercícios {{ page.quiz-number }}: {{ page.quiz-title }}</h1>
+
+<p>
+  O exercício está disponível em
+  <a href="{{ page.quiz-url }}">{{ page.quiz-url }}</a>
+</p>
+
+{{- content -}}
+
+<script>
+setTimeout(function() {
+    location.href = '{{ page.quiz-url }}';
+}, {{ page.quiz-timeout | default: 5000 }});
+</script>

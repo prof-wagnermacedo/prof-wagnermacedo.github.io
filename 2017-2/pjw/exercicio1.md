@@ -1,8 +1,6 @@
 ---
-layout: course
+layout: exercise
+quiz-number: 1
 quiz-title: Web e HTTP
+quiz-url: https://goo.gl/forms/0tVPgPHcnTbVSTkx1
 ---
-
-# Exercícios 1: {{ page.quiz-title }}
-
-O exercício está disponível no link <https://goo.gl/forms/0tVPgPHcnTbVSTkx1>

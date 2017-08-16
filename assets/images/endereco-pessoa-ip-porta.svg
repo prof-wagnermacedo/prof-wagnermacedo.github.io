@@ -30,7 +30,7 @@
      inkscape:window-height="700"
      inkscape:window-width="1366"
      showgrid="false"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer1"
      inkscape:document-units="px"
      inkscape:cy="436.99999"
      inkscape:cx="640"
@@ -62,30 +62,20 @@
     <image
        sodipodi:absref="/home/wagner/Faculdade/prof.wagnermacedo.com/assets/images/envelope-brasileiro.jpg"
        xlink:href="envelope-brasileiro.jpg"
-       transform="translate(442.85715,-135.3622)"
-       width="1280"
-       height="874"
-       preserveAspectRatio="none"
-       id="image3363"
+       y="135.3622"
        x="-442.85715"
-       y="135.3622" />
+       id="image3363"
+       preserveAspectRatio="none"
+       height="874"
+       width="1280"
+       transform="translate(442.85715,-135.3622)" />
   </g>
   <g
      inkscape:label="Destinatario"
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(442.85715,-135.3622)">
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3335"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:12px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
-         id="flowRegion3337"><rect
-           id="rect3339"
-           width="440"
-           height="288.57144"
-           x="117.14286"
-           y="262.57141" /></flowRegion><flowPara
-         id="flowPara3341" /></flowRoot>    <text
+    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:13.933218px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="-301.79041"

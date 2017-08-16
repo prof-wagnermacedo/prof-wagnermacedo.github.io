@@ -1,549 +1,87 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   contentScriptType="application/ecmascript"
-   contentStyleType="text/css"
-   height="339px"
-   preserveAspectRatio="none"
-   style="width:733px;height:339px;"
-   version="1.1"
-   viewBox="0 0 733 339"
-   width="733px"
-   zoomAndPan="magnify"
-   id="svg3336"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="relacionadas-INF062.svg">
-  <metadata
-     id="metadata3441">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1366"
-     inkscape:window-height="700"
-     id="namedview3439"
-     showgrid="false"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:zoom="1.2141883"
-     inkscape:cx="366.5"
-     inkscape:cy="169.5"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="g3349" />
-  <defs
-     id="defs3338">
-    <filter
-       height="300%"
-       id="fkljui6"
-       width="300%"
-       x="-1"
-       y="-1">
-      <feGaussianBlur
-         result="blurOut"
-         stdDeviation="2.0"
-         id="feGaussianBlur3341" />
-      <feColorMatrix
-         in="blurOut"
-         result="blurOut2"
-         type="matrix"
-         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
-         id="feColorMatrix3343" />
-      <feOffset
-         dx="4.0"
-         dy="4.0"
-         in="blurOut2"
-         result="blurOut3"
-         id="feOffset3345" />
-      <feBlend
-         in="SourceGraphic"
-         in2="blurOut3"
-         mode="normal"
-         id="feBlend3347" />
-    </filter>
-  </defs>
-  <g
-     id="g3349">
-    <!--entity INF051-->
-    <rect
-       fill="#FEFFD5"
-       filter="url(#fkljui6)"
-       height="68.2959"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="112"
-       x="6"
-       y="136"
-       id="rect3351" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="68"
-       x="28"
-       y="159.3608"
-       id="text3353">Lógica de</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="92"
-       x="16"
-       y="175.4595"
-       id="text3355">Programação</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="39.5"
-       y="191.5581"
-       id="text3357">INF051</text>
-    <!--entity INF053-->
-    <rect
-       fill="#E6FAD1"
-       filter="url(#fkljui6)"
-       height="68.2959"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="112"
-       x="153"
-       y="136"
-       id="rect3359" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="88"
-       x="165"
-       y="159.3608"
-       id="text3361">Introdução a</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="92"
-       x="163"
-       y="175.4595"
-       id="text3363">Programação</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="186.5"
-       y="191.5581"
-       id="text3365">INF053</text>
-    <!--entity INF058-->
-    <rect
-       fill="#E1C8ED"
-       filter="url(#fkljui6)"
-       height="52.1973"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="155"
-       x="300.5"
-       y="144"
-       id="rect3367" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="135"
-       x="310.5"
-       y="167.3608"
-       id="text3369">Estrutura de Dados</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="355.5"
-       y="183.4595"
-       id="text3371">INF058</text>
-    <!--entity INF062-->
-    <rect
-       fill="#FFCC83"
-       filter="url(#fkljui6)"
-       height="68.2959"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="137"
-       x="490.5"
-       y="136"
-       id="rect3373" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="117"
-       x="500.5"
-       y="159.3608"
-       id="text3375">Programação em</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="104"
-       x="507"
-       y="175.4595"
-       id="text3377">Java para WEB</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="536.5"
-       y="191.5581"
-       id="text3379">INF062</text>
-    <!--entity INF055-->
-    <rect
-       fill="#FFFFFF"
-       filter="url(#fkljui6)"
-       height="68.2959"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="118"
-       x="413"
-       y="8"
-       id="rect3381" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="73"
-       x="435.5"
-       y="31.3608"
-       id="text3383">Projeto de</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="98"
-       x="423"
-       y="47.4595"
-       id="text3385">Interface Web</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="449.5"
-       y="63.5581"
-       id="text3387">INF055</text>
-    <!--entity INF057-->
-    <rect
-       fill="#FFFFFF"
-       filter="url(#fkljui6)"
-       height="68.2959"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="160"
-       x="566"
-       y="8"
-       id="rect3389" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="92"
-       x="600"
-       y="31.3608"
-       id="text3391">Programação</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="140"
-       x="576"
-       y="47.4595"
-       id="text3393">Orientada a Objetos</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="623.5"
-       y="63.5581"
-       id="text3395">INF057</text>
-    <!--entity INF056-->
-    <rect
-       fill="#FFFFFF"
-       filter="url(#fkljui6)"
-       height="52.1973"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="142"
-       x="402"
-       y="272"
-       id="rect3397" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="122"
-       x="412"
-       y="295.3608"
-       id="text3399">Banco de Dados I</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="450.5"
-       y="311.4595"
-       id="text3401">INF056</text>
-    <!--entity INF054-->
-    <rect
-       fill="#FFFFFF"
-       filter="url(#fkljui6)"
-       height="68.2959"
-       style="stroke: #000000; stroke-width: 1.5;"
-       width="131"
-       x="579.5"
-       y="264"
-       id="rect3403" />
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="67"
-       x="611.5"
-       y="287.3608"
-       id="text3405">Redes de</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       font-weight="bold"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="111"
-       x="589.5"
-       y="303.4595"
-       id="text3407">Computadores I</text>
-    <text
-       fill="#000000"
-       font-family="Arial"
-       font-size="14"
-       lengthAdjust="spacingAndGlyphs"
-       textLength="45"
-       x="622.5"
-       y="319.5581"
-       id="text3409">INF054</text>
-    <g
-       id="g4603">
-      <path
-         id="path3411"
-         style="stroke: #A80036; stroke-width: 1.0;"
-         d="M118.273,170 C128.031,170 137.789,170 147.547,170 "
-         fill="none" />
-      <polygon
-         id="polygon3413"
-         style="stroke: #A80036; stroke-width: 1.0;"
-         points="152.65,170,143.65,166,147.65,170,143.65,174,152.65,170"
-         fill="#A80036" />
-    </g>
-    <path
-       d="M265.113,170 C275.127,170 285.14,170 295.154,170 "
-       fill="none"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="path3415" />
-    <polygon
-       fill="#A80036"
-       points="300.39,170,291.39,166,295.39,170,291.39,174,300.39,170"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="polygon3417" />
-    <path
-       d="M455.773,170 C465.617,170 475.46,170 485.304,170 "
-       fill="none"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="path3419" />
-    <polygon
-       fill="#A80036"
-       points="490.451,170,481.451,166,485.451,170,481.451,174,490.451,170"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="polygon3421" />
-    <path
-       d="M494.858,76.105 C506.554,93.044 520.841,113.736 532.961,131.288 "
-       fill="none"
-       style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"
-       id="path3423" />
-    <polygon
-       fill="#A80036"
-       points="535.992,135.679,534.1712,125.9999,533.1516,131.5641,527.5874,130.5446,535.992,135.679"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="polygon3425" />
-    <path
-       d="M623.142,76.105 C611.446,93.044 597.159,113.736 585.039,131.288 "
-       fill="none"
-       style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"
-       id="path3427" />
-    <polygon
-       fill="#A80036"
-       points="582.008,135.679,590.4126,130.5446,584.8484,131.5641,583.8288,125.9999,582.008,135.679"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="polygon3429" />
-    <g
-       id="g4613">
-      <path
-         id="path3431"
-         style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"
-         fill="none"
-         d="M533.479,208.391 C519.548,228.802 502.667,253.5343 490.284,271.6772 " />
-      <polygon
-         id="polygon3433"
-         style="stroke: #A80036; stroke-width: 1.0;"
-         points="536.405,204.105,528.0278,209.284,533.5865,208.2349,534.6356,213.7936,536.405,204.105"
-         fill="#A80036" />
-    </g>
-    <path
-       d="M584.587,208.488 C596.549,226.013 610.674,246.7081 622.257,263.6786 "
-       fill="none"
-       style="stroke:#A80036;stroke-width:1;stroke-dasharray:1,3;stroke-miterlimit:4;stroke-dashoffset:0"
-       id="path3435" />
-    <polygon
-       fill="#A80036"
-       points="581.595,204.105,583.3644,213.7936,584.4135,208.2349,589.9722,209.284,581.595,204.105"
-       style="stroke: #A80036; stroke-width: 1.0;"
-       id="polygon3437" />
-    <g
-       id="g4268"
-       transform="translate(2,6)">
-      <g
-         id="g4290">
-        <g
-           id="g4607"
-           transform="translate(-86.068105,95.271498)">
-          <path
-             d="M 98.461119,170 147.547,170"
-             style="fill:none;stroke:#a80036;stroke-width:1"
-             id="path4609"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="cc" />
-          <polygon
-             points="152.65,170 143.65,166 147.65,170 143.65,174 152.65,170 "
-             style="fill:#a80036;stroke:#a80036;stroke-width:1"
-             id="polygon4611" />
-        </g>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="78.450447"
-           y="268.57962"
-           id="text4625"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan4627"
-             x="78.450447"
-             y="268.57962"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:Arial;-inkscape-font-specification:Arial">Pré-requisito formal</tspan></text>
-      </g>
-      <g
-         id="g4297"
-         transform="translate(0,0.29216003)">
-        <g
-           id="g4617"
-           transform="matrix(0.56575128,0.82457595,-0.82457595,0.56575128,-68.590976,-267.13116)">
-          <path
-             d="m 533.479,208.391 c -13.931,20.411 -16.22153,23.87787 -28.60453,42.02077"
-             style="fill:none;stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
-             id="path4619"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="cc" />
-          <polygon
-             points="533.5865,208.2349 534.6356,213.7936 536.405,204.105 536.405,204.105 528.0278,209.284 "
-             style="fill:#a80036;stroke:#a80036;stroke-width:1"
-             id="polygon4621" />
-        </g>
-        <text
-           sodipodi:linespacing="125%"
-           id="text4629"
-           y="293.92627"
-           x="78.450447"
-           style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:Arial;-inkscape-font-specification:Arial"
-             y="293.92627"
-             x="78.450447"
-             id="tspan4631"
-             sodipodi:role="line">Pré-requisito recomendado</tspan></text>
-      </g>
-      <g
-         id="g4304">
-        <g
-           transform="matrix(0.56575128,0.82457595,-0.82457595,0.56575128,-68.590976,-241.20019)"
-           id="g4280">
-          <path
-             sodipodi:nodetypes="cc"
-             inkscape:connector-curvature="0"
-             id="path4282"
-             style="fill:none;stroke:#a80036;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:1, 2.99999999;stroke-dashoffset:0"
-             d="m 533.479,208.391 c -13.931,20.411 -16.22153,23.87787 -28.60453,42.02077" />
-          <polygon
-             id="polygon4284"
-             style="fill:#a80036;stroke:#a80036;stroke-width:1"
-             points="533.5865,208.2349 534.6356,213.7936 536.405,204.105 536.405,204.105 528.0278,209.284 " />
-        </g>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="78.450447"
-           y="319.85724"
-           id="text4286"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan4288"
-             x="78.450447"
-             y="319.85724"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:Arial;-inkscape-font-specification:Arial">Pré-requisito sugerido</tspan></text>
-      </g>
-    </g>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="733px" height="339px" style="height:339px;width:733px" contentScriptType="application/ecmascript" contentStyleType="text/css" inkscape:version="0.91 r13725" preserveAspectRatio="none" sodipodi:docname="relacionadas-INF062.svg" version="1.1" viewBox="0 0 733 339" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" zoomAndPan="magnify">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<sodipodi:namedview bordercolor="#666666" borderopacity="1" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g3349" inkscape:cx="366.5" inkscape:cy="169.5" inkscape:guide-bbox="true" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="700" inkscape:window-maximized="1" inkscape:window-width="1366" inkscape:window-x="0" inkscape:window-y="0" inkscape:zoom="1.2141883" objecttolerance="10" pagecolor="#ffffff" showgrid="false" showguides="true"/>
+<defs>
+<filter id="fkljui6" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="6" y="136" width="112" height="68.296" fill="#FEFFD5" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="28" y="159.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68">Lógica de</text>
+<text x="16" y="175.4595" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="92">Programação</text>
+<text x="39.5" y="191.5581" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF051</text>
+<rect x="153" y="136" width="112" height="68.296" fill="#E6FAD1" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="165" y="159.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="88">Introdução a</text>
+<text x="163" y="175.4595" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="92">Programação</text>
+<text x="186.5" y="191.5581" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF053</text>
+<rect x="300.5" y="144" width="155" height="52.197" fill="#E1C8ED" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="310.5" y="167.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135">Estrutura de Dados</text>
+<text x="355.5" y="183.4595" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF058</text>
+<rect x="490.5" y="136" width="137" height="68.296" fill="#FFCC83" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="500.5" y="159.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117">Programação em</text>
+<text x="507" y="175.4595" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="104">Java para WEB</text>
+<text x="536.5" y="191.5581" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF062</text>
+<rect x="413" y="8" width="118" height="68.296" fill="#fff" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="435.5" y="31.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73">Projeto de</text>
+<text x="423" y="47.4595" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="98">Interface Web</text>
+<text x="449.5" y="63.5581" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF055</text>
+<rect x="566" y="8" width="160" height="68.296" fill="#fff" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="600" y="31.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="92">Programação</text>
+<text x="576" y="47.4595" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140">Orientada a Objetos</text>
+<text x="623.5" y="63.5581" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF057</text>
+<rect x="402" y="272" width="142" height="52.197" fill="#fff" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="412" y="295.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="122">Banco de Dados I</text>
+<text x="450.5" y="311.4595" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF056</text>
+<rect x="579.5" y="264" width="131" height="68.296" fill="#fff" filter="url(#fkljui6)" stroke="#000" stroke-width="1.5"/>
+<text x="611.5" y="287.3608" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67">Redes de</text>
+<text x="589.5" y="303.4595" fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111">Computadores I</text>
+<text x="622.5" y="319.5581" fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45">INF054</text>
+<g stroke="#A80036">
+<path d="m118.27 170h29.274" fill="none"/>
+<polygon points="152.65 170 143.65 166 147.65 170 143.65 174" fill="#A80036"/>
+</g>
+<path d="m265.11 170h30.041" fill="none" stroke="#A80036"/>
+<polygon points="300.39 170 291.39 166 295.39 170 291.39 174" fill="#A80036" stroke="#A80036"/>
+<path d="m455.77 170h29.531" fill="none" stroke="#A80036"/>
+<polygon points="490.45 170 481.45 166 485.45 170 481.45 174" fill="#A80036" stroke="#A80036"/>
+<path d="m494.86 76.105c11.696 16.939 25.983 37.631 38.103 55.183" fill="none" stroke="#A80036" stroke-dasharray="7.0,7.0"/>
+<polygon points="535.99 135.68 534.17 126 533.15 131.56 527.59 130.54" fill="#A80036" stroke="#A80036"/>
+<path d="m623.14 76.105c-11.696 16.939-25.983 37.631-38.103 55.183" fill="none" stroke="#A80036" stroke-dasharray="7.0,7.0"/>
+<polygon points="582.01 135.68 590.41 130.54 584.85 131.56 583.83 126" fill="#A80036" stroke="#A80036"/>
+<g stroke="#A80036">
+<path d="m533.48 208.39c-13.931 20.411-30.812 45.143-43.195 63.286" fill="none" stroke-dasharray="7.0,7.0"/>
+<polygon points="536.4 204.1 528.03 209.28 533.59 208.23 534.64 213.79" fill="#A80036"/>
+</g>
+<path d="m584.59 208.49c11.962 17.525 26.087 38.22 37.67 55.191" fill="none" stroke="#A80036" stroke-dasharray="1,3"/>
+<polygon points="581.6 204.1 583.36 213.79 584.41 208.23 589.97 209.28" fill="#A80036" stroke="#A80036"/>
+<g transform="translate(2,6)">
+<g transform="translate(-86.068 95.271)" stroke="#a80036">
+<path d="m98.461 170h49.086" fill="none" inkscape:connector-curvature="0" sodipodi:nodetypes="cc"/>
+<polygon points="152.65 170 143.65 166 147.65 170 143.65 174" fill="#a80036"/>
+</g>
+<text x="78.450447" y="268.57962" fill="#000000" font-family="sans-serif" font-size="15px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:125%" sodipodi:linespacing="125%" xml:space="preserve"><tspan x="78.450447" y="268.57962" font-family="Arial" font-size="12.5px" sodipodi:role="line">Pré-requisito formal</tspan></text>
+<g transform="translate(0 .29216)">
+<g transform="matrix(.56575 .82458 -.82458 .56575 -68.591 -267.13)" stroke="#a80036">
+<path d="m533.48 208.39c-13.931 20.411-16.222 23.878-28.605 42.021" fill="none" stroke-dasharray="7, 7" inkscape:connector-curvature="0" sodipodi:nodetypes="cc"/>
+<polygon points="533.59 208.23 534.64 213.79 536.4 204.1 536.4 204.1 528.03 209.28" fill="#a80036"/>
+</g>
+<text x="78.450447" y="293.92627" fill="#000000" font-family="sans-serif" font-size="15px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:125%" sodipodi:linespacing="125%" xml:space="preserve"><tspan x="78.450447" y="293.92627" font-family="Arial" font-size="12.5px" sodipodi:role="line">Pré-requisito recomendado</tspan></text>
+</g>
+<g transform="matrix(.56575 .82458 -.82458 .56575 -68.591 -241.2)" stroke="#a80036">
+<path d="m533.48 208.39c-13.931 20.411-16.222 23.878-28.605 42.021" fill="none" stroke-dasharray="1, 2.99999999" inkscape:connector-curvature="0" sodipodi:nodetypes="cc"/>
+<polygon points="533.59 208.23 534.64 213.79 536.4 204.1 536.4 204.1 528.03 209.28" fill="#a80036"/>
+</g>
+<text x="78.450447" y="319.85724" fill="#000000" font-family="sans-serif" font-size="15px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:125%" sodipodi:linespacing="125%" xml:space="preserve"><tspan x="78.450447" y="319.85724" font-family="Arial" font-size="12.5px" sodipodi:role="line">Pré-requisito sugerido</tspan></text>
+</g>
 </svg>

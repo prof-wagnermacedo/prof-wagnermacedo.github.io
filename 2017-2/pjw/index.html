@@ -2,51 +2,24 @@
 layout: course
 ---
 
-<script>
-  const exerciseUrl = "{{ page.url }}exercicio";
-  const coursePages = [
-    {%- for p in site.pages -%}
-      {% if p.draft != true and p.url != page.url and p.url contains page.url %}
-        {
-          title: "{{ p.title }}",
-          url: "{{ p.url }}",
-          quizTitle: "{{ p.quiz-title }}"
-        },
-      {%- endif -%}
-    {% endfor %}
-  ];
-
-  window.addEventListener('load', function() {
-      const classnotes = document.getElementById("classnotes");
-      const exercises = document.getElementById("exercises");
-
-      coursePages.forEach(function (page) {
-          const a = document.createElement('a');
-          a.href = page.url;
-
-          const li = document.createElement('li');
-          li.appendChild(a);
-
-          if (page.quizTitle) {
-              a.innerHTML = page.quizTitle;
-              exercises.appendChild(li);
-          } else {
-              a.innerHTML = page.title;
-              classnotes.appendChild(li);
-          }
-      });
-
-      if (!exercises.hasChildNodes()) {
-          exercises.style.listStyle = 'none';
-          exercises.innerHTML = '<li>Ainda não há exercícios</li>';
-      }
-  });
-</script>
+{%- assign coursePages = site.pages | where_exp:"item", "item.draft != true"
+                                    | where_exp:"item", "item.url != page.url"
+                                    | where_exp:"item", "item.url contains page.url" -%}
 
 <h2>Notas de aula</h2>
 
-<ol id="classnotes"></ol>
+{% assign classnotes = coursePages | where_exp:"item", "item.quiz-title == nil" -%}
+<ol>
+  {%- for p in classnotes %}
+  <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+  {%- endfor %}
+</ol>
 
 <h2>Exercícios</h2>
 
-<ol id="exercises" style="list-style-type: upper-roman"></ol>
+{% assign exercises  = coursePages | where_exp:"item", "item.quiz-title" -%}
+<ol style="list-style-type: upper-roman">
+  {%- for p in exercises %}
+  <li><a href="{{ p.url }}">{{ p.quiz-title }}</a></li>
+  {%- endfor %}
+</ol>

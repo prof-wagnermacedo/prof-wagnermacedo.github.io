@@ -28,11 +28,42 @@
       margin-right: 0;
     }
 
-    .exemplo, .resposta {
-      width: 100%;
-      padding: 10px;
-      background: #fafafa;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    figure.highlight td.gutter.gl,
+    figure.highlight td.gutter.gl > pre,
+    figure.highlight td.code,
+    figure.highlight td.code > pre {
+      border: 0;
+      padding: 0;
+    }
+
+    figure.highlight td.gutter.gl {
+      opacity: 0.6;
+    }
+
+    figure.highlight td.code {
+      padding-left: 20px;
+    }
+
+    .pergunta {
+      font-weight: bold;
+    }
+
+    .resposta:before {
+      content: 'Resposta:';
+      font-weight: bold;
+      display: block;
+    }
+
+    ul.resposta:before, ol.resposta:before {
+      margin-left: -20px;
+    }
+
+    table.grade {
+      text-align: center;
+    }
+
+    table.grade td:first-child {
+      text-align: left;
     }
 
     .exemplo, .resposta {
@@ -40,6 +71,29 @@
       padding: 10px;
       background: #fafafa !important;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    ul.resposta, ol.resposta {
+      padding-left: 30px;
+    }
+
+    .resposta pre {
+      background: inherit;
+    }
+
+    table.opcoes > tbody > tr > td {
+      border: 0;
+      padding-left: 0;
+      padding-right: 0;
+      vertical-align: top;
+    }
+
+    table.opcoes > tbody > tr > td:first-child {
+      padding-right: 0.5em;
+    }
+
+    table.opcoes pre.highlight {
+      margin: 0;
     }
 
     #markdown-toc {

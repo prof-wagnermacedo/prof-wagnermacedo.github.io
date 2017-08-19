@@ -178,9 +178,7 @@ exam-title: Atividade Pontuada 1
 
 <script>
   [].forEach.call(document.getElementsByTagName('input'), function (el) {
-      el.onclick = function () {
-          return false;
-      };
+      el.setAttribute('tabindex', '-1');
   });
 </script>
 
@@ -193,5 +191,9 @@ exam-title: Atividade Pontuada 1
     content: 'Resposta:';
     font-weight: bold;
     display: block;
+  }
+
+  input {
+    pointer-events: none;
   }
 </style>

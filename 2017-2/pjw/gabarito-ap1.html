@@ -1,0 +1,198 @@
+---
+layout: course
+exam-title: Atividade Pontuada 1
+---
+
+<!--suppress HtmlFormInputWithoutLabel -->
+
+<h1>{{ page.exam-title }}</h1>
+
+<p class="pergunta">1. Relacione as linhas com as colunas. Cada coluna está relacionada a somente uma linha.</p>
+<table style="font-size: 0.8em; text-align: center">
+  <tr>
+    <td></td>
+    <td>Accept</td>
+    <td>Container Web</td>
+    <td>Content&hybull;Type</td>
+    <td>Requisição HTTP</td>
+    <td>Resposta HTTP</td>
+    <td>Servidor Web</td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Programa que executa código Java para processar as requisições HTTP recebidas.
+    </td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Funciona por padrão na porta 80, mas é possível executar em qualquer outra porta.
+    </td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Esse tipo de mensagem contém um método, caminho, cabeçalhos e corpo.
+    </td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Esse tipo de mensagem contém um código de estado, cabeçalhos e corpo.
+    </td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Cabeçalho HTTP usado apenas na requisição que indica qual o tipo de conteúdo
+      o cliente quer que o servidor envie na resposta.
+    </td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Cabeçalho HTTP que indica o tipo de conteúdo passado no corpo da mensagem.
+    </td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+</table>
+
+<p class="pergunta">
+  2. Marque o que trata-se de lado cliente e o que trata-se de lado servidor.
+</p>
+<table style="font-size: 0.8em; text-align: center">
+  <tr>
+    <td></td>
+    <td>Lado Cliente</td>
+    <td>Lado Servidor</td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Permite usar qualquer tipo de linguagem de programação que tenha suporte à web.
+    </td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Programação está limitada às capacidades do navegador web.
+    </td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Cria uma requisição e processa a resposta.
+    </td>
+    <td><input checked type="radio"></td>
+    <td><input type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Processa a requisição e cria uma resposta.
+    </td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+  </tr>
+  <tr>
+    <td style="text-align: left">
+      Gera conteúdo diferente a depender dos parâmetros recebidos.
+    </td>
+    <td><input type="radio"></td>
+    <td><input checked type="radio"></td>
+  </tr>
+</table>
+
+<p class="pergunta">
+  3. A técnica de redirecionamentos na web é bem comum. A Wikipédia, por exemplo, utiliza para forçar
+  o cliente a acessar por HTTPS, no qual se digitamos no browser http://www.wikipedia.org/, somos
+  redirecionados para https://www.wikipedia.org/.
+</p>
+<p>
+  Explique, em pelo menos 30 palavras, o processo de redirecionamento executado pelo browser.
+  Use o acesso à http://www.wikipedia.org/, como exemplo.
+</p>
+<div class="resposta">
+  <ol>
+    <li>O browser faz uma requisição GET para http://www.wikipedia.org/.</li>
+    <li>O servidor devolve uma resposta com um código de redirecionamento, por exemplo, 301.</li>
+    <li>
+      Na resposta, o browser, sabendo que é um redirecionamento, lê o cabeçalho Location, que contém o endereço
+      https://www.wikipedia.org/.
+    </li>
+    <li>O browser faz uma nova requisição GET, dessa vez para https://www.wikipedia.org/.</li>
+  </ol>
+</div>
+
+<p class="pergunta">4. Leia a afirmação abaixo:</p>
+<blockquote>
+  O servidor HTTP não guarda o estado das requisições, isto é, o servidor não "lembra" da
+  requisição anterior quando recebe a próxima requisição.
+</blockquote>
+<p>Cite pelo menos uma implicação da afirmação acima, na forma que os clientes e servidores HTTP se comunicam.</p>
+<p class="resposta">
+  O servidor HTTP não mantém o estado de autenticação de usuários, dessa forma, é preciso que
+  o cliente envie em todas as requisições, não só na primeira, as credenciais, como o par
+  usuário:senha, token de autenticação, etc.
+</p>
+
+<p class="pergunta">5. Escreva um formulário HTML que possa gerar a query string abaixo:</p>
+<pre>origem=Aracaju&destino=Salvador&classe=primeira</pre>
+<pre class="resposta">
+<br>
+&lt;form&gt;
+  &lt;input type=&quot;text&quot; name=&quot;origem&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;destino&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;classe&quot;&gt;
+&lt;/form&gt;
+</pre>
+
+<script>
+  [].forEach.call(document.getElementsByTagName('input'), function (el) {
+      el.onclick = function () {
+          return false;
+      };
+  });
+</script>
+
+<style>
+  .pergunta {
+    font-weight: bold;
+  }
+
+  .resposta:before {
+    content: 'Resposta:';
+    font-weight: bold;
+    font-style: inherit;
+  }
+</style>

@@ -17,6 +17,17 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
   <style>
+    div.highlighter-rouge[data-caption]:before {
+      content: attr(data-caption);
+      font-variant: all-small-caps;
+      font-weight: bold;
+    }
+
+    figure.highlight {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
     .exemplo, .resposta {
       width: 100%;
       padding: 10px;

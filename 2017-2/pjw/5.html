@@ -1,0 +1,423 @@
+---
+title: Introdução a Servlets
+layout: reveal-js
+type: classnote
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Programação Java para Web</h2>
+  <h3>Prof. Wagner Macedo</h3>
+</section>
+
+<section id="agenda" data-markdown>
+  <div data-template>
+    ## Servlets
+
+    - [Definições](#sec-definicoes)
+    - [Aplicação Java Web](#)
+      - [web.xml](#)
+    - [Plataforma Servlet](#)
+    - [Deploy](#)
+    - [Java EE](#)
+  </div>
+</section>
+
+<section id="sec-definicoes">
+  <section id="definicao-servlet" data-background="#fff">
+    <h2>Servlet</h2>
+
+    <p>Pequenos programas Java para responder a requisições HTTP.</p>
+    <img src="../../assets/images/request-to-servlet.svg" class="borderless stretch">
+  </section>
+
+  <section id="citacao-servlet">
+    <blockquote>
+      <p>
+        Antes de uma requisição de cliente chegar a um Servlet, esta requisição passará
+        pelo Container Web em que o Servlet foi <b>configurado</b>.
+      </p>
+    </blockquote>
+  </section>
+
+  <section id="servlet-parte-webapp" data-background="#fff">
+    <p>Servlets são partes de uma Aplicação Java Web</p>
+
+    <img src="../../assets/images/servlets-dentro-webapps.svg" class="borderless stretch">
+  </section>
+
+  <section id="citacao-container-webapp">
+    <blockquote>
+      <p>Um Container Web pode executar <b>várias</b> aplicações ao mesmo tempo.</p>
+      <p>Cada aplicação pode ter <b>múltiplos</b> servlets configurados para responder.</p>
+    </blockquote>
+  </section>
+</section>
+
+<section id="sec-criar-servlet">
+  <section id="criando-servlet">
+    <h2>Criando um Servlet</h2>
+    <video data-src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.mp4" data-autoplay loop width="75%"></video>
+    <p>ou, como colocar um Servlet no forno&hellip;</p>
+  </section>
+
+  <section id="projeto-web-netbeans">
+    <p>
+      Inicie uma <b>Aplicação Web</b> com o <a data-dialog="dlg-netbeans">NetBeans</a>
+    </p>
+
+    <video data-src="../../assets/screencasts/iniciar-projeto-web-netbeans.webm" controls></video>
+  </section>
+
+  <dialog id="dlg-netbeans">
+    <p>Quando estiver criando o projeto na IDE:</p>
+    <ul>
+      <li>Escolha o servidor <b>Apache Tomcat</b></li>
+      <li>Não escolha <b>nenhum</b> framework</li>
+    </ul>
+
+    <p>
+      Caso a opção Apache Tomcat não apareça, você deve reinstalar o NetBeans, certificando de marcar
+      a opção na janela do instalador.</p>
+    <p>
+      <a href="https://netbeans.org/downloads/">Baixe a opção Java EE da IDE NetBeans</a>
+      para vir com as ferramentas de web.</p>
+  </dialog>
+
+  <section id="criar-classe-java">
+    <p>Crie uma <b>Classe Java</b></p>
+    <video data-src="../../assets/screencasts/nova-classe-java.webm" controls></video>
+  </section>
+
+  <section id="classes-servlet" data-background="#fff">
+    <h3>Classes Servlet</h3>
+    <img data-src="../../assets/images/classes-servlet.png" class="borderless stretch">
+  </section>
+
+  <section id="servlet-generico">
+    <h4>Servlet Genérico</h4>
+
+    <div style="font-size: 0.8em">
+      <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+        package fanese.web;
+
+        import java.io.IOException;
+        import java.io.PrintWriter;
+        import javax.servlet.GenericServlet;
+        import javax.servlet.ServletException;
+        import javax.servlet.ServletRequest;
+        import javax.servlet.ServletResponse;
+
+        public <span step>class ExemploServlet</span> extends <span step>GenericServlet</span> {
+        <span step="block">    @Override
+            public void service(<span step>ServletRequest request</span>, <span step>ServletResponse response</span>)
+                    throws ServletException, IOException {
+        <span step="block">        PrintWriter conteudo = <span step>response.getWriter()</span>;
+                conteudo.println("&lt;html&gt;");
+                conteudo.println("&lt;head&gt;&lt;title&gt;Java Web&lt;/title&gt;"
+                        + "&lt;meta charset=utf-8&gt;&lt;/head&gt;");
+                conteudo.println("&lt;body&gt;Ol&aacute; Mundo Java&lt;/body&gt;");
+                conteudo.println("&lt;/html&gt;");</span>
+            }</span>
+        }
+      </code></pre>
+    </div>
+  </section>
+</section>
+
+<section id="sec-mapear-servlet">
+  <section id="mapeando-servlet">
+    <h3>Mapeando o Servlet para URL</h3>
+    <video data-src="https://media.giphy.com/media/lBEmLuePm1Xzy/giphy.mp4" data-autoplay loop width="75%"></video>
+    <p>Configurando a aplicação para conhecer o Servlet</p>
+  </section>
+
+  <section id="criar-web-xml">
+    <p>Crie o arquivo <kbd>WEB-INF/web.xml</kbd></p>
+
+    <video data-src="../../assets/screencasts/criar-arquivo-webxml.webm" controls></video>
+  </section>
+
+  <section id="configurando-web-xml">
+    <p>Configurando Servlet para responder em <a>/OlaMundo</a></p>
+
+    <div style="font-size: 0.9em">
+      <pre><code data-trim data-noescape style="max-height: 26em">
+        &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        
+        &lt;web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+                 version="3.1"&gt;
+        <span step="block"><span step="block">    &lt;servlet&gt;
+                &lt;servlet-name&gt;Servlet01&lt;/servlet-name&gt;
+                &lt;servlet-class&gt;fanese.web.ExemploServlet&lt;/servlet-class&gt;
+            &lt;/servlet&gt;</span>
+        <span step="block">    &lt;servlet-mapping&gt;
+                &lt;servlet-name&gt;Servlet01&lt;/servlet-name&gt;
+                &lt;url-pattern&gt;/OlaMundo&lt;/url-pattern&gt;
+            &lt;/servlet-mapping&gt;</span></span>
+        
+            &lt;session-config&gt;
+                &lt;session-timeout&gt;
+                    30
+                &lt;/session-timeout&gt;
+            &lt;/session-config&gt;
+        &lt;/web-app&gt;
+      </code></pre>
+    </div>
+  </section>
+</section>
+
+<section id="sec-requisitando-servlet">
+  <section id="requisitando-servlet">
+    <h3>Requisitando o Servlet</h3>
+    <video data-src="https://media.giphy.com/media/HToZepC1sEUEg/giphy.mp4" data-autoplay loop></video>
+  </section>
+  
+  <section id="configure-tomcat">
+    <p>Configure o Tomcat para ouvir em <a data-dialog="dlg-tomcat">localhost</a></p>
+
+    <video data-src="../../assets/screencasts/configurar-tomcat-localhost.webm" controls></video>
+  </section>
+
+  <dialog id="dlg-tomcat" data-width="1000px">
+    No arquivo <kbd>server.xml</kbd>, você vai adicionar o atributo <code>address="localhost"</code> às seguintes linhas
+
+    <div style="font-size: 0.7em">
+      <pre><code data-trim data-noescape class="lang-xml">
+        &lt;Connector <mark>address="localhost"</mark> URIEncoding="utf-8" connectionTimeout="20000" port="8084" protocol="HTTP/1.1" redirectPort="8443"/&gt;
+      </code></pre>
+      <pre><code data-trim data-noescape class="lang-xml">
+        &lt;Connector <mark>address="localhost"</mark> port="8009" protocol="AJP/1.3" redirectPort="8443"/&gt;
+      </code></pre>
+    </div>
+
+    <a href="https://pt.wikipedia.org/wiki/Localhost" title="Localhost em Wikipédia">
+      O que é localhost?</a>
+  </dialog>
+
+  <section id="testando-servlet">
+    <p>Execute a aplicação e acesse <a>/OlaMundo</a></p>
+
+    <video data-src="../../assets/screencasts/executar-aplicacao-web.webm" controls></video>
+  </section>
+</section>
+
+<section id="pratica-servlet-1" data-background="#000">
+  <h3>Prática Servlet I</h3>
+
+  <ol style="font-size: 0.85em">
+    <li>
+      <p>Dentro do método <code>service()</code>, insira antes de escrever o conteúdo, a instrução abaixo.</p>
+      <p>Depois teste no browser e responda: mudou alguma coisa?</p>
+
+      <pre><code data-trim class="java">
+        response.setCharacterEncoding("utf-8");
+      </code></pre>
+    </li>
+
+    <li>
+      No mesmo método, informe o tipo de conteúdo da resposta:
+
+      <pre><code data-trim class="java">
+        response.setContentType("text/html");
+      </code></pre>
+
+      <ul>
+        <li>Troque o tipo de conteúdo por "text/plain"</li>
+        <li>Troque o tipo de conteúdo por "image/png"</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<section id="sec-servlet-http">
+  <section id="servlet-http">
+    <h3>Servlet HTTP</h3>
+
+    <div style="font-size: 0.75em">
+      <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+        package fanese.web;
+
+        import java.io.IOException;
+        import java.io.PrintWriter;
+        import javax.servlet.ServletException;
+        import javax.servlet.http.HttpServlet;
+        import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
+
+        public class ExemploServlet2 <span step>extends HttpServlet</span> {
+        <span step="block">  @Override
+          protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                  throws ServletException, IOException {
+              PrintWriter conteudo = response.getWriter();
+              conteudo.println("Acesso via GET realizado");
+          }</span>
+
+        <span step="block">  @Override
+          protected void doPost(HttpServletRequest request, HttpServletResponse response)
+                  throws ServletException, IOException {
+              PrintWriter conteudo = response.getWriter();
+              conteudo.println("Acesso via POST realizado");
+          }</span>
+        }
+      </code></pre>
+    </div>
+  </section>
+
+  <section id="classes-request-response" data-background="#fff">
+    <img data-src="../../assets/images/classes-request-response.png" class="borderless stretch">
+  </section>
+
+  <section id="configurando-servlet-http">
+    <p>Configure o <kbd>web.xml</kbd> para o novo Servlet</p>
+
+    <pre><code data-trim data-noescape>
+      &lt;servlet&gt;
+          &lt;servlet-name&gt;Servlet via HTTP&lt;/servlet-name&gt;
+          &lt;servlet-class&gt;<span class="highlight">fanese.web.ExemploServlet2</span>&lt;/servlet-class&gt;
+      &lt;/servlet&gt;
+      &lt;servlet-mapping&gt;
+          &lt;servlet-name&gt;Servlet via HTTP&lt;/servlet-name&gt;
+          &lt;url-pattern&gt;<span class="highlight">/via-http</span>&lt;/url-pattern&gt;
+      &lt;/servlet-mapping&gt;
+    </code></pre>
+  </section>
+
+  <section id="pratica-servlet-2" data-background="#000">
+    <h3>Prática Servlet II</h3>
+
+    <p>Usando o Postman, faça as seguintes requisições:</p>
+
+    <ul style="font-size: 0.85em">
+      <li>GET <a>http://localhost:8084/WebApplication1/via-http</a></li>
+      <li>POST <a>http://localhost:8084/WebApplication1/via-http</a></li>
+      <li>GET <a>http://localhost:8084/WebApplication1/OlaMundo</a></li>
+      <li>POST <a>http://localhost:8084/WebApplication1/OlaMundo</a></li>
+    </ul>
+  </section>
+</section>
+
+<section id="sec-obter-dados-servlet">
+  <section id="obtendo-dados-requisicao">
+    <h3>Obtendo Dados da Requisição</h3>
+    <video data-src="https://media.giphy.com/media/GTOh1DnR4ixOg/giphy.mp4" data-autoplay loop width="75%"></video>
+  </section>
+
+  <section id="servlet-get-parameter">
+    <p>Servlet que obtém <b>parâmetros</b> da query string</p>
+
+    <div style="font-size: 0.75em">
+      <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+        public class ExemploServlet3 extends HttpServlet {
+          @Override
+          protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                  throws ServletException, IOException {
+        <span step="block">      // Obtém os dados enviados
+              String txtNome = request.getParameter("nome");
+              String txtIdade = request.getParameter("idade");</span>
+        <span step="block">      // Processa os dados
+              if (txtNome == null) {
+                  txtNome = "[anônimo]";
+              }
+              String classeIdade = "menor";
+              int idade = Integer.parseInt(txtIdade);
+              if (idade &gt;= 18) {
+                  classeIdade = "maior";
+              }</span>
+        <span step="block">      // Devolve uma resposta com os dados
+              PrintWriter conteudo = response.getWriter();
+              conteudo.println("&lt;html&gt;&lt;head&gt;&lt;meta charset=utf-8&gt;&lt;/head&gt;");
+              conteudo.println("&lt;body&gt;");
+              conteudo.println("&lt;b&gt;" + txtNome + "&lt;/b&gt; tem &lt;b&gt;"
+                      + idade + "&lt;/b&gt; anos (de " + classeIdade + ")");
+              conteudo.println("&lt;/body&gt;&lt;/html&gt;");</span>
+          }
+        }
+      </code></pre>
+    </div>
+  </section>
+
+  <section id="servlet-post-parameter">
+    <p>Obter parâmetros via POST: a implementação é igual</p>
+
+    <div style="font-size: 0.75em">
+      <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+        public class ExemploServlet4 extends HttpServlet {
+          @Override
+          protected void doPost(HttpServletRequest request, HttpServletResponse response)
+                  throws ServletException, IOException {
+              // Obtém os dados enviados
+              String txtNome = request.getParameter("nome");
+              String txtIdade = request.getParameter("idade");
+              // Processa os dados
+              if (txtNome == null) {
+                  txtNome = "[anônimo]";
+              }
+              String classeIdade = "menor";
+              int idade = Integer.parseInt(txtIdade);
+              if (idade &gt;= 18) {
+                  classeIdade = "maior";
+              }
+              // Devolve uma resposta com os dados
+              PrintWriter conteudo = response.getWriter();
+              conteudo.println("&lt;html&gt;&lt;head&gt;&lt;meta charset=utf-8&gt;&lt;/head&gt;");
+              conteudo.println("&lt;body&gt;");
+              conteudo.println("&lt;b&gt;" + txtNome + "&lt;/b&gt; tem &lt;b&gt;"
+                      + idade + "&lt;/b&gt; anos (de " + classeIdade + ")");
+              conteudo.println("&lt;/body&gt;&lt;/html&gt;");
+          }
+        }
+      </code></pre>
+    </div>
+  </section>
+
+  <section id="pratica-servlet-3" data-background="#000">
+    <h3>Prática Servlet III</h3>
+
+    <ol style="font-size: 0.85em">
+      <li>Configure no <kbd>web.xml</kbd> os servlets:
+        <ul>
+          <li>ExemploServlet3</li>
+          <li>ExemploServlet4</li>
+        </ul>
+      <li>Acesse usando o browser a URL do ExemploServlet3</li>
+      <li>Acesse usando o browser a URL do ExemploServlet4</li>
+    </ol>
+  </section>
+</section>
+
+<section id="mapeamento-anotacao">
+  <p>Servlets também podem ser mapeados por anotação:</p>
+
+  <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+    package fanese.web;
+
+    &vellip;
+    import javax.servlet.GenericServlet;
+    import javax.servlet.annotation.WebServlet;
+
+    <span step>@WebServlet(name = "Servlet01", urlPatterns = {"/OlaMundo"})</span>
+    public class ExemploServlet extends GenericServlet {
+        &vellip;
+    }
+  </code></pre>
+</section>
+
+<section id="leitura-recomendada">
+  <h5>Leitura Recomendada 🔖</h5>
+  <div class="columns" style="font-size: 0.8em">
+    <div class="col">
+      <img src="../../assets/images/livros/araujo2010-webjava.jpg" style="height: 25rem">
+      <p><b>Capítulo 3:</b> Servlets</p>
+    </div>
+    <div class="col">
+      <img src="../../assets/images/livros/goncalves2007-jsp.jpg" style="height: 25rem">
+      <p>
+        <b>Capítulo 4:</b> Introd. aos Servlets<br>
+        <b>Capítulo 6:</b> A classe HttpServlet
+      </p>
+    </div>
+  </div>
+</section>

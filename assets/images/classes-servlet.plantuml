@@ -1,0 +1,40 @@
+@startuml
+
+set namespaceSeparator none
+skinparam Class {
+    FontStyle bold
+    FontSize 15
+    AttributeFontSize 17
+    AttributeFontName Ubuntu Mono
+}
+
+skinparam nodesep 75
+
+interface Servlet <<javax.servlet>> {
+    +service(ServletRequest, ServletResponse) : void
+    ..
+    // outros métodos...
+}
+
+class GenericServlet <<javax.servlet>> extends Servlet {
+    +service(ServletRequest, ServletResponse) : void
+    ..
+    // outros métodos...
+}
+
+class HttpServlet <<javax.servlet>> {
+    #service(HttpServletRequest, HttpServletResponse)  : void
+    #<b>doGet(HttpServletRequest, HttpServletResponse)    : void</b>
+    #<b>doPost(HttpServletRequest, HttpServletResponse)   : void</b>
+    #doPut(HttpServletRequest, HttpServletResponse)    : void
+    #doDelete(HttpServletRequest, HttpServletResponse) : void
+    #getLastModified(HttpServletRequest)               : long
+    ..
+    // outros métodos...
+}
+
+HttpServlet -left[#0000FF]-|> GenericServlet
+
+hide fields
+
+@enduml

@@ -124,7 +124,20 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
             }
 
             $dialog.each(function () {
-                var $thisDialog = $(this);
+                const settings = {
+                    modal: true,
+                    closeOnEscape: false,
+                    autoOpen: false,
+                    width: this.getAttribute('data-width') || 800
+                };
+
+                const $thisDialog = $(this);
+
+                // Não adiciona link se tiver id
+                if (this.id) {
+                    $thisDialog.dialog(settings);
+                    return;
+                }
 
                 // Definição do link
                 var openLink;
@@ -147,12 +160,7 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
 
                 // Adiciona link para abrir e ativa UI
                 $thisDialog.before(openLink)
-                    .dialog({
-                        modal: true,
-                        closeOnEscape: false,
-                        autoOpen: false,
-                        width: this.getAttribute('data-width') || 800
-                    });
+                    .dialog(settings);
             });
         };
 

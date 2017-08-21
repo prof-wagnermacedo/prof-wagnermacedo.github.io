@@ -1,0 +1,52 @@
+@startuml
+
+set namespaceSeparator none
+skinparam Class {
+    FontStyle bold
+    FontSize 15
+    AttributeFontSize 17
+    AttributeFontName Ubuntu Mono
+}
+
+interface ServletRequest <<javax.servlet>> {
+    +getParameter(String) : String
+    +getContentType()     : String
+    +getContentLength()   : int
+    +getLocale()          : Locale
+    +getReader()          : BufferedReader
+    ..
+    // outros métodos...
+}
+
+interface HttpServletRequest <<javax.servlet.http>> extends ServletRequest {
+    +getMethod()       : String
+    +getHeader(String) : String
+    +getCookies()      : Cookie[]
+    +getQueryString()  : String
+    +getSession()      : HttpSession
+    ..
+    // outros métodos...
+}
+
+interface ServletResponse <<javax.servlet>> {
+    +setContentType(String) : void
+    +setContentLength(int)  : void
+    +setLocale(Locale)      : void
+    +getWriter()            : PrintWriter
+    ..
+    // outros métodos...
+}
+
+interface HttpServletResponse <<javax.servlet.http>> extends ServletResponse {
+    +setStatus(int)            : void
+    +setHeader(String, String) : void
+    +addCookie(Cookie)         : void
+    +sendRedirect(String)      : void
+    +sendError(int)            : void
+    ..
+    // outros métodos...
+}
+
+hide fields
+
+@enduml

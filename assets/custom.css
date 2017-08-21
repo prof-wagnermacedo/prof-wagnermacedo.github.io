@@ -70,6 +70,12 @@ iframe.demo {
     width: 100%;
 }
 
+pre > code mark,
+pre > code mark * {
+    color: black !important;
+}
+
+pre > code .highlight,
 .reveal .slides section pre > code [step].fragment.current-visible,
 .reveal .slides section pre > code [step].fragment.highlight-current-blue.current-fragment,
 .reveal .slides section pre > code [step].fragment.highlight-red.visible,

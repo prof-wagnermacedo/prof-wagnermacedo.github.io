@@ -87,6 +87,7 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
         var rel = $.trim(this.getAttribute('rel'));
         switch (rel) {
             case 'keep':
+                $this.addClass('highlight-blue');
                 break;
             case 'current':
                 $this.addClass('current-visible');

@@ -128,6 +128,10 @@ dialog dt {
     margin-top: 0.5em;
 }
 
+dialog pre {
+    line-height: 1.2;
+}
+
 table.neat {
     border-collapse: collapse;
 }

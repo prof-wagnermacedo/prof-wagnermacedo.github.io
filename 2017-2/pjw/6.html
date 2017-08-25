@@ -1,0 +1,580 @@
+---
+title: Lidando com HTTP nos Servlets
+layout: reveal-js
+type: classnote
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Programação Java para Web</h2>
+  <h3>Prof. Wagner Macedo</h3>
+</section>
+
+<section id="agenda" data-markdown>
+  <div data-template>
+    ## HTTP nos Servlets
+
+    - [Escrita da resposta](#)
+    - [Leitura da requisição](#)
+    - [Redirecionamento](#)
+    - [Cookies](#)
+    - [Cache do lado cliente](#)
+  </div>
+</section>
+
+<section id="introducao" data-background="#fff">
+  <img src="../../assets/images/http-request-response.svg" class="borderless stretch">
+</section>
+
+<section id="sec-escrita-resposta">
+  <section id="respostas-http">
+    <h2>Respostas HTTP</h2>
+
+    <pre><code data-trim>
+      HTTP/1.1 200 OK
+      Content-Type: text/html
+      Content-Language: pt-BR
+      Content-Length: 37
+      Set-Cookie: Variant=1; Theme=blue;
+      Expires: Fri, 25 Aug 2017 13:45:42 GMT
+
+      &lt;html&gt;&lt;body&gt;Hello World&lt;/body&gt;&lt;/html&gt;
+    </code></pre>
+
+    <pre><code data-trim>
+      HTTP/1.1 400 Bad Request
+      Content-Type: text/html
+      Content-Length: 41
+
+      &lt;html&gt;&lt;body&gt;400 Bad Request&lt;/body&gt;&lt;/html&gt;
+    </code></pre>
+  </section>
+
+  <section id="escrita-resposta" class="expire-header">
+    <h3>Escrita da Resposta</h3>
+
+    <pre><code data-trim class="java">
+      // Código de Estado
+      response.setStatus(200);
+
+      // Cabeçalhos
+      response.setHeader("Content-Type", "text/html");
+      response.setHeader("Content-Language", "pt-BR");
+      response.setHeader("Content-Length", "37");
+      response.setHeader("Set-Cookie", "Variant=1; Theme=blue;");
+      response.setHeader("Expires", "Fri, 25 Aug 2017 13:45:42 GMT");
+
+      // Corpo
+      PrintWriter out = response.getWriter();
+      out.println("&lt;html&gt;&lt;body&gt;Hello World&lt;/body&gt;&lt;/html&gt;");
+    </code></pre>
+  </section>
+
+  <section id="valores-tipados" class="expire-header">
+    <h4>Valores tipados nos cabeçalhos</h4>
+
+    <p>
+      Abstrações do servlet para tipos <a data-dialog="dlg-intheader"><em>inteiros</em></a>
+      e <a data-dialog="dlg-dateheader"><em>datas</em></a>
+    </p>
+
+    <dialog id="dlg-intheader" title="Outro exemplo para setIntHeader">
+      <pre><code data-trim class="java">
+        int interval = getIntervaloPadrao() + 60;
+        response.setIntHeader("Retry-After", interval);
+      </code></pre>
+    </dialog>
+
+    <dialog id="dlg-dateheader" title="Outro exemplo para setDateHeader">
+      <pre><code data-trim class="java">
+        // Java 8
+        long expires = Instant.now().plusSeconds(60).toEpochMilli();
+        response.setDateHeader("Expires", expires);
+      </code></pre>
+    </dialog>
+
+    <pre><code data-trim class="java">
+      // Antes
+      response.setHeader("Content-Length", "37");
+
+      // Depois
+      response.setIntHeader("Content-Length", 37);
+    </code></pre>
+
+    <pre><code data-trim class="java">
+      // Antes
+      response.setHeader("Expires", "Fri, 25 Aug 2017 13:45:42 GMT");
+
+      // Depois
+      long expires = Date.UTC(2017, 8, 25, 13, 45, 42);
+      response.setDateHeader("Expires", expires);
+    </code></pre>
+  </section>
+
+  <section id="cabecalhos-antes" data-background="#fff">
+    <p>O código abaixo <em>pode</em> não funcionar!</p>
+
+    <pre><code data-trim class="java">
+      PrintWriter conteudo = response.getWriter();
+      conteudo.println("&lt;html&gt;&lt;body&gt;Exemplo&lt;/body&gt;&lt;/html&gt;");
+
+      response.setStatus(200);
+      response.setHeader("Content-Type", "text/html");
+      response.setHeader("Content-Language", "pt-BR");
+    </code></pre>
+
+    <p class="fragment">
+      O código de estado e os cabeçalhos são enviados para o cliente <em>antes</em> do corpo da resposta.
+    </p>
+  </section>
+
+  <section id="metodos-atalho" class="metodos-atalho">
+    <h4>Métodos de Atalho para Cabeçalhos</h4>
+
+    <div class="columns">
+      <div class="col">
+        <p>Antes</p>
+        <pre><code data-trim data-noescape class="java">
+          response.setHeader("Content-Type", "text/html");
+        </code></pre>
+      </div>
+      <div class="col">
+        <p>Depois</p>
+        <pre><code data-trim data-noescape class="java">
+          response.setContentType("text/html");
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        <em>response</em>.setHeader("Content-Type", "text/html; charset=utf-8");
+      </code></pre></div>
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        <em>response</em>.setContentType("text/html");
+        <em>response</em>.setCharacterEncoding("utf-8");
+      </code></pre></div>
+    </div>
+
+    <div class="columns">
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        <em>response</em>.setIntHeader("Content-Length", 37);
+      </code></pre></div>
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        <em>response</em>.setContentLength(37);
+      </code></pre></div>
+    </div>
+
+    <div class="columns">
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        <em>response</em>.setHeader("Set-Cookie", "Variant=1; Theme=blue;");
+      </code></pre></div>
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        <em>response</em>.addCookie(new Cookie("Variant", "1"));
+        <em>response</em>.addCookie(new Cookie("Theme", "blue"));
+      </code></pre></div>
+    </div>
+  </section>
+
+  <section id="paginas-erro">
+    <h4>Páginas de Erro</h4>
+
+    <p>O método <em>sendError</em> emite uma página de erro.</p>
+
+    <pre><code data-trim class="java">
+      response.sendError(400);
+    </code></pre>
+
+    <iframe src="../../assets/examples/tomcat-senderror-400.html" frameborder="0" width="45%" height="195px"></iframe>
+    <iframe src="../../assets/examples/jetty-senderror-400.html" frameborder="0" width="45%" height="195px"></iframe>
+  </section>
+
+  <section id="paginas-erro-configuraveis">
+    <h5>Páginas de Erro Configuráveis</h5>
+
+    <p>Você pode configurar páginas de erro no <code>web.xml</code></p>
+
+    <pre><code data-trim data-noescape class="xml">
+      &lt;error-page&gt;
+        &lt;error-code&gt;<span step>404</span>&lt;/error-code&gt;
+        &lt;location&gt;<span step>/erros/404-not-found.jsp</span>&lt;/location&gt;
+      &lt;/error-page&gt;
+    </code></pre>
+  </section>
+
+  <style>
+    .expire-header pre {
+      width: 93%;
+    }
+
+    .metodos-atalho .columns > .col {
+      width: 0;
+      font-size: 0.67em;
+    }
+
+    .metodos-atalho .columns > .col > p {
+      font-size: 1.3em;
+    }
+
+    .metodos-atalho .columns > .col:last-child {
+      flex-grow: 0.74;
+    }
+
+    .metodos-atalho pre {
+      width: 97%;
+    }
+
+    .metodos-atalho pre > code em {
+      font-style: normal;
+      text-overflow: ellipsis;
+      width: 0.75em;
+      display: inline-block;
+      overflow: hidden;
+      height: 1em;
+    }
+  </style>
+</section>
+
+<section id="sec-leitura-requisicao">
+  <section id="requisicoes-http">
+    <h2>Requisições HTTP</h2>
+
+    <pre><code data-trim class="http">
+      GET /blog?post=2707 HTTP/1.1
+      Host: www.exemplo.com.br
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36
+      Accept: text/html
+      Accept-Charset: UTF-8
+      Accept-Language: pt-br
+      Cookie: Variant=1; Theme=blue;
+      Referer: http://exemplo.com/index.php
+      If-Modified-Since: Sat, 07 Aug 2017 21:18:31 GMT
+      &nbsp;
+    </code></pre>
+
+    <pre><code data-trim class="http">
+      POST /blog/cadastro.php HTTP/1.1
+      Host: www.exemplo.com.br
+      Content-Type: application/x-www-form-urlencoded
+      Content-Length: 35
+      Cookie: Variant=1; Theme=blue;
+      Referer: http://exemplo.com/blog?post=2707
+
+      name=John+Darling&address=Neverland
+    </code></pre>
+  </section>
+
+  <section id="leitura-requisicao">
+    <h3>Leitura da Requisição</h3>
+
+    <pre><code data-trim data-noescape class="java" style="max-height: 25em">
+      // Método da requisição
+      String metodo = <span step="0" rel="keep">request.getMethod()</span>;
+
+      // URI da requisição
+      String uri = <span step="1" rel="keep">request.getRequestURI()</span>;
+
+      // Query string, se houver
+      String queryString = <span step="2" rel="keep">request.getQueryString()</span>;
+
+      // Cabeçalhos
+      String host       = <span step="3" rel="keep">request.getHeader("Host")</span>;
+      String userAgent  = <span step="3" rel="keep">request.getHeader("User-Agent")</span>;
+      String accept     = <span step="3" rel="keep">request.getHeader("Accept")</span>;
+      String acceptLang = <span step="3" rel="keep">request.getHeader("Accept-Language")</span>;
+      String cookie     = <span step="3" rel="keep">request.getHeader("Cookie")</span>;
+
+      // Corpo da requisição
+      BufferedReader reader = <span step="4">request.getReader()</span>;
+    </code></pre>
+  </section>
+
+  <section id="valores-tipados-requisicao">
+    <h4>Cabeçalhos de Requisição Tipados</h4>
+
+    <pre><code data-trim class="java">
+      // Antes
+      String headerCL = request.getHeader("Content-Length");
+      int contentLength = Integer.parseInt(headerCL);
+
+      // Depois
+      int contentLength = request.getIntHeader("Content-Length");
+    </code></pre>
+
+    <pre><code data-trim class="java">
+      // Antes
+      String headerIMF = request.getHeader("If-Modified-Since");
+      long ifModified = Long.parseLong(headerIMF);
+
+      // Depois
+      long ifModified = request.getDateHeader("If-Modified-Since");
+    </code></pre>
+  </section>
+
+  <section id="metodos-atalho-requisicao" class="metodos-atalho">
+    <h4>Métodos de Atalho para Cabeçalhos</h4>
+
+    <div class="columns">
+      <div class="col">
+        <p>Antes</p>
+        <pre><code data-trim data-noescape class="java">
+          String ct = request.getHeader("Content-Type");
+        </code></pre>
+      </div>
+      <div class="col">
+        <p>Depois</p>
+        <pre><code data-trim data-noescape class="java">
+          String ct = request.getContentType();
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        String charset = null;
+        String[] contentType = <em>request</em>.getContentType().split(";");
+        for (String ct : contentType) {
+            int index = ct.indexOf("charset=");
+            if (index != -1) {
+                charset = ct.substring(index + 8).trim();
+                break;
+            }
+        }
+      </code></pre></div>
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        String charset = <em>request</em>.getCharacterEncoding();
+      </code></pre></div>
+    </div>
+
+    <div class="columns">
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        int cl = <em>request</em>.getIntHeader("Content-Length");
+      </code></pre></div>
+      <div class="col"><pre><code data-trim data-noescape class="java">
+        int cl = <em>request</em>.getContentLength();
+      </code></pre></div>
+    </div>
+
+    <style>
+      #metodos-atalho-requisicao .columns .col:last-child {
+        flex-grow: 0.78;
+      }
+    </style>
+  </section>
+</section>
+
+<section id="sec-redirecionamento">
+  <section id="redirecionamento-http" data-background="#fff">
+    <h2>Redirecionamento HTTP</h2>
+    <img src="../../assets/images/redirecionamento-http.svg" class="borderless stretch">
+  </section>
+
+  <section id="codigos-redirecionamento" data-background="#fff">
+    <h3>Principais Códigos de Redirecionamento</h3>
+
+    <dl style="font-size: 0.85em">
+      <dt>301 Moved Permanently (Movido Permanentemente)</dt>
+      <dd>Esta requisição e as próximas devem ir para uma dada URI.</dd>
+
+      <dt>302 Found (Encontrado)</dt>
+      <dd>O site foi movido temporariamente para uma dada URI.</dd>
+
+      <dt>303 See Other (Veja Outro)</dt>
+      <dd>Semelhante ao código 302.</dd>
+
+      <dt>304 Not Modified (Não Modificado)</dt>
+      <dd>
+        Redirecionamento para o cache local do browser.
+      </dd>
+
+      <dt>307 Temporary Redirect (Redirecionamento Temporário)</dt>
+      <dd>Semelhante ao código 302.</dd>
+    </dl>
+  </section>
+
+  <section id="redirecionamento-wikipedia">
+    <p>Se o lado servidor da Wikipédia for em Java, provavelmente terá o seguinte código.</p>
+
+    <pre><code data-trim class="java">
+      response.setStatus(301);
+      response.setHeader("Location", "https://www.wikipedia.org/");
+    </code></pre>
+  </section>
+
+  <section id="atalho-302">
+    <p>Os trechos de código abaixo são equivalentes</p>
+
+    <pre><code data-trim class="java">
+      response.setStatus(302);
+      response.setHeader("Location", "https://www.wikipedia.org/");
+    </code></pre>
+
+    <pre><code data-trim class="java">
+      response.sendRedirect("https://www.wikipedia.org/");
+    </code></pre>
+  </section>
+</section>
+
+<section id="sec-cookies">
+  <section id="cookies-figura">
+    <h2>Cookies HTTP</h2>
+    <a data-flickr-embed="true" href="https://www.flickr.com/photos/dcortte/7982692878/" title="cookies"><img data-src="https://farm9.staticflickr.com/8454/7982692878_bc61723814.jpg" width="500" height="333" alt="cookies"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+  </section>
+
+  <section id="sobre-cookies">
+    <h3>O que são cookies?</h3>
+
+    <p>Cookie é uma string armazenada no lado cliente.</p>
+    <p>Os browsers enviam para o servidor os cookies armazenados em <b>todas</b> as requisições.</p>
+  </section>
+
+  <section id="seguranca-cookies">
+    <h4>Segurança</h4>
+
+    <p>Os cookies podem ter informações <b>muito sensíveis</b> 🔥, como o identificador de sessão do usuário.</p>
+    <p>Em posse desse identificador, é possível, por exemplo, acessar a conta de um usuário sem precisar da senha.</p>
+  </section>
+
+  <section id="seguranca-cookies-citacao">
+    <blockquote>
+      <p>
+        Por causa disso, os browsers só enviam cookies para
+        os servidores que são <b>donos</b> daqueles cookies.
+      </p>
+    </blockquote>
+  </section>
+
+  <section id="processo-cookies">
+    <h3>Como cookies funcionam?</h3>
+    <ol style="font-size: 0.75em">
+      <li>O browser faz uma requisição para <a>http://www.exemplo.com</a></li>
+      <li>Na resposta do servidor, aparece o cabeçalho <em>Set-Cookie</em>
+        <pre><code data-trim class="http">
+          HTTP/1.1 200 OK
+          &hellip;
+          Set-Cookie: Variant=1; Theme=blue;
+          &hellip;
+        </code></pre>
+      </li>
+      <li>
+        O browser armazena na lista de cookies do site <a>www.exemplo.com</a> o cookie <em>Variant</em> com o valor "1"
+        e o cookie&nbsp;<em>Theme</em> com o valor "blue"
+      </li>
+      <li>
+        Nas próximas requisições feitas à <a>http://www.exemplo.com</a>, o browser envia os dois cookies armazenados
+        no cabeçalho <em>Cookie</em>
+        <pre><code data-trim class="http">
+          GET / HTTP/1.1
+          Host: www.exemplo.com.br
+          &hellip;
+          Cookie: Variant=1; Theme=blue;
+          &hellip;
+    </code></pre>
+      </li>
+    </ol>
+  </section>
+
+  <section id="resposta-cookies">
+    <h3>Enviando Cookies para o browser</h3>
+
+    <pre><code data-trim class="java">
+      response.addCookie(new Cookie("Variant", "1"));
+      response.addCookie(new Cookie("Theme", "blue"));
+    </code></pre>
+  </section>
+
+  <section id="requisicao-cookies">
+    <h3>Obtendo os Cookies da requisição</h3>
+
+    <pre><code data-trim class="java">
+      // Obtém o tema e o valor da variante do usuário
+      String theme = null;
+      int variant = -1;
+
+      for (Cookie ck : request.getCookies()) {
+          if (ck.getName().equals("theme")) {
+              theme = ck.getValue();
+          }
+          if (ck.getName().equals("variant")) {
+              variant = Integer.parseInt(ck.getValue());
+          }
+      }
+    </code></pre>
+  </section>
+
+  <section id="idade-cookie">
+    <h3>Idade do Cookie</h3>
+
+    <p>Pode ser interessante definir um tempo de vida.</p>
+
+    <pre style="width: 93%"><code data-trim class="java">
+      // Define o cookie para expirar em 1 hora
+      Cookie ckCode = new Cookie("CodigoSecreto", "c678f3894887f43");
+      ckCode.setMaxAge(3600);
+
+      response.addCookie(ckCode);
+    </code></pre>
+  </section>
+</section>
+
+<section id="sec-cache-lado-cliente">
+  <section id="cache-http">
+    <h2>Cache HTTP</h2>
+    <p>O protocolo HTTP especifica que o conteúdo da resposta do método GET pode ser mantido em cache.</p>
+  </section>
+
+  <section id="resposta-cache">
+    <h3>Resposta de Cache</h3>
+
+    <pre><code data-trim class="http">
+      HTTP/1.1 304 Not Modified
+      Expires: Fri, 25 Aug 2017 21:15:59 GMT
+      &nbsp;
+    </code></pre>
+  </section>
+
+  <section id="lidando-cache-java">
+    <h3>Lidando com cache no Servlet</h3>
+
+    <div style="font-size: 0.75em">
+      <pre><code data-trim style="max-height: 35em">
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            response.setContentType("text/html; charset=utf-8");
+
+            PrintWriter conteudo = response.getWriter();
+            conteudo.println("Última modificação: ");
+        }
+
+        private Instant lastModified = null;
+
+        @Override
+        protected long getLastModified(HttpServletRequest req) {
+            if (lastModified == null) {
+                lastModified = Instant.now();
+            } else {
+                Instant now = Instant.now();
+                long nowSeconds = now.getEpochSecond();
+                long lastSeconds = lastModified.getEpochSecond();
+
+                if (nowSeconds >= lastSeconds + 30) {
+                    lastModified = now;
+                }
+            }
+
+            return lastModified.toEpochMilli();
+        }
+      </code></pre>
+    </div>
+  </section>
+</section>
+
+<section id="leitura-recomendada">
+  <h5>Leitura Recomendada 🔖</h5>
+
+  <img src="../../assets/images/livros/goncalves2007-jsp.jpg" style="height: 25rem">
+  <p>
+    <b>Capítulo 6, 7, 8 e 11</b>
+  </p>
+</section>

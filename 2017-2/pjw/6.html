@@ -523,34 +523,86 @@ type: classnote
     <p>O protocolo HTTP especifica que o conteúdo da resposta do método GET pode ser mantido em cache.</p>
   </section>
 
-  <section id="resposta-cache">
-    <h3>Resposta de Cache</h3>
+  <section id="processo-cache">
+    <h3>Processo de Cache do Lado Cliente</h3>
 
-    <pre><code data-trim class="http">
-      HTTP/1.1 304 Not Modified
-      Expires: Fri, 25 Aug 2017 21:15:59 GMT
-      &nbsp;
-    </code></pre>
+    <div class="columns">
+      <div class="col">
+        <ol start="1">
+          <li>Cliente faz a primeira requisição:</li></ol>
+        <pre><code data-trim class="http">
+        GET /index.html HTTP/1.1
+        Host: www.exemplo.com.br
+        &hellip;
+      </code></pre>
+      </div>
+      <div class="col">
+        <ol start="2">
+          <li>Servidor dá uma resposta normal:</li></ol>
+        <pre><code data-trim class="http">
+        HTTP/1.1 200 OK
+        Last-Modified: Fri, 25 Aug 2017 21:15:59 GMT
+        &hellip;
+      </code></pre>
+      </div>
+    </div>
+
+    <div>
+      <ol start="3">
+        <li>Nas próximas requisições, cliente se refere à data da última modificação:
+
+          <pre><code data-trim class="http">
+            GET /index.html HTTP/1.1
+            Host: www.exemplo.com.br
+            If-Modified-Since: Fri, 25 Aug 2017 21:15:59 GMT
+            &hellip;
+          </code></pre>
+        </li>
+        <li>Caso o recurso não tenha sido modificado, retorna código 304.
+
+          <pre><code data-trim class="http">
+            HTTP/1.1 304 Not Modified
+            &hellip;
+          </code></pre>
+        </li></ol>
+
+        <p>
+          Se houve modificações, teremos uma nova resposta de código 200, a
+          <span class="fragment highlight-green"><b>data&nbsp;de&nbsp;modificação&nbsp;atualizada</b></span>,
+          o ciclo reinicia!
+        </p>
+    </div>
+
+    <style>
+      #processo-cache > div {
+        font-size: 0.7em;
+      }
+
+      #processo-cache .col pre {
+        width: 93%;
+      }
+    </style>
   </section>
 
   <section id="lidando-cache-java">
     <h3>Lidando com cache no Servlet</h3>
 
     <div style="font-size: 0.75em">
-      <pre><code data-trim style="max-height: 35em">
+      <pre><code data-trim data-noescape style="max-height: 35em">
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
             response.setContentType("text/html; charset=utf-8");
 
             PrintWriter conteudo = response.getWriter();
-            conteudo.println("Última modificação: ");
+            conteudo.println("Última modificação: " + lastModified);
         }
 
+        <span step="block" rel="keep">// O servlet lida com cache HTTP enviando o cabeçalho Last-Modified
         private Instant lastModified = null;
 
         @Override
-        protected long getLastModified(HttpServletRequest req) {
+        protected long getLastModified(HttpServletRequest request) {
             if (lastModified == null) {
                 lastModified = Instant.now();
             } else {
@@ -564,7 +616,7 @@ type: classnote
             }
 
             return lastModified.toEpochMilli();
-        }
+        }</span>
       </code></pre>
     </div>
   </section>

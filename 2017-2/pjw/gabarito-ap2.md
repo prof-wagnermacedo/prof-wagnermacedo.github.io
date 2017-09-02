@@ -128,7 +128,7 @@ public class AtividadeServlet extends HttpServlet {
 ```
 
 {: .pergunta}
-Agora escreva uma _query string_ que, enviada ao servlet, o fará retornar a resposta `Delta: 12.0`.
+Agora escreva uma _query string_ que, enviada ao servlet, o fará retornar a resposta `Delta: 12.0`.
 
 <div class="resposta" markdown="1">
 O valor da variável delta vem da seguinte fórmula

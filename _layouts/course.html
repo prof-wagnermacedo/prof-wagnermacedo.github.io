@@ -118,6 +118,16 @@
       font-weight: bold;
       margin-left: -40px;
     }
+
+    img.emoji {
+      height: 1em;
+      width: 1em;
+      vertical-align: -0.1em;
+      margin: 0 .05em 0 .1em;
+      border: 0;
+      background: inherit;
+      box-shadow: none;
+    }
   </style>
 </head>
 
@@ -149,5 +159,12 @@
     ga('send', 'pageview');
 </script>
 {% endif %}
+<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
+<script>
+    twemoji.parse(document, {
+        folder: 'svg',
+        ext: '.svg'
+    });
+</script>
 </body>
 </html>

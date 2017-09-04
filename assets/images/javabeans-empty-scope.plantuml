@@ -1,0 +1,24 @@
+@startuml
+
+skinparam shadowing false
+skinparam ActivityFontName Arial
+
+start
+
+:Procura o //bean//
+em um escopo;
+
+if (**page**?) then (sim)
+elseif (**request**?) then (sim)
+elseif (**session**?) then (sim)
+elseif (**application**?) then (sim)
+else (não encontrado)
+  :Inicializa o //bean//
+  no escopo **page**/
+endif
+
+:Utiliza o //bean// /
+
+stop
+
+@enduml

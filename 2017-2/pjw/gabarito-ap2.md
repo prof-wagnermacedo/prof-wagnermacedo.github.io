@@ -1,6 +1,7 @@
 ---
 layout: course
 exam-title: Atividade Pontuada 2
+date: 2017-09-01 00:00
 ---
 
 # {{ page.exam-title }}

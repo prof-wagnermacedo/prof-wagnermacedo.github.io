@@ -8,7 +8,8 @@ layout: course
 
 <h2>Notas de aula</h2>
 
-{% assign classnotes = coursePages | where_exp:"item", "item.type == 'classnote'" -%}
+{% assign classnotes = coursePages | where_exp:"item", "item.type == 'classnote'"
+                                   | sort: "date" -%}
 <ol>
   {%- for p in classnotes %}
   <li><a href="{{ p.url }}">{{ p.title }}</a></li>
@@ -17,7 +18,8 @@ layout: course
 
 <h2>Exercícios</h2>
 
-{% assign exercises = coursePages | where_exp:"item", "item.quiz-title" -%}
+{% assign exercises = coursePages | where_exp:"item", "item.quiz-title"
+                                  | sort: "quiz-number" -%}
 <ol style="list-style-type: upper-roman">
   {%- for p in exercises %}
   <li><a href="{{ p.url }}">{{ p.quiz-title }}</a></li>
@@ -26,7 +28,8 @@ layout: course
 
 <h2>Gabaritos</h2>
 
-{% assign feedbacks = coursePages | where_exp:"item", "item.exam-title" -%}
+{% assign feedbacks = coursePages | where_exp:"item", "item.exam-title"
+                                  | sort: "date" -%}
 <ol style="list-style: none; padding-left: 1.1em">
   {%- for p in feedbacks %}
   <li><a href="{{ p.url }}">{{ p.exam-title }}</a></li>

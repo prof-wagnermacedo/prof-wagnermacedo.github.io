@@ -1,23 +1,23 @@
 @startuml
 
-skinparam shadowing false
-skinparam ActivityFontName Arial
+skinparam defaultTextAlignment center
+skinparam padding 2
 
 start
 
-:Procura o //bean//
+:Procura //""${bean}""//
 em um escopo;
 
-if (**page**?) then (sim)
-elseif (**request**?) then (sim)
-elseif (**session**?) then (sim)
-elseif (**application**?) then (sim)
-else (não encontrado)
-  :Inicializa o //bean//
-  no escopo **page**/
+if (**page**?) then (\nsim)
+elseif (**request**?) then (\nsim)
+elseif (**session**?) then (\nsim)
+elseif (**application**?) then (\nsim)
+else (\n\nnão encontrado)
+  : Utiliza //**""null""**// /
+  stop
 endif
 
-:Utiliza o //bean// /
+:Utiliza //""${bean}""// /
 
 stop
 

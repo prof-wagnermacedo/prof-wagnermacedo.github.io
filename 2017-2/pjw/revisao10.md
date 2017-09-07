@@ -1,6 +1,6 @@
 ---
 layout: course
-quiz-number: 4
+quiz-number: 3.5
 quiz-title: Revisão 1.0
 date: 2017-09-05
 ---
@@ -71,7 +71,24 @@ ou vir vazio, nesses casos, você não deve adicioná-lo à lista.
 **OBS:** para adicionar um valor à lista, no servlet, use `lista.add(valor)`. 
 
 {: .resposta}
-A resposta estará disponível em breve, tente fazer sem ajuda primeiro.
+<div markdown="1">
+
+Abaixo, você verá dois arquivos:
+
+`q1-form.jsp`
+: Parte importante para o lado cliente: o formulário HTML e a lista de itens.
+
+`Q1Servlet.java`
+: Parte do lado servidor:
+  - implementado o que faltou no método `doPost()`
+  - mapeado o servlet para `/questao1`
+
+: Veja que a implementação é bem simples, basicamente um `if` e a instrução para adicionar o item à lista,
+  os outros códigos servem para facilitar o teste.
+
+<script src="https://gist.github.com/wagnerluis1982/4ac488646e3c64c06bf5366cb8e6e010.js"></script>
+
+</div>
 
 {: .pergunta}
 2\. Crie um servlet e um JSP que trabalhem junto através do uso de `RequestDispatcher`.
@@ -93,4 +110,25 @@ cookies HTTP que impedem a sua utilização.
 **OBS<sub>2</sub>:** na verdade, existe uma forma de utilizar esses caracteres, mas foge do escopo da questão.
 
 {: .resposta}
-A resposta estará disponível em breve, tente fazer sem ajuda primeiro.
+<div markdown="1">
+
+Existem diversas combinações diferentes para responder essa questão, eu utilizei a mais simples possível,
+fazendo um formulário no arquivo `q2-form.jsp`, que envia por método GET mesmo.
+
+Nesse JSP, note que o campo input com `name="busca"` contém o atributo
+
+`value="${cookie['busca'].value}"`
+
+que é o suficiente para que a caixa de busca apareça preenchido com o valor atual do cookie. 
+
+Para a parte Java, temos o arquivo `Q2Servlet.java` com a implementação do método `doGet()` para
+realizar a ação de gravar o cookie caso necessário (se o parâmetro da URL existir) e fazer o
+encaminhamento (_forward_) para o arquivo JSP.
+
+---
+
+Segue abaixo o conteúdo dos arquivos `q2-form.jsp` e `Q2Servlet.java`: 
+
+<script src="https://gist.github.com/wagnerluis1982/85288584e7fdcde6832bdcba6445d666.js"></script>
+
+</div>

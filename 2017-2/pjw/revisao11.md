@@ -55,7 +55,20 @@ caso seja _espanhol_, redirecione para <https://es.wikipedia.org/>.
 vir antes de qualquer conteúdo, ou seja, no início do arquivo.
 
 {: .resposta}
-A resposta estará disponível em breve, tente fazer primeiro.
+<div markdown="1">
+
+O código para esse servlet é bem direto, conforme você pode ver abaixo:
+
+<script src="https://gist.github.com/wagnerluis1982/86eee3622e594a8b510be606391e9a9f.js"></script>
+
+E assim como foi dito no enunciado, também é possível o mesmo efeito com um JSP.
+
+Segue abaixo uma **resposta alternativa**, usando apenas JSP:
+
+<script src="https://gist.github.com/wagnerluis1982/55e9ce8a32c3ed638d5e6d641fcbe15b.js"></script>
+
+</div>
+
 
 {: .pergunta}
 2\. Para esta questão, considere o formulário a seguir:
@@ -91,4 +104,10 @@ Para que uma opção apareça pré-marcada, adicione o atributo `checked` à tag
 **Dica:** utilize `RequestDispatcher` para exibir o formulário de um arquivo JSP.
 
 {: .resposta}
-A resposta estará disponível em breve, tente fazer primeiro.
+<div markdown="1">
+
+Segue a resposta com o arquivo JSP e a classe Java:
+
+<script src="https://gist.github.com/wagnerluis1982/88deb890d5bc66ee1dd18039a180baf4.js"></script>
+
+</div>

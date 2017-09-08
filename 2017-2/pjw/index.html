@@ -3,6 +3,7 @@ layout: course
 ---
 
 {%- assign coursePages = site.pages | where_exp:"item", "item.draft != true"
+                                    | where_exp:"item", "item.hidden != true"
                                     | where_exp:"item", "item.url != page.url"
                                     | where_exp:"item", "item.url contains page.url" -%}
 

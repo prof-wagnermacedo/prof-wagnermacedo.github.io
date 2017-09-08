@@ -56,3 +56,39 @@ vir antes de qualquer conteúdo, ou seja, no início do arquivo.
 
 {: .resposta}
 A resposta estará disponível em breve, tente fazer primeiro.
+
+{: .pergunta}
+2\. Para esta questão, considere o formulário a seguir:
+
+```html
+<form method="post">
+    Do que você mais gosta? <br>
+    <input type="radio" name="gosto" value="cinema"> Cinema <br>
+    <input type="radio" name="gosto" value="livros"> Livros <br>
+    <input type="radio" name="gosto" value="musica"> Música <br>
+    <br>
+    <input type="submit">
+</form>
+```
+
+<div class="pergunta" markdown="1">
+
+Utilizando esse formulário, crie um servlet para gravar em um cookie a opção marcada anteriormente,
+de forma que esse formulário acessado novamente pelo mesmo browser apareça com essa opção previamente
+marcada.
+
+Note que o formulário envia por método POST, assim a gravação do cookies deve acontecer no método
+`doPost()` enquanto o método `doGet()` será usado para exibir o formulário.
+
+Para que uma opção apareça pré-marcada, adicione o atributo `checked` à tag `<input>`:
+
+```html
+<input type="radio" name="gosto" value="cinema" checked>
+```
+
+</div>
+
+**Dica:** utilize `RequestDispatcher` para exibir o formulário de um arquivo JSP.
+
+{: .resposta}
+A resposta estará disponível em breve, tente fazer primeiro.

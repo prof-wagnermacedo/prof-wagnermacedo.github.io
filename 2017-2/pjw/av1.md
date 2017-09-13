@@ -166,3 +166,9 @@ Dessa forma, existem basicamente duas estratégias de solução:
 [questao3-s1]: https://gist.github.com/wagnerluis1982/ef23ee1f99f3e967fb52f2c5a5c879e4
 [questao3-s2]: https://gist.github.com/wagnerluis1982/965c1ade88279eb7bb13f3670bfbd831
 [rev1.1]: revisao11.html
+
+## Citação
+
+> Às vezes você acorda. Às vezes a queda lhe mata.<br>
+> E às vezes, quando você cai, você voa.
+> <footer><cite>Neil Gaiman</cite></footer>

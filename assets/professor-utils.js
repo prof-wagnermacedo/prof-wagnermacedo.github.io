@@ -75,7 +75,7 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
         // endregion
     });
 
-    $('pre > code [step]').each(function () {
+    $('pre [step]').each(function () {
         var $this = $(this);
         $this.addClass('fragment');
 

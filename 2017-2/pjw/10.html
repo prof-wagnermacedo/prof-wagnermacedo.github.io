@@ -1,0 +1,223 @@
+---
+title: Padrão MVC
+layout: reveal-js
+type: classnote
+date: 2017-09-15 00:00
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Programação Java para Web</h2>
+  <h3>Prof. Wagner Macedo</h3>
+</section>
+
+<section id="agenda" data-markdown>
+  <div data-template>
+    ## Model-View-Controller
+
+    - [Problemática](#sec-problematica)
+    - [Padrão arquitetural MVC](#sec-padrao-mvc)
+    - [Criando um framework MVC](#sec-framework-mvc)
+  </div>
+</section>
+
+<section id="sec-problematica">
+  <section id="desenvolvimento-web" data-markdown>
+    <script type="text/template">
+      ## Desenvolvimento Web
+
+      Basicamente vimos três formas:
+
+      - Páginas estáticas com HTML <!-- .element: class="fragment strike" -->
+      - Desenvolvimento com Servlets
+      - Desenvolvimento com JSPs
+    </script>
+  </section>
+
+  <section id="problema1">
+    <p>Qual o problema?</p>
+
+    <div style="font-size: 0.8em">
+      <pre><code data-trim data-noescape class="lang-java" style="max-height: 30em">
+        public class ExemploServlet extends HttpServlet {
+          @Override
+          protected void doGet(HttpServletRequest request,
+                               HttpServletResponse response) throws IOException {
+              // Obtém os dados enviados
+              String txtNome = request.getParameter("nome");
+              String txtIdade = request.getParameter("idade");
+              // Processa os dados
+              if (txtNome == null) {
+                  txtNome = <span step="2" rel="keep">"[anônimo]"</span>;
+              }
+              String classeIdade = <span step="3" rel="keep">"menor"</span>;
+              int idade = Integer.parseInt(txtIdade);
+              if (idade &gt;= 18) {
+                  classeIdade = <span step="3" rel="keep">"maior"</span>;
+              }
+        <span step="1" class="block" rel="keep">      // Devolve uma resposta com os dados
+              PrintWriter conteudo = response.getWriter();
+              conteudo.println("&lt;html&gt;&lt;head&gt;&lt;meta charset=utf-8&gt;&lt;/head&gt;");
+              conteudo.println("&lt;body&gt;");
+              conteudo.println("&lt;b&gt;" + txtNome + "&lt;/b&gt; tem &lt;b&gt;"
+                      + idade + "&lt;/b&gt; anos (de " + classeIdade + ")");
+              conteudo.println("&lt;/body&gt;&lt;/html&gt;");</span>
+          }
+        }
+      </code></pre>
+    </div>
+  </section>
+
+  <section id="problema2">
+    <p>Qual o problema?</p>
+
+    <div class="highlight" style="font-size: 0.85em">
+      <pre>
+<code class="nohighlight" style="max-height: 30em"
+      data-noescape><span></span><span class="k">&lt;%@</span> <span class="n">page</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&quot;text/html;charset=UTF-8&quot;</span> <span class="n">language</span><span class="o">=</span><span class="s">&quot;java&quot;</span> <span class="k">%&gt;</span>
+<span step="block"
+      rel="keep"><span class="k">&lt;%</span>
+    <span class="n">String</span> <span class="n">txtNome</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;nome&quot;</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">txtIdade</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;idade&quot;</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">txtNome</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">txtNome</span> <span class="o">=</span> <span class="s">&quot;[anônimo]&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">String</span> <span class="n">classeIdade</span> <span class="o">=</span> <span class="s">&quot;menor&quot;</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">txtIdade</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">classeIdade</span> <span class="o">=</span> <span class="s">&quot;maior&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="k">%&gt;</span></span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">utf-8</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;b&gt;</span><span class="k">&lt;%=</span> <span class="n">txtNome</span> <span class="k">%&gt;</span><span class="nt">&lt;/b&gt;</span> tem <span class="nt">&lt;b&gt;</span><span class="k">&lt;%=</span> <span class="n">idade</span> <span class="k">%&gt;</span><span class="nt">&lt;/b&gt;</span> anos
+    (de <span class="k">&lt;%=</span> <span class="n">classeIdade</span> <span class="k">%&gt;</span>)
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+  </section>
+
+  <section id="pergunta-retorica">
+    <p>Resolve o problema?</p>
+
+    <div class="highlight" style="font-size: 0.85em">
+      <pre>
+<code class="nohighlight" style="max-height: 30em"
+      data-noescape><span class="k">&lt;%@</span> <span class="n">page</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&quot;text/html;charset=UTF-8&quot;</span> <span class="n">language</span><span class="o">=</span><span class="s">&quot;java&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;c&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> <span class="k">%&gt;</span>
+
+<span class="nt">&lt;</span><span class="nt">c:set</span> <span class="na">var</span><span class="o">=</span><span class="s">&quot;nome&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;$</span><span class="cp">{</span><span class="nf">param</span><span class="o">[</span><span class="s1">&#39;nome&#39;</span><span class="o">]</span><span class="cp">}</span><span class="s">&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;</span><span class="nt">c:set</span> <span class="na">var</span><span class="o">=</span><span class="s">&quot;idade&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;$</span><span class="cp">{</span><span class="nf">param</span><span class="o">[</span><span class="s1">&#39;idade&#39;</span><span class="o">]</span><span class="cp">}</span><span class="s">&quot;</span><span class="nt">/&gt;</span>
+
+<span></span><span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;$<span class="cp">{</span><span class="nf">nome</span> <span class="o">==</span> <span class="kc">null</span><span class="cp">}</span>&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;c:set</span> <span class="na">var=</span><span class="s">&quot;nome&quot;</span> <span class="na">value=</span><span class="s">&quot;[anônimo]&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/c:if&gt;</span>
+
+<span class="nt">&lt;</span><span class="nt">html</span><span class="nt">&gt;</span>
+<span class="nt">&lt;</span><span class="nt">head</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">utf-8</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/</span><span class="nt">head</span><span class="nt">&gt;</span>
+<span class="nt">&lt;</span><span class="nt">body</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;</span><span class="nt">b</span><span class="nt">&gt;</span><span></span>$<span class="cp">{</span><span class="nf">nome</span><span class="cp">}</span><span class="nt">&lt;/</span><span class="nt">b</span><span class="nt">&gt;</span> tem <span class="nt">&lt;</span><span class="nt">b</span><span class="nt">&gt;</span>$<span class="cp">{</span><span class="nf">idade</span><span class="cp">}</span><span class="nt">&lt;/</span><span class="nt">b</span><span class="nt">&gt;</span> anos
+    (de $<span class="cp">{</span><span class="nf">idade</span> <span class="o">&lt;</span> <span class="m">18</span> <span class="o">?</span> <span class="s1">&#39;menor&#39;</span> <span class="o">:</span> <span class="s1">&#39;maior&#39;</span><span class="cp">}</span>)
+<span class="nt">&lt;/</span><span class="nt">body</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/</span><span class="nt">html</span><span class="nt">&gt;</span>
+</code></pre></div>
+  </section>
+</section>
+
+<section id="sec-padrao-mvc">
+  <section id="3-camadas" data-background="#fff">
+    <h2>Arquitetura em 3 camadas</h2>
+
+    <img src="../../assets/images/3-tier-application.svg" class="borderless stretch">
+  </section>
+
+  <section id="mvc" data-background="#fff">
+    <h3>MVC</h3>
+
+    <embed src="../../assets/images/MVC.svg" type="image/svg+xml" class="stretch">
+  </section>
+
+  <section id="aplicando-mvc">
+    <div style="font-size: 0.75em">
+      <div class="columns">
+      <div class="col">
+        <p class="pre-caption">Model</p>
+        <pre><code data-trim class="java">
+          public class Pessoa {
+              private String nome;
+              private int idade;
+
+              // gets e sets
+          }
+        </code></pre></div>
+
+      <div class="col" style="flex-grow: 2.25">
+        <p class="pre-caption">View</p>
+        <pre class="highlight"><code class="nohighlight" data-noescape><span></span><span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>$<span class="cp">{</span><span class="nf">pessoa</span><span class="o">.</span><span class="na">nome</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="s1">&#39;[anônimo]&#39;</span> <span class="o">:</span> <span class="na">pessoa</span><span class="o">.</span><span class="na">nome</span><span class="cp">}</span><span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+tem <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>$<span class="cp">{</span><span class="nf">pessoa</span><span class="o">.</span><span class="na">idade</span><span class="cp">}</span><span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span> anos
+(de $<span class="cp">{</span><span class="nf">pessoa</span><span class="o">.</span><span class="na">idade</span> <span class="o">&lt;</span> <span class="m">18</span> <span class="o">?</span> <span class="s1">&#39;menor&#39;</span> <span class="o">:</span> <span class="s1">&#39;maior&#39;</span><span class="cp">}</span>)
+</code></pre></div>
+      </div>
+
+      <p class="pre-caption">Controller</p>
+      <pre><code data-trim class="java">
+        public class ExemploServlet extends HttpServlet {
+            @Override
+            protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                    throws IOException, ServletException {
+                // Obtém os dados enviados
+                String txtNome = request.getParameter("nome");
+                String txtIdade = request.getParameter("idade");
+                // Usando o model
+                Pessoa p = new Pessoa();
+                p.setNome(txtNome);
+                p.setIdade(Integer.parseInt(txtIdade));
+                // Ligando o model <-> view
+                request.setAttribute("pessoa", p);
+                // Usando a view
+                RequestDispatcher rd = request.getRequestDispatcher("/exemplo-view.jsp");
+                rd.forward(request, response);
+            }
+        }
+      </code></pre>
+    </div>
+
+    <style>
+      #aplicando-mvc pre {
+        width: 92%;
+      }
+    </style>
+  </section>
+</section>
+
+<section id="sec-framework-mvc">
+  <h2>Criando um framework MVC</h2>
+</section>
+
+<section id="leitura-recomendada">
+  <h5>Leitura Recomendada 🔖</h5>
+
+  <dl class="sites">
+    <dd><a href="https://www.caelum.com.br/apostila-java-web/mvc-model-view-controller/">Apostila Caelum</a></dd>
+  </dl>
+
+  <div class="columns" style="font-size: 0.8em">
+    <div class="col">
+      <img src="../../assets/images/livros/araujo2010-webjava.jpg" style="height: 23rem">
+      <p style="margin: 0"><b>Capítulo 7:</b> FrontController</p>
+    </div>
+
+    <div class="col">
+      <img src="../../assets/images/livros/goncalves2007-jsp.jpg" style="height: 23rem">
+      <p style="margin: 0;"><b>Capítulo 20:</b> MVC e DAO</p>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="../../assets/syntax.css">

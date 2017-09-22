@@ -197,7 +197,171 @@ tem <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</sp
 </section>
 
 <section id="sec-framework-mvc">
-  <h2>Criando um framework MVC</h2>
+  <section id="criando-mvc">
+    <h2>Criando um framework MVC</h2>
+  </section>
+
+  <section id="comportamento" data-background="#fff">
+    <h3>Comportamento</h3>
+
+    <ul style="font-family: cursive; font-size: 0.8em">
+      <li>http://localhost:8080/WebApp/ctrl?command=<b>Noticias</b></li>
+      <li>http://localhost:8080/WebApp/ctrl?command=<b>Produtos</b></li>
+      <li>http://localhost:8080/WebApp/ctrl?command=<b>Registrar</b></li>
+    </ul>
+  </section>
+
+  <section id="front-controller" data-background="#fff">
+    <h3>Front Controller</h3>
+
+    <img src="../../assets/images/mvc/front-controller.svg" class="borderless stretch">
+  </section>
+
+  <section id="classe-front-controller" style="font-size: 0.75em">
+    <p style="margin: 0" class="pre-caption">FrontController</p>
+    <pre style="width: 100%"><code data-trim data-noescape style="max-height: 650px">
+      public class FrontController extends HttpServlet {
+      <span step="block">  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+      <span step="block">      // Executa um comando conforme a URL
+            try {
+                <span step>String commandName = request.getParameter("command");</span>
+
+      <span step="block">          Class&lt;Command&gt; c = (Class&lt;Command&gt;) Class.forName("commands." + commandName);
+                Command command = c.newInstance();</span>
+
+                <span step>command.execute(request, response);</span>
+            }</span>
+      <span step="block">      // Se o comando não existir, retorna HTTP 500
+            catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                throw new ServletException(e);
+            }</span>
+        }</span>
+
+      <span class="fragment semi-fade-out" data-fragment-index="0">  @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            processRequest(request, response);
+        }
+
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            processRequest(request, response);
+        }</span>
+      }
+    </code></pre>
+  </section>
+
+  <section id="classe-command" style="font-size: 0.75em">
+    <p style="margin: 0" class="pre-caption">Command</p>
+    <pre style="width: 100%"><code data-trim data-noescape style="max-height: 650px">
+      public abstract class Command {
+          protected HttpServletRequest request;
+          protected HttpServletResponse response;
+
+          /**
+           * Método onde deve ser implementado a lógica do comando
+           */
+          protected abstract void execute();
+
+          /**
+           * Método interno usado por FrontController
+           */
+          void execute(HttpServletRequest request, HttpServletResponse response) {
+              this.request = request;
+              this.response = response;
+
+              execute();
+          }
+
+          // Métodos utilitários
+
+          protected final void forward(String path) throws ServletException, IOException {
+              RequestDispatcher rd = request.getRequestDispatcher(path);
+              rd.forward(request, response);
+          }
+
+          ...
+      }
+    </code></pre>
+  </section>
+
+  <section id="configurabilidade">
+    <h4>Configurabilidade</h4>
+
+    <div>
+      <p>Alguns parâmetros do FrontController estão fixos 😭</p>
+      <ul>
+        <li>pacote Java dos comandos: <code><b>commands</b>.Acao</code></li>
+        <li>nome do parâmetro HTTP: <code>?<b>command</b>=Noticias</code></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="solucao-config">
+    <p>Passando parâmetros para o FrontController</p>
+
+    <pre><code data-trim data-noescape style="max-height: none">
+      &lt;servlet&gt;
+          &lt;servlet-name&gt;FrontController&lt;/servlet-name&gt;
+          &lt;servlet-class&gt;minimvc.FrontController&lt;/servlet-class&gt;
+      <span step="block">    &lt;init-param&gt;
+              &lt;param-name&gt;<span step rel="keep">commandPackage</span>&lt;/param-name&gt;
+              &lt;param-value&gt;fanese.web.commands&lt;/param-value&gt;
+          &lt;/init-param&gt;
+          &lt;init-param&gt;
+              &lt;param-name&gt;<span step rel="keep">paramName</span>&lt;/param-name&gt;
+              &lt;param-value&gt;action&lt;/param-value&gt;
+          &lt;/init-param&gt;</span>
+      &lt;/servlet&gt;
+
+      &lt;servlet-mapping&gt;
+          &lt;servlet-name&gt;FrontController&lt;/servlet-name&gt;
+          &lt;url-pattern&gt;/ctrl&lt;/url-pattern&gt;
+      &lt;/servlet-mapping&gt;
+    </code></pre>
+  </section>
+
+  <section id="solucao-config-2" style="font-size: 0.8em">
+    <p style="margin: 0">Lendo os parâmetros passados</p>
+
+    <pre><code data-trim data-noescape style="max-height: 650px">
+      public class FrontController extends HttpServlet {
+        private String commandPackage;
+        private String paramName;
+
+        @Override
+        public void init() throws ServletException {
+      <span step="block" rel="keep">    commandPackage = getInitParameter("commandPackage");
+          paramName = getInitParameter("paramName");</span>
+        }
+
+        protected void processRequest(HttpServletRequest request,
+                                      HttpServletResponse response) throws ... {
+          // Executa um comando conforme a URL
+          try {
+            String commandName = request.getParameter(<span step rel="keep">paramName</span>);
+
+            Class&lt;Command&gt; c = (Class&lt;Command&gt;)
+                    Class.forName(<span step rel="keep">commandPackage</span> + "." + commandName);
+            Command command = c.newInstance();
+
+            command.execute(request, response);
+          }
+          ...
+        }
+
+        ...
+      }
+    </code></pre>
+  </section>
+
+  <section id="codigo-completo" data-markdown>
+    ### Código completo do framework
+
+    {{ '/framework-mvc' | absolute_url }}
+  </section>
 </section>
 
 <section id="leitura-recomendada">

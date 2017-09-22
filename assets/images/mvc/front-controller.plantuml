@@ -1,0 +1,31 @@
+@startuml
+
+skinparam Class {
+    FontStyle bold
+    FontSize 15
+    AttributeFontSize 17
+    AttributeFontName Ubuntu Mono
+}
+
+class " FrontController  " as FC <<servlet>> {
+    doGet()
+    doPost()
+}
+
+abstract class " Command  " as CMD <<abstract>> {
+    execute()
+}
+
+class " Command 1  " <<concrete>> extends CMD {
+    execute()
+}
+
+class " Command 2  " <<concrete>> extends CMD {
+    execute()
+}
+
+FC .right.> CMD : "               "
+
+hide fields
+
+@enduml

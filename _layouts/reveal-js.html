@@ -38,7 +38,7 @@
     <section class="duvidas">
       {%- assign pageUrl = page.url | split: "."    | reverse
                                     | slice: 1, 999 | reverse | join: "."
-                                    | prepend: "http://prof.wagnermacedo.com" %}
+                                    | absolute_url %}
       <h2>Dúvidas?</h2>
       <p>
         <strong>Este slide pode ser encontrado em:</strong>

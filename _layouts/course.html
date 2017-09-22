@@ -17,10 +17,15 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
   <style>
-    div.highlighter-rouge[data-caption]:before {
+    div.highlighter-rouge[data-caption]:before,
+    div.exemplo-out[data-caption]:before {
       content: attr(data-caption);
       font-variant: small-caps;
       font-weight: bold;
+    }
+
+    div.exemplo-out {
+      margin: 1em 0;
     }
 
     figure.highlight {

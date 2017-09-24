@@ -1,3 +1,6 @@
 [submodule "lib/reveal.js"]
 	path = assets/reveal.js
 	url = https://github.com/hakimel/reveal.js.git
+[submodule "assets/examples/minimvc"]
+	path = assets/examples/minimvc
+	url = https://github.com/prof-wagnermacedo/minimvc.git

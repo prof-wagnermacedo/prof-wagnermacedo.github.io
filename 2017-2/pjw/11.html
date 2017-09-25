@@ -1,0 +1,119 @@
+---
+title: Introdução à Persistência de Dados
+layout: reveal-js
+type: classnote
+date: 2017-09-15 00:00
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Programação Java para Web</h2>
+  <h3>Prof. Wagner Macedo</h3>
+</section>
+
+<section id="agenda" data-markdown>
+  <div data-template>
+    ## Dados Persistentes
+
+    - [Introdução](#sec-introducao)
+    - [Sobre banco de dados](#sec-sgbd)
+    - [Sobre linguagem SQL](#sec-sql)
+  </div>
+</section>
+
+<section id="sec-introducao">
+  <section id="necessidade" data-background="#fff">
+    <h2>Introdução</h2>
+    <img src="../../assets/images/organizacao-computador.svg" class="borderless stretch">
+    <p>Memória do computador é volátil!</p>
+  </section>
+
+  <section id="acesso-servidor" data-background="#fff">
+    <h3>Dados do servidor</h3>
+    <img src="../../assets/images/javaee/request-to-servlet.svg" class="borderless stretch">
+    <p>Os dados persistentes devem estar acessíveis pelo servidor a qualquer instante!</p>
+  </section>
+
+  <section id="armazenamento-banco-dados">
+    <h4>Meios de armazenamento de Banco de Dados</h4>
+
+    <div class="columns">
+      <div class="col" data-markdown>
+        **Direto**
+
+        - Arquivos texto
+        - Planilhas eletrônicas
+        - Arquivos binários
+      </div>
+      <div class="col" data-markdown><script type="text/template">
+        **Indireto**
+
+        - Sistema Gerenciador de Banco de Dados (SGBD) <!-- .element: class="fragment highlight-blue" -->
+        - Serviço em Nuvem
+      </script></div>
+    </div>
+  </section>
+</section>
+
+<section id="sec-sgbd">
+  <section id="exemplos-sgbd" data-background="#fff">
+    <h4>Sistemas Gerenciadores de Banco de Dados</h4>
+    <img src="../../assets/images/sgbd/all.svg" class="borderless stretch">
+  </section>
+
+  <section id="protocolos-sgbd" data-background="#fff">
+    <p style="margin-top: 0">Protocolos de comunicação diferentes para cada SGBD</p>
+    <img src="../../assets/images/sgbd/java-to-sgbd.svg" class="borderless stretch">
+  </section>
+
+  <section id="jdbc" data-background="palegreen">
+    <h2>JDBC</h2>
+    <em>Java Database Connectivity</em>
+
+    <p><b>API</b> da plataforma Java para acesso a banco de dados.</p>
+    <ul>
+      <li>Abstrai o acesso a diferentes SGBD.</li>
+      <li>Os fabricantes de SGBD devem criar drivers.
+        <ul>
+          <li><b>Driver JDBC</b> é uma implementação da API para um SGBD específico.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</section>
+
+<section id="sec-sql">
+  <section id="sql" data-background="#fffa90">
+    <h2>SQL</h2>
+    <em>Structured Query Language</em>
+
+    <div style="text-align: justify;">
+      <p>Linguagem utilizada nas operações realizadas com a maior parte dos sistemas gerentes de banco de dados.</p>
+      <p><b>Padrão SQL</b> é um padrão ISO que define a linguagem.</p>
+      <p><b>SGBD relacionais</b> são compatíveis com boa parte das instruções SQL definidas no padrão.</p>
+    </div>
+  </section>
+
+  <section id="sugestao-curso-sql">
+    <h3>Sugestão</h3>
+    <iframe data-src="https://cursos.timtec.com.br/course/introbd/intro" frameborder="0" class="stretch"></iframe>
+    <p data-markdown>https://cursos.timtec.com.br/course/introbd/intro</p>
+  </section>
+
+  <section id="sql-vs-nosql" data-background="linear-gradient(90deg, #0074D9 50%, #ff551d 50%)">
+    <h2 style="text-transform: inherit; font-variant: small-caps;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL vs NoSQL</h2>
+
+    <div class="columns">
+      <div class="col">
+        <p>SGBD relacionais são os mais comuns e usam a linguagem SQL.</p>
+      </div>
+      <div class="col">
+        <p>SGBD não relacionais tem uma linguagem própria.</p>
+        <p>Por isso, também são chamados de NoSQL.</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<link rel="stylesheet" href="../../assets/syntax.css">

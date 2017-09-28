@@ -1,0 +1,20 @@
+@startuml
+
+skinparam Class {
+    FontStyle bold
+    FontSize 15
+    AttributeFontSize 17
+    AttributeFontName Ubuntu Mono
+}
+
+class " ResultSet  "
+
+note left
+    Resultados de uma query
+    através de um __cursor__ que
+    caminha linha a linha.
+end note
+
+hide members
+
+@enduml

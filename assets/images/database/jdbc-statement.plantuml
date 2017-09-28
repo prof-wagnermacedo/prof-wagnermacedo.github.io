@@ -1,0 +1,26 @@
+@startuml
+
+skinparam Class {
+    FontStyle bold
+    FontSize 15
+    AttributeFontSize 17
+    AttributeFontName Ubuntu Mono
+}
+
+class Statement          as " Statement  "
+class PreparedStatement  as " PreparedStatement  " extends Statement
+
+note left of Statement
+    Sessão de SQL na conexão
+    iniciada previamente.
+end note
+
+note right of PreparedStatement
+    Sessão especial, iniciada a partir
+    de uma query __preparada__, ou seja,
+    uma query parametrizada.
+end note
+
+hide members
+
+@enduml

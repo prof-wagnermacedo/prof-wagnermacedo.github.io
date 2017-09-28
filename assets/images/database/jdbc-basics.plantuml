@@ -1,0 +1,35 @@
+@startuml
+
+skinparam Class {
+    FontStyle bold
+    FontSize 15
+    AttributeFontSize 17
+    AttributeFontName Ubuntu Mono
+}
+
+class Connection as " Connection  "
+class Statement  as " Statement  "
+class ResultSet  as " ResultSet  "
+
+note left of Connection
+    Representa uma conexão
+    iniciada com o SGBD.
+end note
+
+Connection .-> Statement : " inicia"
+
+note right of Statement
+    Sessão de SQL na conexão
+    iniciada previamente.
+end note
+
+Statement .-> ResultSet : " inicia"
+
+note left of ResultSet
+    Resultados, se a query é do
+    tipo que produz resultados.
+end note
+
+hide members
+
+@enduml

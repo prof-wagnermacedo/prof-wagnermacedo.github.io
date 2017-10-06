@@ -1,0 +1,20 @@
+@startuml
+
+actor Cliente
+control FrontController
+participant Home <<Command>>
+
+Cliente -> FrontController: ""?command=Home:sobre ""
+activate FrontController
+
+FrontController ->  Home: "" sobre() ""
+activate Home
+FrontController <-- Home: // Resposta HTTP //
+deactivate Home
+
+Cliente <-- FrontController: // Resposta HTTP //
+deactivate FrontController
+
+hide footbox
+
+@enduml

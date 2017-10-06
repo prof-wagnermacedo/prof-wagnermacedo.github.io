@@ -12,16 +12,16 @@ class " FrontController  " as FC <<servlet>> {
     doPost()
 }
 
-abstract class " Command  " as CMD <<abstract>> {
-    execute()
+abstract class " Command  " as CMD <<abstract>>
+
+class " Command1  " <<concrete>> extends CMD {
+    functionA()
+    functionB()
 }
 
-class " Command 1  " <<concrete>> extends CMD {
-    execute()
-}
-
-class " Command 2  " <<concrete>> extends CMD {
-    execute()
+class " Command2  " <<concrete>> extends CMD {
+    functionX()
+    functionY()
 }
 
 FC .right.> CMD : "               "

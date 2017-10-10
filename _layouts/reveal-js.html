@@ -16,8 +16,12 @@
   {% assign theme = page.theme | default: 'black' %}
   <link rel="stylesheet" href="{{ '/assets/reveal.js/css/theme/' | append: theme | append: '.css' | relative_url }}" id="theme">
 
+{% if page.highlighting != false %}
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="{{ '/assets/reveal.js/lib/css/zenburn.css' | relative_url }}">
+{% else %}
+  <link rel="stylesheet" href="{{ 'assets/syntax.css' | relative_url }}">
+{% endif %}
 
   <!-- jQuery UI -->
   <link rel="stylesheet" href="{{ '/assets/jquery-ui/jquery-ui.min.css' | relative_url }}">
@@ -72,11 +76,13 @@
             {src: '{{ "/assets/reveal.js/plugin/markdown/marked.js" | relative_url }}'},
             {src: '{{ "/assets/reveal.js/plugin/markdown/markdown.js" | relative_url }}'},
             {src: '{{ "/assets/reveal.js/plugin/notes/notes.js" | relative_url }}', async: true},
+        {% if page.highlighting != false %}
             {
                 src: '{{ "/assets/reveal.js/plugin/highlight/highlight.js" | relative_url }}', async: true, callback: function () {
                 hljs.initHighlightingOnLoad();
             }
             },
+        {% endif %}
             {src: '{{ "/assets/reveal.js/plugin/zoom-js/zoom.js" | relative_url }}', async: true}
         ]
     });

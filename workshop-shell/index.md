@@ -9,13 +9,33 @@ layout: course
                                     | where_exp:"item", "item.url != page.url"
                                     | where_exp:"item", "item.url contains page.url" -%}
 
-## Slides
+## Conteúdo
 
-{% assign classnotes = coursePages | where_exp:"item", "item.type == 'classnote'"
-                                   | sort: "date" -%}
-{%- for p in classnotes %}
-- [{{ p.title }}]({{ p.url }})
-{%- endfor %}
+- [Usos para Shell Script](1-usos-para-shell.html)
+
+1. O Ambiente Linux
+2. O Ambiente Shell
+    - Principais sabores de Shell
+3. Funcionamento do Shell
+    - Atribuição
+    - Comando
+    - Caracteres para remoção de significado
+        - Apóstrofo
+        - Contrabarra                         
+        - Aspas                               
+    - Caracteres de redirecionamento        
+    - Subcomandos (<code>``</code>)
+    - Variáveis (`$`)  
+4. Comando `grep`                          
+5. Parâmetros para um script             
+    - Parâmetros especiais                
+6. Condicional: `if`
+7. Comando `test`                         
+8. Condicional: `case`                    
+9. Loop: `for`                            
+10. Matemática no shell                  
+11. Loop: `while`                          
+12. Comando `read`                         
 
 ## Exemplos
 

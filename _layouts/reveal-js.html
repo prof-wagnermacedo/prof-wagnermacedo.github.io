@@ -12,7 +12,9 @@
   <title>{{ page.title | default: "reveal.js" }}</title>
 
   <link rel="stylesheet" href="{{ '/assets/reveal.js/css/reveal.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/reveal.js/css/theme/black.css' | relative_url }}" id="theme">
+
+  {% assign theme = page.theme | default: 'black' %}
+  <link rel="stylesheet" href="{{ '/assets/reveal.js/css/theme/' | append: theme | append: '.css' | relative_url }}" id="theme">
 
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="{{ '/assets/reveal.js/lib/css/zenburn.css' | relative_url }}">

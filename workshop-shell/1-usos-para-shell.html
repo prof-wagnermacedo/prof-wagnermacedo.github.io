@@ -1,0 +1,100 @@
+---
+title: Usos para Shell&nbsp;Script
+layout: reveal-js
+theme: white
+type: classnote
+date: 2017-10-10 00:00
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Prof. Wagner Macedo</h2>
+</section>
+
+<section id="para-que">
+  <h2>Para que?</h2>
+
+  É uma pergunta comum para quem está descobrindo o shell script!
+</section>
+
+<section id="shell-script-frase">
+  <blockquote><p>
+    Em geral, um script de shell é criado
+    para <b>automatizar</b> tarefas comuns,
+    como fazer o backup de uma pasta.
+  </p></blockquote>
+</section>
+
+<section id="sec-usos-comuns">
+  <section class="intro">
+    <h2>O que dá para fazer com Shell Script?</h2>
+
+    <p>
+      Segue aqui alguns dos melhores usos que eu já fiz ou vi outros fazendo.
+    </p>
+  </section>
+
+  <section class="uso">
+    Automatizar o processo de instalação de programas, baixando e instalando dependências se necessário.
+  </section>
+
+  <section class="uso">
+    Fazer backup do diretório <em>home</em> para um arquivo compactado e fazer upload para um servidor FTP.
+  </section>
+
+  <section class="uso">
+    Criar vários usuários no sistema de uma vez a partir de uma lista em um arquivo texto.
+  </section>
+
+  <section class="uso">
+    Excluir todos os arquivos vazios de um diretório, recursivamente.
+  </section>
+
+  <section class="uso">
+    Mostrar informações sobre a placa de rede em um formato amigável.
+  </section>
+
+  <section class="uso">
+    Converter as imagens PNG de um diretório para JPEG.
+  </section>
+
+  <section class="uso">
+    Criar miniaturas (thumbnails) de uma lista de imagens.
+  </section>
+
+  <section class="uso">
+    Gerenciar o firewall de uma forma (semi-)automática.
+  </section>
+
+  <section class="uso">
+    Contar a quantidade de linhas de códigos-fonte Java ignorando as linhas de comentários.
+  </section>
+</section>
+
+<section>
+  <h2>O poder do shell script</h2>
+
+  Você faz, praticamente, qualquer coisa com shell!
+</section>
+
+<section>
+  <h3>Sempre tem um insatisfeito...</h3>
+
+  <dl>
+    <dd>&mdash; Eu posso usar a linguagem X ou Y para fazer qualquer coisa dessa lista!</dd>
+    <dd>&mdash; É verdade, mas fazer em shell script é muito mais rápido e prazeroso 😃</dd>
+  </dl>
+</section>
+
+<script>
+  $(function () {
+      Reveal.addEventListener('ready', function (readyEvent) {
+          var i = 0;
+          $('#sec-usos-comuns').find('.uso').each(function () {
+              $(this).prepend('<h2>' + (++i) +'</h2>');
+          });
+
+          $('.duvidas').remove();
+      });
+  });
+</script>

@@ -1,0 +1,20 @@
+---
+title: Workshop de Shell Script
+description: Prof. Wagner Macêdo
+layout: course
+---
+
+{%- assign coursePages = site.pages | where_exp:"item", "item.draft != true"
+                                    | where_exp:"item", "item.hidden != true"
+                                    | where_exp:"item", "item.url != page.url"
+                                    | where_exp:"item", "item.url contains page.url" -%}
+
+<h2>Slides</h2>
+
+{% assign classnotes = coursePages | where_exp:"item", "item.type == 'classnote'"
+                                   | sort: "date" -%}
+<ul>
+  {%- for p in classnotes %}
+  <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+  {%- endfor %}
+</ul>

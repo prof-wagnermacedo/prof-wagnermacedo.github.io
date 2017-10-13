@@ -169,32 +169,18 @@ date: 2017-08-18 00:00
 
 <p class="pergunta">5. Escreva um formulário HTML que possa gerar a query string abaixo:</p>
 <pre>origem=Aracaju&destino=Salvador&classe=primeira</pre>
-<pre class="resposta">
+<div class="resposta">
+<pre>
 &lt;form&gt;
   &lt;input type=&quot;text&quot; name=&quot;origem&quot;&gt;
   &lt;input type=&quot;text&quot; name=&quot;destino&quot;&gt;
   &lt;input type=&quot;text&quot; name=&quot;classe&quot;&gt;
 &lt;/form&gt;
 </pre>
+</div>
 
 <script>
   [].forEach.call(document.getElementsByTagName('input'), function (el) {
       el.setAttribute('tabindex', '-1');
   });
 </script>
-
-<style>
-  .pergunta {
-    font-weight: bold;
-  }
-
-  .resposta:before {
-    content: 'Resposta:';
-    font-weight: bold;
-    display: block;
-  }
-
-  input {
-    pointer-events: none;
-  }
-</style>

@@ -1,0 +1,145 @@
+---
+title: Conceitos de programação AJAX
+layout: reveal-js
+type: classnote
+date: 2017-10-16 00:00
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Programação Java para Web</h2>
+  <h3>Prof. Wagner Macedo</h3>
+</section>
+
+<section id="agenda">
+  <h2>Programação AJAX</h2>
+
+  <div data-markdown>
+    - [Introdução](#sec-introducao)
+    - [Sobre banco de dados](#sec-sgbd)
+    - [Sobre linguagem SQL](#sec-sql)
+  </div>
+</section>
+
+<section id="ajax">
+  <div class="v-acronym fragment" style="font-size: 3em; padding: 0 4rem;">
+    <p>Asynchronous</p>
+    <p>JavaScript</p>
+    <p>And</p>
+    <p>XML</p>
+  </div>
+</section>
+
+<style>
+  .v-acronym > p.visible:first-letter {
+    color: white;
+  }
+</style>
+
+<section id="sobre-ajax" data-background="#87deaa">
+  <h2>Sobre AJAX</h2>
+
+  <p>AJAX é um conjunto de tecnologias.</p>
+
+  <ul>
+    <li><b>HTML e CSS</b>                   <small>Apresentação</small></li>
+    <li><b>Document Object Model (DOM)</b>  <small>Interação</small></li>
+    <li><b>XML ou JSON</b>                  <small>Formato de troca de dados</small></li>
+    <li><b>XMLHttpRequest</b>               <small>Aquisição de dados</small></li>
+  </ul>
+
+  <p>E para <u>unir tudo isso</u>, usamos <b>JavaScript</b>!</p>
+</section>
+
+<section>
+  <section id="interacao-tradicional" data-background="#fff">
+    <h3>Interação Web Tradicional</h3>
+    <img src="../../assets/images/webdev/interacao-tradicional.svg" class="borderless stretch">
+  </section>
+
+  <section id="interacao-ajax" data-background="#fff">
+    <h3>Interação Web AJAX</h3>
+    <img src="../../assets/images/webdev/interacao-ajax.svg" class="borderless stretch">
+  </section>
+</section>
+
+<section>
+  <section id="como-ajax-funciona" data-background="#fff">
+    <h2>Como AJAX funciona?</h2>
+    <img src="../../assets/images/webdev/ajax-como-funciona.svg" class="borderless stretch">
+  </section>
+
+  <section id="como-ajax-funciona-texto" data-background="#ffe680">
+    <h2>Como AJAX funciona?</h2>
+
+    <div data-markdown>
+      1. Um evento ocorre na página web
+          - A página é carregada, um botão é clicado…
+      2. Um objeto XMLHttpRequest é criado pelo JavaScript
+      3. O objeto XMLHttpRequest envia uma requisição ao servidor web
+      4. O servidor processa a requisição
+      5. O servidor devolve a resposta para a página web
+      6. A resposta é lida pelo JavaScript
+      7. Uma ação apropriada é feita pelo JavaScript
+    </div>
+  </section>
+
+  <section id="classico-vs-ajax" data-background="#fff">
+    <img src="../../assets/images/webdev/interacao-classico-vs-ajax.svg" class="borderless stretch">
+  </section>
+
+  <section id="classico-vs-ajax-citacao">
+    <p>Jesse James Garrett, quem cunhou o termo AJAX, explica a fraqueza da interação tradicional:</p>
+
+    <blockquote>
+      <p>A abordagem clássica faz sentido tecnicamente, mas não oferece uma boa experiência de usuário.</p>
+      <p>Enquanto o servidor está processando uma coisa, o que o usuário está fazendo? Isso mesmo, <u>esperando</u>!</p>
+    </blockquote>
+  </section>
+</section>
+
+<section id="ajax-avaliacao" data-background="#d7d7f4">
+  <h3>AJAX</h3>
+
+  <div class="columns">
+    <div class="col">
+      <dl>
+        <dt>Vantagens 👍</dt>
+        <dd style="margin-left: 0; font-size: 0.85em" data-markdown>
+          - Melhor usabilidade
+          - Aplicações mais ricas, com mais interações
+          - Browser sem plugins
+          - Interfaces responsivas
+          - Aplicações requerem menos largura de banda
+          - Menos processamento no lado servidor
+        </dd>
+      </dl>
+    </div>
+    <div class="col">
+      <dl>
+        <dt>Desvantagens 👎</dt>
+        <dd style="margin-left: 0; font-size: 0.85em" data-markdown>
+          - Suporte complicado para diferentes browsers
+          - Botão de _back_ pode não funcionar como esperado
+          - URL não se altera com as mudanças de tela
+          - Debug mais difícil
+          - Maior processamento no lado cliente
+        </dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="leitura-recomendada">
+  <h5>Leitura Recomendada 🔖</h5>
+
+  <dl class="sites">
+    <dd><a href="http://www.criarweb.com/manual-jquery/">Manual de jQuery</a></dd>
+    <dd><a href="https://developer.mozilla.org/pt-BR/docs/AJAX">MDN: AJAX</a></dd>
+    <dd><a href="https://www.w3schools.com/js/js_ajax_intro.asp">AJAX Introduction</a></dd>
+    <dd style="font-size: 0.8em">
+      <img src="../../assets/images/livros/goncalves2007-jsp.jpg" style="height: 20rem; margin-bottom: 0">
+      <p style="margin: 0;"><b>Capítulo 24:</b> AJAX</p>
+    </dd>
+  </dl>
+</section>

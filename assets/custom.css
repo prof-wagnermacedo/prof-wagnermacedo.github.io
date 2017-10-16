@@ -177,3 +177,36 @@ p.pre-caption {
 p.pre-caption + pre {
     margin-top: 0.3em;
 }
+
+.v-acronym > p {
+    text-align: left;
+    font-variant-caps: small-caps;
+    line-height: 1.1;
+    margin: 0 auto;
+}
+
+.v-acronym > p:first-letter {
+    font-weight: bold;
+    visibility: visible;
+}
+
+.reveal .slides .v-acronym > p.fragment {
+    visibility: hidden;
+    overflow: hidden;
+    max-width: 1.2ch;
+    white-space: nowrap;
+}
+
+/* https://css-tricks.com/snippets/css/typewriter-effect/ */
+.reveal .slides .v-acronym > p.fragment.visible {
+    animation: typing 0.5s steps(40, end);
+    visibility: inherit;
+    max-width: 100%;
+    /*color: inherit;*/
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 1.2ch }
+    to { width: 100% }
+}

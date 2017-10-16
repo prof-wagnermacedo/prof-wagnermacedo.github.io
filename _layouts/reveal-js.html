@@ -76,13 +76,13 @@
             {src: '{{ "/assets/reveal.js/plugin/markdown/marked.js" | relative_url }}'},
             {src: '{{ "/assets/reveal.js/plugin/markdown/markdown.js" | relative_url }}'},
             {src: '{{ "/assets/reveal.js/plugin/notes/notes.js" | relative_url }}', async: true},
-        {% if page.highlighting != false %}
+        //{% if page.highlighting != false %}
             {
                 src: '{{ "/assets/reveal.js/plugin/highlight/highlight.js" | relative_url }}', async: true, callback: function () {
                 hljs.initHighlightingOnLoad();
             }
             },
-        {% endif %}
+        //{% endif %}
             {src: '{{ "/assets/reveal.js/plugin/zoom-js/zoom.js" | relative_url }}', async: true}
         ]
     });

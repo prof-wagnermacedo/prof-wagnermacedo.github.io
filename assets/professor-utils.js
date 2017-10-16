@@ -101,6 +101,12 @@ const absoluteUrl = new RegExp('^(?:(?:[a-z]+:)?/)?/', 'i');
         $(this).after(' <small>' + this.href + '</small>');
     });
 
+    $('.v-acronym.fragment').each(function () {
+        var $this = $(this);
+        $this.removeClass('fragment');
+        $this.find('>p').addClass('fragment highlight-blue');
+    });
+
     // Ações para quando os slides estiverem carregados
     Reveal.addEventListener('ready', function (readyEvent) {
         // Redimensiona iframe

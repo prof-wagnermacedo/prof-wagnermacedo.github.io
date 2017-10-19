@@ -53,6 +53,10 @@
       font-weight: bold;
     }
 
+    div.pergunta {
+        margin-top: 1em;
+    }
+
     .resposta:before {
       content: 'Resposta:';
       font-weight: bold;
@@ -100,6 +104,24 @@
 
     table.opcoes pre.highlight {
       margin: 0;
+    }
+
+    table.opcoes-linha tr > td {
+      border: 0;
+      padding-left: 0;
+      padding-right: 0.5em;
+    }
+
+    table.opcoes-linha tr > td:nth-child(odd) {
+      white-space: nowrap;
+    }
+
+    table.opcoes-linha tr > td:nth-child(even) {
+      padding-right: 2em;
+    }
+
+    ul.pontos, ol.pontos {
+      list-style: upper-roman;  
     }
 
     #markdown-toc {

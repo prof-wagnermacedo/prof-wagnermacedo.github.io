@@ -7,15 +7,16 @@ layout: course
                                     | where_exp:"item", "item.url != page.url"
                                     | where_exp:"item", "item.url contains page.url" -%}
 
-<h2>Notas de aula</h2>
-
 {% assign classnotes = coursePages | where_exp:"item", "item.type == 'classnote'"
                                    | sort: "date" -%}
+<details>
+<summary><h2>Notas de aula</h2></summary>
 <ol>
   {%- for p in classnotes %}
   <li><a href="{{ p.url }}">{{ p.title }}</a></li>
   {%- endfor %}
 </ol>
+</details>
 
 <h2>Exercícios</h2>
 
@@ -40,3 +41,13 @@ layout: course
 <h2>Outros</h2>
 
 <a href="{{ '/framework-mvc' | absolute_url }}">Mini framework MVC</a>
+
+<style>
+    details > summary > h2 {
+        display: inline-block;
+    }
+
+    details:not([open]) > summary > h2 {
+        -webkit-margin-after: 0;
+    }
+</style>

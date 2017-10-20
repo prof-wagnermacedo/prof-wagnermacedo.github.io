@@ -109,7 +109,8 @@ que o usuário tenha que mudar de página ou alterar o local de seu foco. Esse o
 5\. Em relação aos conceitos de AJAX, observe os itens a seguir:
 
 0. A plataforma do lado cliente tem que ser compatível para as aplicações AJAX funcionarem corretamente.
-0. Nas comunicações entre a aplicação AJAX e servidor, o usuário deve aguardar o processamento para fazer outra interação.
+0. Nas comunicações entre a aplicação AJAX e servidor, o usuário deve aguardar o processamento para iniciar outra
+   interação com a aplicação.
 0. A troca de dados com o servidor e a exibição da resposta ao usuário são feitas sem recarregar a página web por inteiro.
 0. O uso de AJAX torna necessário recarregar a página inteira, impossibilitando que atualizações de partes específicas
    sejam realizadas separadamente.

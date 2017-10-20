@@ -2,6 +2,8 @@
 layout: course
 exam-title: Atividade Pontuada 3
 date: 2017-10-19 00:00
+
+draft: true
 ---
 
 # {{ page.exam-title }}
@@ -76,6 +78,13 @@ public class ClienteDao {
 
 </div>
 
+<div class="resposta" markdown="1">
+
+O método `registrarCompra()` deveria estar em uma classe como `CompraDao` ou algo assim, pois o registro de compras não
+deve ser responsabilidade do cliente.
+
+</div>
+
 <div class="pergunta" markdown="1">
 
 4\. AJAX tem por significado _Asynchronous Javascript And XML_ e representa um conceito para descrever a interação de um
@@ -122,5 +131,14 @@ aplicações que utilizam AJAX.
 
 Relacionando com esta figura, utilize o seu conhecimento e explique com pelo menos 30 palavras, a vantagem da utilização
 do modelo AJAX em relação ao clássico.
+
+</div>
+
+<div class="resposta" markdown="1">
+
+No modelo clássico, as respostas a todas as requisições envolvem arquivos HTML, CSS e JavaScript.
+
+Com AJAX, esse processo é melhorado com respostas curtas, usando fragmentos de informações, que serão transformados em
+HTML e CSS, no lado cliente, após uma primeira resposta completa.
 
 </div>

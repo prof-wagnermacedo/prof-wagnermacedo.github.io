@@ -2,8 +2,6 @@
 layout: course
 exam-title: Atividade Pontuada 3
 date: 2017-10-19 00:00
-
-draft: true
 ---
 
 # {{ page.exam-title }}

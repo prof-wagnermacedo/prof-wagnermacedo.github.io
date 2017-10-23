@@ -1,0 +1,70 @@
+---
+layout: course
+quiz-number: 7.5
+quiz-title: Revisão 2.0
+date: 2017-10-23 00:00
+---
+
+<h1>{{ page.quiz-title }}</h1>
+
+<p>Esta é uma revisão para a segunda prova.</p>
+
+<ol>
+  <li class="pergunta" value="1">
+    <p>Crie uma aplicação chamada <u>MiniBlog</u> que tenha as seguintes características:</p>
+
+    <ol type="a">
+      <li>
+        Uma tela que liste todos os <em>posts</em> publicados. Deverá ser listado somente o título e a data dos
+        <em>posts</em>, com um link para ver o <em>post</em> completo.</li>
+      <li>
+        Outra tela para exibir o <em>post</em> completo.</li>
+      <li>
+        E uma terceira tela com um formulário que permite publicar <em>posts</em>.</li>
+    </ol>
+
+    <p>A aplicação deve ser desenvolvida usando o <em>framework</em> MVC discutido em sala de aula.</p>
+
+    <hr>
+
+    <p>Os <em>posts</em> serão adicionados à tabela <code>Posts</code>:</p>
+
+    <table class="opcoes">
+      <tr>
+        <td><img src="un2/posts.svg"></td>
+        <td>{% highlight sql %}{% include_relative un2/create-posts.sql %}{% endhighlight %}</td>
+      </tr>
+    </table>
+
+    <p>As classes de acesso a dados <code>Post</code> e <code>PostDao</code> já estão criadas e prontas para uso:</p>
+
+    <details>
+      <summary><kbd>Post.java</kbd></summary>
+      {% highlight java %}{% include_relative un2/Post.java %}{% endhighlight %}
+    </details>
+
+    <details>
+      <summary><kbd>PostDao.java</kbd></summary>
+      {% highlight java %}{% include_relative un2/PostDao.java %}{% endhighlight %}
+    </details>
+  </li>
+
+  <li class="resposta">
+    Tente fazer primeiro 👍
+  </li>
+
+  <li class="pergunta" value="2">
+    <p>
+      Adicione um novo recurso ao <u>MiniBlog</u>, permita que um <em>post</em> só seja publicado na data e hora
+      informada pelo usuário.
+    </p>
+    <p>
+      Nesse caso, antes da data informada, o novo <em>post</em> não irá aparecer na lista, nem poderá ser acessado
+      diretamente usando a URL.
+    </p>
+  </li>
+
+  <li class="resposta">
+    Tente fazer primeiro 👍
+  </li>
+</ol>

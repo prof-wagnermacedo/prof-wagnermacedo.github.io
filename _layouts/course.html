@@ -53,8 +53,13 @@
       font-weight: bold;
     }
 
-    div.pergunta {
+    div.pergunta, li.pergunta {
         margin-top: 1em;
+    }
+
+    li.pergunta ol[type='a'] {
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
     }
 
     .pergunta u:empty::before {
@@ -88,6 +93,11 @@
 
     ul.resposta, ol.resposta {
       padding-left: 30px;
+    }
+
+    li.resposta {
+      margin-top: 1em;
+      list-style-type: none;
     }
 
     .resposta pre {

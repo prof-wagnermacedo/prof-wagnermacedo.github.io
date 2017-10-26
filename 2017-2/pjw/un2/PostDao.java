@@ -1,3 +1,10 @@
+package dao;
+
+import model.Post;
+import org.sql2o.Connection;
+
+import java.util.List;
+
 public class PostDao {
     /**
      * Referência da fábrica de conexões

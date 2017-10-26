@@ -72,6 +72,10 @@ table.grade td:first-child {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.exemplo {
+    background: #fdf5e6!important;
+}
+
 ul.resposta, ol.resposta {
     padding-left: 30px;
 }

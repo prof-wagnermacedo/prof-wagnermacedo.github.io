@@ -50,7 +50,49 @@ date: 2017-10-23 00:00
   </li>
 
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Eu desenvolvi um comando chamado <code>Posts</code> com três subcomandos:</p>
+    <dl>
+      <dt><code>index</code></dt>
+      <dd>Lista de posts publicados.</dd>
+
+      <dt><code>visualizar</code></dt>
+      <dd>Exibe o post por completo.</dd>
+
+      <dt><code>publicar</code></dt>
+      <dd>Exibe o formulário de publicação e executa a ação de publicar o post, isto é, armazenar no banco de dados.</dd>
+    </dl>
+
+    {%- assign gistAnswer1="wagnerluis1982/353d0400ae1227be6ff9f9830c629fd4" %}
+
+    <details>
+      <summary><kbd><b>Posts.java</b></kbd> (veja a classe do comando)</summary>
+      {% include gist.html id=gistAnswer1 filename="Posts.java" %}
+    </details>
+
+    <p>Para exibir as páginas do <u>MiniBlog</u>, eu utilizei uma página mestre com um layout básico que recebe
+      dois parâmetros: <code>title</code> e <code>include</code>.</p>
+
+    <details>
+      <summary><kbd><b>/master-page.jsp</b></kbd></summary>
+      {% include gist.html id=gistAnswer1 filename="master-page.jsp" %}
+    </details>
+
+    <p>Além disso, cada subcomando tem seu próprio fragmento de página:</p>
+
+    <details>
+      <summary><kbd><b>/posts/lista.jsp</b></kbd></summary>
+      {% include gist.html id=gistAnswer1 filename="lista.jsp" %}
+    </details>
+
+    <details>
+      <summary><kbd><b>/posts/visualizar.jsp</b></kbd></summary>
+      {% include gist.html id=gistAnswer1 filename="visualizar.jsp" %}
+    </details>
+
+    <details>
+      <summary><kbd><b>/posts/adicionar.jsp</b></kbd></summary>
+      {% include gist.html id=gistAnswer1 filename="adicionar.jsp" %}
+    </details>
   </li>
 
   <li class="pergunta" value="2">
@@ -65,6 +107,32 @@ date: 2017-10-23 00:00
   </li>
 
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Existem basicamente duas formas de solucionar esse problema:</p>
+    <ol>
+      <li><p>Consultar o banco de dados com <code>WHERE &lt;= GETDATE()</code>.</p>
+
+        <p><b>OBS:</b> a função <code>GETDATE()</code> do SQL Server retorna a data/hora atual, assim, a condição irá
+          obter todos os post cujo horário estejam até o horário atual.</p>
+      </li>
+      <li><p>Filtrar os resultados usando Java.</p>
+
+        <p>Não recomendável porque aumenta demais o processamento do servidor web.</p>
+      </li>
+    </ol>
+
+    <p>Usando a alternativa 1 como solução, eu adicionei o método <code>obterVisiveis()</code> à classe DAO e alterei o
+      comando para utilizar esse método em vez do que obtém todos os posts.</p>
+
+    {%- assign gistAnswer2="wagnerluis1982/b7a42b41ea61912bed721fbca2d1d3ab" %}
+
+    <details>
+      <summary><kbd><b>obterVisiveis()</b></kbd> (método da classe <kbd>PostDao</kbd>)</summary>
+      {% include gist.html id=gistAnswer2 filename="PostDao:obterVisiveis.java" %}
+    </details>
+
+    <details>
+      <summary><kbd><b>Posts:index</b></kbd> (comando com alteração)</summary>
+      {% include gist.html id=gistAnswer2 filename="Posts:index.java" %}
+    </details>
   </li>
 </ol>

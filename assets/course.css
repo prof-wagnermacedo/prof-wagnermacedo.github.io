@@ -1,0 +1,170 @@
+div.highlighter-rouge[data-caption]:before,
+div.exemplo-out[data-caption]:before {
+    content: attr(data-caption);
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+div.exemplo-out {
+    margin: 1em 0;
+}
+
+figure.highlight {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+figure.highlight td.gutter.gl,
+figure.highlight td.gutter.gl > pre,
+figure.highlight td.code,
+figure.highlight td.code > pre {
+    border: 0;
+    padding: 0;
+}
+
+figure.highlight td.gutter.gl {
+    opacity: 0.6;
+}
+
+figure.highlight td.code {
+    padding-left: 20px;
+}
+
+.pergunta {
+    font-weight: bold;
+}
+
+div.pergunta, li.pergunta {
+    margin-top: 1em;
+}
+
+li.pergunta ol[type='a'] {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.pergunta u:empty::before {
+    content: '\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0';
+}
+
+.resposta:before {
+    content: 'Resposta:';
+    font-weight: bold;
+    display: block;
+}
+
+ul.resposta:before, ol.resposta:before {
+    margin-left: -20px;
+}
+
+table.grade {
+    text-align: center;
+}
+
+table.grade td:first-child {
+    text-align: left;
+}
+
+.exemplo, .resposta {
+    width: 100%;
+    padding: 10px;
+    background: #fafafa !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ul.resposta, ol.resposta {
+    padding-left: 30px;
+}
+
+li.resposta {
+    margin-top: 1em;
+    list-style-type: none;
+}
+
+.resposta pre {
+    background: #f7f8f9;
+    border-color: #e8ecf0;
+}
+
+table.opcoes > tbody > tr > td {
+    border: 0;
+    padding-left: 0;
+    padding-right: 0;
+    vertical-align: top;
+}
+
+table.opcoes > tbody > tr > td:first-child {
+    padding-right: 0.5em;
+}
+
+table.opcoes pre.highlight {
+    margin: 0;
+}
+
+table.opcoes-linha tr > td {
+    border: 0;
+    padding-left: 0;
+    padding-right: 0.5em;
+}
+
+table.opcoes-linha tr > td:nth-child(odd) {
+    white-space: nowrap;
+}
+
+table.opcoes-linha tr > td:nth-child(even) {
+    padding-right: 2em;
+}
+
+ul.pontos, ol.pontos {
+    list-style: upper-roman;
+}
+
+#markdown-toc {
+    list-style: decimal;
+}
+
+#markdown-toc > li > ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#markdown-toc > li > ul ul {
+    display: none;
+}
+
+#markdown-toc > li:first-child {
+    margin-top: 10px;
+}
+
+#markdown-toc::before {
+    content: "Conteúdo";
+    font-weight: bold;
+    margin-left: -40px;
+}
+
+img.emoji {
+    height: 1em;
+    width: 1em;
+    vertical-align: -0.1em;
+    margin: 0 .05em 0 .1em;
+    border: 0;
+    background: inherit;
+    box-shadow: none;
+}
+
+.gist td.js-line-number {
+    border: none;
+}
+
+blockquote > footer {
+    font-size: 0.9em;
+    opacity: 0.75;
+}
+
+blockquote > footer::before {
+    content: '\2014 \00A0';
+}
+
+details > summary {
+    cursor: pointer;
+}

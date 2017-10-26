@@ -1,0 +1,119 @@
+---
+layout: course
+quiz-number: 7.5
+quiz-title: Revisão 2.2
+date: 2017-10-26 00:00
+---
+
+<h1>{{ page.quiz-title }}</h1>
+
+<p>Esta é uma revisão para a segunda prova.</p>
+
+<ol>
+  <li class="pergunta" value="1">
+    Altere o <u>MiniBlog</u> para utilizar AJAX no formulário para publicar novos <em>posts</em>, nesse caso, após a
+    publicação, uma <code>&lt;div&gt;</code> acima do formulário deverá ser modificada para informar que a publicação
+    foi realizada com sucesso.
+  </li>
+  <li class="resposta">
+    Tente fazer primeiro 👍
+  </li>
+
+  <li class="pergunta" value="2">
+    <p>Adicione ao <u>MiniBlog</u> a funcionalidade de filtrar a lista de <em>posts</em> por uma certa <em>tag</em>.</p>
+
+    <p>
+      Assim, adicione antes da lista de <em>posts</em> um campo de busca que autocomplete as <em>tags</em> disponíveis
+      cadastradas no sistema usando AJAX. Será algo como o seguinte:
+    </p>
+
+    <div class="exemplo-out" data-caption="Exemplo estático">
+      <p class="exemplo">
+        Filtrar por tag: <input list="tags-exemplo">
+        <datalist id="tags-exemplo">
+          <option value="Dica"></option>
+          <option value="Google"></option>
+          <option value="Java"></option>
+          <option value="Programação web"></option>
+          <option value="Programação"></option>
+        </datalist>
+        <button>Buscar</button>
+      </p>
+    </div>
+
+    <p>
+      Para isso funcionar desse jeito use um <code>&lt;input&gt;</code> vinculado a um
+      <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/datalist"
+         title="Veja sobre <datalist> no MDN" target="_blank">datalist</a>
+      e crie um subcomando que receba os caracteres digitados e devolva uma série de <code>&lt;option&gt;</code> com os
+      valores das <em>tags</em>que iniciem pelos caracteres digitados.
+    </p>
+
+    <p>Para a consulta no banco, adicione o seguinte método à <code>TagDao.</code></p>
+
+    {% highlight java %}{% include_relative un2/TagDao-obterIniciamPor.java %}{% endhighlight %}
+
+    <hr>
+
+    <p>Resumo do que será necessário fazer nessa questão:</p>
+    <ol type="I">
+      <li>Adicionar à página de lista de <em>posts</em> um formulário tal como:
+
+<!--suppress HtmlUnknownTarget -->
+        {% highlight html %}
+<form>
+  Filtrar por tag: <input list="tags">
+  <datalist id="tags"></datalist>
+  <button type="submit">Buscar</button>
+</form>
+{% endhighlight %}
+      </li>
+
+      <li><p>Criar o comando no Java para retornar a lista de <code>&lt;option&gt;</code> de <em>tags</em>.</p></li>
+
+      <li>
+        <p>Adicionar o evento de JavaScript <code>keyup</code> para pegar os caracteres ao digitar:</p>
+
+        {% highlight js %}
+$("input[name='tags']").keyup(function () {
+    // Aqui você irá fazer uma chamada AJAX ao servidor web
+    // e com o retorno, modificar as opções do datalist associado.
+});
+{% endhighlight %}
+      </li>
+    </ol>
+
+    <p>
+      <b>OBS:</b>
+      <span style="font-weight: normal">
+        o elemento <code>&lt;datalist&gt;</code> não é compatível com o navegador Safari.
+      </span>
+    </p>
+  </li>
+  <li class="resposta">
+    Tente fazer primeiro 👍
+  </li>
+
+  <li class="pergunta" value="3">
+    <p>Complete a questão anterior, obtendo os <em>posts</em> de uma certa <em>tag</em> via AJAX.</p>
+
+    <p>Isto é, ao clicar no botão de busca, a lista de <em>posts</em> deverá ser atualizado sem recarregar a página.</p>
+
+    <p>Para atingir esse objetivo, você precisará:</p>
+    <ol type="I">
+      <li>
+        Criar um ou mais métodos DAO com o necessário para consultar. Você deve decidir a melhor estratégia, quais
+        classes DAO serão modificadas, quantos métodos novos serão necessários, etc.</li>
+      <li>
+        Criar um comando no Java que retorne o fragmento HTML da lista de <em>posts</em>.</li>
+      <li>
+        Associar via JavaScript um evento <code>submit()</code> ao formulário e fazer as chamadas AJAX e manipulações
+        necessárias no HTML.</li>
+    </ol>
+  </li>
+  <li class="resposta">
+    Tente fazer primeiro 👍
+  </li>
+
+
+</ol>

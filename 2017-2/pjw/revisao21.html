@@ -3,8 +3,6 @@ layout: course
 quiz-number: 7.5
 quiz-title: Revisão 2.1
 date: 2017-10-25 00:00
-
-draft: true
 ---
 
 <h1>{{ page.quiz-title }}</h1>
@@ -13,9 +11,112 @@ draft: true
 
 <ol>
   <li class="pergunta" value="1">
-    Altere o <u>MiniBlog</u> para utilizar AJAX no formulário para publicar novos <em>posts</em>, nesse caso, após a
-    publicação, uma <code>&lt;div&gt;</code> acima do formulário deverá ser modificada para informar que a publicação
-    foi realizada com sucesso.
+    <p>
+      Na aplicação de <u>MiniBlog</u>, o que você faria para que a lista de posts fosse exibido na ordem, sendo que os
+      mais recentes apareçam primeiro e os mais antigos no final?
+    </p>
+    <p>
+      Desenvolva a solução que você optou.
+    </p>
+  </li>
+
+  <li class="resposta">
+    Essa é uma questão para discussão em sala.
+  </li>
+
+  <li class="pergunta" value="2">
+    <p>Desenvolva a funcionalidade de modificar os <em>posts</em> do <u>MiniBlog</u>, que atenda aos seguintes requisitos:</p>
+
+    <ol type="a">
+      <li>O horário de publicação não poderá ser alterado.</li>
+      <li>
+        Na visualização do texto do <em>post</em>, se ele foi modificado, deverá ser exibida a informação de que o
+        <em>post</em> foi modificado em tal data/hora.
+      </li>
+      <li>
+        A modificação do <em>post</em> deve ocorrer de forma automática, quando o usuário solicitar a modificação, então
+        essa será a hora em que o <em>post</em> foi modificado.
+      </li>
+    </ol>
+
+    <hr>
+
+    <p>
+      Nessa questão, você deverá alterar o esquema da tabela <kbd>Posts</kbd>, adicionando uma segunda coluna
+      <code>DATETIME</code> para saber o momento da modificação. Use a instrução abaixo na tabela já criada:
+    </p>
+
+    {% highlight sql %}ALTER TABLE Posts ADD modificado DATETIME NULL{% endhighlight %}
+
+    <p>Assim, em resumo, para atingir os objetivos da questão, você precisará:</p>
+    <ol type="I">
+      <li>Adicionar a nova coluna ao banco de dados.</li>
+      <li>Adicionar o novo campo à classe de dados <code>Post</code>.</li>
+      <li>Modificar o <code>PostDao</code> para utilizar o novo campo.</li>
+      <li>Adicionar um novo subcomando para exibir o formulário de modificação e executar a ação de modificar o
+        <em>post</em> no banco de dados.</li>
+    </ol>
+
+    <p>
+      OBS:
+      <span style="font-weight: normal;">
+        lembre-se que a coluna <u>modificado</u> é <code>NULL</code>, portanto, para saber se o <em>post</em>
+        foi modificado no Java, basta fazer a comparação <code>modificado != null</code>.
+      </span>
+    </p>
+  </li>
+
+  <li class="resposta">
+    Tente fazer primeiro 👍
+  </li>
+
+  <li class="pergunta" value="3">
+    <p>Adicione à aplicação <u>MiniBlog</u> o recurso de marcar um <em>post</em> com uma <em>tag</em>.</p>
+
+    <p>A funcionalidade de <em>tags</em> deverá funcionar da seguinte forma:</p>
+    <ol type="a">
+      <li>Cada <em>post</em> poderá ser marcado com apenas uma <em>tag</em>.</li>
+      <li>Poderá haver <em>posts</em> sem marcação.</li>
+      <li>
+        A criação de <em>tags</em> deverá ser automática, se ao criar ou modificar um <em>post</em>, for escrito o nome
+        de uma <em>tag</em> inexistente, então esta deverá ser criada.
+      </li>
+      <li>
+        Na visualização do texto do <em>post</em>, deverá aparecer a <em>tag</em> marcada. Se o <em>post</em> não tiver
+        marcação, então deverá ser exibido essa informação.
+      </li>
+      <li>
+        Não será necessário criar telas de CRUD para as <em>tags</em>.
+      </li>
+    </ol>
+
+    <hr>
+
+    <p>As <em>tags</em> serão mantidas na tabela <kbd>Tags</kbd>:</p>
+
+    <table class="opcoes">
+      <tr>
+        <td><img src="un2/tags.svg"></td>
+        <td>{% highlight sql %}{% include_relative un2/create-tags.sql %}{% endhighlight %}</td>
+      </tr>
+    </table>
+
+    <p>E é preciso criar a chave estrangeira na tabela <kbd>Posts</kbd>:</p>
+
+    {% highlight sql %}ALTER TABLE Posts ADD tag_id INT NULL REFERENCES Tags (id){% endhighlight %}
+
+    <p>Estou fornecendo também as classes de acesso a dados <code>Tag</code> e <code>TagDao</code>, com os métodos
+      necessários para a questão.</p>
+
+    <details>
+      <summary><kbd>Post.java</kbd></summary>
+      {% highlight java %}{% include_relative un2/Tag.java %}{% endhighlight %}
+    </details>
+
+    <details>
+      <summary><kbd>PostDao.java</kbd></summary>
+      {% highlight java %}{% include_relative un2/TagDao.java %}{% endhighlight %}
+    </details>
   </li>
 
   <li class="resposta">

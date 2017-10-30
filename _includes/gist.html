@@ -1,3 +1,25 @@
 {%- if include.id -%}
 <script src="https://gist.github.com/{{ include.id }}.js?file={{ include.filename }}"></script>
+
+  {%- if include.lines -%}
+    {%- if include.filename -%}
+      {%- assign filenameId = include.filename | downcase
+                                               | replace: ':', '-'
+                                               | replace: '.', '-' -%}
+      <script>
+        "{{ include.lines }}".split(',').forEach(function (line) {
+            document.getElementById("file-{{ filenameId }}-LC" + line)
+                .classList.add("highlighted");
+        });
+      </script>
+    {%- else -%}
+      <script>
+        "{{ include.lines }}".split(',').forEach(function (lineSpec) {
+            document.getElementById("file-" + lineSpec)
+                .classList.add("highlighted");
+        });
+      </script>
+    {%- endif -%}
+  {%- endif -%}
+
 {%- endif -%}

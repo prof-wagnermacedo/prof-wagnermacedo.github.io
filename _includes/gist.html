@@ -1,5 +1,10 @@
 {%- if include.id -%}
-<script src="https://gist.github.com/{{ include.id }}.js?file={{ include.filename }}"></script>
+  {%- if include.title -%}
+  <details>
+    <summary>{{ include.title }}</summary>
+  {%- endif -%}
+
+  <script src="https://gist.github.com/{{ include.id }}.js?file={{ include.filename }}"></script>
 
   {%- if include.lines -%}
     {%- if include.filename -%}
@@ -20,6 +25,10 @@
         });
       </script>
     {%- endif -%}
+  {%- endif -%}
+
+  {%- if include.title -%}
+  </details>
   {%- endif -%}
 
 {%- endif -%}

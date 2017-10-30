@@ -67,7 +67,74 @@ date: 2017-10-25 00:00
   </li>
 
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Esse é um tipo de problema que é melhor se resolvido em partes. Como a aplicação já está estruturada em MVC, vou
+      descrever a solução usando cada uma das camadas.</p>
+
+    {%- assign gistAnswer2="wagnerluis1982/ca9a091cae108ba41162ee38fc357282" %}
+
+    <hr>
+
+    <p><b><u>Model</u></b></p>
+
+    <p>As mudanças necessárias na camada model são bem simples, basta considerar o campo <code>modificado</code> nas
+      classes modelo e de acesso a dados.</p>
+
+    {% include gist.html id=gistAnswer2 lines="10"
+            filename="Post.java"
+            title="<kbd><b>Post.java</b></kbd> (classe modelo)" %}
+
+    {% include gist.html id=gistAnswer2 lines="3,17,26"
+            filename="PostDao-modificado.java"
+            title="<kbd><b>PostDao.java</b></kbd> (classe de acesso a dados)" %}
+
+    <hr>
+
+    <p><b><u>View</u></b></p>
+
+    <p>Nas interfaces de usuário, precisamos criar um formulário para modificar um post e adicionar à tela de
+      visualização a informação do campo modificado se necessário.</p>
+
+    {% include gist.html id=gistAnswer2 lines="3,8,9,10"
+            filename="visualizar.jsp"
+            title="<kbd><b>/posts/visualizar.jsp</b></kbd> (visualização de post com aviso de modificado)" %}
+
+    {% include gist.html id=gistAnswer2
+            filename="modificar.jsp"
+            title="<kbd><b>/posts/modificar.jsp</b></kbd> (nova tela com formulário de modificação)" %}
+
+    <p>
+      O mais importante são essas duas telas acima, mas também é necessário links para o usuário acessar o formulário de
+      de modificação do post, eu fiz isso na lista de posts.
+    </p>
+
+    <p>
+      Mas note que há uma variável booleana <code>isAdmin</code> para exibir o link, como simulação de acesso como
+      administrador. Essa variável é definida no comando <code>Posts:index</code> que usa essa tela.
+    </p>
+
+    {% include gist.html id=gistAnswer2 lines="10,11,12"
+            filename="lista.jsp"
+            title="<kbd><b>/posts/lista.jsp</b></kbd> (lista de posts com link para edição)" %}
+
+    <hr>
+
+    <p><b><u>Controller</u></b></p>
+
+    <p>Eu adicionei o comando <code>Posts:atualizar</code> que é bem parecido com o de adicionar posts, mas utiliza o
+      campo <u>modificado</u>.</p>
+
+    <p>Note que eu não precisei mexer no comando <code>Posts:visualizar</code>, pense no porque 🤔</p>
+
+    {% include gist.html id=gistAnswer2
+            filename="Posts:atualizar.java"
+            title="<kbd><b>Posts:atualizar</b></kbd> (novo comando)" %}
+
+    <p>A simulação de acesso como administrador é feito no comando <code>Posts:index</code>.</p>
+
+    {% include gist.html id=gistAnswer2 lines="8,9,10"
+            filename="Posts:index.java"
+            title="<kbd><b>Posts:index</b></kbd> (comando com alteração)" %}
+
   </li>
 
   <li class="pergunta" value="3">

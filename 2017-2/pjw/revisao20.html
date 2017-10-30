@@ -109,7 +109,7 @@ date: 2017-10-23 00:00
   <li class="resposta">
     <p>Existem basicamente duas formas de solucionar esse problema:</p>
     <ol>
-      <li><p>Consultar o banco de dados com <code>WHERE &lt;= GETDATE()</code>.</p>
+      <li><p>Consultar o banco de dados com <code>WHERE horario &lt;= GETDATE()</code>.</p>
 
         <p><b>OBS:</b> a função <code>GETDATE()</code> do SQL Server retorna a data/hora atual, assim, a condição irá
           obter todos os post cujo horário estejam até o horário atual.</p>
@@ -121,7 +121,7 @@ date: 2017-10-23 00:00
     </ol>
 
     <p>Usando a alternativa 1 como solução, eu adicionei o método <code>obterVisiveis()</code> à classe DAO e alterei o
-      comando para utilizar esse método em vez do que obtém todos os posts.</p>
+      comando <code>Posts:index</code> para utilizar esse método em vez de obter todos os posts.</p>
 
     {%- assign gistAnswer2="wagnerluis1982/b7a42b41ea61912bed721fbca2d1d3ab" %}
 
@@ -132,7 +132,18 @@ date: 2017-10-23 00:00
 
     <details>
       <summary><kbd><b>Posts:index</b></kbd> (comando com alteração)</summary>
-      {% include gist.html id=gistAnswer2 filename="Posts:index.java" %}
+      {% include gist.html id=gistAnswer2 filename="Posts:index.java" lines="5" %}
     </details>
+
+    <p>E eu modifiquei o controller do comando <code>Posts:visualizar</code> para que o post agendado não seja
+      visualizado diretamente.</p>
+
+    <details>
+      <summary><kbd><b>Posts:visualizar</b></kbd> (comando com alteração)</summary>
+      {% include gist.html id=gistAnswer2 filename="Posts:visualizar.java" lines="11,12,13,14,15,16" %}
+    </details>
+
+    <p>No caso, eu considerei que se o post não pode ser exibido, então o cliente deve receber uma resposta
+      <code>HTTP 404</code>, indicando que a página não existe.</p>
   </li>
 </ol>

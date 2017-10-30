@@ -8,17 +8,7 @@
   </script>
   {% endif %}
 
-  {% if jekyll.environment == 'production' and site.google_analytics %}
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108802103-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'UA-108802103-1');
-  </script>
-  {% endif %}
+  {% include google-analytics.html %}
 
   <meta charset="UTF-8">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>

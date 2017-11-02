@@ -12,15 +12,35 @@
                                                | replace: ':', '-'
                                                | replace: '.', '-' -%}
       <script>
-        "{{ include.lines }}".split(',').forEach(function (line) {
-            document.getElementById("file-{{ filenameId }}-LC" + line)
-                .classList.add("highlighted");
+        "{{ include.lines }}".split(',').forEach(function (lineSpec) {
+            var lines = [];
+
+            // See if I have an interval...
+            var specs = lineSpec.split('-');
+            if (specs.length === 2) {
+                var begin = specs[0];
+                var end = specs[1];
+
+                for (var i = begin; i <= end; i++) {
+                    lines.push(i);
+                }
+            }
+            // ...or a single line
+            else {
+                lines.push(lineSpec);
+            }
+
+            // Add .highlighted class
+            lines.forEach(function (line) {
+                document.getElementById("file-{{ filenameId }}-LC" + line)
+                    .classList.add("highlighted");
+            });
         });
       </script>
     {%- else -%}
       <script>
-        "{{ include.lines }}".split(',').forEach(function (lineSpec) {
-            document.getElementById("file-" + lineSpec)
+        "{{ include.lines }}".split(',').forEach(function (line) {
+            document.getElementById("file-" + line)
                 .classList.add("highlighted");
         });
       </script>

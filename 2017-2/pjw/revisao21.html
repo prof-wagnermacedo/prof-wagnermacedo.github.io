@@ -85,7 +85,7 @@ date: 2017-10-25 00:00
 
     {% include gist.html id=gistAnswer2 lines="3,17,26"
             filename="PostDao-modificado.java"
-            title="<kbd><b>PostDao.java</b></kbd> (classe de acesso a dados)" %}
+            title="<kbd><b>PostDao.java</b></kbd> (apenas os métodos alterados)" %}
 
     <hr>
 
@@ -187,6 +187,78 @@ date: 2017-10-25 00:00
   </li>
 
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Esse <ins>também</ins> é um tipo de problema melhor resolvido em partes. Mas dessa vez vou apresentar as camadas
+      em ordem contrária.</p>
+
+    {%- assign gistAnswer3="wagnerluis1982/f083e86fa8867264bc75a445c1d297f4" %}
+
+    <hr>
+
+    <p><b><u>View</u></b></p>
+
+    <p>Primeiramente, na criação/modificação de um post, é preciso que o usuário possa indicar a tag usada. Para isso,
+      devemos modificar as telas de formulário para ter esse novo campo.</p>
+
+    {% include gist.html id=gistAnswer3 lines="11-13"
+            filename="adicionar-r213.jsp"
+            title="<kbd><b>/posts/adicionar.jsp</b></kbd> (formulário com novo campo tag)" %}
+
+    {% include gist.html id=gistAnswer3 lines="13-15"
+            filename="modificar-r213.jsp"
+            title="<kbd><b>/posts/modificar.jsp</b></kbd> (formulário com novo campo tag)" %}
+
+    <p>E, para completar, ao visualizar um post, o usuário quer saber qual a tag marcada. Nesse caso, modificamos a tela
+      de visualização de post.</p>
+
+    {% include gist.html id=gistAnswer3 lines="12-21"
+            filename="visualizar-r213.jsp"
+            title="<kbd><b>/posts/visualizar.jsp</b></kbd> (visualização de post com a tag)" %}
+
+    <hr>
+
+    <p><b><u>Controller</u></b></p>
+
+    <p>Basicamente, precisamos alterar o código dos comandos para a nova situação.</p>
+
+    {% include gist.html id=gistAnswer3 lines="18-25"
+            filename="Posts:visualizar-r213.java"
+            title="<kbd><b>Posts:visualizar</b></kbd> (alterado para obter tag)" %}
+
+    {% include gist.html id=gistAnswer3 lines="17-21,28"
+            filename="Posts:publicar-r213.java"
+            title="<kbd><b>Posts:publicar</b></kbd> (alterado para publicar post com uma tag)" %}
+
+    {% include gist.html id=gistAnswer3 lines="12-16,23"
+            filename="Posts:atualizar-r213.java"
+            title="<kbd><b>Posts:atualizar</b></kbd> (alterado para atualizar post com uma tag)" %}
+
+    {% include gist.html id=gistAnswer3
+            filename="Posts:obterOuCriarTag.java"
+            title="<kbd><b>obterOuCriarTag()</b></kbd> (método interno da classe do comando)" %}
+
+    <hr>
+
+    <p><b><u>Model</u></b></p>
+
+    <p>Primeiramente, eu atualizei o DAO de <em>tags</em> para ter um método de obter uma tag pelo nome.</p>
+
+    {% include gist.html id=gistAnswer3
+            filename="TagDao:obterPorNome.java"
+            title="<kbd><b>obterPorNome()</b></kbd> (novo método de <code>TagDao</code>)" %}
+
+    <p>Depois, eu atualizei a classe <code>Post</code> para adicionar o novo campo.</p>
+
+    {% include gist.html id=gistAnswer3
+            filename="Post-r213.java" lines="11"
+            title="<kbd><b>Post.java</b></kbd> (classe modelo com novo campo)" %}
+
+    <p>E, por último, atualizei o DAO de <em>posts</em> para utilizar o novo campo.</p>
+    <p>Note nas linhas 9, 22 e 45 a chamada <code>addColumnMapping("tag_id", "tagId")</code>. Isso é um
+      mapeamento da coluna <code>tag_id</code> da tabela para o atributo <code>tagId</code> da classe modelo
+      usado pela biblioteca <u>sql2o</u></p>
+
+    {% include gist.html id=gistAnswer3 lines="3,9,17,18,22,26,40,45,50"
+            filename="PostDao-modificado-r213.java"
+            title="<kbd><b>PostDao.java</b></kbd> (apenas os métodos alterados)" %}
   </li>
 </ol>

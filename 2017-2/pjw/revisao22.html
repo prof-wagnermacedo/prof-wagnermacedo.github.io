@@ -9,6 +9,8 @@ date: 2017-10-26 00:00
 
 <p>Esta é uma revisão para a segunda prova.</p>
 
+{%- assign gistAnswer="wagnerluis1982/f434ec85a946502242be272e3b89026a" %}
+
 <ol>
   <li class="pergunta" value="1">
     Altere o <u>MiniBlog</u> para utilizar AJAX no formulário para publicar novos <em>posts</em>, nesse caso, após a
@@ -16,7 +18,19 @@ date: 2017-10-26 00:00
     foi realizada com sucesso.
   </li>
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Foi adicionado o jQuery à página mestre para que todas as outras páginas possam usar.</p>
+
+    {% include gist.html id=gistAnswer lines="6"
+            filename="master-page.jsp"
+            title="<kbd><b>/master-page.jsp</b></kbd> (utilizando jQuery)" %}
+
+    <p>E modifiquei a página de publicação para poder adicionar por AJAX.</p>
+
+    {% include gist.html id=gistAnswer lines="4,23-43"
+            filename="adicionar.jsp"
+            title="<kbd><b>/posts/adicionar.jsp</b></kbd> (formulário usando AJAX)" %}
+
+    <p>Veja que a chamada AJAX é também feita para o comando <code>Posts:publicar</code>.</p>
   </li>
 
   <li class="pergunta" value="2">
@@ -91,7 +105,21 @@ $("input[name='tags']").keyup(function () {
     </p>
   </li>
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Eu criei um novo comando chamadado <code>Tags:opcoes</code> para retornar a lista de opções.</p>
+
+    {% include gist.html id=gistAnswer
+            filename="Tags.java"
+            title="<kbd><b>Tags:opcoes</b></kbd> (novo comando)" %}
+
+    {% include gist.html id=gistAnswer
+            filename="opcoes.jsp"
+            title="<kbd><b>/tags/opcoes.jsp</b></kbd> (nova página, usada pelo comando)" %}
+
+    <p>E adicionei à tela da lista de posts o JavaScript necessário para a autocompletação funcionar.</p>
+
+    {% include gist.html id=gistAnswer lines="7-11,13-22"
+            filename="lista.jsp"
+            title="<kbd><b>/posts/lista.jsp</b></kbd>" %}
   </li>
 
   <li class="pergunta" value="3">
@@ -112,8 +140,29 @@ $("input[name='tags']").keyup(function () {
     </ol>
   </li>
   <li class="resposta">
-    Tente fazer primeiro 👍
+    <p>Eu adicionei ao DAO de <em>posts</em> um método para obter uma lista de posts pelo nome da tag.</p>
+
+    {% include gist.html id=gistAnswer
+            filename="PostDao:obterPorTag.java"
+            title="<kbd><b>obterPorTag()</b></kbd> (novo método de <code>PostDao</code>)" %}
+
+    <p>Para retornar o fragmento HTML de posts a ser chamado via AJAX, eu criei um novo comando.</p>
+
+    {% include gist.html id=gistAnswer
+            filename="Posts:porTag.java"
+            title="<kbd><b>Posts:porTag</b></kbd> (novo comando)" %}
+
+    {% include gist.html id=gistAnswer
+            filename="quadro.jsp"
+            title="<kbd><b>/posts/quadro.jsp</b></kbd> (página usada pelo comando)" %}
+
+    <p>A nova página, <code>quadro.jsp</code>, está sendo usada na lista de posts para exibir a lista inicial com todos
+      os posts e para exibir, via AJAX, os posts filtrados pela tag selecionada.</p>
+
+    <p>Note nas linhas 35 a 37 o <em>include</em> e a <code>&lt;div id="posts"&gt;</code>.</p>
+
+    {% include gist.html id=gistAnswer lines="22-32,35-37"
+            filename="lista-r223.jsp"
+            title="<kbd><b>/posts/lista.jsp</b></kbd> (tela de lista de posts modificada)" %}
   </li>
-
-
 </ol>

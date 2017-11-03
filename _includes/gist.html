@@ -18,8 +18,8 @@
             // See if I have an interval...
             var specs = lineSpec.split('-');
             if (specs.length === 2) {
-                var begin = specs[0];
-                var end = specs[1];
+                var begin = parseInt(specs[0]);
+                var end = parseInt(specs[1]);
 
                 for (var i = begin; i <= end; i++) {
                     lines.push(i);

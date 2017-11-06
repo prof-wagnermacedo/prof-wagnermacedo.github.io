@@ -1,0 +1,81 @@
+---
+layout: course
+exam-title: 2ª Avaliação
+date: 2017-11-06 19:00
+
+hidden: true
+---
+
+<h1>{{ page.exam-title }}</h1>
+
+<ol>
+  <li class="pergunta" value="1">
+    <p>Crie uma aplicação de lista de tarefas que tenha os seguintes recursos:</p>
+
+    <ol type="a">
+      <li>Adicionar tarefas a fazer.</li>
+      <li>Marcar tarefas como concluídas.</li>
+      <li>Visualizar todas as tarefas, mas as concluídas aparecem com visual diferente.</li>
+      <li>Excluir tarefas, sejam concluídas ou não.</li>
+    </ol>
+
+    <h3>Banco de dados</h3>
+
+    <p>Você pode utilizar a tabela <em>Tarefas</em> abaixo para guardar as tarefas:</p>
+
+    <table class="opcoes">
+      <tr>
+        <td><img src="un2/tarefas.svg"></td>
+        <td>{% highlight sql %}{% include_relative un2/create-tarefas.sql %}{% endhighlight %}</td>
+      </tr>
+    </table>
+
+    <p>As classes de acesso a dados <code>Tarefa</code> e <code>TarefaDao</code> já estão criadas e prontas para uso.</p>
+
+    <details>
+      <summary><kbd>Tarefa.java</kbd></summary>
+      {% highlight java %}{% include_relative un2/Tarefa.java %}{% endhighlight %}
+    </details>
+
+    <details>
+      <summary><kbd>TarefaDao.java</kbd></summary>
+      {% highlight java %}{% include_relative un2/TarefaDao.java %}{% endhighlight %}
+    </details>
+
+    <h3>Penalidades</h3>
+
+    <p>A aplicação deve ser desenvolvida conforme as seguintes diretrizes, sob pena de redução percentual na nota:</p>
+
+    <ol type="I">
+      <li><span>[-50%]</span> Você deverá implementar usando o <em>framework</em> MVC discutido em sala de aula.</li>
+      <li><span>[-20%]</span> Pelo menos um dos recursos deverá utilizar AJAX.</li>
+    </ol>
+
+    <h3>Bônus</h3>
+
+    <p>Esforço extra será recompensado. As seguintes características agregarão ao valor da nota.</p>
+
+    <ol type="A">
+      <li><span>[até +10%]</span> Aplicação totalmente desenvolvida usando AJAX.</li>
+      <li><span>[até +10%]</span> Criatividade da interface da aplicação.</li>
+      <li><span>[até +10%]</span> Personalização da camada model, inclusive o esquema da tabela.</li>
+    </ol>
+  </li>
+</ol>
+
+<h2>Citação</h2>
+
+<blockquote>
+  <p>Ações não valerão menos porque não foram elogiadas.</p>
+  <footer><cite>J. R. R. Tolkien</cite></footer>
+</blockquote>
+
+<style>
+  ol[type="I"] span {
+    color: red;
+  }
+
+  ol[type="A"] span {
+    color: blue;
+  }
+</style>

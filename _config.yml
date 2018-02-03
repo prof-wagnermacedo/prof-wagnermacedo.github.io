@@ -28,10 +28,16 @@ plugins:
 defaults:
   -
     scope:
-      path: "2017-2/pjw"
+      path: "2017-2/PJW"
     values:
       title: "Programação em Java para Web"
       description: "Fanese - 2017/2"
+  -
+    scope:
+      path: "2018-1/PJW"
+    values:
+      title: "Programação em Java para Web"
+      description: "Fanese - 2018/1"
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

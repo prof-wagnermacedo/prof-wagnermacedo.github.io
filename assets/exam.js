@@ -1,74 +1,84 @@
 class Exam {
-    constructor() {
-        this.sheets = {};
+    constructor(selector) {
         this.feedback = [];
+        this.feedbackConfig = {};
+        this.$main = $(selector).addClass('exam-questions');
     }
 
     section(name, questions) {
-        this.sheets[name] = questions.slice();
-        for (let i in questions) {
-            this.feedback.push(null);
+        const exam = this;
+        const $container = $('<dl></dl>');
+
+        this.$main
+            .append(`<h2>${name}</h2>`)
+            .append($container);
+
+        questions.forEach(function (entry) {
+            const qnum = exam.feedback.length;
+            exam.feedback.push(null);
+
+            $(`<dt id="_${qnum}_">${entry.q}</dt>`).appendTo($container);
+
+            if (entry.snippet !== undefined) {
+                $('<pre></pre>').appendTo($container)
+                    .text(entry.snippet.code)
+                    .wrap('<dd></dd>');
+            }
+
+            const $answersList = $('<ol type="a"></ol>');
+            $('<dd></dd>').appendTo($container)
+                .append($answersList);
+
+            entry.answers.forEach(function (answer, i) {
+                $('<li></li>').appendTo($answersList)
+                    .append(`<input type="radio" name="_${qnum}_"> `)
+                    .click(function () {
+                        this.firstElementChild.checked = true;
+                        exam.feedback[qnum] = String.fromCharCode(i + 65);
+                    })
+                    .append(document.createTextNode(answer));
+            });
+        });
+    }
+
+    setupFeedback(config) {
+        if (config instanceof Object) {
+            const fbConfig = this.feedbackConfig;
+            fbConfig.button   = config.button   || fbConfig.button;
+            fbConfig.warning  = config.warning  || fbConfig.warning;
+            fbConfig.filename = config.filename || fbConfig.filename;
         }
     }
 
-    render(selector) {
-        const exam = this;
-        const $mainContainer = $(selector);
+    end() {
+        const feedback = this.feedback;
+        const fbConfig = this.feedbackConfig;
 
-        $mainContainer.addClass('exam-questions');
+        const buttonText  = fbConfig.button   || 'Finish the exam';
+        const warningText = fbConfig.warning  || 'The question {} was not answered!';
+        const filename    = fbConfig.filename || 'answers.csv';
 
-        let questionNumber = 0;
+        $('<button></button>')
+            .css('cursor', 'pointer')
+            .text(buttonText)
+            .click(function () {
+                const qnum = feedback.indexOf(null);
 
-        for (let name in exam.sheets)  {
-            const questions = exam.sheets[name];
-            const $container = $('<dl></dl>');
-
-            $mainContainer.append(`<h2>${name}</h2>`);
-            $mainContainer.append($container);
-
-            questions.forEach(function (entry) {
-                const qnum = questionNumber++;
-
-                $(`<dt id="_${qnum}_">${entry.q}</dt>`).appendTo($container);
-
-                if (entry.snippet !== undefined) {
-                    $('<pre></pre>').appendTo($container)
-                        .text(entry.snippet.code)
-                        .wrap('<dd></dd>');
+                if (qnum !== -1) {
+                    alert(warningText.replace('{}', qnum + 1));
+                    location.hash = `#_${qnum}_`;
+                    return false;
                 }
 
-                const $answersList = $('<ol type="a"></ol>');
-                $('<dd></dd>').appendTo($container)
-                    .append($answersList);
+                const link = document.createElement('a');
+                link.href = "data:text/csv," + encodeURI(feedback.join('\n'));
+                link.download = filename;
+                link.style.display = 'none';
 
-                entry.answers.forEach(function (answer, i) {
-                    $('<li></li>').appendTo($answersList)
-                        .append(`<input type="radio" id="_${qnum}-${i}_" name="_${qnum}_"> `)
-                        .click(function () {
-                            document.getElementById(`_${qnum}-${i}_`).checked = true;
-                            exam.feedback[qnum] = String.fromCharCode(i + 65);
-                        })
-                        .append(`<label for="_${qnum}-${i}_"></label>`).find('label')
-                        .append(document.createTextNode(answer));
-                });
-            });
-        }
-
-        if (exam.answersLink !== undefined) {
-            $(exam.answersLink)
-                .css('cursor', 'pointer')
-                .click(function () {
-                    const num = exam.feedback.indexOf(null);
-
-                    if (num !== -1) {
-                        document.getElementById(`_${num}_`).scrollIntoView();
-                        alert(`A questão ${num + 1} não foi respondida`);
-                        return false;
-                    }
-
-                    this.setAttribute('href', "data:text/csv," + encodeURI(exam.feedback.join('\n')));
-                });
-        }
+                document.body.appendChild(link);
+                link.click();
+            })
+            .appendTo(this.$main);
     }
 }
 

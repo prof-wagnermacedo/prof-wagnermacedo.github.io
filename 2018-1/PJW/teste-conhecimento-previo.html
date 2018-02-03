@@ -17,15 +17,9 @@ hidden: true
 
 <div id="the-questions"></div>
 
-<hr>
-<p style="text-align: center;">
-    <a id="download-answers" download="respostas.csv">Finalizar o teste</a>
-</p>
-
 <!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
 <script>
-    const exam = new Exam();
-    exam.answersLink = "#download-answers";
+    const exam = new Exam("#the-questions");
 
     exam.section("HTML", [
         {
@@ -105,7 +99,6 @@ hidden: true
             correct: 1
         }
     ]);
-
     exam.section("JavaScript", [
         {
             q: 'Qual das seguintes opções é a maneira correta de retornar o tamanho da string "maria"?',
@@ -265,7 +258,6 @@ hidden: true
             correct: 2
         }
     ]);
-
     exam.section("jQuery", [
         {
             q: 'Qual o significado da sigla DOM?',
@@ -318,7 +310,6 @@ hidden: true
             correct: 2
         }
     ]);
-
     exam.section("Java", [
         {
             q: 'Qual é a forma correta de imprimir o "V" na string "JAVA"?',
@@ -400,7 +391,12 @@ hidden: true
         }
     ]);
 
-    exam.render("#the-questions");
+    exam.setupFeedback({
+        button: 'Finalizar o teste',
+        warning: 'A questão {} não foi respondida',
+        filename: 'respostas.csv'
+    });
+    exam.end();
 </script>
 
 <style>

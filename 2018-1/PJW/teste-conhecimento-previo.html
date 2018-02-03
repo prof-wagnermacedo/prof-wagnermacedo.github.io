@@ -1,0 +1,447 @@
+---
+exam-title: Teste de Conhecimento Prévio
+layout: course
+hidden: true
+---
+
+<script src="{{ '/assets/exam.js' | relative_url }}"></script>
+
+<h1>{{ page.exam-title }}</h1>
+
+<p>
+    Responda as questões e, quando finalizar, faça o upload das respostas <!--até o final da aula-->
+    pelo <a href="https://">formulário de envio</a>.
+</p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<hr>
+<p style="text-align: center;">
+    <a id="download-answers" download="respostas.csv">Finalizar o teste</a>
+</p>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam();
+    exam.answersLink = "#download-answers";
+
+    exam.section("HTML", [
+        {
+            q: 'Por que é uma boa prática escrever comentários no seu código?',
+            answers: [
+                'Para entender seu código quando você voltar para ele.',
+                'Para que outros entendam seu código.',
+                'Para tornar o código mais legível',
+                'Todos acima'
+            ],
+            correct: 4
+        },
+        {
+            q: 'Qual a diferença entre HTML e CSS?',
+            answers: [
+                'HTML lida com a função do site e CSS com a forma',
+                'CSS é uma linguagem de marcação, mas HTML não é',
+                'CSS lida com a função do site e HTML com a forma',
+                'Não há diferença'
+            ],
+            correct: 1
+        },
+        {
+            q: 'Qual é a função da tag abaixo?',
+            snippet: {
+                code: '<title> Esta tag </title>'
+            },
+            answers: [
+                'Armazenar meta informações sobre o título',
+                'Mostrar ao servidor como indexar o site',
+                'Armazenar o título do site para ser usado pelo navegador e pelos resultados dos mecanismos de pesquisa',
+                'Mostrar ao servidor como dar um título ao site'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual o propósito da indentação em HTML?',
+            answers: [
+                'Torna o código mais legível',
+                'HTML depende da indentação',
+                'É necessário para a sintaxe do HTML',
+                'Nenhum'
+            ],
+            correct: 1
+        },
+        {
+            q: 'Qual é a sintaxe correta para estender uma célula por múltiplas colunas?',
+            answers: [
+                '<th style="colsplan: 2;"> Contemple um Cavalo Albino </th>',
+                '<th colspan="3"> Contemple um Cavalo Albino </th>',
+                '<th columnspan="3"> Contemple um Cavalo Albino </th>',
+                '<th style="columnsplan: 2;"> Contemple um Cavalo Albino </th>'
+            ],
+            correct: 2
+        },
+        {
+            q: 'O que fará mudar o texto no <code>span</code> para violeta?',
+            snippet: {
+                code: '<p>Minha cor favorita é <span>violeta</span>!</p>'
+            },
+            answers: [
+                'style="color=violet"',
+                'style="colour=violet"',
+                'style="color:violet"',
+                'style:"color:violet"'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual a diferença entre as tags div e span?',
+            answers: [
+                'divs formam elementos maiores, span formam elementos menores',
+                'divs formam elementos menores, span formam elementos maiores',
+                'span pode apenas estilizar elementos menores do que a janela',
+                'Não há diferença'
+            ],
+            correct: 1
+        }
+    ]);
+
+    exam.section("JavaScript", [
+        {
+            q: 'Qual das seguintes opções é a maneira correta de retornar o tamanho da string "maria"?',
+            answers: [
+                "'maria',length",
+                "maria,length",
+                "maria.length",
+                "'maria'.length"
+            ],
+            correct: 4
+        },
+        {
+            q: 'Qual das seguintes opções chama corretamente a função definida abaixo?',
+            snippet: {
+                ext: 'js',
+                code:
+                    'var input = prompt("Enter input value");\n' +
+                    'var controlVal = input / 2 + 3;\n' +
+                    'var multiplier = function(number, phase) {\n' +
+                    '    var val = number *  controlVal + phase;\n' +
+                    '    console.log(val);\n' +
+                    '};'
+            },
+            answers: [
+                'multiplier(2, 1);',
+                'number(2);',
+                'number(2, 1);',
+                'multiplier(2);'
+            ],
+            correct: 1
+        },
+        {
+            q: 'Qual das seguintes é a condição de término do loop a seguir?',
+            snippet: {
+                ext: 'js',
+                code:
+                    'for (var condition = 0; condition < 5; condition ++) {\n' +
+                    '    return condition;\n' +
+                    '};'
+            },
+            answers: [
+                'condition = 0',
+                'condition ++',
+                'return condition',
+                'condition < 5'
+            ],
+            correct: 4
+        },
+        {
+            q: 'Qual das seguintes opções descreve melhor um array?',
+            answers: [
+                'Uma variável que pode criar funções',
+                'Uma variável que pode armazenar uma lista de dados diferentes separadamente',
+                'Um tipo de dados que pode armazenar dados',
+                'Um tipo de dados que pode criar funções'
+            ],
+            correct: 2
+        },
+        {
+            q: 'Qual a diferença de loops while em relação aos loops for?',
+            answers: [
+                'O início do loop não é predefinido em loops while',
+                'Loops while não podem usar operadores de comparação',
+                'O fim do loop não é predefinido',
+                'O controle do loop não é predefinido em loops for'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual dos seguintes não é um operador lógico em JavaScript?',
+            answers: [
+                '||',
+                '&&',
+                '$$',
+                '!'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual dos seguintes é o símbolo para o operador E?',
+            answers: [
+                '||',
+                '&&',
+                '$$',
+                '!'
+            ],
+            correct: 2
+        },
+        {
+            q: 'O que será impresso no console quando o seguinte bloco de código for executado?',
+            snippet: {
+                ext: 'js',
+                code: "var print = 'Hi. My name is Leng'.toLowerCase();\nconsole.log(print);"
+            },
+            answers: [
+                '“i. y name is eng”',
+                '“hi. my name is leng”',
+                '“HI, MY NAME IS LENG”',
+                '“Hi. My name is Leng”'
+            ],
+            correct: 2
+        },
+        {
+            q: 'Qual das seguintes é sintaxe correta para criar um array?',
+            answers: [
+                'var list = {"hi"};',
+                'var list = (2, 3, "hi");',
+                'var list = [2, 3, 2];',
+                'var list = [hi, 3];'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual das seguintes opções acessará "oi", do array abaixo?',
+            snippet: {
+                ext: 'js',
+                code: 'var array = [2, 3, "Oi", false, "oi", 3];'
+            },
+            answers: [
+                'array[1]',
+                'array[2]',
+                'array[3]',
+                'array[4]'
+            ],
+            correct: 4
+        },
+        {
+            q: 'Do objeto JavaScript abaixo, quais das opções é uma chave?',
+            snippet: {
+                ext: 'js',
+                code:
+                    'var me = {\n' +
+                    '    name: "Simon",\n' +
+                    '    age: 19\n' +
+                    '}'
+            },
+            answers: [
+                'me',
+                '"Simon"',
+                'age',
+                'Nenhuma acima'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual das seguintes expressões retorna true?',
+            snippet: {
+                ext: 'js',
+                code: 'var array = [8,9,24,35,40,54];'
+            },
+            answers: [
+                'array[4] % 4 > 12',
+                'array[3] % 5 < 4;',
+                'array[2] % 8 !== 0;',
+                'array[5] % 8 == 0;'
+            ],
+            correct: 2
+        }
+    ]);
+
+    exam.section("jQuery", [
+        {
+            q: 'Qual o significado da sigla DOM?',
+            answers: [
+                'Domain Object model',
+                'Domain Objective Mode',
+                'Document Objective Mode',
+                'Document Object Model'
+            ],
+            correct: 4
+        },
+        {
+            q: 'Qual das opções seleciona o id "green" e cria um objeto jQuery?',
+            answers: [
+                "$('#green');",
+                "$('green');",
+                "'#green;'",
+                "'green';"
+            ],
+            correct: 1
+        },
+        {
+            q: 'Qual das alternativas cria um elemento h1?',
+            answers: [
+                'var $h1 = $("h1");',
+                'var $h1 = "<h1><h1>";',
+                'var $h1 = $("<h1></h1>");',
+                'var $h1 = $.h1;'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual das opções muda corretamente a altura de elementos div para 100 pixels',
+            answers: [
+                "$('div').height('100px');",
+                "$('div').heightTo('100px');",
+                "$('div').height('100');",
+                "$('div').heightTo('100'px);"
+            ],
+            correct: 1
+        },
+        {
+            q: 'Qual das opções faz os elementos div desaparecerem?',
+            answers: [
+                "$('div').hideAll()",
+                "$('div').hide()",
+                "$('div').unshow()",
+                "$('div').toggle()"
+            ],
+            correct: 2
+        }
+    ]);
+
+    exam.section("Java", [
+        {
+            q: 'Qual é a forma correta de imprimir o "V" na string "JAVA"?',
+            answers: [
+                'System.out.println("JAVA"[2])',
+                'System.out.println("JAVA"(2))',
+                'System.out.println("JAVA".charAt(2))',
+                'System.out.println("JAVA".getChar(2))'
+            ],
+            correct: 3
+        },
+        {
+            q: 'O que é controle de fluxo?',
+            answers: [
+                'Algo que torna o código mais legível',
+                'Algo que permite que os métodos sejam chamados',
+                'Algo que nos permite selecionar entre múltiplos resultados',
+                'Algo que permite ao programa exibir valores no console'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual será o tipo de dados da variável definida abaixo?',
+            snippet: {
+                ext: 'java',
+                code: 'Object o = 12 >= 3 * 4'
+            },
+            answers: [
+                'Integer',
+                'Float',
+                'String',
+                'Boolean'
+            ],
+            correct: 4
+        },
+        {
+            q: 'A expressão abaixo será igual a?',
+            snippet: {
+                ext: 'java',
+                code: 'Math.min(343, Math.min(74, Math.min(334, 93)))'
+            },
+            answers: [
+                '334',
+                '93',
+                '74',
+                '343'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual é a maneira correta para criar uma lista de inteiros?',
+            answers: [
+                'List xs = new ArrayList()',
+                'List<int> xs = new ArrayList<>()',
+                'List<Integer> xs = new List<>()',
+                'List<Integer> xs = new ArrayList<>()'
+            ],
+            correct: 4
+        },
+        {
+            q: 'Qual a diferença entre o tipo <code>List</code> e o <code>Map</code>?',
+            answers: [
+                'Eles não têm nada em comum',
+                'O tipo Map é ordenado e o tipo List não é',
+                'No tipo Map, os valores são acessados usando uma chave e em List, um índice é usado',
+                'No tipo Map, os valores são acessados usando um índice e em List, uma chave é usada'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual a maneira correta de criar um array em Java com valores iniciais?',
+            answers: [
+                'int[] xs = [5, 1, 7]',
+                'int[] xs = new int[]{5, 1, 7}',
+                'int[] xs = new array with [5, 1, 7]',
+                'int[] xs = {5, 1, 7}'
+            ],
+            correct: 2
+        }
+    ]);
+
+    exam.render("#the-questions");
+</script>
+
+<style>
+    .exam-questions dt {
+        font-weight: bold;
+    }
+
+    .exam-questions dt:before {
+        margin-right: 0.5em;
+        font-size: 1.5em;
+        vertical-align: middle;
+    }
+
+    .exam-questions dd {
+        margin-left: 0;
+    }
+
+    .exam-questions input[type="radio"]:checked + label {
+        font-weight: bold;
+    }
+
+    @media screen {
+        .exam-questions li {
+            border: solid transparent;
+            border-radius: .25em;
+        }
+
+        .exam-questions li:hover {
+            background-color: #dcddde;
+            border-color: #dcddde;
+            cursor: pointer;
+        }
+
+        .exam-questions li:hover * {
+            cursor: pointer;
+        }
+    }
+
+    @media print {
+        .exam-questions dt, .exam-questions dd {
+            page-break-inside: avoid;
+        }
+    }
+</style>

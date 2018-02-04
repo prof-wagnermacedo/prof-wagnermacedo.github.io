@@ -1,23 +1,36 @@
 class Exam {
-    constructor(selector) {
-        this.feedback = [];
-        this.feedbackConfig = {};
-        this.$main = $(selector).addClass('exam-questions');
+    constructor(selector, userConfig) {
+        this.inputs = [];
+        this.config = {};
+
+        if (userConfig) {
+            if (userConfig.feedback) {
+                const defaults = {
+                    button  : 'Finish the exam',
+                    warning : 'The question {} was not answered!',
+                    filename: 'answers.csv'
+                };
+
+                this.config.feedback = Object.assign(defaults, userConfig.feedback);
+            }
+        }
+
+        this.$mainContainer = $(selector).addClass('exam-questions');
     }
 
     section(name, questions) {
         const exam = this;
         const $container = $('<dl></dl>');
 
-        this.$main
+        this.$mainContainer
             .append(`<h2>${name}</h2>`)
             .append($container);
 
         questions.forEach(function (entry) {
-            const qnum = exam.feedback.length;
-            exam.feedback.push(null);
+            const qnum = exam.inputs.length;
+            exam.inputs.push(null);
 
-            $(`<dt id="_${qnum}_">${entry.q}</dt>`).appendTo($container);
+            $container.append(`<dt id="_${qnum}_">${entry.q}</dt>`);
 
             if (entry.snippet !== undefined) {
                 $('<pre></pre>').appendTo($container)
@@ -32,53 +45,43 @@ class Exam {
             entry.answers.forEach(function (answer, i) {
                 $('<li></li>').appendTo($answersList)
                     .append(`<input type="radio" name="_${qnum}_"> `)
+                    .append(document.createTextNode(answer))
                     .click(function () {
                         this.firstElementChild.checked = true;
-                        exam.feedback[qnum] = String.fromCharCode(i + 65);
-                    })
-                    .append(document.createTextNode(answer));
+                        exam.inputs[qnum] = String.fromCharCode(i + 65);
+                    });
             });
         });
     }
 
-    setupFeedback(config) {
-        if (config instanceof Object) {
-            const fbConfig = this.feedbackConfig;
-            fbConfig.button   = config.button   || fbConfig.button;
-            fbConfig.warning  = config.warning  || fbConfig.warning;
-            fbConfig.filename = config.filename || fbConfig.filename;
+    finale() {
+        const config = this.config;
+
+        if (config.feedback) {
+            const inputs = this.inputs;
+            const feedback = config.feedback;
+
+            $('<button></button>').appendTo(this.$mainContainer)
+                .css('cursor', 'pointer')
+                .text(feedback.button)
+                .click(function () {
+                    const qnum = inputs.indexOf(null);
+
+                    if (qnum !== -1) {
+                        alert(feedback.warning.replace('{}', qnum + 1));
+                        location.hash = `#_${qnum}_`;
+                        return false;
+                    }
+
+                    const link = document.createElement('a');
+                    link.href = "data:text/csv," + encodeURI(inputs.join('\n'));
+                    link.download = feedback.filename;
+                    link.style.display = 'none';
+
+                    document.body.appendChild(link);
+                    link.click();
+                });
         }
-    }
-
-    end() {
-        const feedback = this.feedback;
-        const fbConfig = this.feedbackConfig;
-
-        const buttonText  = fbConfig.button   || 'Finish the exam';
-        const warningText = fbConfig.warning  || 'The question {} was not answered!';
-        const filename    = fbConfig.filename || 'answers.csv';
-
-        $('<button></button>')
-            .css('cursor', 'pointer')
-            .text(buttonText)
-            .click(function () {
-                const qnum = feedback.indexOf(null);
-
-                if (qnum !== -1) {
-                    alert(warningText.replace('{}', qnum + 1));
-                    location.hash = `#_${qnum}_`;
-                    return false;
-                }
-
-                const link = document.createElement('a');
-                link.href = "data:text/csv," + encodeURI(feedback.join('\n'));
-                link.download = filename;
-                link.style.display = 'none';
-
-                document.body.appendChild(link);
-                link.click();
-            })
-            .appendTo(this.$main);
     }
 }
 

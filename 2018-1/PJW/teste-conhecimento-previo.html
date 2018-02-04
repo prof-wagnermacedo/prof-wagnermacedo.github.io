@@ -19,7 +19,13 @@ hidden: true
 
 <!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
 <script>
-    const exam = new Exam("#the-questions");
+    const exam = new Exam("#the-questions", {
+        feedback: {
+            button  : 'Finalizar o teste',
+            warning : 'A questão {} não foi respondida',
+            filename: 'respostas.csv'
+        }
+    });
 
     exam.section("HTML", [
         {
@@ -391,12 +397,7 @@ hidden: true
         }
     ]);
 
-    exam.setupFeedback({
-        button: 'Finalizar o teste',
-        warning: 'A questão {} não foi respondida',
-        filename: 'respostas.csv'
-    });
-    exam.end();
+    exam.finale();
 </script>
 
 <style>

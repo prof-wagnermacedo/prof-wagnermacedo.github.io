@@ -4,3 +4,6 @@
 [submodule "assets/examples/minimvc"]
 	path = assets/examples/minimvc
 	url = https://github.com/prof-wagnermacedo/minimvc.git
+[submodule "assets/KindExam.js"]
+	path = assets/KindExam.js
+	url = https://github.com/wagnerluis1982/KindExam.js.git

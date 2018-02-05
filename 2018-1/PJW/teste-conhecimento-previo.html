@@ -4,7 +4,8 @@ layout: course
 hidden: true
 ---
 
-<script src="{{ '/assets/exam.js' | relative_url }}"></script>
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
 
 <h1>{{ page.exam-title }}</h1>
 
@@ -399,46 +400,3 @@ hidden: true
 
     exam.finale();
 </script>
-
-<style>
-    .exam-questions dt {
-        font-weight: bold;
-    }
-
-    .exam-questions dt:before {
-        margin-right: 0.5em;
-        font-size: 1.5em;
-        vertical-align: middle;
-    }
-
-    .exam-questions dd {
-        margin-left: 0;
-    }
-
-    .exam-questions input[type="radio"]:checked + label {
-        font-weight: bold;
-    }
-
-    @media screen {
-        .exam-questions li {
-            border: solid transparent;
-            border-radius: .25em;
-        }
-
-        .exam-questions li:hover {
-            background-color: #dcddde;
-            border-color: #dcddde;
-            cursor: pointer;
-        }
-
-        .exam-questions li:hover * {
-            cursor: pointer;
-        }
-    }
-
-    @media print {
-        .exam-questions dt, .exam-questions dd {
-            page-break-inside: avoid;
-        }
-    }
-</style>

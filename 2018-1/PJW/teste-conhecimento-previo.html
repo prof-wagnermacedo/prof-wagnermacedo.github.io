@@ -21,6 +21,7 @@ hidden: true
 <!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
 <script>
     const exam = new Exam("#the-questions", {
+        understanding: 'Eu não sei',
         feedback: {
             button  : 'Finalizar o teste',
             warning : 'A questão {} não foi respondida',
@@ -104,6 +105,45 @@ hidden: true
                 'Não há diferença'
             ],
             correct: 1
+        },
+        {
+            q: 'O que fará o texto virar um link para "https://duckduckgo.com/"?',
+            snippet: {
+                code:
+                    '<!DOCTYPE html>\n' +
+                    '<html>\n' +
+                    '<body>\n' +
+                    '\n' +
+                    'Isto é um link\n' +
+                    '\n' +
+                    '</body>\n' +
+                    '</html>\n'
+            },
+            input: {
+                code: Exam.FIX
+            }
+        },
+        {
+            q: 'Corrija o poema para que seja renderizado corretamente no browser em 4 linhas.',
+            snippet: {
+                code:
+                    '<!DOCTYPE html>\n' +
+                    '<html>\n' +
+                    '<body>\n' +
+                    '\n' +
+                    '<p>\n' +
+                    'Minha terra tem palmeiras, \n' +
+                    'Onde canta o Sabiá, \n' +
+                    'As aves, que aqui gorjeiam, \n' +
+                    'Não gorjeiam como lá. \n' +
+                    '</p>\n' +
+                    '\n' +
+                    '</body>\n' +
+                    '</html>\n'
+            },
+            input: {
+                code: Exam.FIX
+            }
         }
     ]);
     exam.section("JavaScript", [
@@ -263,6 +303,35 @@ hidden: true
                 'array[5] % 8 == 0;'
             ],
             correct: 2
+        },
+        {
+            q: 'JavaScript é o mesmo que Java.',
+            answers: ['Verdadeiro', 'Falso'],
+            correct: 2
+        },
+        {
+            q: 'Qual evento ocorre quando o usuário clica em um elemento HTML?',
+            answers: [
+                'onmouseclick',
+                'onclick',
+                'onchange',
+                'onmouseover'
+            ],
+            correct: 2
+        },
+        {
+            q: 'Use JavaScript para mudar o conteúdo do elemento <code>&lt;p&gt;</code> para "Olá Mundo!".',
+            snippet: {
+                ext: 'html',
+                code: '<p id="demo">Oi.</p>\n'
+            },
+            answers: [
+                'document.getElementByName("p").innerHTML = "Olá Mundo!";',
+                'document.getElement("p").innerHTML = "Olá Mundo!";',
+                'document.getElementById("demo").innerHTML = "Olá Mundo!";',
+                '#demo.innerHTML = "Olá Mundo!";'
+            ],
+            correct: 3
         }
     ]);
     exam.section("jQuery", [
@@ -395,6 +464,49 @@ hidden: true
                 'int[] xs = {5, 1, 7}'
             ],
             correct: 2
+        },
+        {
+            q: 'Substitua a linha para que o método multiplique todos os valores na lista por 3.',
+            snippet: {
+                ext: 'java',
+                code:
+                    'int[] arrayMod(int[] xs) {\n' +
+                    '    for (int i = 0; i < xs.length; i++) {\n' +
+                    '        __________________\n' +
+                    '    }\n' +
+                    '    return xs;\n' +
+                    '}'
+            },
+            answers: [
+                'i[xs] *= 3',
+                'xs[i] = xs[i] * 3',
+                'xs[i] * 3',
+                'mul(xs[i], 3)'
+            ],
+            correct: 2
+        },
+        {
+            q: 'No código a seguir, qual será o valor de <code>map.get(2)</code>?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'public static void main(String[] args) {\n' +
+                    '    Map<Integer, String> map = new Hashtable<>();\n' +
+                    '\n' +
+                    '    for (String val : new String[]{"Oh", "my", "god"}) {\n' +
+                    '        map.put(val.length(), val);\n' +
+                    '    }\n' +
+                    '\n' +
+                    '    System.out.println(map.get(2));\n' +
+                    '}'
+            },
+            answers: [
+                '"god"',
+                '"Oh"',
+                '"my"',
+                'null'
+            ],
+            correct: 3
         }
     ]);
 

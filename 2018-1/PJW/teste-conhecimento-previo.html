@@ -76,10 +76,10 @@ hidden: true
         {
             q: 'Qual é a sintaxe correta para estender uma célula por múltiplas colunas?',
             answers: [
-                '<th style="colsplan: 2;"> Contemple um Cavalo Albino </th>',
-                '<th colspan="3"> Contemple um Cavalo Albino </th>',
-                '<th columnspan="3"> Contemple um Cavalo Albino </th>',
-                '<th style="columnsplan: 2;"> Contemple um Cavalo Albino </th>'
+                '[:code:] <th style="colsplan: 2;"> Contemple um Cavalo Albino </th>',
+                '[:code:] <th colspan="3"> Contemple um Cavalo Albino </th>',
+                '[:code:] <th columnspan="3"> Contemple um Cavalo Albino </th>',
+                '[:code:] <th style="columnsplan: 2;"> Contemple um Cavalo Albino </th>'
             ],
             correct: 2
         },
@@ -89,10 +89,10 @@ hidden: true
                 code: '<p>Minha cor favorita é <span>violeta</span>!</p>'
             },
             answers: [
-                'style="color=violet"',
-                'style="colour=violet"',
-                'style="color:violet"',
-                'style:"color:violet"'
+                '[:code:] style="color=violet"',
+                '[:code:] style="colour=violet"',
+                '[:code:] style="color:violet"',
+                '[:code:] style:"color:violet"'
             ],
             correct: 3
         },
@@ -144,16 +144,39 @@ hidden: true
             input: {
                 code: Exam.FIX
             }
-        }
+        },
+        {
+            q: 'Escreva um código HTML para o trecho renderizado abaixo.',
+            snippet: {
+                ext: 'render',
+                code: '<p>Minha lista:</p><ul><li>Item 1</li><li>Item 2</li></ul>'
+            },
+            input: {
+                code: true
+            }
+        },
+        {
+            q: 'Escreva um código HTML para o trecho renderizado abaixo.',
+            snippet: {
+                ext: 'render',
+                code:
+                    '<p>Nome: <input type="text"></p>' +
+                    '<p>Idade: <input type="number"></p>' +
+                    '<p><input type="submit"></p>'
+            },
+            input: {
+                code: true
+            }
+        },
     ]);
     exam.section("JavaScript", [
         {
             q: 'Qual das seguintes opções é a maneira correta de retornar o tamanho da string "maria"?',
             answers: [
-                "'maria',length",
-                "maria,length",
-                "maria.length",
-                "'maria'.length"
+                "[:code:] 'maria',length",
+                "[:code:] maria,length",
+                "[:code:] maria.length",
+                "[:code:] 'maria'.length"
             ],
             correct: 4
         },
@@ -170,10 +193,10 @@ hidden: true
                     '};'
             },
             answers: [
-                'multiplier(2, 1);',
-                'number(2);',
-                'number(2, 1);',
-                'multiplier(2);'
+                '[:code:] multiplier(2, 1);',
+                '[:code:] number(2);',
+                '[:code:] number(2, 1);',
+                '[:code:] multiplier(2);'
             ],
             correct: 1
         },
@@ -187,10 +210,10 @@ hidden: true
                     '};'
             },
             answers: [
-                'condition = 0',
-                'condition ++',
-                'return condition',
-                'condition < 5'
+                '[:code:] condition = 0',
+                '[:code:] condition ++',
+                '[:code:] return condition',
+                '[:code:] condition < 5'
             ],
             correct: 4
         },
@@ -241,20 +264,20 @@ hidden: true
                 code: "var print = 'Hi. My name is Leng'.toLowerCase();\nconsole.log(print);"
             },
             answers: [
-                '“i. y name is eng”',
-                '“hi. my name is leng”',
-                '“HI, MY NAME IS LENG”',
-                '“Hi. My name is Leng”'
+                '[:pre:] i. y name is eng',
+                '[:pre:] hi. my name is leng',
+                '[:pre:] HI, MY NAME IS LENG',
+                '[:pre:] Hi. My name is Leng'
             ],
             correct: 2
         },
         {
             q: 'Qual das seguintes é sintaxe correta para criar um array?',
             answers: [
-                'var list = {"hi"};',
-                'var list = (2, 3, "hi");',
-                'var list = [2, 3, 2];',
-                'var list = [hi, 3];'
+                '[:code:] var list = {"hi"};',
+                '[:code:] var list = (2, 3, "hi");',
+                '[:code:] var list = [2, 3, 2];',
+                '[:code:] var list = [hi, 3];'
             ],
             correct: 3
         },
@@ -265,10 +288,10 @@ hidden: true
                 code: 'var array = [2, 3, "Oi", false, "oi", 3];'
             },
             answers: [
-                'array[1]',
-                'array[2]',
-                'array[3]',
-                'array[4]'
+                '[:code:] array[1]',
+                '[:code:] array[2]',
+                '[:code:] array[3]',
+                '[:code:] array[4]'
             ],
             correct: 4
         },
@@ -297,10 +320,10 @@ hidden: true
                 code: 'var array = [8,9,24,35,40,54];'
             },
             answers: [
-                'array[4] % 4 > 12',
-                'array[3] % 5 < 4;',
-                'array[2] % 8 !== 0;',
-                'array[5] % 8 == 0;'
+                '[:code:] array[4] % 4 > 12',
+                '[:code:] array[3] % 5 < 4;',
+                '[:code:] array[2] % 8 !== 0;',
+                '[:code:] array[5] % 8 == 0;'
             ],
             correct: 2
         },
@@ -326,10 +349,10 @@ hidden: true
                 code: '<p id="demo">Oi.</p>\n'
             },
             answers: [
-                'document.getElementByName("p").innerHTML = "Olá Mundo!";',
-                'document.getElement("p").innerHTML = "Olá Mundo!";',
-                'document.getElementById("demo").innerHTML = "Olá Mundo!";',
-                '#demo.innerHTML = "Olá Mundo!";'
+                '[:code:] document.getElementByName("p").innerHTML = "Olá Mundo!";',
+                '[:code:] document.getElement("p").innerHTML = "Olá Mundo!";',
+                '[:code:] document.getElementById("demo").innerHTML = "Olá Mundo!";',
+                '[:code:] #demo.innerHTML = "Olá Mundo!";'
             ],
             correct: 3
         }
@@ -348,40 +371,40 @@ hidden: true
         {
             q: 'Qual das opções seleciona o id "green" e cria um objeto jQuery?',
             answers: [
-                "$('#green');",
-                "$('green');",
-                "'#green;'",
-                "'green';"
+                "[:code:] $('#green');",
+                "[:code:] $('green');",
+                "[:code:] '#green;'",
+                "[:code:] 'green';"
             ],
             correct: 1
         },
         {
             q: 'Qual das alternativas cria um elemento h1?',
             answers: [
-                'var $h1 = $("h1");',
-                'var $h1 = "<h1><h1>";',
-                'var $h1 = $("<h1></h1>");',
-                'var $h1 = $.h1;'
+                '[:code:] var $h1 = $("h1");',
+                '[:code:] var $h1 = "<h1><h1>";',
+                '[:code:] var $h1 = $("<h1></h1>");',
+                '[:code:] var $h1 = $.h1;'
             ],
             correct: 3
         },
         {
             q: 'Qual das opções muda corretamente a altura de elementos div para 100 pixels',
             answers: [
-                "$('div').height('100px');",
-                "$('div').heightTo('100px');",
-                "$('div').height('100');",
-                "$('div').heightTo('100'px);"
+                "[:code:] $('div').height('100px');",
+                "[:code:] $('div').heightTo('100px');",
+                "[:code:] $('div').height('100');",
+                "[:code:] $('div').heightTo('100'px);"
             ],
             correct: 1
         },
         {
             q: 'Qual das opções faz os elementos div desaparecerem?',
             answers: [
-                "$('div').hideAll()",
-                "$('div').hide()",
-                "$('div').unshow()",
-                "$('div').toggle()"
+                "[:code:] $('div').hideAll()",
+                "[:code:] $('div').hide()",
+                "[:code:] $('div').unshow()",
+                "[:code:] $('div').toggle()"
             ],
             correct: 2
         }
@@ -390,10 +413,10 @@ hidden: true
         {
             q: 'Qual é a forma correta de imprimir o "V" na string "JAVA"?',
             answers: [
-                'System.out.println("JAVA"[2])',
-                'System.out.println("JAVA"(2))',
-                'System.out.println("JAVA".charAt(2))',
-                'System.out.println("JAVA".getChar(2))'
+                '[:code:] System.out.println("JAVA"[2])',
+                '[:code:] System.out.println("JAVA"(2))',
+                '[:code:] System.out.println("JAVA".charAt(2))',
+                '[:code:] System.out.println("JAVA".getChar(2))'
             ],
             correct: 3
         },
@@ -438,10 +461,10 @@ hidden: true
         {
             q: 'Qual é a maneira correta para criar uma lista de inteiros?',
             answers: [
-                'List xs = new ArrayList()',
-                'List<int> xs = new ArrayList<>()',
-                'List<Integer> xs = new List<>()',
-                'List<Integer> xs = new ArrayList<>()'
+                '[:code:] List xs = new ArrayList()',
+                '[:code:] List<int> xs = new ArrayList<>()',
+                '[:code:] List<Integer> xs = new List<>()',
+                '[:code:] List<Integer> xs = new ArrayList<>()'
             ],
             correct: 4
         },
@@ -449,19 +472,19 @@ hidden: true
             q: 'Qual a diferença entre o tipo <code>List</code> e o <code>Map</code>?',
             answers: [
                 'Eles não têm nada em comum',
-                'O tipo Map é ordenado e o tipo List não é',
-                'No tipo Map, os valores são acessados usando uma chave e em List, um índice é usado',
-                'No tipo Map, os valores são acessados usando um índice e em List, uma chave é usada'
+                '[::] O tipo <code>Map</code> é ordenado e o tipo <code>List</code> não é.',
+                '[::] No tipo <code>Map</code>, os valores são acessados usando uma chave e em <code>List</code>, um índice é usado.',
+                '[::] No tipo <code>Map</code>, os valores são acessados usando um índice e em <code>List</code>, uma chave é usada.'
             ],
             correct: 3
         },
         {
             q: 'Qual a maneira correta de criar um array em Java com valores iniciais?',
             answers: [
-                'int[] xs = [5, 1, 7]',
-                'int[] xs = new int[]{5, 1, 7}',
-                'int[] xs = new array with [5, 1, 7]',
-                'int[] xs = {5, 1, 7}'
+                '[:code:] int[] xs = [5, 1, 7]',
+                '[:code:] int[] xs = new int[]{5, 1, 7}',
+                '[:code:] int[] xs = new array with [5, 1, 7]',
+                '[:code:] int[] xs = {5, 1, 7}'
             ],
             correct: 2
         },
@@ -478,10 +501,10 @@ hidden: true
                     '}'
             },
             answers: [
-                'i[xs] *= 3',
-                'xs[i] = xs[i] * 3',
-                'xs[i] * 3',
-                'mul(xs[i], 3)'
+                '[:code:] i[xs] *= 3',
+                '[:code:] xs[i] = xs[i] * 3',
+                '[:code:] xs[i] * 3',
+                '[:code:] mul(xs[i], 3)'
             ],
             correct: 2
         },
@@ -501,10 +524,10 @@ hidden: true
                     '}'
             },
             answers: [
-                '"god"',
-                '"Oh"',
-                '"my"',
-                'null'
+                '[:code:] "god"',
+                '[:code:] "Oh"',
+                '[:code:] "my"',
+                '[:code:] null'
             ],
             correct: 3
         },
@@ -523,15 +546,14 @@ hidden: true
                     '}'
             },
             answers: [
-                $('<pre>' +
+                '[:pre:] ' +
                     'for (Object o : array) {\n' +
                     '    if (val.equals(o)) {\n' +
                     '        return true;\n' +
                     '    }\n' +
                     '}\n' +
-                    'return false;' +
-                    '</pre>'),
-                $('<pre>' +
+                    'return false;',
+                '[:pre:] ' +
                     'int i = 0;\n' +
                     'while (i < array.length) {\n' +
                     '    if (val.equals(array[i])) {\n' +
@@ -539,14 +561,106 @@ hidden: true
                     '    }\n' +
                     '    i++;\n' +
                     '}\n' +
-                    'return false;' +
-                    '</pre>'),
+                    'return false;',
                 'Todos acima'
             ]
         },
         {
+            q: 'O que é uma assinatura de método?',
+            answers: [
+                'É como o método é chamado.',
+                'É o conjunto do nome do método e os nomes de seus parâmetros.',
+                'É o conjunto do nome do método e os tipos de dados de seus parâmetros.',
+                'É o nome do método, sua lista de parâmetros e seu tipo de retorno.'
+            ],
+            correct: 3
+        },
+        {
+            q: 'Qual dos métodos tem uma assinatura igual ao do método abaixo?',
+            snippet: {
+                ext: 'java',
+                code: 'int somar(int x, int y) { ... }'
+            },
+            answers: [
+                '[:code:] double somar(double x, double y) { ... }',
+                '[:code:] double somar(long a, long b) { ... }',
+                '[:code:] long somar(int a, int b) { ... }',
+                '[:code:] int somar(int x, int y, int z) { ... }'
+            ],
+            correct: 3
+        },
+        {
+            q: 'O que é <u>obrigatório</u> pelas subclasses da classe abstrata abaixo?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'public abstract class Robot {\n' +
+                    '    protected abstract void turn(double angle);\n' +
+                    '\n' +
+                    '    public void walk(double distance) {\n' +
+                    '        ...\n' +
+                    '    }\n' +
+                    '}'
+            },
+            answers: [
+                'É necessário fazer a nova classe funcionar.',
+                '[::] É indispensável a implementação do método <code>turn</code>',
+                '[::] A subclasse não pode criar novos métodos além dos declarados na classe <code>Robot</code>.',
+                'Não há o que fazer',
+            ],
+            correct: 2
+        },
+        {
+            q: 'Na situação abaixo, qual o método <code>cumprimentar()</code> será executado: o definido por <code>Aniversario</code> ou por <code>AniversarioAdulto</code>?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'Aniversario feliz;\n' +
+                    'feliz = new AniversarioAdulto();\n' +
+                    '\n' +
+                    'feliz.cumprimentar();'
+            },
+            answers: [
+                '[::] O definido por <code>Aniversario</code> porque esse é o tipo da variável <code>feliz</code>.',
+                '[::] O definido por <code>AniversarioAdulto</code> porque esse é o tipo do objeto referido por <code>feliz</code>.',
+                '[::] É feito uma busca pelo método, seguindo a ordem de herança, primeiro <code>AniversarioAdulto</code>, depois <code>Aniversario</code>.',
+            ],
+            correct: 3
+        },
+        {
+            q: 'Uma classe <code>Roedor</code> tem como subclasses <code>Rato</code> e <code>Camundongo</code>. A classe <code>Camundongo</code> tem uma subclasse chamada <code>MiniCamundongo</code>. Sabendo disso, examine o código abaixo e responda: qual das alternativas irá causar um erro de compilação?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'Roedor rod;\n' +
+                    'Rato rat = new Rato();\n' +
+                    'Camundongo cam = new Camundongo();\n' +
+                    'MiniCamundongo mic = new MiniCamundongo();'
+            },
+            answers: [
+                '[:code:] rod = rat;',
+                '[:code:] rod = cam;',
+                '[:code:] mic = null;',
+                '[:code:] mic = rat;'
+            ],
+            correct: 4
+        },
+        {
+            q: 'Usando a mesma situação da questão anterior, qual das seguintes declarações está correta para um array que deverá receber 10 objetos do tipo <code>Rato</code>, <code>Camundongo</code> e <code>MiniCamundongo</code>?',
+            answers: [
+                '[:code:] Rato[] array = new Rato[10];',
+                '[:code:] Roedor[] array = new Rato[10];',
+                '[:code:] Roedor[] array = new Roedor[10];',
+                '[:code:] Roedor[10] array;'
+            ],
+            correct: 2
+        },
+            ],
+            correct: 2
+        },
+        {
             q: 'Quais as diferenças entre os tipos de dados <code>List</code>, <code>Set</code> e <code>Map</code>?'
-        }
+        },
     ]);
 
     exam.finale();
@@ -555,5 +669,10 @@ hidden: true
 <style>
     .kind-exam-choice pre {
         margin-bottom: 0.25ch;
+    }
+
+    .kind-exam .kind-exam-description > div {
+        background: #fdf5e6;
+        padding-bottom: 1px;
     }
 </style>

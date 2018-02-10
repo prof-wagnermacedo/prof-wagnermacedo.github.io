@@ -146,17 +146,18 @@ hidden: true
             }
         },
         {
-            q: 'Escreva um código HTML para o trecho renderizado abaixo.',
+            q: 'Complete o código HTML para ter o trecho renderizado abaixo.',
             snippet: {
                 ext: 'render',
                 code: '<p>Minha lista:</p><ul><li>Item 1</li><li>Item 2</li></ul>'
             },
             input: {
-                code: true
+                code:
+                    '<p>Minha lista:</p>\n\n'
             }
         },
         {
-            q: 'Escreva um código HTML para o trecho renderizado abaixo.',
+            q: 'Escreva um código HTML para ter o trecho renderizado abaixo.',
             snippet: {
                 ext: 'render',
                 code:
@@ -628,7 +629,7 @@ hidden: true
             correct: 3
         },
         {
-            q: 'Uma classe <code>Roedor</code> tem como subclasses <code>Rato</code> e <code>Camundongo</code>. A classe <code>Camundongo</code> tem uma subclasse chamada <code>MiniCamundongo</code>. Sabendo disso, examine o código abaixo e responda: qual das alternativas irá causar um erro de compilação?',
+            q: 'Uma classe <code>Roedor</code> tem como subclasses <code>Rato</code> e <code>Camundongo</code>. A classe <code>Camundongo</code> tem uma subclasse chamada <code>MiniCamundongo</code>. Sabendo disso, examine o código abaixo e responda: qual das opções irá causar um erro de compilação?',
             snippet: {
                 ext: 'java',
                 code:
@@ -655,12 +656,142 @@ hidden: true
             ],
             correct: 2
         },
+        {
+            q: 'Qual a afirmação está correta sobre exceções?',
+            answers: [
+                'Exceções são erros lançados em tempo de execução, isto é, quando o programa é executado.',
+                'Exemplos de exceções são variáveis não definidas tipos de dados incompatíveis.',
+                'Exceções são erros lançados em tempo de compilação, o programa ainda não foi executado.',
+                'Nenhum desses acima'
+            ],
+            correct: 1
+        },
+        {
+            q: 'Quais linhas do seguinte programa são executadas, dado que a exceção é lançada na LINHA C?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'try\n' +
+                    '{\n' +
+                    '    // LINHA A\n' +
+                    '    // LINHA B\n' +
+                    '    // LINHA C\n' +
+                    '    // LINHA D\n' +
+                    '}\n' +
+                    'catch(Exception e)\n' +
+                    '{\n' +
+                    '    // LINHA E\n' +
+                    '    // LINHA F\n' +
+                    '} finally {\n' +
+                    '    // LINHA G\n' +
+                    '}'
+            },
+            answers: [
+                'A, B, C, D, E, F, G',
+                'A, B, C, E, F, G',
+                'A, B, C, E, F',
+                'A, B, C, D, G'
             ],
             correct: 2
         },
         {
             q: 'Quais as diferenças entre os tipos de dados <code>List</code>, <code>Set</code> e <code>Map</code>?'
         },
+    ]);
+    exam.section("SQL", [
+        {
+            q: 'Qual o significado da sigla SGBD?',
+            answers: [
+                'Sistema Gerenciador de Banco de Dados',
+                'Sistema de Garantia de Banco de Dados',
+                'Sistema Geoposicional de Banco de Dados',
+                'Sábio Gerente de Banco de Dados',
+            ],
+            correct: 1
+        },
+        {
+            q: 'O que a instrução <code>CREATE TABLE</code> faz?',
+            answers: [
+                'Cria um procedimento armazenado',
+                'Cria uma nova tabela do banco de dado',
+                'Cria um novo banco de dados'
+            ],
+            correct: 2
+        },
+        {
+            q: 'Qual das seguintes instruções SQL obtém todos os registros com todas as colunas de uma tabela <code>Vendas</code>?',
+            answers: [
+                '[:code:] SELECT * FROM Vendas WHERE pedido_id < 1',
+                '[:code:] SELECT * FROM Vendas',
+                '[:code:] SELECT Vendas',
+                '[:code:] GET Vendas'
+            ],
+            correct: 2
+        },
+        {
+            q: 'O que a seguinte instrução SQL faz?',
+            snippet: {
+                ext: 'sql',
+                code:
+                    'SELECT consumidor, COUNT(pedido)\n' +
+                    'FROM Vendas GROUP BY consumidor HAVING COUNT(pedido) > 5'
+            },
+            answers: [
+                'Obtém todos os consumidores da tabela Vendas.',
+                'Obtém todos os consumidores da tabela Vendas que fizeram mais de 5 pedidos.',
+                'Obtém o número total de pedidos da tabela Vendas, se esse número for maior que 5.',
+            ],
+            correct: 2
+        },
+        {
+            q: 'Usando SQL, como faz para inserir um novo registro em uma tabela <code>Pessoas></code>?',
+            answers: [
+                "[:code:] INSERT VALUES ('Jimmy', 'Jackson') INTO Pessoas",
+                "[:code:] ADD TO Pessoas ('Jimmy', 'Jackson')",
+                "[:code:] INSERT INTO Pessoas VALUES ('Jimmy', 'Jackson')",
+            ],
+            correct: 3
+        },
+        {
+            q: 'Na programação com Java, usamos JDBC para ter acesso a bancos de dados. JDBC fornece as classes <code>Statement</code> e <code>PreparedStatement</code> para permitir enviar SQL ao banco de dados. Explique qual a diferença entre essas classes.'
+        },
+        {
+            q: 'Para obter dados em JDBC, usamos a classe <code>ResultSet</code>. Qual a forma correta de usar um objeto <code>rs</code> desse tipo para pegar todas as linhas de uma consulta?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'Statement stmt = connection.createStatement();\n' +
+                    'stmt.execute("SELECT * FROM Pessoas");\n' +
+                    'ResultSet rs = stmt.getResultSet();'
+            },
+            answers: [
+                '[:pre:] ' +
+                    'List<Pessoa> pessoas = new ArrayList<>();\n' +
+                    'while (rs.next()) {\n' +
+                    '    Pessoa p = new Pessoa();\n' +
+                    '    p.setId(rs.getInt("id"));\n' +
+                    '    p.setNome(rs.getString("nome"));\n' +
+                    '    p.setIdade(rs.getInt("idade"));\n' +
+                    '    pessoas.add(p);\n' +
+                    '}',
+                '[:pre:] ' +
+                    'List<Pessoa> pessoas = new ArrayList<>();\n' +
+                    'if (rs.next()) {\n' +
+                    '    Pessoa p = new Pessoa();\n' +
+                    '    p.setId(rs.getInt("id"));\n' +
+                    '    p.setNome(rs.getString("nome"));\n' +
+                    '    p.setIdade(rs.getInt("idade"));\n' +
+                    '    pessoas.add(p);\n' +
+                    '}',
+                '[:pre:] ' +
+                    'List<Pessoa> pessoas = new ArrayList<>();\n' +
+                    'while (rs.next()) {\n' +
+                    '    Pessoa p = rs.get(Pessoa.class)\n' +
+                    '    pessoas.add(p);\n' +
+                    '}',
+            ],
+            correct: 1
+        }
     ]);
 
     exam.finale();

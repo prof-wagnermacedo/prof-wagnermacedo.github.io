@@ -507,8 +507,53 @@ hidden: true
                 'null'
             ],
             correct: 3
+        },
+        {
+            q: 'Qual o trecho de código Java será equivalente ao corpo do método abaixo?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'boolean exists(Object[] array, Object val) {\n' +
+                    '    for (int i = 0; i < array.length; i++) {\n' +
+                    '        if (val.equals(array[i])) {\n' +
+                    '            return true;\n' +
+                    '        }\n' +
+                    '    }\n' +
+                    '    return false;\n' +
+                    '}'
+            },
+            answers: [
+                $('<pre>' +
+                    'for (Object o : array) {\n' +
+                    '    if (val.equals(o)) {\n' +
+                    '        return true;\n' +
+                    '    }\n' +
+                    '}\n' +
+                    'return false;' +
+                    '</pre>'),
+                $('<pre>' +
+                    'int i = 0;\n' +
+                    'while (i < array.length) {\n' +
+                    '    if (val.equals(array[i])) {\n' +
+                    '        return true;\n' +
+                    '    }\n' +
+                    '    i++;\n' +
+                    '}\n' +
+                    'return false;' +
+                    '</pre>'),
+                'Todos acima'
+            ]
+        },
+        {
+            q: 'Quais as diferenças entre os tipos de dados <code>List</code>, <code>Set</code> e <code>Map</code>?'
         }
     ]);
 
     exam.finale();
 </script>
+
+<style>
+    .kind-exam-choice pre {
+        margin-bottom: 0.25ch;
+    }
+</style>

@@ -193,6 +193,23 @@ details > summary {
     background: linear-gradient(rgba(255,255,255,0),#fff);
 }
 
+.references {
+    display: grid;
+    grid-gap: 1ch;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+}
+
+ul.references {
+    list-style: none;
+    padding-left: 0;
+}
+
+.references img {
+    max-height: 40ch;
+    border: 1px solid;
+}
+
 div.show-more {
     text-align: center;
     overflow: hidden;

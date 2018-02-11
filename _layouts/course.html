@@ -28,17 +28,16 @@
 
 <body>
 <section class="page-header" style="padding-top: 1em; padding-bottom: 0.5em;">
-  <h1 class="project-name">
-    {% if page.title %}{{ page.title }}{% else %}{{ site.title | default: site.github.repository_name }}{% endif %}
-    {% if page.topic %}<br>
-      <ins><small>{{ page.topic }}</small></ins>
-    {% endif %}
-  </h1>
+  <h1 class="project-name">{% if page.title %}{{ page.title }}{% else %}{{ site.title | default: site.github.repository_name }}{% endif %}</h1>
   <h2 class="project-tagline">{% if page.description %}{{ page.description }}{% else %}{{ site.description | default: site.github.project_tagline }}{% endif %}</h2>
 </section>
 
 <section class="main-content">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  {% if page.topic %}
+    <h1>{{ page.topic }}</h1>
+  {% endif %}
 
   {{ content }}
 

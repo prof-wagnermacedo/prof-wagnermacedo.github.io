@@ -647,7 +647,17 @@ hidden: true
             correct: 4
         },
         {
-            q: 'Usando a mesma situação da questão anterior, qual das seguintes declarações está correta para um array que deverá receber 10 objetos do tipo <code>Rato</code>, <code>Camundongo</code> e <code>MiniCamundongo</code>?',
+            q: 'Usando a mesma situação da questão anterior, qual das seguintes expressões retornará <code>false</code>?',
+            answers: [
+                '[:code:] rat instanceof Rato',
+                '[:code:] cam instanceof Roedor',
+                '[:code:] cam instanceof Rato',
+                '[:code:] mic instanceof Camundongo',
+            ],
+            correct: 3
+        },
+        {
+            q: 'Ainda na mesma situação, qual das seguintes declarações está correta para um array que deverá receber 10 objetos do tipo <code>Rato</code>, <code>Camundongo</code> e <code>MiniCamundongo</code>?',
             answers: [
                 '[:code:] Rato[] array = new Rato[10];',
                 '[:code:] Roedor[] array = new Rato[10];',
@@ -753,10 +763,7 @@ hidden: true
             correct: 3
         },
         {
-            q: 'Na programação com Java, usamos JDBC para ter acesso a bancos de dados. JDBC fornece as classes <code>Statement</code> e <code>PreparedStatement</code> para permitir enviar SQL ao banco de dados. Explique qual a diferença entre essas classes.'
-        },
-        {
-            q: 'Para obter dados em JDBC, usamos a classe <code>ResultSet</code>. Qual a forma correta de usar um objeto <code>rs</code> desse tipo para pegar todas as linhas de uma consulta?',
+            q: 'Na programação com Java, usamos JDBC para ter acesso a bancos de dados. Para obter dados em JDBC, usamos a classe <code>ResultSet</code>. Qual a forma correta de usar um objeto <code>rs</code> desse tipo para pegar todas as linhas de uma consulta?',
             snippet: {
                 ext: 'java',
                 code:
@@ -776,11 +783,7 @@ hidden: true
                     '}',
                 '[:pre:] ' +
                     'List<Pessoa> pessoas = new ArrayList<>();\n' +
-                    'if (rs.next()) {\n' +
-                    '    Pessoa p = new Pessoa();\n' +
-                    '    p.setId(rs.getInt("id"));\n' +
-                    '    p.setNome(rs.getString("nome"));\n' +
-                    '    p.setIdade(rs.getInt("idade"));\n' +
+                    'for (Pessoa p = rs.next(Pessoa.class)) {\n' +
                     '    pessoas.add(p);\n' +
                     '}',
                 '[:pre:] ' +
@@ -791,6 +794,9 @@ hidden: true
                     '}',
             ],
             correct: 1
+        },
+        {
+            q: 'JDBC fornece as classes <code>Statement</code> e <code>PreparedStatement</code> para permitir enviar SQL ao banco de dados. Qual a diferença entre essas classes e qual a vantagem, se houver, de uma sobre a outra?'
         }
     ]);
 

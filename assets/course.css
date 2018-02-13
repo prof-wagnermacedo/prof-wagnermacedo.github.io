@@ -195,9 +195,10 @@ details > summary {
 
 .references {
     display: grid;
-    grid-gap: 1ch;
+    grid-gap: 2ch;
     grid-template-columns: auto auto auto;
     text-align: center;
+    font-weight: bold;
 }
 
 ul.references {
@@ -206,7 +207,7 @@ ul.references {
 }
 
 .references img {
-    max-height: 40ch;
+    max-height: 35ch;
     border: 1px solid;
 }
 

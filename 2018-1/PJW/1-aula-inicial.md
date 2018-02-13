@@ -1,7 +1,7 @@
 ---
 topic: Aula inicial
 layout: course
-type: classnote
+date: 2018-02-19 19:00
 ---
 
 ## Objetivos da aula

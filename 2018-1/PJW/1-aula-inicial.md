@@ -62,6 +62,17 @@ Essas questões devem ser respondidas com <u>honestidade</u>, o aluno só tem a 
 - Autenticação e Autorização
 - Projeto individual
 
+## 👨‍🏫 Sobre o professor
+
+- Colaborador de projetos open source
+- Mestre em Ciência da Computação pela UFS
+- Graduado e especializado pela Fanese
+
+### Contato
+
+- E-mail: <wagnermacedo@prof.fanese.edu.br>
+- Telegram: [@wagnermacedo](https://t.me/wagnermacedo)
+
 ## 📚 Referências disponíveis na biblioteca
 
 {: .references }

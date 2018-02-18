@@ -38,6 +38,12 @@ defaults:
     values:
       title: "Programação em Java para Web"
       description: "Fanese - 2018/1"
+  -
+    scope:
+      path: "2018-1/QSDS"
+    values:
+      title: "Qualidade de Software e Desenvolvimento Seguro"
+      description: "Fanese - 2018/1"
 
 # Exclude from processing.
 exclude:

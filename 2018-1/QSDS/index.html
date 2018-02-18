@@ -1,0 +1,18 @@
+---
+layout: course
+type: index
+order: 2
+---
+
+{%- assign coursePages = site.pages | where_exp:"item", "item.draft != true"
+                                    | where_exp:"item", "item.hidden != true"
+                                    | where_exp:"item", "item.url != page.url"
+                                    | where_exp:"item", "item.url contains page.url"
+                                    | sort: "date" -%}
+
+<h2>Notas de aula</h2>
+<ol>
+  {%- for p in coursePages %}
+  <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
+  {%- endfor %}
+</ol>

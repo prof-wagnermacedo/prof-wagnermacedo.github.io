@@ -37,6 +37,7 @@
 
   {% if page.topic %}
     <h1>{{ page.topic }}</h1>
+    <header class="date">{{ page.date | date: "%d/%m/%Y" }}</header>
   {% endif %}
 
   {{ content }}

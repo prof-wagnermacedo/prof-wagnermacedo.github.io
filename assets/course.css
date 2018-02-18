@@ -1,3 +1,7 @@
+header.date {
+    opacity: 0.6;
+}
+
 div.highlighter-rouge[data-caption]:before,
 div.exemplo-out[data-caption]:before {
     content: attr(data-caption);

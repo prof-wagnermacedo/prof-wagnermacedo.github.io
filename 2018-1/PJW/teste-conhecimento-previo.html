@@ -7,14 +7,25 @@ date: 2018-02-19 21:00
 <link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
 <script src="../../assets/KindExam.js/kind-exam.js"></script>
 
+{% capture instruction %}
 <p>
-    Responda as questões e, quando finalizar, faça o upload das respostas <!--até o final da aula-->
-    pelo <a href="https://">formulário de envio</a>.
+    Responda as questões <ins>honestamente</ins>, se não souber a resposta, marque a alternativa "Eu não sei".
+    Quando finalizar, faça o upload das respostas até o dia {{ page.date | date: "%d/%m" }} pelo
+    <a href="https://">formulário de envio</a>.
 </p>
+{% endcapture %}
+
+<hr>
+
+{{ instruction }}
 
 <hr>
 
 <div id="the-questions"></div>
+
+<hr>
+
+{{ instruction }}
 
 <!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
 <script>

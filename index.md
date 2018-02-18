@@ -2,14 +2,23 @@
 title: Prof. Wagner Macêdo
 ---
 
-# 2018-1
+{%- assign courses = site.pages
+        | where_exp:"item", "item.type == 'index'"
+        | where_exp:"item", "item.draft != true"
+        | where_exp:"item", "item.hidden != true"
+        | sort: "order"
+        | group_by_exp:"item", "item.url | slice: 1, 6"
+        | reverse -%}
 
-- [Programação em Java para Web](2018-1/PJW/)
-- [Qualidade de Software e Desenvolvimento Seguro](2018-1/QSDS/)
+{%- for c in courses %}
 
-# 2017-2
+# {{ c.name }}
 
-- [Programação em Java para Web](2017-2/PJW/)
+{%- for index in c.items %}
+- [{{ index.title }}]({{ index.url }})
+{%- endfor %}
+
+{%- endfor %}
 
 # Outros
 

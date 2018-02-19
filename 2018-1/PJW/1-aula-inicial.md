@@ -2,6 +2,7 @@
 topic: Aula inicial
 layout: course
 date: 2018-02-19 19:00
+part: 1
 ---
 
 ## Objetivos da aula

@@ -49,10 +49,10 @@ Essas questões devem ser respondidas com <u>honestidade</u>, o aluno só tem a 
 - O estado da aplicação
 - Separação lógica do código-fonte
 - O padrão de projeto MVC
-- Introdução ao framework Spring
 
 ### Unidade 2
 
+- Introdução ao framework Spring
 - Definição da camada de persistência dos dados
 - Objetos de acesso a dados
 - Programação AJAX

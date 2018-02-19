@@ -1,0 +1,26 @@
+{%- assign courseParts = site.pages | where_exp:"item", "item.draft != true"
+                                    | where_exp:"item", "item.hidden != true"
+                                    | where_exp:"item", "item.url != page.url"
+                                    | where_exp:"item", "item.url contains page.url"
+                                    | group_by:"part"
+                                    | sort: "date" -%}
+
+<h1>Notas de aula</h1>
+
+{%- for part in courseParts %}
+  {% if part.name != empty %}
+    <h2>Unidade {{ part.name }}</h2>
+    <ol>
+      {%- for p in part.items %}
+        <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
+      {%- endfor %}
+    </ol>
+  {% else %}
+    <h2>Outros</h2>
+    <ol type="I">
+      {%- for p in part.items %}
+        <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
+      {%- endfor %}
+    <ol>
+  {% endif %}
+{%- endfor %}

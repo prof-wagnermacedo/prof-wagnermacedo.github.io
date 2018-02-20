@@ -28,7 +28,7 @@ part: 1
 ## O que você sabe?
 
 Antes de iniciar, o aluno deve responder o questionário disponível em
-[{{ 'teste-conhecimento-previo.html' | absolute_url }}](teste-conhecimento-previo.html).
+[{{ page.dir | append:'teste-conhecimento-previo.html' | absolute_url }}](teste-conhecimento-previo.html).
 
 Essas questões devem ser respondidas com <u>honestidade</u>, o aluno só tem a perder ao trapacear!
 

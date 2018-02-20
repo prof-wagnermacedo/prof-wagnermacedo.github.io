@@ -15,7 +15,7 @@ part: 1
 
 - (3,0) Participação
     - Pontualidade (até 20 minutos)
-    - Atividades em sala
+    - Discussões em sala
     - Trabalhos (apresentações)
 - (7,0) Prova Escrita e/ou Prática
 
@@ -35,7 +35,9 @@ part: 1
 
 ### Unidade 1
 
-- Garantia de Qualidade de Software
+- Aspectos da qualidade de software
+- Garantia da qualidade de software
+- Técnicas de desenvolvimento para qualidade
 
 ### Unidade 2
 
@@ -65,8 +67,8 @@ part: 1
 ## 📚 Referências disponíveis na biblioteca
 
 {: .references }
+- ![](../../assets/images/livros/fernandes2012-gov-ti.jpg)
 - ![](../../assets/images/livros/memoria2005-design.jpg)
 - ![](../../assets/images/livros/larman2007-uml.jpg)
-- ![](../../assets/images/livros/fernandes2012-gov-ti.jpg)
 - ![](../../assets/images/livros/sebesta2003-linguagens.jpg)
 - ![](../../assets/images/livros/araujo2010-webjava.jpg)

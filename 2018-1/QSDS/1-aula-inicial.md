@@ -67,8 +67,9 @@ part: 1
 ## 📚 Referências disponíveis na biblioteca
 
 {: .references }
-- ![](../../assets/images/livros/fernandes2012-gov-ti.jpg)
+- ![](../../assets/images/livros/sommerville2011-engsoft.jpg)
+- ![](../../assets/images/livros/hoglund2005-exploit.jpg)
 - ![](../../assets/images/livros/memoria2005-design.jpg)
-- ![](../../assets/images/livros/larman2007-uml.jpg)
+- ![](../../assets/images/livros/fernandes2012-gov-ti.jpg)
+- ![](../../assets/images/livros/fernandes2007-fabsoft.jpg)
 - ![](../../assets/images/livros/sebesta2003-linguagens.jpg)
-- ![](../../assets/images/livros/araujo2010-webjava.jpg)

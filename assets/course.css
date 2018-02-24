@@ -1,3 +1,7 @@
+ol.other-pages {
+    list-style-type: upper-roman;
+}
+
 header.date {
     opacity: 0.6;
 }

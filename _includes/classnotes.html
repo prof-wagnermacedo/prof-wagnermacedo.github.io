@@ -8,19 +8,18 @@
 <h1>Notas de aula</h1>
 
 {%- for part in courseParts %}
-  {% if part.name != empty %}
-    <h2>Unidade {{ part.name }}</h2>
-    <ol>
-      {%- for p in part.items %}
-        <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
-      {%- endfor %}
-    </ol>
-  {% else %}
-    <h2>Outros</h2>
-    <ol type="I">
-      {%- for p in part.items %}
-        <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
-      {%- endfor %}
-    <ol>
-  {% endif %}
-{%- endfor %}
+  {%- if part.name != empty -%}
+    {% assign heading = part.name | prepend:"Unidade " %}
+    {% assign className = null %}
+  {%- else -%}
+    {% assign heading = "Outros" %}
+    {% assign className = "other-pages" %}
+  {%- endif %}
+
+  <h2>{{ heading }}</h2>
+  <ol class="{{ className }}">
+  {%- for p in part.items %}
+    <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
+  {%- endfor %}
+  </ol>
+{%- endfor -%}

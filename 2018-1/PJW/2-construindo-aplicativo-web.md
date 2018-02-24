@@ -51,6 +51,8 @@ Execute a aplicação no servidor e verifique como está sendo renderizado no br
 perceba que não aparece `<t:Board/>` ou `<t:Square/>`, isso ocorre porque essas tags são processadas pelo servidor antes
 de enviar para o cliente.
 
+{% if jekyll.environment != 'production' %}
+
 ## Utilizando o atributo do quadrado
 
 {: data-hi="3" }
@@ -60,6 +62,8 @@ de enviar para o cliente.
     ${value}
  </button>
 ```
+
+{% endif %}
 
 {% comment %}
 ## Descritor de implantação

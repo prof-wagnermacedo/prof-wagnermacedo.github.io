@@ -18,7 +18,7 @@ como objeto de discussão.
 
 ## Resenha crítica
 
-Prazo de envio: 24/02/2017
+Prazo de envio: 25/02/2017
 
 **Entregues:**
 

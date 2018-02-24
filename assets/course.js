@@ -10,6 +10,7 @@ $(function () {
         const dataHi = this.getAttribute('data-hi');
 
         $(this).find('pre.highlight > code')
+            .addClass('hi-code')
             .on('afterlining', function () {
                 this.removeAttribute('data-lining');
                 this.innerHTML = this.innerHTML.replace(/[\r\n]/g, '');
@@ -22,7 +23,7 @@ $(function () {
                     }
 
                     for (let i = lower; i <= upper; i++) {
-                        $(this).find(`.line[index="${i}"]`).addClass('hi-line');
+                        $(this).find(`.line[index="${i}"]`).wrapInner('<span class="hi-line"></span>');
                     }
                 });
             })

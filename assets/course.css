@@ -38,8 +38,12 @@ figure.highlight td.code {
     padding-left: 20px;
 }
 
+code > .line {
+    display: block;
+}
+
 code > .hi-line {
-    background: #fffe91; display: block;
+    background: #fffe91;
 }
 
 .pergunta {

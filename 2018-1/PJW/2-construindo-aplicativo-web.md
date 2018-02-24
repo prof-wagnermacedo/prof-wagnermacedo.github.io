@@ -5,9 +5,15 @@ date: 2018-02-20 19:00
 part: 1
 ---
 
+## Antes de iniciar, o que estamos construindo?
+
+Vamos construir um jogo da velha interativo utilizando a tecnologia Java para web.
+
 ## Crie um projeto de aplicação web pelo NetBeans
 
 Veja como fazer isso em <https://netbeans.org/kb/docs/web/quickstart-webapps_pt_BR.html>.
+
+Escreva "<u>jogo-da-velha</u>" para o nome do projeto.
 
 ## Prepare o código inicial
 
@@ -25,7 +31,53 @@ Veja como fazer isso em <https://netbeans.org/kb/docs/web/quickstart-webapps_pt_
 [Board.tag]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/07432f43a5b26b6b28ed879447173cb73aa432bf/web/WEB-INF/tags/Board.tag
 [Square.tag]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/07432f43a5b26b6b28ed879447173cb73aa432bf/web/WEB-INF/tags/Square.tag
 
+## Começando
+
+O código inicial contém a estrutura do que estamos construindo. Já contém os estilos de CSS, portanto só precisamos nos
+preocupar com o Java.
+
+Temos três arquivos com a extensão `.tag` dentro da pasta `web/WEB-INF/tags/`. Estes são como um JSP, mas funcionam como
+componentes, do lado servidor, que podem ser reutilizados:
+
+- Square renderiza um simples `<button>`, representando cada quadrado do jogo.
+- Board renderiza nove quadrados, representando o tabuleiro do jogo.
+- Game renderiza o tabuleiro e as informações do jogo.
+
+Nesse ponto, a interface ainda não está interativa.
+
+## Inicie a aplicação
+
+Execute a aplicação no servidor e verifique como está sendo renderizado no browser. Verifique o código fonte da página e
+perceba que não aparece `<t:Board/>` ou `<t:Square/>`, isso ocorre porque essas tags são processadas pelo servidor antes
+de enviar para o cliente.
+
+## Utilizando o atributo do quadrado
+
+{: data-hi="3" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<button class="square">
+    ${value}
+ </button>
+```
+
 {% comment %}
+## Descritor de implantação
+
+Um descritor de implantação é um arquivo XML que centraliza algumas configurações da aplicação. É opcional, mas útil
+para algumas situações. Vamos criar um para esse projeto, embora não terá nenhum uso no momento.
+
+1. Selecione Arquivo &gt; Novo Arquivo (Ctrl-N) no menu principal. Em Categorias, selecione Web, em Tipos de Arquivos,
+   selecione Descritor de Implantação Padrão (web.xml) e clique em Próximo.
+2. Na etapa 2, clique em Finalizar.
+
+### A pasta WEB-INF
+
+Observe que o descritor foi criado na pasta `WEB-INF` que fica na área de Páginas Web, esta é uma pasta especial que o
+servidor não permite o acesso pelo lado cliente.
+
+Como os arquivos `.tag` também estão nessa pasta, eles também não são acessíveis diretamente pelos visitantes.
+
 ## Objetivos dessa interação
 
 ### 1

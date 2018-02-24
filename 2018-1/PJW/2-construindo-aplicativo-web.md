@@ -56,13 +56,28 @@ de enviar para o cliente.
 
 ## Utilizando o atributo do quadrado
 
-{: data-hi="3" }
+Vamos utilizar o atributo `value` em `Square.tag` para exibir o valor recebido. Faça isso, substituindo o
+`<!-- A FAZER -->` por `${value}`.
+
+{: data-hi="3" data-caption="Square.tag" }
 ```
 <%-- O conteúdo é especificado aqui --%>
 <button class="square">
     ${value}
  </button>
 ```
+
+---
+
+Antes:
+
+{:.center}
+![](../../assets/images/tic-tac-toe/before-square-value.png)
+
+Depois: você deverá ver um número em cada quadrado na saída renderizada.
+
+{:.center}
+![](../../assets/images/tic-tac-toe/after-square-value.png)
 
 {% endif %}
 

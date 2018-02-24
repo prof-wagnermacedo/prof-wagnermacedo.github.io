@@ -55,6 +55,10 @@ code > .line > .hi-line  {
     box-shadow: 1em 0 0 var(--color), -1em 0 0 var(--color);
 }
 
+.center {
+    text-align: center;
+}
+
 .pergunta {
     font-weight: bold;
 }

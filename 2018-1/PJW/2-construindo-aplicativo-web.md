@@ -51,6 +51,7 @@ Execute a aplicação no servidor e verifique como está sendo renderizado no br
 perceba que não aparece `<t:Board/>` ou `<t:Square/>`, isso ocorre porque essas tags são processadas pelo servidor antes
 de enviar para o cliente.
 
+{% include warning-mode.html %}
 {% if jekyll.environment != 'production' %}
 
 ## Utilizando o atributo do quadrado

@@ -79,6 +79,71 @@ Depois: você deverá ver um número em cada quadrado na saída renderizada.
 {:.center}
 ![](../../assets/images/tic-tac-toe/after-square-value.png)
 
+## Adicionando interatividade
+
+Vamos fazer cada quadrado ser preenchido com um "X" quando clicar nele.
+
+### Recebendo o clique do usuário
+
+{: data-hi="2" data-caption="Square.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<button class="square" name="square" value="${value}">
+    ${value}
+</button>
+```
+
+{: data-hi="2,20" data-caption="Board.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<form>
+<div>
+    <div class="board-row">
+        <t:Square value="0" />
+        <t:Square value="1" />
+        <t:Square value="2" />
+    </div>
+    <div class="board-row">
+        <t:Square value="3" />
+        <t:Square value="4" />
+        <t:Square value="5" />
+    </div>
+    <div class="board-row">
+        <t:Square value="6" />
+        <t:Square value="7" />
+        <t:Square value="8" />
+    </div>
+</div>
+</form>
+```
+
+### Mantendo o estado do tabuleiro
+
+{: data-hi="4-10" data-caption="Game.tag" }
+```
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<%-- Variável da sessão requerida --%>
+<jsp:useBean id="gameSquares" class="java.util.HashMap" scope="session" />
+
+<%-- Marca no quadrado clicado um X --%>
+<c:if test="${param['square'] != null}">
+    <c:set target="${gameSquares}" property="${param['square']}" value="X"/>
+</c:if>
+
+<%-- O conteúdo é especificado aqui --%>
+<c:set var="status" value="Próximo jogador: X" />
+```
+
+{: data-hi="3" data-caption="Square.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<button class="square" name="square" value="${value}">
+    ${gameSquares[value]}
+</button>
+```
+
 {% endif %}
 
 {% comment %}

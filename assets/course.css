@@ -48,9 +48,8 @@ code > .line {
     display: table-row;
 }
 
-code > .line > .hi-line  {
-    display: table-cell;
-    --color: #fffe91;
+code > .hi-line  {
+    --color: #ddffdd;
     background: var(--color);
     box-shadow: 1em 0 0 var(--color), -1em 0 0 var(--color);
 }

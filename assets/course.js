@@ -4,8 +4,6 @@ $(function () {
         ext: '.svg'
     });
 
-    const removeLinebreaks = (_, oldHtml) => oldHtml.replace(/\n/g, '');
-
     $('[data-hi]').each(function () {
         const dataHi = this.getAttribute('data-hi');
 
@@ -13,7 +11,14 @@ $(function () {
             .addClass('hi-code')
             .on('afterlining', function () {
                 this.removeAttribute('data-lining');
-                this.innerHTML = this.innerHTML.replace(/[\r\n]/g, '');
+
+                const $code = $(this);
+                $code.find('.line').html((_, oldHtml) => {
+                    if (oldHtml.match(/^[\s]+$/)) {
+                        return '<br>';
+                    }
+                    return oldHtml.replace(/[\r\n]+/g, '');
+                });
 
                 dataHi.split(',').forEach(spec => {
                     let [lower, upper] = spec.split('-', 2).map(e => parseInt(e));
@@ -23,7 +28,7 @@ $(function () {
                     }
 
                     for (let i = lower; i <= upper; i++) {
-                        $(this).find(`.line[index="${i}"]`).wrapInner('<span class="hi-line"></span>');
+                        $code.find(`.line[index="${i}"]`).addClass('hi-line');
                     }
                 });
             })

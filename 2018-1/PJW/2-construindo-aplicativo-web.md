@@ -47,7 +47,7 @@ Nesse ponto, a interface ainda não está interativa.
 
 ## Inicie a aplicação
 
-Execute a aplicação no servidor e verifique como está sendo renderizado no browser. Verifique o código fonte da página e
+Execute a aplicação no servidor e veja como está sendo renderizado no browser. Verifique o código fonte da página e
 perceba que não aparece `<t:Board/>` ou `<t:Square/>`, isso ocorre porque essas tags são processadas pelo servidor antes
 de enviar para o cliente.
 

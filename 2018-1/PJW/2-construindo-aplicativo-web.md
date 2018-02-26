@@ -144,6 +144,118 @@ Vamos fazer cada quadrado ser preenchido com um "X" quando clicar nele.
 </button>
 ```
 
+## Separação lógica do código
+
+O arquivo JSP deveria estar codificado apenas com informações da interface do usuário, pois (1) o responsável por esses
+arquivos não precisa ser um especialista em Java, (2) ele não precisa saber qual a estrutura de dados sendo usada para
+gravar os dados e (3) nem mesmo qual o nome do parâmetro do usuário utilizado.
+
+Essas são tarefas de programação e, para isso, usaremos uma classe Java com o código necessário chamado Servlet.
+
+### Adicione um Servlet
+
+Crie uma classe Java chamada `GameServlet` dentro do pacote `fanese.web` com [este código][GameServlet].
+
+[GameServlet]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/c49ff2709abec323a36640a9c4f0dccdd2b92860/src/java/fanese/web/GameServlet.java
+
+### Utilize o caminho absoluto nos arquivos estáticos
+
+Se o `GameServlet` fosse mapeado para um caminho mais profundo, por exemplo, `/jogos/velha`, o arquivo CSS usado em
+`index.jsp` não seria encontrado. Vamos mudar isso usando um `<c:url/>`.
+
+{: data-hi="6" data-caption="index.jsp" }
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jogo da Velha</title>
+        <link rel="stylesheet" href="<c:url value="/game.css"/>" />
+    </head>
+```
+
+### Mova a lógica do clique para o Servlet
+
+Remova do arquivo `Game.tag` as tags `<jsp:useBean/>` e `<c:if/>`.
+
+{: data-hi="1-3" data-caption="Game.tag" }
+```
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<%-- O conteúdo é especificado aqui --%>
+<c:set var="status" value="Próximo jogador: X" />
+```
+
+E na classe `GameServlet`, modifique o método `doGet()` para ficar com o seguinte código.
+
+{: data-hi="8-22" data-caption="GameServlet.java" }
+```
+@WebServlet(urlPatterns = {"/play-game"})
+public class GameServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // A sessão atual do usuário
+        HttpSession session = request.getSession();
+
+        // Tenta pegar a variável da sessão
+        Map squares = (Map) session.getAttribute("gameSquares");
+
+        // Se a variável não existir, cria uma nova
+        if (squares == null) {
+            session.setAttribute("gameSquares", squares = new HashMap());
+        }
+
+        // Marca o quadrado clicado com um X
+        String paramSquare = request.getParameter("square");
+        if (paramSquare != null) {
+            squares.put(paramSquare, 'X');
+        }
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/index.jsp");
+        jsp.forward(request, response);
+    }
+
+}
+```
+
+### Configurando um único ponto de entrada
+
+Quando você reiniciar o servidor, a sessão estará limpa, de modo que quando o usuário acessar diretamente o `index.jsp`,
+a variável da sessão `${gameSquares}` não vai existir. O jogo só irá funcionar se acessado pela URL `/play-game`!
+
+Assim, vamos fazer `/play-game` como o único ponto de entrada, fazendo primeiramente o seguinte:
+
+1. Crie uma pasta chamada `jsp` em `web/WEB-INF/`
+2. Mova o arquivo `index.jsp` para `web/WEB-INF/jsp/` com o nome de `game.jsp`
+
+Isso irá esconder o arquivo JSP, pois o usuário não pode acessar qualquer coisa que eseteja dentro da pasta `WEB-INF`.
+
+O segundo passo é alterar o `GameServlet` para fazer o `forward` para o JSP correto:
+
+{: data-hi="2" data-caption="GameServlet.java" }
+```
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+```
+
+### Configure a raiz da aplicação
+
+Este é um passo opcional, mas muito útil.
+
+Como não existe mais um arquivo `index.jsp` em `web/`, o usuário vai receber um código 404 quando tentar acessar a
+aplicação em, por exemplo, `http://localhost:8080/jogo-da-velha/`.
+
+Vamos resolver isso. Crie um novo arquivo `index.jsp` com o seguinte conteúdo:
+
+{: data-caption="index.jsp (novo)" }
+```
+<jsp:forward page="/play-game" />
+```
+
 {% endif %}
 
 {% comment %}

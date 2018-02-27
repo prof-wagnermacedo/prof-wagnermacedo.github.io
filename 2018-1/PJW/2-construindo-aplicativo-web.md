@@ -156,7 +156,7 @@ Essas são tarefas de programação e, para isso, usaremos uma classe Java com o
 
 Crie uma classe Java chamada `GameServlet` dentro do pacote `fanese.web` com [este código][GameServlet].
 
-[GameServlet]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/c49ff2709abec323a36640a9c4f0dccdd2b92860/src/java/fanese/web/GameServlet.java
+[GameServlet]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/eac562721e18ea2abb67a8d67bdf0afe4db5ac05/src/java/fanese/web/GameServlet.java
 
 ### Utilize o caminho absoluto nos arquivos estáticos
 
@@ -255,6 +255,10 @@ Vamos resolver isso. Crie um novo arquivo `index.jsp` com o seguinte conteúdo:
 ```
 <jsp:forward page="/play-game" />
 ```
+
+## Uma estrutura de dados mais adequada
+
+O tipo `Map` é genérico demais para armazena
 
 {% endif %}
 

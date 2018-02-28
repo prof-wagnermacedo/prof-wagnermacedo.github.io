@@ -11,13 +11,20 @@ como objeto de discussão.
 
 ## Discussão em sala
 
-**Alunos presentes:**
+**Alunos presentes (27/02):**
+
+1. Bruno Hérick Santos Gomes
+2. Ivan Ramos Silva
+3. Pablo Henrique Oliveira Pinho
+4. Tácio Cassaly Bastos do Nascimento
+
+**Alunos presentes (29/02):**
 
 1. [o evento ainda não ocorreu]
 
 ## Resenha crítica
 
-Prazo de envio: 25/02/2017
+Prazo de envio: 25/02/2018
 
 **Entregues:**
 

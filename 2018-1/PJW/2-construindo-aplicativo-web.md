@@ -5,6 +5,9 @@ date: 2018-02-20 19:00
 part: 1
 ---
 
+* TOC
+{:toc .no-h3 data-caption="(em construção)"}
+
 ## Antes de iniciar, o que estamos construindo?
 
 Vamos construir um jogo da velha interativo utilizando a tecnologia Java para web.
@@ -51,9 +54,6 @@ Execute a aplicação no servidor e veja como está sendo renderizado no browser
 perceba que não aparece `<t:Board/>` ou `<t:Square/>`, isso ocorre porque essas tags são processadas pelo servidor antes
 de enviar para o cliente.
 
-{% include warning-mode.html %}
-{% if jekyll.environment != 'production' %}
-
 ## Utilizando o atributo do quadrado
 
 Vamos utilizar o atributo `value` em `Square.tag` para exibir o valor recebido. Faça isso, substituindo o
@@ -85,6 +85,11 @@ Vamos fazer cada quadrado ser preenchido com um "X" quando clicar nele.
 
 ### Recebendo o clique do usuário
 
+Precisamos saber qual quadrado foi clicado. Isso é uma entrada do usuário enviado ao servidor.
+Para coletar entradas do usuário, usamos a tag HTML `<form>`.
+
+Mas primeiramente, vamos nomear o parâmetro enviado ao servidor, modificando `Square.tag`.
+
 {: data-hi="2" data-caption="Square.tag" }
 ```
 <%-- O conteúdo é especificado aqui --%>
@@ -92,6 +97,8 @@ Vamos fazer cada quadrado ser preenchido com um "X" quando clicar nele.
     ${value}
 </button>
 ```
+
+E vamos envolver todos os `<button>` em um formulário web.
 
 {: data-hi="2,20" data-caption="Board.tag" }
 ```
@@ -119,6 +126,12 @@ Vamos fazer cada quadrado ser preenchido com um "X" quando clicar nele.
 
 ### Mantendo o estado do tabuleiro
 
+Agora, toda a vez que o usuário clicar em um quadrado, a posição do quadrado será enviado ao servidor. Você pode notar
+que a URL do navegador modifica, adicionando `?square=0`, por exemplo.
+
+O servidor recebe o parâmetro, mas não faz nada. Modifique `Game.tag` para adicionar uma ação quando o quadrado for clicado.
+Esse código irá manter o estado do tabuleiro no servidor, dentro da sessão do usuário.
+
 {: data-hi="4-10" data-caption="Game.tag" }
 ```
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -135,6 +148,8 @@ Vamos fazer cada quadrado ser preenchido com um "X" quando clicar nele.
 <%-- O conteúdo é especificado aqui --%>
 <c:set var="status" value="Próximo jogador: X" />
 ```
+
+Para que o `<button>` reflita o estado do tabuleiro, modifique o arquivo `Square.tag`.
 
 {: data-hi="3" data-caption="Square.tag" }
 ```
@@ -154,9 +169,17 @@ Essas são tarefas de programação e, para isso, usaremos uma classe Java com o
 
 ### Adicione um Servlet
 
-Crie uma classe Java chamada `GameServlet` dentro do pacote `fanese.web` com [este código][GameServlet].
+Crie uma classe Java chamada `GameServlet` dentro do pacote `tictactoe.web` com [este código][GameServlet].
 
-[GameServlet]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/eac562721e18ea2abb67a8d67bdf0afe4db5ac05/src/java/fanese/web/GameServlet.java
+[GameServlet]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/7935250b30ad2fadfb892e9a4bf8cd8e11f6956d/src/java/tictactoe/web/GameServlet.java
+
+Esta classe deve herdar de `HttpServlet` e permite receber requisições do lado cliente pela anotação
+
+```
+@WebServlet(urlPatterns = {"/play-game"})
+```
+
+O `GameServlet`, por exemplo, será acessível por <code>http://localhost:8080/jogo-da-velha<b>/play-game</b></code>.
 
 ### Utilize o caminho absoluto nos arquivos estáticos
 
@@ -247,14 +270,17 @@ O segundo passo é alterar o `GameServlet` para fazer o `forward` para o JSP cor
 Este é um passo opcional, mas muito útil.
 
 Como não existe mais um arquivo `index.jsp` em `web/`, o usuário vai receber um código 404 quando tentar acessar a
-aplicação em, por exemplo, `http://localhost:8080/jogo-da-velha/`.
+aplicação em `http://localhost:8080/jogo-da-velha/`.
 
-Vamos resolver isso. Crie um novo arquivo `index.jsp` com o seguinte conteúdo:
+Vamos resolver isso, crie um novo arquivo `index.jsp` com o seguinte conteúdo:
 
 {: data-caption="index.jsp (novo)" }
 ```
 <jsp:forward page="/play-game" />
 ```
+
+{% include warning-mode.html %}
+{% if jekyll.environment != 'production' %}
 
 ## Uma estrutura de dados mais adequada
 

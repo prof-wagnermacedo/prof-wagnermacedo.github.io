@@ -20,7 +20,11 @@ como objeto de discussão.
 
 **Alunos presentes (29/02):**
 
-1. [o evento ainda não ocorreu]
+1. Bruno Hérick Santos Gomes
+2. Cynthia Pimentel Moraes
+3. Ivan Ramos Silva
+4. Randson Nunes dos Santos Franca
+5. Tácio Cassaly Bastos do Nascimento
 
 ## Resenha crítica
 
@@ -29,3 +33,9 @@ Prazo de envio: 25/02/2018
 **Entregues:**
 
 1. Cynthia Pimentel Moraes
+
+**Entregues com atraso:**
+
+1. Bruno Hérick Santos Gomes
+2. Ivan Ramos da Silva
+3. Tácio Cassaly Bastos do Nascimento

@@ -4,6 +4,7 @@ ol.other-pages {
 
 header.date {
     opacity: 0.6;
+    margin-bottom: 1em;
 }
 
 div.highlighter-rouge[data-caption]:before,
@@ -160,6 +161,10 @@ ul.pontos, ol.pontos {
     padding-left: 20px;
 }
 
+#markdown-toc.no-h3 > li > ul {
+    display: none;
+}
+
 #markdown-toc > li > ul ul {
     display: none;
 }
@@ -169,7 +174,7 @@ ul.pontos, ol.pontos {
 }
 
 #markdown-toc::before {
-    content: "Conteúdo";
+    content: "Conteúdo " attr(data-caption);
     font-weight: bold;
     margin-left: -40px;
 }

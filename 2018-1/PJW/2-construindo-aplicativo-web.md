@@ -359,6 +359,13 @@ mesmo tempo, se um dado compartilhado for modificado ao mesmo tempo, sérias cor
 Existe mais de uma forma de contornar esse problema, uma delas é trabalhar sempre com cópias. Para entender melhor essas
 questões, faça uma pesquisa sobre _threads_.
 
+### Dois grandes benefícios da imutabilidade
+
+Trabalhar com objetos imutáveis também traz outros benefícios:
+
+- Maior facilidade em implementar desfazer/refazer e funções de máquina do tempo.
+- Rastrear mudanças é mais fácil, pois não é preciso fazer comparações. 
+
 ## Maior organização do código
 
 Vamos separar ainda mais o código, criando uma classe `GameApp` para gerenciar o jogo. A princípio, essa classe só

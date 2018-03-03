@@ -521,7 +521,7 @@ public class GameApp {
 
 ```
 
-Lembre-se de adicionar um método _get_ para o novo atributo:
+Lembre-se de adicionar um método _get_ para `turn`:
 
 ```
     public char getTurn() {
@@ -551,6 +551,102 @@ Agora modifique `Game.tag` para usar `${game.turn}`. Assim o usuário saberá de
 ```
 <%-- O conteúdo é especificado aqui --%>
 <c:set var="status" value="Próximo jogador: ${game.turn}" />
+
+<div class="game">
+    <div class="game-board">
+```
+
+## Declarando um vencedor
+
+Vamos mostrar quando um jogo foi ganho. Adicione o seguinte método auxiliar ao final de `GameApp`: 
+
+```
+    private static char calculateWinner(Character[] squares) {
+        // Posições que se marcadas, significa vitória
+        int[][] lines = new int[][]{
+            {0, 1, 2},
+            {3, 4, 5},
+            {6, 7, 8},
+            {0, 3, 6},
+            {1, 4, 7},
+            {2, 5, 8},
+            {0, 4, 8},
+            {2, 4, 6},
+        };
+
+        // Processa o tabuleiro para identificar um vencedor
+        for (int[] line : lines) {
+            int a = line[0],
+                b = line[1],
+                c = line[2];
+            if (squares[a] != null && squares[a] == squares[b] && squares[a] == squares[c]) {
+                return squares[a];
+            }
+        }
+
+        // Ainda sem um vencedor
+        return ' ';
+    }
+```
+
+Adicione uma nova propriedade `winner` à classe `GameApp`. Essa propriedade poderá ter três valores:
+
+- `' '` (espaço em branco) indica que o jogo ainda não tem vencedor.
+- `'X'` indica que X é o vencedor.
+- `'O'` indica que O é o vencedor.
+
+{: data-hi="5" data-caption="GameApp.java"}
+```
+public class GameApp {
+
+    private Character[] squares = new Character[9];
+    private char turn = 'X';
+    private char winner = ' ';
+
+```
+
+Também adicione um método _get_ para `winner`:
+
+```
+    public char getWinner() {
+        return this.winner;
+    }
+```
+
+Agora vamos modificar o método `clickSquare` para calcular o vencedor usando o método auxiliar:
+
+{: data-hi="2-5,14" data-caption="GameApp.java"}
+```
+    public void clickSquare(int index) {
+        // Parando se já tiver um vencedor ou o quadrado já estiver clicado
+        if (this.winner != ' ' || this.squares[index] != null) {
+            return;
+        }
+
+        // Modifica uma cópia do array
+        Character[] squares = this.squares.clone();
+        squares[index] = this.turn;
+
+        // Atualiza o estado do jogo
+        this.squares = squares;
+        this.turn = (this.turn == 'X') ? 'O' : 'X';
+        this.winner = calculateWinner(squares);
+    }
+```
+
+Para mostrar o vencedor, modifique `Game.tag` para definir a mensagem de status correta.
+
+{: data-hi="2-9" data-caption="Game.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<c:choose>
+    <c:when test="${game.winner == ' '}">
+        <c:set var="status" value="Próximo jogador: ${game.turn}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="status" value="Vencedor: ${game.winner}" />
+    </c:otherwise>
+</c:choose>
 
 <div class="game">
     <div class="game-board">

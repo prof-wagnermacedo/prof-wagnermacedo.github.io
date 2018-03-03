@@ -284,7 +284,220 @@ Vamos resolver isso, crie um novo arquivo `index.jsp` com o seguinte conteúdo:
 
 ## Uma estrutura de dados mais adequada
 
-O tipo `Map` é genérico demais para armazena
+O tipo `Map` é genérico demais para armazenar o tabuleiro. De forma a utilizar melhor os recursos do servidor, vamos
+modificar o tipo da variável da sessão `gameSquares` para um array de characteres.
+
+{: data-hi="6,10,16-17" data-caption="GameServlet.java" }
+```
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // A sessão atual do usuário
+        HttpSession session = request.getSession();
+
+        // Tenta pegar a variável da sessão
+        Character[] squares = (Character[]) session.getAttribute("gameSquares");
+
+        // Se a variável não existir, cria uma nova
+        if (squares == null) {
+            session.setAttribute("gameSquares", squares = new Character[9]);
+        }
+
+        // Marca o quadrado clicado com um X
+        String paramSquare = request.getParameter("square");
+        if (paramSquare != null) {
+            int index = Integer.parseInt(paramSquare);
+            squares[index] = 'X';
+        }
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+    }
+```
+
+## Modificando uma cópia do tabuleiro
+
+Como o servidor web pode atender a milhares de requisições ao mesmo tempo, é uma boa ideia considerar as variáveis
+compartilhadas imutáveis, ou seja, trabalhar com cópias dessas variáveis em vez de modificá-las diretamente.
+
+Modifique mais uma vez `GameServlet` para satisfazer essa necessidade:
+
+{: data-hi="17-20" data-caption="GameServlet.java" }
+```
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // A sessão atual do usuário
+        HttpSession session = request.getSession();
+
+        // Tenta pegar a variável da sessão
+        Character[] squares = (Character[]) session.getAttribute("gameSquares");
+
+        // Se a variável não existir, cria uma nova
+        if (squares == null) {
+            session.setAttribute("gameSquares", squares = new Character[9]);
+        }
+
+        // Marca o quadrado clicado com um X
+        String paramSquare = request.getParameter("square");
+        if (paramSquare != null) {
+            int index = Integer.parseInt(paramSquare);
+            // Modifica uma cópia do array e o coloca na sessão, no lugar do anterior.
+            Character[] squaresCopy = squares.clone();
+            squaresCopy[index] = 'X';
+            session.setAttribute("gameSquares", squaresCopy);
+        }
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+    }
+```
+
+### Sobre a imutabilidade 
+
+Um problema comum na programação web é a concorrência. Como o servidor web pode atender a milhares de requisições ao
+mesmo tempo, se um dado compartilhado for modificado ao mesmo tempo, sérias corrupções dos dados podem ocorrer.
+
+Existe mais de uma forma de contornar esse problema, uma delas é trabalhar sempre com cópias. Para entender melhor essas
+questões, faça uma pesquisa sobre _threads_.
+
+## Maior organização do código
+
+Vamos separar ainda mais o código, criando uma classe `GameApp` para gerenciar o jogo. A princípio, essa classe só
+mantém um atributo `squares`, que é o array de caracteres que representa o tabuleiro.
+
+Crie a classe `GameApp` dentro do pacote `tictactoe.web` com o seguinte código:
+
+{: data-caption="GameApp.java (novo)"}
+```
+package tictactoe.web;
+
+public class GameApp {
+
+    private Character[] squares = new Character[9];
+
+    public void clickSquare(int index) {
+        // Modifica uma cópia do array
+        Character[] squares = this.squares.clone();
+        squares[index] = 'X';
+
+        // Atualiza o estado do jogo
+        this.squares = squares;
+    }
+
+    public Character[] getSquares() {
+        return this.squares;
+    }
+
+}
+```
+
+Faça as modificações indicadas no código a seguir em `GameServlet`. Eis um breve sumário das modificações efetuadas:
+
+1. Altera o tipo da variável de sessão para `GameApp`.
+2. Altera o nome dessa variável para apenas `"game"`.
+3. Adiciona um método privado chamado `getGame(HttpServletRequest)` com o código de obter ou criar a variável da sessão.
+4. Chama o método `clickSquare(int)` da classe `GameApp` para marcar o "X" do tabuleiro.
+
+
+{: data-hi="6-8,13,21-34" data-caption="GameServlet.java" }
+```
+@WebServlet(urlPatterns = {"/play-game"})
+public class GameServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // O jogo do usuário atual
+        GameApp game = getGame(request);
+        
+        // Marca o quadrado clicado com um X
+        String paramSquare = request.getParameter("square");
+        if (paramSquare != null) {
+            int index = Integer.parseInt(paramSquare);
+            game.clickSquare(index)
+        }
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+    }
+
+    private static GameApp getGame(HttpServletRequest request) {
+        // A sessão atual do usuário
+        HttpSession session = request.getSession();
+
+        // Tenta pegar a variável da sessão
+        GameApp game = (GameApp) session.getAttribute("game");
+
+        // Se a variável não existir, cria uma nova
+        if (game == null) {
+            session.setAttribute("game", game = new GameApp());
+        }
+
+        return game;
+    }
+
+}
+```
+
+Por último, renomeie o nome da variável em `Square.tag` para poder encontrar o tabuleiro:
+
+{: data-hi="3" data-caption="Square.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<button class="square" name="square" value="${value}">
+    ${game.squares[value]}
+</button>
+```
+
+### Um pequeno refinamento
+
+Crie em `GameApp` um método `clickSquare(String)` para reduzir a complexidade de `GameServlet`.
+
+Faça as seguintes modificações em `GameApp` e `GameServlet`:
+
+{: data-hi="5-10" data-caption="GameApp.java"}
+```
+public class GameApp {
+
+    private Character[] squares = new Character[9];
+
+    public void clickSquare(String param) {
+        if (param != null) {
+            int index = Integer.parseInt(param);
+            clickSquare(index);
+        }
+    }
+
+    public void clickSquare(int index) {
+        // Modifica uma cópia do array
+        Character[] squares = this.squares.clone();
+        squares[index] = 'X';
+
+        // Atualiza o estado do jogo
+        this.squares = squares;
+    }
+
+    public Character[] getSquares() {
+        return this.squares;
+    }
+
+}
+```
+
+{: data-hi="7" data-caption="GameServlet.java" }
+```
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // O jogo do usuário atual
+        GameApp game = getGame(request);
+
+        // Marca o quadrado clicado com um X
+        String paramSquare = request.getParameter("square");
+        game.clickSquare(paramSquare);
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+    }
+```
 
 {% endif %}
 

@@ -457,11 +457,11 @@ Por último, renomeie o nome da variável em `Square.tag` para poder encontrar o
 
 ### Um pequeno refinamento
 
-Crie em `GameApp` um método `clickSquare(String)` para reduzir a complexidade de `GameServlet`.
+Crie em `GameApp` um método `clickSquare(String)` para reduzir a complexidade do servlet.
 
 Faça as seguintes modificações em `GameApp` e `GameServlet`:
 
-{: data-hi="5-10" data-caption="GameApp.java"}
+{: data-hi="5-11" data-caption="GameApp.java"}
 ```
 public class GameApp {
 
@@ -504,6 +504,56 @@ public class GameApp {
         RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
         jsp.forward(request, response);
     }
+```
+
+## Adicionando turnos
+
+Um defeito óbvio do jogo é que somente X pode jogar. Vamos corrigir isso.
+
+Vamos fazer o primeiro movimento ser de 'X'. Adicione uma nova propriedade à `GameApp`:
+
+{: data-hi="4" data-caption="GameApp.java"}
+```
+public class GameApp {
+
+    private Character[] squares = new Character[9];
+    private char turn = 'X';
+
+```
+
+Lembre-se de adicionar um método _get_ para o novo atributo:
+
+```
+    public char getTurn() {
+        return this.turn;
+    }
+```
+
+A cada movimento, vamos alternar a propriedade `turn` entre os valores 'X' e 'O'. Atualize o método `clickSquare(int)`
+da classe `GameApp` para alternar o valor de `turn`:
+
+{: data-hi="4,8" data-caption="GameApp.java"}
+```
+    public void clickSquare(int index) {
+        // Modifica uma cópia do array
+        Character[] squares = this.squares.clone();
+        squares[index] = this.turn;
+
+        // Atualiza o estado do jogo
+        this.squares = squares;
+        this.turn = (this.turn == 'X') ? 'O' : 'X';
+    }
+```
+
+Agora modifique `Game.tag` para usar `${game.turn}`. Assim o usuário saberá de quem é a rodada.
+
+{: data-hi="2" data-caption="Game.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<c:set var="status" value="Próximo jogador: ${game.turn}" />
+
+<div class="game">
+    <div class="game-board">
 ```
 
 {% endif %}

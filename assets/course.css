@@ -39,17 +39,11 @@ figure.highlight td.code {
     padding-left: 20px;
 }
 
-pre > code.hi-code {
-    display: table;
-    width: 100%;
+pre > .line {
+    display: block;
 }
 
-
-code > .line {
-    display: table-row;
-}
-
-code > .hi-line  {
+pre > .hi-line  {
     --color: #ddffdd;
     background: var(--color);
     box-shadow: 1em 0 0 var(--color), -1em 0 0 var(--color);

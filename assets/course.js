@@ -7,17 +7,24 @@ $(function () {
     $('[data-hi]').each(function () {
         const dataHi = this.getAttribute('data-hi');
 
-        $(this).find('pre.highlight > code')
-            .addClass('hi-code')
+        $(this).find('pre > code')
+            .contents().unwrap().parent()
             .on('afterlining', function () {
                 this.removeAttribute('data-lining');
+                this.innerHTML = this.innerHTML.replace(/\r\n|[\r\n]$/, '');
 
-                const $code = $(this);
-                $code.find('.line').html((_, oldHtml) => {
+                const $pre = $(this);
+                $pre.find('> .line').html(function (_, oldHtml) {
                     if (oldHtml.match(/^[\s]+$/)) {
                         return '<br>';
                     }
-                    return oldHtml.replace(/[\r\n]+/g, '');
+
+                    const newHtml = oldHtml.replace(/^[\r\n]+/, '');
+                    if ($(this).is('[last]')) {
+                        return newHtml;
+                    } else {
+                        return newHtml + '\n';
+                    }
                 });
 
                 dataHi.split(',').forEach(spec => {
@@ -28,7 +35,7 @@ $(function () {
                     }
 
                     for (let i = lower; i <= upper; i++) {
-                        $code.find(`.line[index="${i}"]`).addClass('hi-line');
+                        $pre.find(`> .line[index="${i}"]`).addClass('hi-line');
                     }
                 });
             })

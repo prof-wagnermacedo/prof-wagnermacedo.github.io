@@ -285,7 +285,7 @@ Vamos resolver isso, crie um novo arquivo `index.jsp` com o seguinte conteúdo:
 ## Uma estrutura de dados mais adequada
 
 O tipo `Map` é genérico demais para armazenar o tabuleiro. De forma a utilizar melhor os recursos do servidor, vamos
-modificar o tipo da variável da sessão `gameSquares` para um array de characteres.
+modificar o tipo da variável da sessão `gameSquares` para um array de caracteres.
 
 {: data-hi="6,10,16-17" data-caption="GameServlet.java" }
 ```
@@ -650,6 +650,123 @@ Para mostrar o vencedor, modifique `Game.tag` para definir a mensagem de status 
 
 <div class="game">
     <div class="game-board">
+```
+
+## Fazendo uso de JavaScript para otimizar
+
+Quando um quadrado já está marcado ou o jogo já tem um vencedor, não faz mais sentido que o clique gere uma nova
+requisição ao servidor.
+
+Lembre-se que pode haver milhares de requisições ao mesmo tempo, assim é muito interessante que o navegador só envie
+requisições para o servidor se realmente <u>necessário</u>.
+
+### Configurando para usar jQuery
+
+Vamos utilizar jQuery, uma biblioteca JavaScript, para termos um código JS mais simples.
+
+Adicione ao arquivo `web/WEB-INF/jsp/game.jsp` a seguinte tag `<script>`:
+
+{: data-hi="7" data-caption="WEB-INF/jsp/game.jsp" }
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jogo da Velha</title>
+        <link rel="stylesheet" href="<c:url value="/game.css"/>" />
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+```
+
+### Impedindo o envio de quadrado já marcado
+
+Crie o arquivo JavaScript `web/game.js` (não crie dentro de `WEB-INF/`) com o seguinte conteúdo:
+
+{: data-caption="game.js (novo)" }
+```
+// Não submete o formulário se o quadrado clicado já estiver marcado
+$('.square').click(function (event) {
+    if (this.innerText) {
+        event.preventDefault();
+    }
+});
+```
+
+Agora faça uso desse arquivo, adicionando a seguinte tag `<script>` no final de `<body>`:
+
+{: data-hi="3" data-caption="WEB-INF/jsp/game.jsp" }
+```
+    <body>
+        <t:Game />
+        <script src="<c:url value="/game.js"/>"></script>
+    </body>
+</html>
+```
+
+## Impedindo o envio em jogo com vencedor
+
+Para o quadrado marcado, usamos como referência o valor do `innerText` dos elementos `<button>`. Já para o
+jogo terminado, utilizaremos outra abordagem.
+
+Vamos adicionar um novo atributo HTML à tag `<form>` chamado `data-finished`, onde:
+
+1. Se `<form data-finished="false">` ou não tiver o atributo, o clique estará habilitado.
+2. Se `<form data-finished="true">`, jogo encerrado, qualquer clique estará desabilitado.
+
+Modifique o arquivo `Board.tag` para receber o atributo `${finished}` e preencher o atributo HTML.
+
+{: data-hi="3-4,10" data-caption="Board.tag" }
+```
+<%@tag description="O tabuleiro do jogo" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+
+<%-- A lista de atributos dessa tag --%>
+<%@attribute name="finished" %>
+
+<%-- Outras tags requeridas para funcionar --%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<%-- O conteúdo é especificado aqui --%>
+<form data-finished="${finished}">
+<div>
+    <div class="board-row">
+        <t:Square value="0" />
+        <t:Square value="1" />
+        <t:Square value="2" />
+    </div>
+```
+
+Em seguida, modifique `Game.tag` para indicar se o jogo está terminado (`finished`) em `<t:Board/>`:
+
+{: data-hi="3" data-caption="Game.tag" }
+```
+<div class="game">
+    <div class="game-board">
+        <t:Board finished="${game.winner != ' '}" />
+    </div>
+    <div class="game-info">
+        <div>${status}</div>
+        <ol><!-- A FAZER --></ol>
+    </div>
+</div>
+```
+
+Se executar a aplicação e olhar o código-fonte no browser, irá perceber que o atributo `data-finished` receberá `true`
+quando houver um ganhador, mas ainda não estará bloqueando cliques em quadrados vazios. Para isso, adicione ao arquivo
+JavaScript `game.js` o seguinte código:
+
+{: data-hi="8-11" data-caption="game.js" }
+```
+// Não submete o formulário se o quadrado clicado já estiver marcado
+$('.square').click(function (event) {
+    if (this.innerText) {
+        event.preventDefault();
+    }
+});
+
+// Não submete o formulário se já houver um vencedor
+$('form[data-finished="true"]').submit(function (event) {
+    event.preventDefault();
+});
 ```
 
 {% endif %}

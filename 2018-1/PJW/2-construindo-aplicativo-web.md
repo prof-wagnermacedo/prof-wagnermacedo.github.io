@@ -751,7 +751,7 @@ Em seguida, modifique `Game.tag` para indicar se o jogo está terminado (`finish
 ```
 
 Se executar a aplicação e olhar o código-fonte no browser, irá perceber que o atributo `data-finished` receberá `true`
-quando houver um ganhador, mas ainda não estará bloqueando cliques em quadrados vazios. Para isso, adicione ao arquivo
+quando houver um ganhador, mas ainda não estará bloqueando cliques nos quadrados vazios. Para isso, adicione ao arquivo
 JavaScript `game.js` o seguinte código:
 
 {: data-hi="8-11" data-caption="game.js" }
@@ -767,6 +767,60 @@ $('.square').click(function (event) {
 $('form[data-finished="true"]').submit(function (event) {
     event.preventDefault();
 });
+```
+
+## Mudando o método de envio para POST
+
+Conforme [já foi dito](#mantendo-o-estado-do-tabuleiro), o número do quadrado clicado é enviado adicionando um, por
+exemplo, `?square=5` ao final da URL. Isso ocorre porque a tag `<form>` está instruída de enviar para o servidor HTTP
+utilizando uma requisição GET. Vamos modificar para utilizar uma requisição POST, que envia o parâmetro de uma forma
+mais discreta (não adiciona à URL).
+
+Modifique o arquivo `Board.tag` para alterar o método de envio do formulário:
+
+{: data-hi="2" data-caption="Board.tag" }
+```
+<%-- O conteúdo é especificado aqui --%>
+<form method="post" data-finished="${finished}">
+<div>
+    <div class="board-row">
+        <t:Square value="0" />
+        <t:Square value="1" />
+        <t:Square value="2" />
+    </div>
+```
+
+Agora vamos modificar o `GameServlet` para receber o clique pelo método POST:
+
+{: data-hi="6-7,14-25" data-caption="GameServlet.java" }
+```
+@WebServlet(urlPatterns = {"/play-game"})
+public class GameServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Garante que o jogo do usuário exista
+        getGame(request);
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // O jogo do usuário atual
+        GameApp game = getGame(request);
+
+        // Marca o quadrado clicado
+        String paramSquare = request.getParameter("square");
+        game.clickSquare(paramSquare);
+
+        // Manda o browser fazer outro pedido, mas com o método GET
+        response.sendRedirect(".");
+    }
+
+    private static GameApp getGame(HttpServletRequest request) {
 ```
 
 {% endif %}

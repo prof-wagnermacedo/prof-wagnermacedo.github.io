@@ -34,7 +34,7 @@ Escreva "<u>jogo-da-velha</u>" para o nome do projeto.
 [Board.tag]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/07432f43a5b26b6b28ed879447173cb73aa432bf/web/WEB-INF/tags/Board.tag
 [Square.tag]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/07432f43a5b26b6b28ed879447173cb73aa432bf/web/WEB-INF/tags/Square.tag
 
-## Começando
+### Começando
 
 O código inicial contém a estrutura do que estamos construindo. Já contém os estilos de CSS, portanto só precisamos nos
 preocupar com o Java.
@@ -48,7 +48,7 @@ componentes, do lado servidor, que podem ser reutilizados:
 
 Nesse ponto, a interface ainda não está interativa.
 
-## Inicie a aplicação
+### Inicie a aplicação
 
 Execute a aplicação no servidor e veja como está sendo renderizado no browser. Verifique o código fonte da página e
 perceba que não aparece `<t:Board/>` ou `<t:Square/>`, isso ocorre porque essas tags são processadas pelo servidor antes
@@ -282,7 +282,7 @@ Vamos resolver isso, crie um novo arquivo `index.jsp` com o seguinte conteúdo:
 {% include warning-mode.html %}
 {% if jekyll.environment != 'production' %}
 
-## Uma estrutura de dados mais adequada
+## Estrutura de dados mais adequada
 
 O tipo `Map` é genérico demais para armazenar o tabuleiro. De forma a utilizar melhor os recursos do servidor, vamos
 modificar o tipo da variável da sessão `gameSquares` para um array de caracteres.
@@ -703,12 +703,12 @@ Agora faça uso desse arquivo, adicionando a seguinte tag `<script>` no final de
 </html>
 ```
 
-## Impedindo o envio em jogo com vencedor
+### Impedindo o envio em jogo com vencedor
 
 Para o quadrado marcado, usamos como referência o valor do `innerText` dos elementos `<button>`. Já para o
 jogo terminado, utilizaremos outra abordagem.
 
-Vamos adicionar um novo atributo HTML à tag `<form>` chamado `data-finished`, onde:
+Vamos adicionar um novo atributo HTML à tag `<form>` chamado `data-finished`{:.nowrap}, onde:
 
 1. Se `<form data-finished="false">` ou não tiver o atributo, o clique estará habilitado.
 2. Se `<form data-finished="true">`, jogo encerrado, qualquer clique estará desabilitado.
@@ -750,7 +750,7 @@ Em seguida, modifique `Game.tag` para indicar se o jogo está terminado (`finish
 </div>
 ```
 
-Se executar a aplicação e olhar o código-fonte no browser, irá perceber que o atributo `data-finished` receberá `true`
+Se executar a aplicação e olhar o código-fonte no browser, irá perceber que o atributo `data-finished`{:.nowrap} receberá `true`
 quando houver um ganhador, mas ainda não estará bloqueando cliques nos quadrados vazios. Para isso, adicione ao arquivo
 JavaScript `game.js` o seguinte código:
 
@@ -772,7 +772,7 @@ $('form[data-finished="true"]').submit(function (event) {
 ## Mudando o método de envio para POST
 
 Conforme [já foi dito](#mantendo-o-estado-do-tabuleiro), o número do quadrado clicado é enviado adicionando um, por
-exemplo, `?square=5` ao final da URL. Isso ocorre porque a tag `<form>` está instruída de enviar para o servidor HTTP
+exemplo, `?square=5`{:.nowrap} ao final da URL. Isso ocorre porque a tag `<form>` está instruída de enviar para o servidor HTTP
 utilizando uma requisição GET. Vamos modificar para utilizar uma requisição POST, que envia o parâmetro de uma forma
 mais discreta (não adiciona à URL).
 

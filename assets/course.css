@@ -58,6 +58,10 @@ pre.highlight > code > .line {
     display: table-row;
 }
 
+code.nowrap {
+    white-space: nowrap;
+}
+
 .center {
     text-align: center;
 }

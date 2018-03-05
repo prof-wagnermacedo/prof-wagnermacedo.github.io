@@ -8,7 +8,6 @@ $(function () {
         const dataHi = this.getAttribute('data-hi');
 
         $(this).find('pre > code')
-            .contents().unwrap().parent()
             .on('afterlining', function () {
                 this.removeAttribute('data-lining');
                 this.innerHTML = this.innerHTML.replace(/\r\n|[\r\n]$/, '');

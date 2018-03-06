@@ -708,25 +708,25 @@ Agora faça uso desse arquivo, adicionando a seguinte tag `<script>` no final de
 Para o quadrado marcado, usamos como referência o valor do `innerText` dos elementos `<button>`. Já para o
 jogo terminado, utilizaremos outra abordagem.
 
-Vamos adicionar um novo atributo HTML à tag `<form>` chamado `data-finished`{:.nowrap}, onde:
+Vamos adicionar um novo atributo HTML à tag `<form>` chamado `data-locked`{:.nowrap}, onde:
 
-1. Se `<form data-finished="false">` ou não tiver o atributo, o clique estará habilitado.
-2. Se `<form data-finished="true">`, jogo encerrado, qualquer clique estará desabilitado.
+1. Se `<form data-locked="false">` ou não tiver o atributo, o clique estará habilitado.
+2. Se `<form data-locked="true">`, jogo encerrado, qualquer clique estará desabilitado.
 
-Modifique o arquivo `Board.tag` para receber o atributo `${finished}` e preencher o atributo HTML.
+Modifique o arquivo `Board.tag` para receber o atributo `${locked}` e preencher o atributo HTML.
 
 {: data-hi="3-4,10" data-caption="Board.tag" }
 ```
 <%@tag description="O tabuleiro do jogo" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 
 <%-- A lista de atributos dessa tag --%>
-<%@attribute name="finished" %>
+<%@attribute name="locked" %>
 
 <%-- Outras tags requeridas para funcionar --%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <%-- O conteúdo é especificado aqui --%>
-<form data-finished="${finished}">
+<form data-locked="${locked}">
 <div>
     <div class="board-row">
         <t:Square value="0" />
@@ -735,13 +735,13 @@ Modifique o arquivo `Board.tag` para receber o atributo `${finished}` e preenche
     </div>
 ```
 
-Em seguida, modifique `Game.tag` para indicar se o jogo está terminado (`finished`) em `<t:Board/>`:
+Em seguida, modifique `Game.tag` para indicar se o jogo está terminado (`locked`) em `<t:Board/>`:
 
 {: data-hi="3" data-caption="Game.tag" }
 ```
 <div class="game">
     <div class="game-board">
-        <t:Board finished="${game.winner != ' '}" />
+        <t:Board locked="${game.winner != ' '}" />
     </div>
     <div class="game-info">
         <div>${status}</div>
@@ -750,7 +750,7 @@ Em seguida, modifique `Game.tag` para indicar se o jogo está terminado (`finish
 </div>
 ```
 
-Se executar a aplicação e olhar o código-fonte no browser, irá perceber que o atributo `data-finished`{:.nowrap} receberá `true`
+Se executar a aplicação e olhar o código-fonte no browser, irá perceber que o atributo `data-locked`{:.nowrap} receberá `true`
 quando houver um ganhador, mas ainda não estará bloqueando cliques nos quadrados vazios. Para isso, adicione ao arquivo
 JavaScript `game.js` o seguinte código:
 
@@ -764,7 +764,7 @@ $('.square').click(function (event) {
 });
 
 // Não submete o formulário se já houver um vencedor
-$('form[data-finished="true"]').submit(function (event) {
+$('form[data-locked="true"]').submit(function (event) {
     event.preventDefault();
 });
 ```
@@ -781,7 +781,7 @@ Modifique o arquivo `Board.tag` para alterar o método de envio do formulário:
 {: data-hi="2" data-caption="Board.tag" }
 ```
 <%-- O conteúdo é especificado aqui --%>
-<form method="post" data-finished="${finished}">
+<form method="post" data-locked="${locked}">
 <div>
     <div class="board-row">
         <t:Square value="0" />

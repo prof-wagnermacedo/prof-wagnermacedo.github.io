@@ -56,3 +56,8 @@ dias 15, 20 e 22 de março.
 | Aluno responsável               | Data da apresentação |
 |---------------------------------|----------------------|
 | Randson Nunes dos Santos Franca | 22/03/2018           |
+
+<style>
+.main-content { counter-reset: paper-counter; }
+.main-content > h2:before { content: counter(paper-counter); counter-increment: paper-counter; font-weight: bold; margin-right: 0.5em; }
+</style>

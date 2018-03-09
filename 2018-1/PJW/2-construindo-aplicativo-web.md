@@ -279,9 +279,6 @@ Vamos resolver isso, crie um novo arquivo `index.jsp` com o seguinte conteúdo:
 <jsp:forward page="/play-game" />
 ```
 
-{% include warning-mode.html %}
-{% if jekyll.environment != 'production' %}
-
 ## Estrutura de dados mais adequada
 
 O tipo `Map` é genérico demais para armazenar o tabuleiro. De forma a utilizar melhor os recursos do servidor, vamos
@@ -822,6 +819,9 @@ public class GameServlet extends HttpServlet {
 
     private static GameApp getGame(HttpServletRequest request) {
 ```
+
+{% include warning-mode.html %}
+{% if jekyll.environment != 'production' %}
 
 {% endif %}
 

@@ -68,13 +68,13 @@ part: 1
     <img class="stretch borderless" src="../../assets/images/webdev/internet-web.png">
   </section>
 
-  <section id="web-estrada">
+  <section id="web-como-estrada">
     <h3>A web é como uma estrada</h3>
 
     <img class="stretch" src="../../assets/images/estrada.jpg">
   </section>
 
-  <section id="acessar-web" data-background="#674ea7">
+  <section id="estrada-web-explicacao" data-background="#674ea7">
     <h4>A estrada da web</h4>
 
     <dl>
@@ -116,8 +116,10 @@ part: 1
       <a data-link>
         <img src="../../assets/images/webdev/client-server-approach.png">
       </a>
+    </dialog>
 
-      <table class="neat">
+    <aside class="notes">
+      <table border="1" class="neat">
         <tr>
           <th width="1%"></th>
           <th>O que o browser faz</th><th width="29%">Analogia</th>
@@ -148,7 +150,13 @@ part: 1
           <td>Pedido chega na sua casa</td>
         </tr>
       </table>
-    </dialog>
+    </aside>
+
+    <script>
+        const $webAnalogia = $('#web-analogia');
+        const notes = $webAnalogia.find('.notes').html();
+        $webAnalogia.find('dialog').append(notes);
+    </script>
   </section>
 
   <section id="webserver-mordomo">
@@ -199,44 +207,47 @@ part: 1
 </section>
 
 <section id="sec-websites">
-  <section id="estatico-dinamico" data-background="#fff">
+  <section id="estatico-dinamico" data-background-color="#99ebff">
     <h2>Websites</h2>
 
-    <dl class="neat">
-      <dt>Sites Estáticos</dt>
-      <dd>Fornece o conteúdo de arquivos hospedados.</dd>
-      <dd>Não há interação com o cliente.</dd>
-
-      <dt>Sites Dinâmicos</dt>
-      <dd>Fornece a saída gerada por um programa.</dd>
-      <dd>Sofrem alterações em determinadas condições.</dd>
-    </dl>
-  </section>
-
-  <section id="estatico-dinamico-2">
     <table>
       <thead>
       <tr>
-        <th style="width: 50%">Estático</th>
-        <th style="width: 50%">Dinâmico</th>
+        <th width="50%">Sites Estáticos</th>
+        <th width="50%">Sites Dinâmicos</th>
       </tr>
       </thead>
-      <tbody style="font-size: 0.6em">
-      <tr>
-        <td>O conteúdo, criado previamente, é o mesmo toda vez que a página é carregada.</td>
-        <td>O conteúdo é gerado "na hora" e muda regularmente.</td>
+      <tbody style="font-size: .8em">
+      <tr class="fragment">
+        <td>Conteúdo de arquivos hospedados</td>
+        <td>Conteúdo gerado por um programa</td>
       </tr>
-      <tr>
-        <td>O conteúdo só muda quando alguém atualiza os arquivos hospedados no servidor.</td>
-        <td>A página contém código no lado servidor, o que permite gerar conteúdo diferente a cada requisição.</td>
+      <tr class="fragment">
+        <td>Conteúdo sempre o mesmo</td>
+        <td>Diferente em certas condições</td>
       </tr>
-      <tr>
-        <td>Código HTML+CSS+JavaScript</td>
-        <td>PHP, ASP.NET, JSP, Ruby, Java.<br>
-            Pode acessar banco de dados.</td>
+      <tr class="fragment">
+        <td>HTML, CSS e JavaScript</td>
+        <td>PHP, Ruby, Python, C++, etc</td>
+      </tr>
+      <tr class="fragment">
+        <td>Acessa somente dados do computador do cliente</td>
+        <td>Pode acessar sistemas de banco de dados</td>
       </tr>
       </tbody>
     </table>
+
+    <dl class="neat" style="display: none">
+      <dt>Sites Estáticos</dt>
+      <dd>Fornece o conteúdo de arquivos hospedados.</dd>
+      <dd>Não há interação com o cliente.</dd>
+      <dd>HTML / CSS / JavaScript</dd>
+
+      <dt>Sites Dinâmicos</dt>
+      <dd>Fornece a saída gerada por um programa.</dd>
+      <dd>Conteúdo diferente em determinadas condições.</dd>
+      <dd>PHP / Ruby / Python / ASP.NET / Java</dd>
+    </dl>
   </section>
 
   <section id="estatico-avaliacao" data-background="#1de9b6">
@@ -269,7 +280,13 @@ part: 1
     </div>
   </section>
 
-  <section id="dinamico-avaliacao" data-background="#39CCCC">
+  <section id="servidor-estatico" data-background="#fff">
+    <h3>Servidor web estático</h3>
+
+    <object data="../../assets/images/webdev/servidor-web-estatico.svg"></object>
+  </section>
+
+  <section id="dinamico-avaliacao" data-background="#e8cfff">
     <h3>Sites Dinâmicos</h3>
 
     <div class="columns">
@@ -297,12 +314,6 @@ part: 1
         </dl>
       </div>
     </div>
-  </section>
-
-  <section id="servidor-estatico" data-background="#fff">
-    <h3>Servidor web estático</h3>
-
-    <object data="../../assets/images/webdev/servidor-web-estatico.svg"></object>
   </section>
 
   <section id="servidor-dinamico" data-background="#fff">
@@ -523,7 +534,7 @@ part: 1
 
             Nos cabeçalhos têm a data em que enviei a resposta, o tipo do conteúdo e quem sou eu.
 
-            A resposta inclui o conteúdo da página que você , iniciando por **`&lt;!DOCTYPE html&gt;`**.&rdquo;
+            A resposta inclui o conteúdo da página que você pediu, iniciando por **`&lt;!DOCTYPE html&gt;`**.&rdquo;
           </div>
         </div>
       </div>
@@ -532,7 +543,7 @@ part: 1
 
   <section id="pratica-http" data-background="#002e58">
     <div data-markdown>
-    #### Prática HTTP
+    ### Prática HTTP
 
     1. Inicie o cliente HTTP **Insomnia**.
     2. Pressione **Ctrl+N** para criar uma requisição.
@@ -673,9 +684,9 @@ part: 1
     </style>
   </section>
 
-  <section id="cabecalhos-requisicao-http"
+  <section id="elementos-requisicao-http"
            data-background="#fff" style="font-size: 0.9em">
-    <h3>Cabeçalhos de requisição importantes</h3>
+    <h3>Elementos da requisição HTTP</h3>
 
     <div style="font-size: 0.9em">
       <div class="columns">
@@ -691,15 +702,16 @@ part: 1
           If-Modified-Since: Sat, 07 Aug 2017 21:18:31 GMT
           &nbsp;
         </code></pre>
-        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.75">
-          <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
-            <span class="fragment">↔️ O nome do servidor desejado</span>
-            <span class="fragment">↔️ Uma string que identifica o browser.</span>
+        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.75"
+          ><code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+            <span class="fragment">↔️ Linha de requisição (método/caminho/versão)</span>
+            <span class="fragment">↔️ O servidor desejado</span>
+            <span class="fragment">↔️ A identificação do browser</span>
             <span class="fragment">↔️ O tipo de conteúdo esperado pelo browser</span>
             <span class="fragment">↔️ A codificação de caracteres esperada</span>
             <span class="fragment">↔️ O idioma esperado pelo browser</span>
             <span class="fragment">↔️ O browser envia os cookies armazenados</span>
-            <span class="fragment">↔️ Browser envia site que originou a requisição.</span>
+            <span class="fragment">↔️ Browser envia site que originou a requisição</span>
             <span class="fragment">↔️ Faz uma requisição condicional</span>
           </code></pre>
       </div>
@@ -724,6 +736,9 @@ part: 1
             <span></span>
             <span class="fragment">↔️ O tipo de conteúdo do corpo da requisição</span>
             <span class="fragment">↔️ O tamanho em bytes do corpo da requisição</span>
+            <span></span>
+            <span></span>
+            <span class="fragment">🔵️ O corpo da requisição</span>
           </code></pre>
       </div>
     </div>
@@ -744,16 +759,8 @@ part: 1
     <img src="../../assets/images/errors/403.png" class="stretch">
   </section>
 
-  <section id="error-404-v2" data-background="#fff" data-autoslide="5000">
-    <img src="../../assets/images/errors/404.png" class="stretch">
-  </section>
-
   <section id="error-500" data-background="#fff" data-autoslide="5000">
     <img src="../../assets/images/errors/500.png" class="stretch">
-  </section>
-
-  <section id="error-404-github" data-background="#fff">
-    <img src="../../assets/images/errors/404-github.png" class="stretch">
   </section>
 
   <section id="codigos-estado-http">
@@ -855,9 +862,9 @@ part: 1
     </dl>
   </section>
 
-  <section id="cabecalhos-resposta-http"
+  <section id="elementos-resposta-http"
            data-background="#fff" style="font-size: 0.9em">
-    <h3>Cabeçalhos de resposta importantes</h3>
+    <h3>Elementos da resposta HTTP</h3>
 
     <div style="font-size: 0.9em">
       <div class="columns">
@@ -872,12 +879,17 @@ part: 1
           &lt;html lang=&quot;pt-BR&quot;&gt;
           &hellip;
         </code></pre>
-        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.95">
-          <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.95"
+          ><code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+            <span class="fragment">↔ Código de estado da resposta</span>
             <span class="fragment">↔️ O tipo de conteúdo do corpo da resposta</span>
             <span class="fragment">↔️ O tamanho em bytes do corpo da resposta</span>
             <span class="fragment">↔️ O servidor envia cookies para o browser armazenar</span>
             <span class="fragment">↔️ O servidor indicando para o cliente fazer cache</span>
+            <span></span>
+            <span class="fragment">🔵️ Início do corpo da resposta
+            🔵
+            🔵</span>
           </code></pre>
       </div>
       <div class="columns">
@@ -906,12 +918,6 @@ part: 1
     <h3>Negociação de Conteúdo</h3>
 
     <object data="../../assets/images/webdev/negociacao-de-conteudo.svg" class="stretch"></object>
-
-    <a href="http://blog.claudson.com.br/2014/08/12/entendendo-uma-negociacao-de-conteudo-via-cartas/"
-       title="Uma forma bem humorada de explicar a negociação de conteúdo"
-       target="_blank" class="blank">
-      Entendendo a negociacao de conteúdo via cartas
-    </a>
   </section>
 
   <section id="mime-type">
@@ -941,26 +947,26 @@ part: 1
         </code></pre>
       </div>
     </div>
-
-    <dl class="sites" style="font-size: 0.9em">
-      <dd><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types">
-        Leitura recomendada</a></dd>
-    </dl>
   </section>
 </section>
 
 <section id="veja-mais-http">
   <h3>Leitura recomendada 🔖</h3>
 
-  <dl class="sites">
-    <dt>Métodos HTTP</dt>
+  <dl class="sites" style="font-size: .85em">
     <dd><a href="http://gabsferreira.com/os-metodos-http-e-a-diferenca-entre-eles/">
       Os métodos HTTP: quais são e pra que servem</a></dd>
     <dd><a href="http://www.devfuria.com.br/php/como-funcionam-os-metodos-get-e-post/">
       Como funcionam os métodos GET e POST</a></dd>
     <dd><a
-        href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP">
+        href="https://pt.wikipedia.org/wiki/Lista_de_códigos_de_estado_HTTP">
       Lista de códigos de estado HTTP</a></dd>
+    <dd><a href="http://blog.claudson.com.br/2014/08/12/entendendo-uma-negociacao-de-conteudo-via-cartas/"
+           title="Uma forma bem humorada de explicar a negociação de conteúdo">
+      Entendendo uma negociacao de conteúdo via cartas
+    </a></dd>
+    <dd><a href="https://developer.mozilla.org/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types">
+      MIME types</a></dd>
     <!--
     <dd><a href="http://blog.alura.com.br/metodos_de_requisicao_do_http/">
       Métodos de requisição do HTTP</a></dd>

@@ -743,6 +743,64 @@ part: 1
       </div>
     </div>
   </section>
+
+  <section id="leitura-requisicao">
+    <h3>Leitura da Requisição em Java</h3>
+
+    <pre><code data-trim data-noescape class="java" style="max-height: 25em">
+      protected void <span data-method>doGet</span>(<span data-args>HttpServletRequest request, HttpServletResponse response</span>) {
+          // Método da requisição: "GET", "POST", etc.
+          String metodo = <span step="0" rel="keep">request.getMethod()</span>;
+
+          // URI da requisição
+          String uri = <span step="1" rel="keep">request.getRequestURI()</span>;
+
+          // Query string, se houver
+          String queryString = <span step="2" rel="keep">request.getQueryString()</span>;
+
+          // Cabeçalhos
+          String host       = <span step="3" rel="keep">request.getHeader("Host")</span>;
+          String userAgent  = <span step="3" rel="keep">request.getHeader("User-Agent")</span>;
+          String accept     = <span step="3" rel="keep">request.getHeader("Accept")</span>;
+          String acceptLang = <span step="3" rel="keep">request.getHeader("Accept-Language")</span>;
+          String cookie     = <span step="3" rel="keep">request.getHeader("Cookie")</span>;
+
+          // Corpo da requisição
+          BufferedReader reader = <span step="4">request.getReader()</span>;
+      }
+    </code></pre>
+
+    <script>
+        setTimeout(() => {
+            $('#leitura-requisicao')
+                .find('[data-args]')
+                .css({
+                    display: 'inline-block',
+                    width: '20em',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    verticalAlign: 'bottom',
+                })
+                .parent()
+                .find('[data-method]')
+                .each(function () {
+                    let el = this;
+                    while (true) {
+                        const child = el.firstElementChild;
+                        if (child)
+                            el = child;
+                        else
+                            break;
+                    }
+
+                    setInterval(
+                        () => el.innerText = (el.innerText === 'doGet') ? 'doPost' : 'doGet',
+                        2000
+                    );
+                });
+        }, 2000);
+    </script>
+  </section>
 </section>
 
 <section id="sec-resposta-http">
@@ -910,6 +968,56 @@ part: 1
           </code></pre>
       </div>
     </div>
+  </section>
+
+  <section id="escrita-resposta" class="expire-header">
+    <h3>Escrita da Resposta em Java</h3>
+
+    <pre style="width: 93%"><code data-trim data-noescape class="java">
+      // Código de Estado
+      <span step="0" rel="keep">response.setStatus(200);</span>
+
+      // Cabeçalhos da resposta
+      <span step="1" rel="keep">response.setHeader("Content-Type", "text/html");
+      response.setHeader("Content-Language", "pt-BR");
+      response.setHeader("Content-Length", "37");
+      response.setHeader("Set-Cookie", "Variant=1; Theme=blue;");
+      response.setHeader("Expires", "Fri, 25 Aug 2017 13:45:42 GMT");</span>
+
+      // Corpo da resposta
+      PrintWriter out = <span step="2" rel="keep">response.getWriter()</span>;
+      out.println("&lt;html&gt;&lt;body&gt;Hello World&lt;/body&gt;&lt;/html&gt;");
+    </code></pre>
+  </section>
+
+  <section id="cabecalhos-antes" data-background="#d23f31">
+    <p>O código abaixo <em>pode</em> não funcionar!</p>
+
+    <pre><code data-trim data-noescape class="java">
+      <span step="0" rel="keep">PrintWriter conteudo = response.getWriter();
+      conteudo.println("&lt;html&gt;&lt;body&gt;Exemplo&lt;/body&gt;&lt;/html&gt;");</span>
+
+      response.setStatus(200);
+      response.setHeader("Content-Type", "text/html");
+      response.setHeader("Content-Language", "pt-BR");
+    </code></pre>
+
+    <p class="fragment" data-fragment-index="0">
+      O código de estado e os cabeçalhos são enviados para o cliente <em>antes</em> do corpo da resposta.
+    </p>
+  </section>
+
+  <section id="paginas-erro">
+    <h4>Páginas de Erro</h4>
+
+    <p>O método <em>sendError</em> emite uma página de erro.</p>
+
+    <pre><code data-trim class="java">
+      response.sendError(400);
+    </code></pre>
+
+    <iframe src="../../assets/examples/tomcat-senderror-400.html" frameborder="0" width="45%" height="195px"></iframe>
+    <iframe src="../../assets/examples/jetty-senderror-400.html" frameborder="0" width="45%" height="195px"></iframe>
   </section>
 </section>
 

@@ -1058,6 +1058,122 @@ part: 1
   </section>
 </section>
 
+<section id="sec-redirecionamento">
+  <section id="redirecionamento-http" data-background="#fff">
+    <h2>Redirecionamento HTTP</h2>
+    <img src="../../assets/images/webdev/redirecionamento-http.svg" class="borderless stretch">
+  </section>
+
+  <section id="codigos-redirecionamento" data-background="#fff">
+    <h3>Principais Códigos de Redirecionamento</h3>
+
+    <dl style="font-size: 0.85em">
+      <dt>301 Moved Permanently (Movido Permanentemente)</dt>
+      <dd>Esta requisição e as próximas devem ir para uma dada URI.</dd>
+
+      <dt>302 Found (Encontrado)</dt>
+      <dd>O site foi movido temporariamente para uma dada URI.</dd>
+
+      <dt>303 See Other (Veja Outro)</dt>
+      <dd>Semelhante ao código 302.</dd>
+
+      <dt>304 Not Modified (Não Modificado)</dt>
+      <dd>
+        Redirecionamento para o cache local do browser.
+      </dd>
+
+      <dt>307 Temporary Redirect (Redirecionamento Temporário)</dt>
+      <dd>Semelhante ao código 302.</dd>
+    </dl>
+  </section>
+
+  <section id="redirecionamento-wikipedia">
+    <p>Se o lado servidor da Wikipédia fosse em Java, provavelmente teria o seguinte código.</p>
+
+    <pre><code data-trim class="java">
+      response.setStatus(301);
+      response.setHeader("Location", "https://www.wikipedia.org/");
+    </code></pre>
+  </section>
+
+  <section id="atalho-redirecionamento">
+    <p>Atalho em Java para redirecionar</p>
+
+    <pre><code data-trim class="java">
+      response.sendRedirect("https://www.wikipedia.org/");
+    </code></pre>
+  </section>
+</section>
+
+<section id="sec-cache-lado-cliente">
+  <section id="cache-http">
+    <h2>Cache HTTP</h2>
+    <video data-src="https://media.giphy.com/media/yQQDJUtbPpOsE/giphy.mp4" data-autoplay loop></video>
+    <p>O protocolo HTTP especifica que o conteúdo da resposta do método GET pode ser mantido em cache.</p>
+  </section>
+
+  <section id="processo-cache" data-background="#614ba6">
+    <h3>Processo de Cache do Lado Cliente</h3>
+
+    <div class="columns">
+      <div class="col">
+        <ol start="1">
+          <li>Cliente faz a primeira requisição:</li></ol>
+        <pre><code data-trim class="http">
+        GET /index.html HTTP/1.1
+        Host: www.exemplo.com.br
+        &hellip;
+      </code></pre>
+      </div>
+      <div class="col">
+        <ol start="2">
+          <li>Servidor dá uma resposta normal:</li></ol>
+        <pre><code data-trim class="http">
+        HTTP/1.1 200 OK
+        Last-Modified: Fri, 25 Aug 2017 21:15:59 GMT
+        &hellip;
+      </code></pre>
+      </div>
+    </div>
+
+    <div>
+      <ol start="3">
+        <li>Nas próximas requisições, cliente se refere à data da última modificação:
+
+          <pre><code data-trim class="http">
+            GET /index.html HTTP/1.1
+            Host: www.exemplo.com.br
+            If-Modified-Since: Fri, 25 Aug 2017 21:15:59 GMT
+            &hellip;
+          </code></pre>
+        </li>
+        <li>Caso o recurso não tenha sido modificado, retorna código 304.
+
+          <pre><code data-trim class="http">
+            HTTP/1.1 304 Not Modified
+            &hellip;
+          </code></pre>
+        </li></ol>
+
+      <p>
+        Se houve modificações, teremos uma nova resposta de código 200, a
+        <span class="fragment highlight-green"><b>data&nbsp;de&nbsp;modificação&nbsp;atualizada</b></span>,
+        o ciclo reinicia!
+      </p>
+    </div>
+
+    <style>
+      #processo-cache > div {
+        font-size: 0.7em;
+      }
+
+      #processo-cache .col pre {
+        width: 93%;
+      }
+    </style>
+  </section>
+</section>
+
 <section id="veja-mais-http">
   <h3>Leitura recomendada 🔖</h3>
 

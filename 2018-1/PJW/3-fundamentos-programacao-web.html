@@ -1,0 +1,969 @@
+---
+title: Fundamentos da programação web
+layout: reveal-js
+date: 2018-03-12 19:00
+part: 1
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Programação Java para Web</h2>
+  <h3>Prof. Wagner Macedo</h3></section>
+
+<section id="agenda" data-markdown>
+  <div data-template>
+    ## Programação web
+
+    - [As linguagens da web](#linguagens-da-web)
+    - [Conteúdo estático e dinâmico](#sec-websites)
+    - [Lado cliente e lado servidor](#sec-programacao-web)
+    - [O protocolo HTTP](#sec-http)
+  </div>
+</section>
+
+<section id="linguagens-da-web" data-background="#fff">
+  <h2>As linguagens da web</h2>
+
+  <img class="borderless" src="../../assets/images/webdev/web-cake.png">
+</section>
+
+<section id="html-5">
+  <h2>HTML 5</h2>
+  <p>Não precisa ser a versão 5, mas é melhor 😄</p></section>
+
+<section id="css">
+  <h2>CSS</h2>
+  <video data-src="https://media.giphy.com/media/JsQpcSU2l5NdK/giphy.mp4" data-autoplay loop></video>
+  <p>O estilista da web</p></section>
+
+<section id="sec-js">
+  <section id="javascript">
+    <h2>JavaScript</h2>
+    <video data-src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.mp4" data-autoplay loop onplay="this.playbackRate=.3"></video>
+    <p>A linguagem de programação da Web</p>
+  </section>
+
+  <section id="js-nao-e-java" data-background="#f7df1e">
+    <h3>JavaScript não é Java</h3>
+    <blockquote>Não confunda 😉</blockquote>
+  </section>
+
+  <section id="browser-e-javascript" data-background-color="#fff">
+    <h4>Navegador e o JavaScript</h4>
+    <object data="../../assets/images/webdev/browser-javascript.png"></object>
+  </section>
+</section>
+
+<section id="sec-web">
+  <section id="como-web-funciona"
+           data-background-color="#222"
+           data-background-video="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.mp4"
+           data-background-video-loop>
+    <h2>Como a web funciona</h2>
+  </section>
+
+  <section id="internet-e-web" data-background="#fff">
+    <h3>A Internet e a World Wide Web</h3>
+
+    <img class="stretch borderless" src="../../assets/images/webdev/internet-web.png">
+  </section>
+
+  <section id="web-estrada">
+    <h3>A web é como uma estrada</h3>
+
+    <img class="stretch" src="../../assets/images/estrada.jpg">
+  </section>
+
+  <section id="acessar-web" data-background="#674ea7">
+    <h4>A estrada da web</h4>
+
+    <dl>
+      <dt>Sua conexão de Internet</dt>
+      <dd>A rua entre sua casa e uma loja.</dd>
+
+      <dt>TCP/IP</dt>
+      <dd>Os mecanismos de transporte para contatar a loja.</dd>
+
+      <dt>DNS</dt>
+      <dd>Quando você procura o endereço e o telefone da loja.</dd>
+
+      <dt>HTTP</dt>
+      <dd>O idioma que você usa para falar com o atendente.</dd>
+
+      <dt>Arquivos do site</dt>
+      <dd>São os produtos oferecidos pela loja.</dd>
+    </dl>
+
+    <style>
+      #acessar-web dd {
+        font-size: 0.85em;
+      }
+    </style>
+  </section>
+
+  <section id="comunicacao-real" data-background="#fff">
+    <h3>A comunicação na prática</h3>
+
+    <img class="borderless stretch" src="../../assets/images/webdev/protocol-stack.svg">
+  </section>
+
+  <section id="web-analogia">
+    <p style="font-size: 0.8em">
+      O que acontece quando você digita um endereço no browser?
+    </p>
+
+    <dialog>
+      <a data-link>
+        <img src="../../assets/images/webdev/client-server-approach.png">
+      </a>
+
+      <table class="neat">
+        <tr>
+          <th width="1%"></th>
+          <th>O que o browser faz</th><th width="29%">Analogia</th>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>Contata o servidor DNS e encontra o verdadeiro endereço do site.</td>
+          <td>Você encontra os detalhes de contato da loja.</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>Manda uma mensagem de requisição HTTP para o servidor web pedindo para enviar a cópia do site.</td>
+          <td>Você liga para a loja e faz seu pedido.</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>
+            No momento que o servidor aprova a requisição do cliente, o servidor manda ao cliente a mensagem
+            <strong>200&nbsp;OK</strong>, que significa <strong>"Claro que você pode ver esse site! Aqui está"</strong>,
+            e começa a enviar os arquivos do site para o browser em uma série de pequenos pedaços chamados pacotes de
+            dados.
+          </td>
+          <td>A loja envia seu pedido.</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>O browser monta os pequenos pedaços em um site completo e lhe mostra.</td>
+          <td>Pedido chega na sua casa</td>
+        </tr>
+      </table>
+    </dialog>
+  </section>
+
+  <section id="webserver-mordomo">
+    <p>O servidor web é como um mordomo</p>
+    <video data-src="https://media.giphy.com/media/EGV3avFlz7PcQ/giphy.mp4" data-autoplay loop onplay="this.playbackRate=.8"></video>
+  </section>
+
+  <section id="ip-portas">
+    <h4>
+      <a href="http://meuip.co/" target="_blank" title="Veja o seu IP">
+        Endereço IP</a> e Portas
+    </h4>
+    <embed class="stretch" src="../../assets/images/endereco-pessoa-ip-porta.svg" type="image/svg+xml"></embed>
+  </section>
+
+  <section id="portas-conhecidas" data-background="#fff">
+    <h5>Portas conhecidas</h5>
+
+    <table class="neat">
+      <tr>
+        <td>HTTP<td>80
+      <tr>
+        <td>HTTPS<td>443
+      <tr>
+        <td>FTP<td>21
+      <tr>
+        <td>SMTP<td>25
+      <tr>
+        <td>SSH<td>22
+    </table>
+  </section>
+
+  <section id="veja-mais-web">
+    <h3>Veja mais 🔖</h3>
+
+    <dl class="sites">
+      <dd>
+        <a href="https://developer.mozilla.org/pt-BR/docs/Aprender/Getting_started_with_the_web/Como_a_Web_funciona">
+          Como a Web funciona</a>
+      </dd>
+      <dd>
+        <a href="http://pensandonaweb.com.br/como-funciona-a-internet-e-a-world-wide-web/">
+          Como funciona a Internet e a World Wide Web
+        </a>
+      </dd>
+    </dl>
+  </section>
+</section>
+
+<section id="sec-websites">
+  <section id="estatico-dinamico" data-background="#fff">
+    <h2>Websites</h2>
+
+    <dl class="neat">
+      <dt>Sites Estáticos</dt>
+      <dd>Fornece o conteúdo de arquivos hospedados.</dd>
+      <dd>Não há interação com o cliente.</dd>
+
+      <dt>Sites Dinâmicos</dt>
+      <dd>Fornece a saída gerada por um programa.</dd>
+      <dd>Sofrem alterações em determinadas condições.</dd>
+    </dl>
+  </section>
+
+  <section id="estatico-dinamico-2">
+    <table>
+      <thead>
+      <tr>
+        <th style="width: 50%">Estático</th>
+        <th style="width: 50%">Dinâmico</th>
+      </tr>
+      </thead>
+      <tbody style="font-size: 0.6em">
+      <tr>
+        <td>O conteúdo, criado previamente, é o mesmo toda vez que a página é carregada.</td>
+        <td>O conteúdo é gerado "na hora" e muda regularmente.</td>
+      </tr>
+      <tr>
+        <td>O conteúdo só muda quando alguém atualiza os arquivos hospedados no servidor.</td>
+        <td>A página contém código no lado servidor, o que permite gerar conteúdo diferente a cada requisição.</td>
+      </tr>
+      <tr>
+        <td>Código HTML+CSS+JavaScript</td>
+        <td>PHP, ASP.NET, JSP, Ruby, Java.<br>
+            Pode acessar banco de dados.</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="estatico-avaliacao" data-background="#1de9b6">
+    <h3>Sites Estáticos</h3>
+
+    <div class="columns">
+      <div class="col">
+        <dl>
+          <dt>Vantagens 👍</dt>
+          <dd style="margin-left: 0; font-size: 0.85em">
+            <ul>
+              <li>Fácil de criar</li>
+              <li>Hospedagem barata</li>
+              <li>Custo baixo</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="col">
+        <dl>
+          <dt>Desvantagens 👎</dt>
+          <dd style="margin-left: 0; font-size: 0.85em">
+            <ul>
+              <li>Requer desenvolvedor web para atualizar site</li>
+              <li>Funcionalidades limitadas</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="dinamico-avaliacao" data-background="#39CCCC">
+    <h3>Sites Dinâmicos</h3>
+
+    <div class="columns">
+      <div class="col">
+        <dl>
+          <dt>Vantagens 👍</dt>
+          <dd style="margin-left: 0; font-size: 0.85em">
+            <ul>
+              <li>Não requer desenvolvedor para atualizar o site</li>
+              <li>Funcionalidades de acordo com a necessidade</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="col">
+        <dl>
+          <dt>Desvantagens 👎</dt>
+          <dd style="margin-left: 0; font-size: 0.85em">
+            <ul>
+              <li>Difícil de criar</li>
+              <li>Hospedagem mais cara</li>
+              <li>Custo mais alto</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="servidor-estatico" data-background="#fff">
+    <h3>Servidor web estático</h3>
+
+    <object data="../../assets/images/webdev/servidor-web-estatico.svg"></object>
+  </section>
+
+  <section id="servidor-dinamico" data-background="#fff">
+    <h3>Servidor web dinâmico</h3>
+
+    <embed src="../../assets/images/webdev/servidor-web-dinamico.svg" type="image/svg+xml">
+  </section>
+</section>
+
+<section id="sec-programacao-web">
+  <section id="lado-cliente-lado-servidor">
+    <h2><span style="font-size: 0.95em">Lado cliente vs Lado servidor</span></h2>
+
+    <p>
+      A <strong>programação web</strong> acontece em códigos relevantes para o
+      cliente e códigos relevantes para o servidor.
+    </p>
+    <span style="border: 2px dashed; border-radius: 0.5em; padding: 5px; display: inline-block">
+      👆 websites dinâmicos
+    </span>
+  </section>
+
+  <section id="lado-cliente-lado-servidor-2" data-background="linear-gradient(90deg, #0074D9 51%, #ff5c26 50%)">
+    <div class="columns">
+      <div class="col">
+        <dl>
+          <dt>Lado Cliente</dt>
+          <dd style="margin-left: 0">
+            <ul>
+              <li class="fragment">HTML+CSS+JavaScript</li>
+              <li class="fragment">O código é executado no navegador</li>
+              <li class="fragment">Acesso ao ambiente do navegador</li>
+              <li class="fragment">Incompatibilidades entre navegadores 😠</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="col">
+        <dl>
+          <dt>Lado Servidor</dt>
+          <dd style="margin-left: 0">
+            <ul>
+              <li class="fragment">Qualquer linguagem pronta para web</li>
+              <li class="fragment">O código é executado no servidor</li>
+              <li class="fragment">Acesso a recursos no servidor e em outros servidores 😁</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="ilustracao-cliente-servidor" data-background="#fff">
+    <a href="http://www.devfuria.com.br/php/como-funcionam-os-metodos-get-e-post/" title="Fonte: DevFuria">
+      <img src="../../assets/images/webdev/cliente-servidor-http.png" width="90%">
+    </a>
+  </section>
+
+  <section id="frontend-backend">
+    <h3>Frontend vs Backend</h3>
+    <object data="http://i.imgur.com/2aqRxQC.png"
+            style="width: 45%; margin-right: 1%"></object>
+    <object data="http://image-store.slidesharecdn.com/84b77e07-d643-443c-bd13-582b18b05804-original.png"
+            style="width: 45%"></object>
+  </section>
+
+  <section id="frontend">
+    <h4>Frontend</h4>
+    <a href="https://www.freelancermap.com/freelancer-tips/pt/11252-6-habilidades-necess-rias-para-se-tornar-um-desenvolvedor-front-end">
+      <img src="../../assets/images/webdev/habilidades-frontend.jpg" style="width: 90%">
+    </a>
+  </section>
+
+  <section id="backend">
+    <h4>Backend</h4>
+    <img src="../../assets/images/webdev/backend.jpg" style="width: 90%">
+  </section>
+
+  <section id="full-stack"
+           data-background-color="#CCE4E5"
+           data-background-image="../../assets/images/webdev/vaga-full-stack.png"
+           data-background-size="contain"></section>
+</section>
+
+<section id="sec-http">
+  <section id="http" data-background="#4bc0fa">
+    <h2>HTTP</h2>
+
+    <p>
+      O protocolo dos navegadores e servidores web
+    </p>
+  </section>
+
+  <section id="http-em-um-paragrafo">
+    <blockquote>
+      O HTTP é o <span class="fragment highlight-blue">protocolo de comunicação</span> utilizado pelos
+      navegadores e servidores web.
+      Quando o navegador solicita uma página web é chamado de <strong>requisição</strong> e quando o
+      servidor web envia a página solicitada de volta é chamado de <strong>resposta</strong>.
+    </blockquote>
+  </section>
+
+  <section id="protocolo-de-comunicacao">
+    <p>O que é um protocolo de comunicação?</p>
+    <img class="stretch" src="../../assets/images/webdev/communication-protocol.png">
+  </section>
+
+  <section id="protocolos-nao-se-misturam" data-background="#fff">
+    <p>Protocolos não se misturam</p>
+    <embed src="../../assets/images/protocolos-misturados.svg" type="image/svg+xml">
+  </section>
+
+  <section id="caracteristicas-http">
+    <h3>Características de HTTP</h3>
+
+    <ul style="list-style: none; margin-left: 0">
+      <li>🔁 Requisição-Resposta</li>
+      <li>🖼️ Independente de mídia</li>
+      <li>📨 Sem estado</li>
+    </ul>
+  </section>
+
+  <section id="requisicao-resposta"
+           data-background-color="#fff"
+           data-background-image="../../assets/images/webdev/http-request-response.svg"
+           data-background-size="contain">
+  </section>
+
+  <section id="equivalencia-nomes" data-background="#fff">
+    <h4>Equivalência de Nomes</h4>
+
+    <table border="0"
+           style="font-size: 0.9em; background: linear-gradient(90deg, hsl(0,0%,67%) 55%, hsl(0,0%,75%) 45%); border-radius: 10px">
+      <tr style="border-bottom: 2px solid">
+        <th style="width: 55%">Português</th>
+        <th style="width: 45%"><em>Inglês</em></th>
+      </tr>
+      <tbody>
+      <tr>
+        <td>Requisição</td>
+        <td><em>Request</em></td>
+      </tr>
+      <tr style="border-bottom: 2px solid">
+        <td>Resposta</td>
+        <td><em>Response</em></td>
+      </tr>
+      <tr>
+        <td>Método</td>
+        <td><em>Method</em></td>
+      </tr>
+      <tr>
+        <td>Caminho</td>
+        <td><em>Path</em></td>
+      </tr>
+      <tr>
+        <td>Cabeçalhos</td>
+        <td><em>Headers</em></td>
+      </tr>
+      <tr>
+        <td>Conteúdo/Corpo</td>
+        <td><em>Content</em>/<em>Body</em></td>
+      </tr>
+      <tr>
+        <td>Código de estado</td>
+        <td><em>Status code</em></td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="requisicao-resposta-2" data-background="#003d74">
+    <div data-markdown>Para acessar http://portal.fanese.edu.br/?page_id=220</div>
+
+    <div class="columns" style="font-size: 0.75em">
+      <div class="col neat">
+        <div class="fragment" data-fragment-index="1">
+          <p>A requisição feita pelo cliente</p>
+
+          <pre><code data-trim class="lang-http">
+            GET /?page_id=220 HTTP/1.1
+            Host: portal.fanese.edu.br
+            &nbsp;
+          </code></pre>
+        </div>
+        <div class="fragment" data-fragment-index="3" style="font-size: 0.7em">
+          <div data-markdown style="text-align: left">
+            Explicando a requisição:
+
+            - **`GET`**: eu quero obter uma informação
+            - **`/?page_id=220`**: a informação desejada
+            - **`HTTP/1.1`**: estou me comunicando com o protocolo HTTP na versão 1.1
+            - **`Host`**: estou pedindo de um site específico
+            - **`portal.fanese.edu.br`**: o nome do site
+          </div>
+          <p>
+            <em>Esta requisição tem o conteúdo vazio!</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="col neat">
+        <div class="fragment" data-fragment-index="2">
+          <p>A resposta entregue pelo servidor</p>
+          <pre><code data-trim data-noescape class="lang-http">
+            HTTP/1.1 200 OK
+            Date: Mon, 31 Jul 2017 21:15:35 GMT
+            Content-Type: text/html;charset=UTF-8
+            Server: Apache
+
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang=&quot;pt-BR&quot;&gt;
+            &hellip;
+          </code></pre>
+          <div class="fragment" data-markdown
+               style="font-size: 0.67em; text-align: left">
+            O servidor diz &ldquo;eu também falo HTTP 1.1, sua requisição foi um sucesso,
+            então eu respondi com o código de estado **`200`**.
+
+            Nos cabeçalhos têm a data em que enviei a resposta, o tipo do conteúdo e quem sou eu.
+
+            A resposta inclui o conteúdo da página que você , iniciando por **`&lt;!DOCTYPE html&gt;`**.&rdquo;
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pratica-http" data-background="#002e58">
+    <div data-markdown>
+    #### Prática HTTP
+
+    1. Inicie o cliente HTTP **Insomnia**.
+    2. Pressione **Ctrl+N** para criar uma requisição.
+    2. Dê o nome que quiser e escolha a opção **GET**.
+    3. Insira um endereço web e clique em **Send**.
+    4. Observe na resposta da requisição
+      - **Status code** (provável 200 OK)
+      - **Headers** (os cabeçalhos)
+      - **Conteúdo** da página requisitada
+    </div>
+
+    <p data-markdown style="font-size: smaller">
+      Baixe o Insomnia em https://insomnia.rest/</p>
+  </section>
+
+  <section id="uri">
+    <h3>URI/URL</h3>
+
+    <video data-src="https://media.giphy.com/media/14u2C0jijzIxcA/giphy.mp4" data-autoplay loop></video>
+    <p>O identificador de endereços na Internet.</p>
+  </section>
+
+  <section id="exemplos-uri" data-background="#61dafb">
+    <h4>Exemplos de URI/URL</h4>
+
+    <ul style="list-style: none">
+      <li><strong>https:</strong>//www.facebook.com/zuck</li>
+      <li><strong>ftp:</strong>//ftp.uhserver.com</li>
+      <li><strong>tg:</strong>//resolve?domain=pavel</li>
+      <li><strong>mailto:</strong>fulanodetal@gmail.com</li>
+    </ul>
+  </section>
+
+  <section id="url-http" data-background="#fff">
+    <h4>URL HTTP</h4>
+
+    <embed src="../../assets/images/webdev/http-url.svg" type="image/svg+xml">
+  </section>
+
+  <section id="porta-http" data-markdown>
+    #### Porta HTTP
+
+    Quando acessamos http://portal.fanese.edu.br/, estamos acessando o servidor web na porta `80`.
+
+    O seguinte URL dá acesso ao mesmo site: http://portal.fanese.edu.br:80/.
+
+    Para acesso a um servidor que não está na porta `80`,
+    é necessário afixar a **porta** ao nome do servidor.
+
+    http://portquiz.net:8080/
+  </section>
+
+  <section id="porta-https" data-markdown>
+    #### Porta HTTPS
+
+    O tráfego de HTTP seguro se faz pela porta 443.
+
+    - https://facebook.com/
+    - https://facebook.com:443/
+
+    É óbvio que também é possível usar outra porta:
+
+    https://www.exemplo.com:7865/
+  </section>
+</section>
+
+<section id="sec-requisicao-http">
+  <section id="requisicao-http" data-background="#fff">
+    <h3>A requisição HTTP</h3>
+    <object data="../../assets/images/webdev/requisicao-http.svg" class="stretch"></object>
+  </section>
+
+  <section id="metodos-http" data-background="#fff">
+    <h3>Métodos de requisição HTTP</h3>
+
+    <table class="neat" style="font-size: 0.75em">
+      <!-- GET/POST -->
+      <tbody style="background: #64CA64">
+      <tr>
+        <th>GET</th>
+        <td>
+          A requisição mais comum de todas. <br>
+          Usamos para obter um recurso do servidor.
+        </td>
+      </tr>
+      <tr>
+        <th>POST</th>
+        <td>
+          Usamos para solicitar alterações no lado servidor.
+        </td>
+      </tr>
+      </tbody>
+
+      <!-- PUT/DELETE -->
+      <tbody style="background: #B2E0B2">
+      <tr>
+        <th>PUT</th>
+        <td>
+          Substitui o conteúdo de um recurso.
+        </td>
+      </tr>
+      <tr>
+        <th>DELETE</th>
+        <td>
+          Remove um recurso especificado.
+        </td>
+      </tr>
+      </tbody>
+
+      <!-- * -->
+      <tbody id="metodos-x" style="background: #dedede">
+      <tr>
+        <th>TRACE</th>
+        <td rowspan="5" style="vertical-align: middle">
+          Raramente usados por desenvolvedores web
+        </td>
+      </tr>
+      <tr>
+        <th>OPTIONS</th>
+      </tr>
+      <tr>
+        <th>PATCH</th>
+      </tr>
+      <tr>
+        <th>CONNECT</th>
+      </tr>
+      <tr>
+        <th>HEAD</th>
+      </tr>
+      </tbody>
+    </table>
+
+    <style>
+      #metodos-x th {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    </style>
+  </section>
+
+  <section id="cabecalhos-requisicao-http"
+           data-background="#fff" style="font-size: 0.9em">
+    <h3>Cabeçalhos de requisição importantes</h3>
+
+    <div style="font-size: 0.9em">
+      <div class="columns">
+        <pre class="col"><code data-trim data-noescape class="lang-http">
+          GET /blog/ HTTP/1.1
+          Host: www.exemplo.com.br
+          User-Agent: Mozilla/5.0 (Linux x86) Chrome/59.0
+          Accept: text/html
+          Accept-Charset: UTF-8
+          Accept-Language: pt-br
+          Cookie: Variant=1; Theme=blue;
+          Referer: http://exemplo.com/index.html
+          If-Modified-Since: Sat, 07 Aug 2017 21:18:31 GMT
+          &nbsp;
+        </code></pre>
+        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.75">
+          <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+            <span class="fragment">↔️ O nome do servidor desejado</span>
+            <span class="fragment">↔️ Uma string que identifica o browser.</span>
+            <span class="fragment">↔️ O tipo de conteúdo esperado pelo browser</span>
+            <span class="fragment">↔️ A codificação de caracteres esperada</span>
+            <span class="fragment">↔️ O idioma esperado pelo browser</span>
+            <span class="fragment">↔️ O browser envia os cookies armazenados</span>
+            <span class="fragment">↔️ Browser envia site que originou a requisição.</span>
+            <span class="fragment">↔️ Faz uma requisição condicional</span>
+          </code></pre>
+      </div>
+      <div class="columns">
+        <pre class="col"><code data-trim data-noescape class="lang-http">
+          POST /blog/cadastro.php HTTP/1.1
+          Host: www.exemplo.com.br
+          Accept: text/html
+          Accept-Charset: UTF-8
+          Accept-Language: pt-br
+          Content-Type: application/x-www-form-urlencoded
+          Content-Length: 35
+          Cookie: Variant=1; Theme=blue;
+
+          name=John+Darling&address=Neverland
+        </code></pre>
+        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.75">
+          <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="fragment">↔️ O tipo de conteúdo do corpo da requisição</span>
+            <span class="fragment">↔️ O tamanho em bytes do corpo da requisição</span>
+          </code></pre>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section id="sec-resposta-http">
+  <section id="resposta-http" data-background="#fff">
+    <h3>A resposta HTTP</h3>
+    <object data="../../assets/images/webdev/resposta-http.svg" class="stretch"></object>
+  </section>
+
+  <section id="error-404" data-background="#fff" data-autoslide="5000">
+    <img src="../../assets/images/errors/404-google.png" class="stretch">
+  </section>
+
+  <section id="error-403" data-background="#fff" data-autoslide="5000">
+    <img src="../../assets/images/errors/403.png" class="stretch">
+  </section>
+
+  <section id="error-404-v2" data-background="#fff" data-autoslide="5000">
+    <img src="../../assets/images/errors/404.png" class="stretch">
+  </section>
+
+  <section id="error-500" data-background="#fff" data-autoslide="5000">
+    <img src="../../assets/images/errors/500.png" class="stretch">
+  </section>
+
+  <section id="error-404-github" data-background="#fff">
+    <img src="../../assets/images/errors/404-github.png" class="stretch">
+  </section>
+
+  <section id="codigos-estado-http">
+    <h3>Códigos de resposta HTTP</h3>
+
+    <dl>
+      <dt>
+        <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#1xx_Informativa"
+           title="Link para Wikipédia" target="_blank">
+          1xx Informativa
+        </a>
+      </dt>
+
+      <dt>
+        <dialog title="2xx Sucesso">
+          <dl>
+            <dt>200 OK</dt>
+            <dd>A maioria dos sites devolvem essa resposta.</dd>
+            <dd>O corpo da resposta geralmente estará preenchido.</dd>
+          </dl>
+
+          <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#2xx_Sucesso">
+            Veja outros códigos dessa classe
+          </a>
+        </dialog>
+      </dt>
+
+      <dt>
+        <dialog title="3xx Redirecionamento">
+          <dl>
+            <dt>301 Moved Permanently (Movido Permanentemente)</dt>
+            <dd>Esta e todas as solicitações futuras devem ser redirecionadas para uma dada URI.</dd>
+
+            <dt>302 Found (Encontrado)</dt>
+            <dd>O site foi movido temporariamente para uma dada URI.</dd>
+
+            <dt>303 See Other (Veja Outro)</dt>
+            <dd>Normalmente os browsers, quando recebem essa resposta, tem o mesmo comportamento do código 302.</dd>
+
+            <dt>304 Not Modified (Não Modificado)</dt>
+            <dd>
+              Indica que o recurso solicitado não foi modificado. Essa resposta é dada quando a requisição tem um
+              cabeçalho <code>If-Modified-Since</code>.
+            </dd>
+
+            <dt>307 Temporary Redirect (Redirecionamento Temporário)</dt>
+            <dd>Semelhante ao código 302, mas o método de requisição não deve mudar.</dd>
+          </dl>
+
+          <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#3xx_Redirecionamento">
+            Veja outros códigos dessa classe
+          </a>
+        </dialog>
+      </dt>
+
+      <dt>
+        <dialog title="4xx Erros de cliente">
+          <dl>
+            <dt>401 Unauthorized (Não autorizado)</dt>
+            <dd>O usuário não está autorizado e deve fornecer um usuário e senha.</dd>
+            <dd>Note que, nesses casos, o navegador vai abrir uma caixa para digitar usuário e senha.</dd>
+
+            <dt>403 Forbidden (Proibido)</dt>
+            <dd>Acesso a um certo recurso é proibido.</dd>
+            <dd>O servidor pode restringir acesso a todos ou a alguns usuários.</dd>
+            <dd>Diferente do código 401, não será solicitado autenticação.</dd>
+
+            <dt>404 Not Found (Não Encontrado)</dt>
+            <dd>O recurso solicitado não existe.</dd>
+            <dd>O segundo código de resposta mais comum, depois de 200.</dd>
+
+            <dt>405 Method Not Allowed (Método Não Permitido)</dt>
+            <dd>O método de requisição usado pelo cliente não é permitido para o recurso atual.</dd>
+
+            <dt>414 URI Too Long (URI Muito Longa)</dt>
+            <dd>A URI fornecida é muito longa.</dd>
+            <dd>Normalmente isso quer dizer que foi feito uma requisição GET, mas deveria ser feita uma requisição POST.</dd>
+          </dl>
+
+          <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#4xx_Erro_de_cliente">
+            Veja outros códigos dessa classe
+          </a>
+        </dialog>
+      </dt>
+
+      <dt>
+        <dialog title="5xx Erros de servidor">
+          <dl>
+            <dt>500 Internal Server Error (Erro Interno do Servidor)</dt>
+            <dd>Indica que houve um erro no servidor ao processar a requisição.</dd>
+            <dd>Por exemplo, uma exceção.</dd>
+          </dl>
+
+          <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP#5xx_outros_erros">
+            Veja outros códigos dessa classe
+          </a>
+        </dialog>
+      </dt>
+    </dl>
+  </section>
+
+  <section id="cabecalhos-resposta-http"
+           data-background="#fff" style="font-size: 0.9em">
+    <h3>Cabeçalhos de resposta importantes</h3>
+
+    <div style="font-size: 0.9em">
+      <div class="columns">
+        <pre class="col"><code data-trim data-noescape class="lang-http">
+          HTTP/1.1 200 OK
+          Content-Type: text/html; charset=utf-8
+          Content-Lenght: 27855
+          Set-Cookie: Variant=1; Theme=blue;
+          Cache-Control: max-age=3600
+
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang=&quot;pt-BR&quot;&gt;
+          &hellip;
+        </code></pre>
+        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.95">
+          <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+            <span class="fragment">↔️ O tipo de conteúdo do corpo da resposta</span>
+            <span class="fragment">↔️ O tamanho em bytes do corpo da resposta</span>
+            <span class="fragment">↔️ O servidor envia cookies para o browser armazenar</span>
+            <span class="fragment">↔️ O servidor indicando para o cliente fazer cache</span>
+          </code></pre>
+      </div>
+      <div class="columns">
+        <pre class="col"><code data-trim data-noescape class="lang-http">
+          HTTP/1.1 301 Moved Permanently
+          Location: https://www.wikipedia.org/
+          Content-Type: text/html; charset=iso-8859-1
+          Content-Length: 234
+          <span style="font-size: 0.85em">
+          &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+          &lt;html&gt;&lt;head&gt;
+          &lt;title&gt;301 Moved Permanently&lt;/title&gt;
+          &hellip;</span>
+          </code></pre>
+        <pre class="col" style="box-shadow: none; margin-left: -0.9em; flex-grow: 0.95">
+          <code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+            <span class="fragment">↔️ Local para onde o browser deve redirecionar</span>
+          </code></pre>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section id="sec-negociacao-de-conteudo">
+  <section id="negociacao-de-conteudo">
+    <h3>Negociação de Conteúdo</h3>
+
+    <object data="../../assets/images/webdev/negociacao-de-conteudo.svg" class="stretch"></object>
+
+    <a href="http://blog.claudson.com.br/2014/08/12/entendendo-uma-negociacao-de-conteudo-via-cartas/"
+       title="Uma forma bem humorada de explicar a negociação de conteúdo"
+       target="_blank" class="blank">
+      Entendendo a negociacao de conteúdo via cartas
+    </a>
+  </section>
+
+  <section id="mime-type">
+    <h4>MIME-type</h4>
+
+    <div class="columns">
+      <div class="col">
+        <p>Estrutura geral</p>
+        <pre style="font-size: 1em; text-align: center"><code data-trim class="bash">
+          tipo/subtipo
+        </code></pre>
+      </div>
+      <div class="col">
+        <p>Exemplos</p>
+        <pre><code data-trim class="bash">
+          text/plain
+          text/html
+          text/css
+          text/javascript
+          image/jpeg
+          image/png
+          audio/mpeg
+          audio/ogg
+          audio/*
+          video/mp4
+          application/octet-stream
+        </code></pre>
+      </div>
+    </div>
+
+    <dl class="sites" style="font-size: 0.9em">
+      <dd><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types">
+        Leitura recomendada</a></dd>
+    </dl>
+  </section>
+</section>
+
+<section id="veja-mais-http">
+  <h3>Leitura recomendada 🔖</h3>
+
+  <dl class="sites">
+    <dt>Métodos HTTP</dt>
+    <dd><a href="http://gabsferreira.com/os-metodos-http-e-a-diferenca-entre-eles/">
+      Os métodos HTTP: quais são e pra que servem</a></dd>
+    <dd><a href="http://www.devfuria.com.br/php/como-funcionam-os-metodos-get-e-post/">
+      Como funcionam os métodos GET e POST</a></dd>
+    <dd><a
+        href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP">
+      Lista de códigos de estado HTTP</a></dd>
+    <!--
+    <dd><a href="http://blog.alura.com.br/metodos_de_requisicao_do_http/">
+      Métodos de requisição do HTTP</a></dd>
+    -->
+  </dl>
+</section>

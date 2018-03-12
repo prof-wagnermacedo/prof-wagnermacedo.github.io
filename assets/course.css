@@ -49,12 +49,12 @@ pre .hi-line  {
     box-shadow: 1em 0 0 var(--color), -1em 0 0 var(--color);
 }
 
-pre.highlight > code {
+pre.highlight > code.hi-code {
     display: table;
     width: 100%;
 }
 
-pre.highlight > code > .line {
+pre.highlight > code.hi-code > .line {
     display: table-row;
 }
 

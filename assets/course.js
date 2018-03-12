@@ -38,6 +38,7 @@ $(function () {
                     }
                 });
             })
+            .addClass('hi-code')
             .each(function () {
                 lining(this);
             });

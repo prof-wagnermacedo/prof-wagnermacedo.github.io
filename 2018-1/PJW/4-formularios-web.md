@@ -1,9 +1,8 @@
 ---
-title: Formulários Web
-description: Programação em Java para Web
+topic: Formulários web
 layout: course
 type: classnote
-date: 2018-03-12 21:00
+date: 2018-03-13 19:00
 part: 1
 ---
 

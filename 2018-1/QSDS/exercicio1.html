@@ -1,0 +1,48 @@
+---
+topic: Exercícios 1
+layout: course
+type: classnote
+date: 2018-03-13 19:00
+part: 1
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Qualidade de código", [
+        {
+            q: 'Sobre o padrão de escrita, cite dois itens (explique) que você acha que é indispensável padronizar para termos um código melhor.',
+        },
+        {
+            q: 'Qual a importância da liberação de recursos? Cite pelo menos dois motivos.',
+        },
+        {
+            q: 'Qual a provável razão do porque os programadores não escrevem código para liberar recursos? Como esse problema poderia ser resolvido?',
+        },
+        {
+            q: 'Comentários demais é bom? Justifique sua resposta.',
+        },
+        {
+            q: 'Métodos auxiliares (normalmente privados) não recebem diretamente entradas dos usuários. Sendo assim, é necessário fazer a validação das entradas? Explique sua resposta.',
+        },
+        {
+            q: 'Qual o motivo do porque não devemos proteger todo o programa contra TODOS os erros? Explique sua resposta.',
+        },
+        {
+            q: '<q>A comunicação entre a equipe de desenvolvimento de software é fundamental para um bom produto, mas a comunicação não ocorre apenas verbalmente, em reuniões ou conversas individuais.</q><p>Explique que a afirmação quer dizer.</p>',
+        },
+        {
+            q: 'Faça uma pesquisa rápida sobre código <em>thread-safe</em> (seguro para threads) e tente explicar o porque a utilização de tipos de dados imutáveis pode ser uma ótima decisão de projeto.',
+        },
+    ]);
+
+    exam.finale();
+</script>

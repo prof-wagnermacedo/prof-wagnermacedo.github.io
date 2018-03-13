@@ -159,6 +159,15 @@ ul.pontos, ol.pontos {
     list-style: upper-roman;
 }
 
+.kind-exam-choice pre {
+    margin-bottom: 0.25ch;
+}
+
+.kind-exam .kind-exam-description > div {
+    background: #fdf5e6;
+    padding-bottom: 1px;
+}
+
 #markdown-toc {
     list-style: decimal;
 }

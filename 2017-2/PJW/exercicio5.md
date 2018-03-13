@@ -9,7 +9,7 @@ date: 2017-09-22
 
 _As questões a seguir deverão ser feitas utilizando o [framework MVC discutido em sala][framework]._
 
-[framework]: {{ '/framework-mvc' | absolute_url }}
+[framework]: {{ '/framework-mvc' | relative_url }}
 
 {: .pergunta}
 1\. Crie um comando para exibir a frase "Hello World", quando o usuário acessar.

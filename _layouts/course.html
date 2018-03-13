@@ -39,7 +39,7 @@
 
 <section class="main-content">
   {% if page.topic %}
-    <h1>{{ page.topic }}</h1>
+    <h1>{{ page.topic }}{% if page.subtopic %}: {{ page.subtopic }}{% endif %}</h1>
     <header class="date">{{ page.date | date: "%d/%m/%Y" }}</header>
   {% endif %}
 

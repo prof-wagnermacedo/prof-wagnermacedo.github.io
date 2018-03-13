@@ -1,0 +1,190 @@
+---
+topic: Exercícios 1
+layout: course
+type: classnote
+date: 2018-03-13 20:00
+part: 1
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.min.js"></script>
+
+{% capture instruction %}
+<p>
+    Responda as questões e faça upload das respostas até o dia 17/03 pelo
+    <a href="https://goo.gl/forms/kKeQqgGiA4gSbj3l1">formulário de envio</a>.
+</p>
+{% endcapture %}
+
+<hr>
+
+<p>{{ instruction }}</p>
+
+<p><em>
+    Em algumas questões, usaremos o programa <a href="https://insomnia.rest">Insomnia</a>, após a instalação,
+    certifique-se que a preferência <b>Follow redirects automatically</b> esteja desmarcada.
+</em></p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<hr>
+
+{{ instruction }}
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions", {
+        feedback: {
+            button  : 'Finalizar o exercício',
+            warning : 'A questão {} não foi respondida',
+            filename: 'respostas.csv'
+        }
+    });
+
+    exam.section("Web e HTTP", [
+        {
+            q: marked(
+                'Acesse e faça a prática mostrada em http://blog.alura.com.br/metodos_de_requisicao_do_http/.' +
+                '\n\n' +
+                'Com base no seu entendimento, responda: qual o método HTTP será usado na requisição que decorre quando ' +
+                'você escreve um endereço diretamente no navegador? Explique a sua resposta.'
+            ),
+        },
+        {
+            q: 'Sem a utilização de JavaScript, qual é a única forma para o navegador fazer uma requisição POST?',
+        },
+        {
+            q: marked('Utilizando o Insomnia, faça o seguinte experimento:' +
+                '\n\n' +
+                '1. Acesse via GET o site https://speakerfight.com/.\n' +
+                '2. Refaça a requisição usando o cabeçalho `Accept-Language: pt-br`\n' +
+                '3. Refaça a requisição com o valor `en` (de inglês)\n' +
+                '4. Refaça a requisição com o valor `fr` (de francês)' +
+                '\n\n' +
+                'O que você percebeu em cada uma das respostas? O site oferece conteúdo em qualquer idioma?'),
+        },
+        {
+            q: marked('Utilizando o Insomnia, faça outro experimento:' +
+                '\n\n' +
+                '1. Acesse via GET o site http://httpbin.org/image.\n' +
+                '2. Refaça a requisição usando o cabeçalho `Accept: image/png`\n' +
+                '3. Refaça a requisição com o valor `image/jpeg`\n' +
+                '4. Refaça a requisição com o valor `image/webp`' +
+                '\n\n' +
+                'O que você percebeu em cada uma das respostas? Como se deu a primeira requisição?'),
+        },
+        {
+            q: marked('Utilizando o Insomnia, faça uma requisição usando o método POST para http://httpbin.org/get e responda: qual o código de estado retornado? ' +
+                '<small>Esta URL só aceita o método GET, portanto não pode ser 200.</small>'),
+            answers: [
+                '201',
+                '304',
+                '405',
+                '500',
+            ],
+            correct: 3
+        },
+        {
+            q: marked(
+                'Utilizando o Insomnia, faça uma requisição GET para http://prof.wagnermacedo.com/, a resposta deverá ter o código `200 OK`. Procure nessa resposta o cabeçalho `Last-Modified` e copie o seu valor (é uma data em inglês).' +
+                '\n\n' +
+                'Em seguida, faça uma requisição condicional para o mesmo endereço. Para isso, adicione o cabeçalho `If-Modified-Since`, definindo como valor a data que você copiou.' +
+                '\n\n' +
+                'Depois de feito responda, qual o código de estado retornado na requisição condicional?'
+            ),
+            answers: [
+                '200',
+                '304',
+                '405',
+                '500'
+            ],
+            correct: 2
+        },
+        {
+            q: 'Continuando a questão anterior, repita a requisição com a data de <code>If-Modified-Since</code> aumentada em uma hora, depois faça novamente com a data reduzida em uma hora. <p>O que você percebeu nas respostas do servidor?</p>',
+        },
+        {
+            q: 'Um usuário digita uma URL no browser, por exemplo, <a>http://estudandoweb.com/</a> e quando a página aparece, ele percebe que a URL na barra de endereços mudou para <a>http://site.estudandoweb.com/</a>. <p>Analisando a situação, marque a opção mais correta.</p>',
+            answers: [
+                'O browser corrigiu o endereço automaticamente, baseado em estatísticas indicativas de que o endereço digitado estava incorreto.',
+                '[::] O browser fez uma requisição HTTP para o primeiro endereço e recebeu uma resposta com o código <code>301 Moved Permanently</code> e o cabeçalho <code>Location</code> com o segundo endereço. Assim, o browser fez uma segunda requisição para o segundo endereço, obtendo a página requisitada.',
+                'O browser fez uma requisição HTTP para o primeiro endereço e percebeu magicamente que o endereço mudou, alterando assim a URL percebida pelo usuário.',
+                'Não há como explicar o que aconteceu, provavelmente há um bug no site acessado ou no browser utilizado pelo usuário.',
+            ]
+        },
+        {
+            q: 'Quais tipos de conteúdos das opções abaixo o protocolo HTTP permite usar no corpo da resposta?',
+            answers: [
+                'text/html',
+                'text/css',
+                'text/javascript',
+                'image/png',
+                'image/jpeg',
+                'video/mp4',
+                'application/octet-stream',
+                'Todos os anteriores',
+            ],
+        },
+        {
+            q: 'Explique a resposta que você marcou na questão anterior.',
+        },
+        {
+            q: 'Eu quero acessar o caminho <code>/blog/posts/2017-08-15-boa-noticia</code> que está acessível no servidor em <code>www.joe.com</code> na porta <code>1745</code>. Considerando que esse servidor está usando o protocolo HTTP, escreva qual a URL que eu preciso digitar na barra de endereços para acessar essa página?',
+        },
+        {
+            q: 'Uma requisição feita a um servidor web tem os cabeçalhos <code>Accept</code> e <code>Accept-Language</code>. Qual o objetivo do cliente ao utilizar esses cabeçalhos? Utilize de exemplos para embasar sua resposta.',
+        },
+        {
+            q: 'Na situação da questão anterior, qual é o processamento esperado do servidor quando receber a requisição feita pelo cliente?',
+        },
+        {
+            q: '<p>Um navegador web recebe uma resposta onde na lista de cabeçalhos aparece:</p> <pre>Content-Type: text/plain</pre> <p>Se o usuário havia solicitado um arquivo HTML, então:</p>',
+            answers: [
+                'Uma mensagem de erro será retornada, indicando que não é possível exibir a página.',
+                'Será exibido o código HTML do arquivo, deixando o usuário sem poder interagir com o site.',
+                '[::] Uma página em branco será exibida, afinal o usuário solicitou um <code>text/html</code> e não tem interesse em outro formato.',
+                'A página HTML será exibida normalmente.',
+            ],
+            correct: 2,
+        },
+        {
+            q:
+                '<p>Sobre o protocolo HTTP, analise os seguintes itens:</p>' +
+                '<ol type="I">' +
+                '<li>O servidor HTTP funciona por padrão na porta 80, mas é possível rodar em qualquer outra porta, inclusive é possível ter mais de um servidor HTTP rodando no mesmo computador, contanto que estejam rodando em portas diferentes.</li>' +
+                '<li>O método usado nas requisições HTTP indicam o tipo de "ação" a ser requisitada do servidor.</li>' +
+                '<li>Existem dois tipos de mensagens HTTP: requisição e resposta. As mensagens de requisição contém um Método, Caminho, Cabeçalhos e Corpo; já as mensagens de Respostas contém um Código de Estado, Cabeçalhos e Corpo.</li>' +
+                '<li>A negociação de conteúdo é um dos recursos mais importantes do protocolo HTTP: faz com que uma mesma URL disponibilize mais de uma representação, baseado na requisição do cliente. Por exemplo, o site <code>https://www.facebook.com/</code> acessado por um brasileiro, devolve a resposta em português, enquanto que quando acessado por um argentino, devolve a resposta em espanhol.</li>' +
+                '<li>O servidor HTTP não guarda o estado das requisições, isto é, o servidor não "lembra" da requisição anterior quando recebe a próxima requisição. Por exemplo, em uma página restrita, mesmo que na requisição anterior o <code>usuário:senha</code> tenha sido enviado, na próxima o cliente também precisa enviar o mesmo <code>usuário:senha</code> para que a mesma página restrita seja exibida.</li>' +
+                '</ol>' +
+                '<p>Está CORRETO apenas o que se afirma em:</p>'
+            ,
+            answers: [
+                'I, II e III',
+                'I, II, III e IV',
+                'I, III e V',
+                'Todos os itens são verdadeiros',
+            ],
+            correct: 4,
+        },
+        {
+            q:
+            '<p>Sobre os conceitos da web, analise os seguintes itens:</p>' +
+            '<ol type="I">' +
+            '<li>O protocolo HTTP está presente apenas no lado servidor.</li>' +
+            '<li>Pode-se dizer que sites estáticos tem apenas o lado cliente, visto que não há processamento customizado no servidor web, mas apenas a busca pelos arquivos hospedados.</li>' +
+            '<li>A programação no lado cliente está limitado às linguagens de programação capazes de executar na máquina do cliente. No caso de páginas web, isso se restringe apenas à JavaScript.</li>' +
+            '<li>Como o usuário pode estar acessando a web através de uma gama de opções entre diferentes sistemas operacionais e navegadores web, é preciso tomar cuidado para garantir que o site irá funcionar bem na maioria das configurações.</li>' +
+            '<li>O código JavaScript que é executado no browser pode ter acesso aos recursos do servidor, desde que o usuário tenha as credenciais necessárias.</li>' +
+            '<li>O processamento que ocorre no lado servidor é invisível ao cliente, que só vê apenas as respostas geradas pelo aplicativo em execução no servidor.</li>' +
+            '<li>Ao contrário do lado cliente, o lado servidor não tem limitações nas linguagens de programação, já que o código é executado em um ambiente previsível.</li>' +
+            '</ol>' +
+            '<p>Dois dos itens acima estão INCORRETOS, indique na resposta quais são esses itens e explique o porque.</p>',
+        },
+    ]);
+
+    exam.finale();
+</script>

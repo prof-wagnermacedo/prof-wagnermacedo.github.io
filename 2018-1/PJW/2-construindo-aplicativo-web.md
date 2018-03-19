@@ -1068,6 +1068,72 @@ Para facilitar a vida do usuário, mostre, após o primeiro movimento, um link p
 </div>
 ```
 
+### Fim da sessão por tempo esgotado
+
+Vamos configurar a aplicação para finalizar a sessão por falta de atividade.
+
+Para isso, crie a classe Java `SessionTimeoutListener` no pacote `tictactoe.web.listeners`:
+
+```
+@WebListener
+public class SessionTimeoutListener implements HttpSessionListener {
+
+    @Override
+    public void sessionCreated(HttpSessionEvent se) {
+        se.getSession().setMaxInactiveInterval(5 * 60);
+    }
+
+    @Override
+    public void sessionDestroyed(HttpSessionEvent se) {
+
+    }
+
+}
+```
+
+### Sobre a sessão web
+
+A sessão web é uma estrutura de dados multivalorada mantida pelo servidor de aplicações web (Tomcat, GlassFish, JBoss, etc).
+
+O servidor web sabe qual é a sessão atual do cliente através do uso de _cookies_. No caso dos servidores em Java, o nome
+do cookie é `JSESSIONID`.
+
+Esse processo funciona em resumo da seguinte forma:
+
+1. O cliente envia uma requisição, por exemplo:
+
+    ```http
+GET /jogo-da-velha/ HTTP/1.1
+Host: localhost:8080
+Accept: text/html
+Accept-Language: pt-BR
+Cookie: JSESSIONID=eaa2b18d71fad827f5f902c5a735; theme=blue
+
+    ```
+
+2. O servidor verifica se a requisição tem um cookie de sessão, se não tiver, uma nova sessão será criada. Na requisição
+   acima, foi passada a sessão `eaa2b18d71fad827f5f902c5a735`, caso essa sessão seja inválida, isto é, não exista dentro
+   da estrutura do servidor web, então, uma nova é retornada na resposta:
+
+    ```http
+HTTP/1.1 200 OK
+Date: Mon, 19 Mar 2018 14:44:14 GMT
+Content-Type: text/html;charset=UTF-8
+Set-Cookie: JSESSIONID=384cdaeb4ddd17e22471a79f95eb
+
+    ```
+
+3. O cliente então armazena o cookie `JSESSIONID` com o valor `384cdaeb4ddd17e22471a79f95eb` e a partir das próximas
+   requisições enviará esse valor (até receber um novo do servidor).
+
+### Quando a sessão é invalidada?
+
+A sessão pode deixar de ser válida pelas seguintes razões:
+
+1. Por tempo de inatividade, que é o que fizemos ao adicionar o _listener_.
+2. Ao reagir à alguma requisição do usuário, o que ocorre ao passarmos `restart=true`.
+3. A sessão é removida manualmente (e.g. ao reiniciar o servidor).
+
 {% endif %}
 
 {% comment %}

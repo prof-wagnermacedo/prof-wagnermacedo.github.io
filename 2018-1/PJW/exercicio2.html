@@ -1,0 +1,47 @@
+---
+topic: Exercícios 2
+layout: course
+type: classnote
+date: 2018-03-20 20:00
+part: 1
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<p><em>
+    As seguintes questões são para a melhoria a aplicação <b>Jogo da Velha</b>, desenvolvida em sala de aula.
+    Caso você não tenha, o código completo da aplicação pode ser baixada
+    <a href="https://github.com/wagnerluis1982/java-web-tutorial/archive/master.zip">aqui</a>.
+</em></p>
+
+<hr>
+
+<p>
+    Desenvolva o código, altere qualquer arquivo que achar necessário e envie o <b>.zip</b> com o que conseguiu fazer,
+    juntamente com um arquivo texto explicando as mudanças para resolver cada questão até o dia 26/03 às 17:00 pelo
+    <a href="https://goo.gl/forms/XuleOKD8OwYozxmE2">formulário de envio</a>.
+</p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Melhorias no Jogo da Velha", [
+        {q: 'Faça ser negrito o item atualmente selecionado na lista de movimentos.'},
+        {q: 'Reescreva o <code>Board.tag</code> para criar os quadrados através de dois loops <code>&lt;c:forEach/&gt;</code>.'},
+        {q: 'Quando ninguém vencer, mostre no status que a partida foi um empate. No jogo da velha, o empate ocorre quando todos os quadrados estão preenchidos, mas não houve um vencedor.'},
+    ]);
+
+    exam.finale();
+</script>
+
+<style>
+    .kind-exam-answer[contenteditable] {
+        display: none;
+    }
+</style>

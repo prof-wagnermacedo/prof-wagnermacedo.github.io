@@ -1012,6 +1012,62 @@ Para o código funcionar, aumente para `public` a visibilidade do método `getGa
 
 Veja só, criamos um jogo com a funcionalidade de desfazer as jogadas anteriores!
 
+## Reiniciando o jogo
+
+Vamos fazer o jogo ser reiniciado quando houver um parâmetro `restart=true`.
+
+Para isso, adicione o seguinte método à `GameServlet` para invalidar a sessão atual, de forma que na próxima vez que
+chamar `request.getSession()`, uma nova sessão seja criada.
+
+```
+    private static void restartGame(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+    }
+```
+
+Modifique o `GameServlet` para utilizar o novo método ao receber o parâmetro `restart=true`. Com essa modificação, se
+você acessar <code>http://localhost:8080/jogo-da-velha/<b>?restart=true</b></code>.
+
+{: data-hi="2-6" data-caption="GameServlet.java" }
+```
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Reinicia o jogo se solicitado
+        String paramRestart = request.getParameter("restart");
+        if ("true".equals(paramRestart)) {
+            restartGame(request);
+        }
+
+        // Garante que o jogo do usuário exista
+        getGame(request);
+
+        // Passa a requisição para outro componente
+        RequestDispatcher jsp = request.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        jsp.forward(request, response);
+    }
+```
+
+Para facilitar a vida do usuário, mostre, após o primeiro movimento, um link para reiniciar o jogo.
+
+{: data-hi="11-13" data-caption="Game.tag" }
+```
+    <div class="game-info">
+        <div>${status}</div>
+        <form action="<c:url value="/time-travel"/>" method="post">
+        <ol>
+            <li><button name="step" value="0">Ir para início do jogo</button></li>
+            <c:forEach var="move" begin="1" end="${game.historySize - 1}">
+                <li><button name="step" value="${move}">Ir para movimento #${move}</button></li>
+            </c:forEach>
+        </ol>
+        </form>
+        <c:if test="${game.historySize > 1}">
+            <div><a href="?restart=true">Reiniciar jogo</a></div>
+        </c:if>
+    </div>
+</div>
+```
+
 {% endif %}
 
 {% comment %}

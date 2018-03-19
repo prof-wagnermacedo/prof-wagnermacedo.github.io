@@ -823,6 +823,195 @@ public class GameServlet extends HttpServlet {
 {% include warning-mode.html %}
 {% if jekyll.environment != 'production' %}
 
+## Armazenando um histórico
+
+Vamos tornar possível revisitar os estados anteriores do tabuleiro, assim podemos ver como está o jogo depois de alguns
+movimentos realizados.
+
+Primeiro, em `GameApp`, troque o atributo `squares` (um array) por `history` (uma lista de arrays) e adicione um
+construtor para iniciar a lista.
+
+{: data-hi="3,7-9" data-caption="GameApp.java" }
+```
+public class GameApp {
+
+    private List<Character[]> history = new ArrayList<>(1);
+    private char turn = 'X';
+    private char winner = ' ';
+
+    public GameApp() {
+        this.history.add(new Character[9]);
+    }
+```
+
+Então, modifique o método `getSquares()` para que obtenha o tabuleiro do histórico.
+
+{: data-hi="2" }
+```
+    public Character[] getSquares() {
+        return this.history.get(this.history.size() - 1);
+    }
+```
+
+Em seguida, precisamos modificar o método `clickSquare(int)`, já que o estado do jogo agora está estruturado diferente
+(usando `history` para armazenar o tabuleiro).
+
+{: data-hi="2,5,10,13-15,18" }
+```
+    public void clickSquare(int index) {
+        Character[] squares = this.getSquares();
+
+        // Parando se já tiver um vencedor ou o quadrado já estiver clicado
+        if (this.winner != ' ' || squares[index] != null) {
+            return;
+        }
+
+        // Modifica uma cópia do array
+        squares = squares.clone();
+        squares[index] = this.turn;
+
+        // Modifica uma cópia do histórico
+        List<Character[]> history = new ArrayList<>(this.history);
+        history.add(squares);
+
+        // Atualiza o estado do jogo
+        this.history = history;
+        this.turn = (this.turn == 'X') ? 'O' : 'X';
+        this.winner = calculateWinner(squares);
+    }
+```
+
+### Mostrando a lista de movimentos realizados
+
+Modifique o arquivo `Game.tag` para exibir uma lista de movimentos realizados. 
+
+{: data-hi="3-8" data-caption="Game.tag" }
+```
+    <div class="game-info">
+        <div>${status}</div>
+        <ol>
+            <li><button>Ir para início do jogo</button></li>
+            <c:forEach var="move" begin="1" end="${game.historySize - 1}">
+                <li><button>Ir para movimento #${move}</button></li>
+            </c:forEach>
+        </ol>
+    </div>
+</div>
+```
+
+Para funcionar, é preciso adicionar à `GameApp` o seguinte método:
+
+```
+    public int getHistorySize() {
+        return this.history.size();
+    }
+```
+
+### Implementando a máquina do tempo
+
+Por enquanto, a lista de movimentos exibe uma sequência de botões que não fazem nada ao clicar, pelos seguintes motivos:
+
+1. Os elementos `<button>` não estão devidamente colocados em um `<form>`.
+2. Não há uma ação definida no lado servidor para tratar o clique.
+
+Assim, primeiramente modifique `Game.tag` para configurar o formulário do histórico:
+
+{: data-hi="3,5,7,10" data-caption="Game.tag" }
+```
+    <div class="game-info">
+        <div>${status}</div>
+        <form action="<c:url value="/time-travel"/>" method="post">
+        <ol>
+            <li><button name="step" value="0">Ir para início do jogo</button></li>
+            <c:forEach var="move" begin="1" end="${game.historySize - 1}">
+                <li><button name="step" value="${move}">Ir para movimento #${move}</button></li>
+            </c:forEach>
+        </ol>
+        </form>
+    </div>
+</div>
+```
+
+Observe que o formulário tem um atributo `action` apontando para um caminho inexistente. Se clicarmos nos botões agora,
+iremos receber uma página de erro 404. O caminho `/time-travel` é outro Servlet, mas ainda não existe na aplicação.
+
+Antes de criarmos esse Servlet, vamos fazer algumas modificações em `GameApp`. Adicione o atributo `stepNumber` para
+manter qual a posição atual do histórico em que o usuário visualiza o jogo.
+
+{: data-hi="4" data-caption="GameApp.java" }
+```
+public class GameApp {
+
+    private List<Character[]> history = new ArrayList<>(1);
+    private int stepNumber = 0;
+    private char turn = 'X';
+    private char winner = ' ';
+```
+
+Modifique o método `getSquares()` para obter o tabuleiro da posição atual.
+
+{: data-hi="2" }
+```
+    public Character[] getSquares() {
+        return this.history.get(this.stepNumber);
+    }
+```
+
+Atualize `clickSquare(int)` para o histórico ser atualizado em contexto de `stepNumber`.
+
+{: data-hi="14,19" }
+```
+    public void clickSquare(int index) {
+        Character[] squares = this.getSquares();
+
+        // Parando se já tiver um vencedor ou o quadrado já estiver clicado
+        if (this.winner != ' ' || squares[index] != null) {
+            return;
+        }
+
+        // Modifica uma cópia do array
+        squares = squares.clone();
+        squares[index] = this.turn;
+
+        // Modifica uma cópia do histórico
+        List<Character[]> history = new ArrayList<>(this.history.subList(0, this.stepNumber + 1));
+        history.add(squares);
+
+        // Atualiza o estado do jogo
+        this.history = history;
+        this.stepNumber += 1;
+        this.turn = (this.turn == 'X') ? 'O' : 'X';
+        this.winner = calculateWinner(squares);
+    }
+```
+
+Depois de tudo, adicione os seguintes métodos à `GameApp`. O método `jumpTo(int)` faz o trabalho de mover a visualização
+para uma nova posição do histórico.
+
+```
+    public void jumpTo(String param) {
+        if (param != null) {
+            int step = Integer.parseInt(param);
+            jumpTo(step);
+        }
+    }
+
+    public void jumpTo(int step) {
+        this.stepNumber = step;
+        this.turn = (step % 2 == 0) ? 'X' : 'O';
+        this.winner = calculateWinner(getSquares());
+    }
+```
+
+Agora vamos fazer uso desse novo recurso. Crie uma nova classe Java chamada `TimeTravelServlet` no pacote `tictactoe.web`
+com [este código][TimeTravelServlet].
+
+[TimeTravelServlet]: https://raw.githubusercontent.com/wagnerluis1982/java-web-tutorial/b2a01f3a8922db2bfa80fe25b467e6417e0763ee/src/java/tictactoe/web/TimeTravelServlet.java
+
+Para o código funcionar, aumente para `public` a visibilidade do método `getGame` em `GameServlet`.
+
+Veja só, criamos um jogo com a funcionalidade de desfazer as jogadas anteriores!
+
 {% endif %}
 
 {% comment %}

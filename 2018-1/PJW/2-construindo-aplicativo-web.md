@@ -1137,7 +1137,7 @@ Você pode baixar todo o código [aqui][jogo.zip].
 
 Mas veja que não é um projeto NetBeans, você precisa copiar os arquivos para um projeto existente.
 
-[jogo.zip]: https://github.com/wagnerluis1982/java-web-tutorial/archive/master.zip
+[jogo.zip]: https://github.com/wagnerluis1982/java-web-tutorial/archive/2018.1.zip
 
 {% comment %}
 ## Descritor de implantação

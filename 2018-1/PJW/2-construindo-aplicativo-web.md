@@ -6,7 +6,7 @@ part: 1
 ---
 
 * TOC
-{:toc .no-h3 data-caption="(em construção)"}
+{:toc .no-h3"}
 
 ## Antes de iniciar, o que estamos construindo?
 
@@ -820,9 +820,6 @@ public class GameServlet extends HttpServlet {
     private static GameApp getGame(HttpServletRequest request) {
 ```
 
-{% include warning-mode.html %}
-{% if jekyll.environment != 'production' %}
-
 ## Armazenando um histórico
 
 Vamos tornar possível revisitar os estados anteriores do tabuleiro, assim podemos ver como está o jogo depois de alguns
@@ -1134,7 +1131,13 @@ A sessão pode deixar de ser válida pelas seguintes razões:
 2. Ao reagir à alguma requisição do usuário, o que ocorre ao passarmos `restart=true`.
 3. A sessão é removida manualmente (e.g. ao reiniciar o servidor).
 
-{% endif %}
+## Código completo do jogo
+
+Você pode baixar todo o código [aqui][jogo.zip].
+
+Mas veja que não é um projeto NetBeans, você precisa copiar os arquivos para um projeto existente.
+
+[jogo.zip]: https://github.com/wagnerluis1982/java-web-tutorial/archive/master.zip
 
 {% comment %}
 ## Descritor de implantação

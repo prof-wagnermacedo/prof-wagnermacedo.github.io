@@ -1,0 +1,145 @@
+---
+topic: Exercícios 3
+layout: course
+type: classnote
+date: 2018-03-27 20:00
+part: 1
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.min.js"></script>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Conceitos de Programação para Web", [
+        {
+            q:
+                '<p>Analise os seguintes itens.</p>' +
+                '<ol type="I">' +
+                '<li>Em sites estáticos, o conteúdo entregue na resposta é sempre o mesmo e só muda quando alguém modifica os arquivos hospedados no servidor.</li>' +
+                '<li>Para um servidor oferecer conteúdo gerado dinamicamente, é necessário que ele execute uma aplicação que irá gerar esse conteúdo.</li>' +
+                '<li>Um Servlet apenas gera conteúdo na primeira requisição recebida, nas próximas, é devolvido uma cópia desse conteúdo, como se fosse um conteúdo estático.</li>' +
+                '<li>JSP é uma forma mais fácil de escrever um Servlet.</li>' +
+                '<li>Embora o protocolo HTTP não restrinja o tipo de conteúdo trafegado, o único tipo de conteúdo que o servlet suporta é <code>text/html</code></li>' +
+                '</ol>' +
+                '<p>Quais afirmações estão corretas?</p>',
+            answers: [
+                'Apenas I, II e III',
+                'Apenas I, II e IV',
+                'Apenas I, II, III e V',
+                'Apenas II, III e V',
+            ],
+        },
+        {
+            q:
+                '<p>Analise os seguintes itens.</p>' +
+                '<ol type="I">' +
+                '<li>Antes de um formulário ser enviado, normalmente, tudo está acontecendo apenas no lado cliente, ou seja, o servidor não sabe o que o usuário digitou até que ele clique em enviar.</li>' +
+                '<li>O método GET pode ser usado para realizar modificações no servidor, mas é uma mal prática utilizar assim.</li>' +
+                '<li>O método POST é o ideal para usar em páginas de consulta ou pesquisa.</li>' +
+                '<li>Quando o usuário clica para enviar o formulário, ocorre o processo de construção da query string, este processo ocorre no lado servidor.</li>' +
+                '</ol>' +
+                '<p>Quais afirmações estão corretas?</p>',
+            answers: [
+                'Apenas I e II',
+                'Apenas I, II e IV',
+                'Apenas I, III, e IV',
+                'Todos os itens estão corretos',
+            ],
+        },
+        {
+            q: 'Quando um usuário envia um formulário por método GET, a query string é enviada',
+            answers: [
+                'no corpo da requisição HTTP',
+                '[::] na URL, anexada após o caractere <code>?</code>',
+                '[::] em um cabeçalho HTTP chamado <code>Query-String</code>',
+                'de forma oculta, com o uso de criptografia',
+            ],
+        },
+        {
+            q: 'Quando um usuário envia um formulário por método POST, a query string é enviada',
+            answers: [
+                'no corpo da requisição HTTP',
+                '[::] na URL, anexada após o caractere <code>?</code>',
+                '[::] em um cabeçalho HTTP chamado <code>Query-String</code>',
+                'de forma oculta, com o uso de criptografia',
+            ],
+        },
+        {
+            q: 'Qual das alternativas mostra corretamente como será exibido no browser o seguinte formulário?',
+            snippet: {
+                code:
+                    '<form method="post">\n' +
+                    '    Do que você mais gosta? <br>\n' +
+                    '    <input type="radio" name="gosto" value="cinema"> Cinema <br>\n' +
+                    '    <input type="radio" name="gosto" value="livros"> Livros <br>\n' +
+                    '    <input type="radio" name="gosto" value="musica"> Música <br>\n' +
+                    '    <br>\n' +
+                    '    <button>Enviar</button>\n' +
+                    '</form>',
+            },
+            answers: [
+                '[::] <form><input> Cinema <br><input> Livros <br><input> Música <br><br><button>Enviar</button></form>',
+                '[::] <form><input type="checkbox"> Cinema <br><input type="checkbox"> Livros <br><input type="checkbox"> Música <br><br><button>Enviar</button></form>',
+                '[::] <form><input type="range"> Cinema <br><input type="range"> Livros <br><input type="range"> Música <br><br><button>Enviar</button></form>',
+                '[::] <form><input type="radio"> Cinema <br><input type="radio"> Livros <br><input type="radio"> Música <br><br><button>Enviar</button></form>',
+            ],
+        },
+        {
+            q:
+                '<p>A chamada abaixo feita dentro do método doGet() de um servlet define uma resposta em que o cliente é instruído a redirecionar para outra URL.</p>' +
+                '<pre>response.sendRedirect("http://www.google.com/");</pre>' +
+                '<p>Qual dos trechos de código a seguir é equivalente à essa chamada?</p>',
+            answers: [
+                '[:pre:] request.getHeader("Location: http://www.google.com/");',
+                '[:pre:] ' +
+                    'response.setStatus(302);\n' +
+                    'response.setHeader("Location", "http://www.google.com/");',
+                '[:pre:] ' +
+                    'String location = request.getParameter("Location");\n' +
+                    'if (location.equals("http://www.google.com/")) {\n' +
+                    '    response.getWriter().println(location);\n' +
+                    '}',
+                '[:pre:] ' +
+                    'response.setHeader("Redirect", "http://www.google.com/");',
+                '[:pre:] ' +
+                    'PrintWriter out = response.getWriter();\n' +
+                    'out.println("Redirecionando para http://www.google.com/");',
+            ],
+        },
+        {
+            q:
+                '<p>A técnica de redirecionamentos na web é bem comum. A Wikipédia, por exemplo, utiliza para forçar o cliente a acessar por HTTPS, no qual se digitamos no browser http://www.wikipedia.org/, somos redirecionados para https://www.wikipedia.org/.</p>' +
+                '<p>Explique de forma sucinta o processo de redirecionamento executado pelo browser. Use o acesso à http://www.wikipedia.org/, como exemplo.</p>',
+
+        },
+        {
+            q:
+                '<p>O servidor HTTP não guarda o estado das requisições, isto é, o servidor não "lembra" da requisição anterior quando recebe a próxima requisição. A utilização de sessões web foi muito importante para superar esse obstáculo.</p>' +
+                '<p>Explique a importância do recurso de sessão web relacionando com essa limitação do protocolo HTTP.</p>'
+        },
+        {
+            q: 'Sobre os conceitos de redirecionamento (<u>redirect</u>) e encaminhamento (<u>forward</u>), diferencio-os e explique quando cada um deve ser usado.'
+        }
+    ]);
+
+    exam.finale();
+
+    $('.kind-exam-choice form input')
+        .click(() => false)
+        .keydown(() => false);
+</script>
+
+<style>
+    .kind-exam-choice form {
+        background-color: #fdf5e6;
+        padding: 1ch;
+    }
+</style>

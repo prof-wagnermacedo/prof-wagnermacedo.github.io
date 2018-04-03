@@ -1,0 +1,104 @@
+---
+topic: Exercícios 2
+layout: course
+type: classnote
+date: 2018-04-03 20:25
+part: 1
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.min.js"></script>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Qualidade de software", [
+        {
+            q: '<p>Uma fábrica de tapetes está preocupada em vender seus produtos. Naturalmente, um objetivo será fabricar tapetes bonitos e de qualidade. Analise os seguintes itens e responda:</p>' +
+            '<ol type="a">' +
+            '<li>Aparência deveria ser um item separado ao avaliar a qualidade? Justifique sua resposta.</li>' +
+            '<li>Faça uma lista de características de qualidade para um tapete.</li>' +
+            '<li>Na lista que você fez, identifique uma característica que, quando presente com mais intensidade, aumenta a qualidade e outra que, quando presente com mais intensidade reduz a qualidade.</li>' +
+            '</ol>',
+        },
+        {
+            q: 'Conforme Philip Crosby “a qualidade é conformidade aos requisitos”. Em sua opinião, essa definição de qualidade deveria ser a única a ser seguida? Explique a sua resposta.',
+        },
+        {
+            q: 'As principais causas de falhas em projetos são relativas __________. Essas falhas se devem, principalmente, às dificuldades em entender o que o usuário quer.',
+            answers: [
+                'aos defeitos reincidentes',
+                'aos erros de engenharia',
+                'às ferramentas adotadas',
+                'aos requisitos',
+                'nenhuma das anteriores',
+            ],
+        },
+        {
+            q: marked(
+                'Na Engenharia de Software (ES) tradicional, o produto geralmente é entregue somente depois de ' +
+                'completamente construído e testado. Mas há vertentes da ES que advogam que devemos entregar ' +
+                'subprodutos funcionais para o cliente.' +
+                '\n\n' +
+                'Relacione essas duas visões citando uma vantagem e uma desvantagem de cada.'
+            ),
+        },
+        {
+            q: marked(
+                'A função `isLetter` abaixo recebe caracteres como argumentos de entrada. Como o tipo `char` na ' +
+                'linguagem Java tem 65.536 valores possíveis, isso quer dizer que para termos **plena certeza** ' +
+                'de que essa função está funcionando bem, teríamos que verificar a saída com os 65.536 valores.' +
+                '\n\n' +
+                '```\n' +
+                'boolean isLetter(char c) { ... }\n' +
+                '```' +
+                '\n\n' +
+                'Dê sua opinião a respeito desse problema.'
+            ),
+        },
+        {
+            q: marked(
+                'Um influente engenheiro de software propõe para a empresa que ele trabalha para adotar uma nova ' +
+                'biblioteca de desenvolvimento web revolucionária criada pelo Twitter. O engenheiro está muito ' +
+                'empolgado com a possibilidade e acredita que essa nova ferramenta seria muito útil para a empresa.' +
+                '\n\n' +
+                'Se você fosse o líder do projeto, o que você responderia ao engenheiro? Lembre que você precisa ser ' +
+                'cuidadoso na resposta, já que ele é um funcionário importante para a empresa.'
+            ),
+        },
+        {
+            q:
+            '<p>Analise os seguintes itens.</p>' +
+            '<ol type="I">' +
+            '<li>Para ganhar mais dinheiro.</li>' +
+            '<li>Para se adequar aos padrões do mercado.</li>' +
+            '<li>Pode haver vidas em risco.</li>' +
+            '<li>Facilitar a manutenção no futuro.</li>' +
+            '</ol>' +
+            '<p>Quais itens indicam razões para dedicarmos a ter softwares com qualidade?</p>',
+            answers: [
+                'Apenas I e II',
+                'Apenas I, II e IV',
+                'Apenas I, III e IV',
+                'Todos os itens',
+            ],
+        },
+        {
+            q: marked(
+                'No contexto da qualidade de software, uma regressão em um software é o aparecimento de bug que não ' +
+                'existia em uma versão anterior. Apesar das regressões serem relativamente comuns no desenvolvimento ' +
+                'de software, elas podem ser evitadas ou, ao menos, minimizadas.' +
+                '\n\n' +
+                'Sugira, justificando, uma ou mais formas de evitar ou diminuir o aparecimento das regressões.',
+            )
+        },
+    ]);
+
+    exam.finale();
+</script>

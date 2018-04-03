@@ -1,0 +1,551 @@
+---
+title: Estruturas de Controle Condicional e de Repetição
+layout: reveal-js
+theme: white
+---
+
+<section>
+  <h1>{{ page.title }}</h1>
+  <h2>Prof. Wagner Macedo</h2></section>
+
+<section id="human" data-background="#fff">
+  <h2>Algoritmos Humanos</h2>
+
+  <ul>
+    <li>
+      <b>se</b> eu não tiver um cachorro:
+      <ul>
+        <li>eu caço com um gato</li>
+      </ul>
+    </li>
+    <li>
+      <b>enquanto</b> eu não terminar o dever:
+      <ul>
+        <li>eu não posso sair de casa</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section id="robot">
+  <h2>Dando ordens a um robô...</h2>
+  <img src="EZ-robot.png" class="borderless stretch">
+</section>
+
+<section id="bool-values" data-markdown>
+  <div data-template>
+    ## Valores booleanos
+
+    O tipo de dados em Python para armazenar uma verdade ou uma falsidade é chamado de `bool`.
+
+    - Só existem dois **valores booleanos**:
+      - `True`
+      - `False`
+  </div>
+</section>
+
+<section id="bool-expressions" data-markdown>
+  <div data-template>
+    ## Expressões booleanas
+
+    Uma **expressão booleana** é uma expressão que é avaliada para um valor booleano.
+
+    O operador `==` é usado para comparar dois valores:
+
+    ```python
+    >>> 5 == 5
+    True
+    >>> 5 == 6
+    False
+    ```
+  </div>
+</section>
+
+<section id="comparison-operators">
+  <h2>Operadores de comparação</h2>
+
+  <p>O operador <code>==</code> é um dos <b>operadores de comparação</b>.</p>
+
+  <div class="columns" style="font-size: 2em;">
+        <pre class="col"><code data-trim data-noescape class="lang-python">
+          x <b style="color: #7f9f7f">==</b> y
+          x <b style="color: #7f9f7f">!=</b> y
+          x <b style="color: #7f9f7f">&gt;</b> y
+          x <b style="color: #7f9f7f">&lt;</b> y
+          x <b style="color: #7f9f7f">&gt;=</b> y
+          x <b style="color: #7f9f7f">&lt;=</b> y
+        </code></pre>
+      <pre class="col" style="box-shadow: none; margin-left: -0.7em; flex-grow: 1.3"
+      ><code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+        ↔ x é igual a y
+        ↔ x não é igual a y
+        ↔ x é maior que y
+        ↔ x é menor que y
+        ↔ x é maior ou igual a y
+        ↔ x é menor ou igual a y
+      </code></pre>
+    </div>
+</section>
+
+<section id="conditional">
+  <h2>Estrutura condicional</h2>
+
+  <p>Programas úteis quase sempre precisam da habilidade de checar condições e
+  mudar o comportamento do programa de acordo com essas condições.</p>
+
+  <p><b>Instruções condicionais</b> nos dão essa habilidade.</p>
+
+  <p>A forma mais simples dessas é a instrução <code>if</code>:</p>
+
+  <pre><code data-trim class="lang-python">
+  if x > 0:
+      print(x, "é positivo")
+  </code></pre>
+</section>
+
+<section id="if-statement">
+  <h2>Instrução if</h2>
+
+  <ul>
+    <li>A expressão booleana depois da instrução <code>if</code> é chamada de <b>condição</b>.</li>
+    <li>Se verdade, então as instruções recuadas são executadas.
+      Se falso, nada acontece.</li>
+  </ul>
+
+  <p style="text-align: left">A sintaxe geral para a instrução <code>if</code> é:</p>
+
+  <div class="columns">
+        <pre class="col"><code data-trim data-noescape class="lang-html">
+          <b style="color: #e3ceab">if</b> EXPRESSÃO BOOLEANA:
+              INSTRUÇÃO 1
+              ⋮
+              INSTRUÇÃO n
+        </code></pre>
+    <pre class="col" style="box-shadow: none; margin-left: -0.7em;"
+    ><code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+        ↔ cabeçalho da instrução
+        🔵
+        🔵 corpo
+        🔵
+      </code></pre>
+  </div>
+</section>
+
+<section id="about-if">
+  <h2>Execução condicional</h2>
+
+  <div data-markdown>
+    - As instruções do corpo são executadas em ordem, se a expressão
+      booleana avalia para `True`.
+    - O bloco inteiro é ignorado se a expressão booleana avalia para `False`.
+    - Não há limite para o número de instruções no corpo do `if`,
+      mas tem de haver pelo menos uma.
+  </div>
+</section>
+
+<section id="else-statement">
+  <h2>Instrução else</h2>
+
+  <p>A instrução <code>if</code> pode ter uma <b>execução alternativa</b>.</p>
+
+  <pre><code data-trim class="lang-python">
+    if x % 2 == 0:
+        print(x, "é par")
+    else:
+        print(x, "é ímpar")
+  </code></pre>
+</section>
+
+<section id="chained-conditions">
+  <h2>Condicionais encadeadas</h2>
+
+  <p>Se for necessário mais possibilidades, devemos usar o <b>encadeamento</b> de condições.</p>
+
+  <pre><code data-trim class="lang-python">
+    if x < y:
+        print(x, "é menor que", y)
+    else:
+        if x > y:
+            print(x, "é maior que", y)
+        else:
+            print(x, "e", y, "são iguais")
+  </code></pre>
+</section>
+
+<section id="elif-statement">
+  <h2>Instrução elif</h2>
+
+  <p>O código fica mais organizado com a instrução <code>elif</code>:</p>
+
+  <pre><code data-trim class="lang-python">
+    if x < y:
+        print(x, "é menor que", y)
+    elif x > y:
+        print(x, "é maior que", y)
+    else:
+        print(x, "e", y, "são iguais")
+  </code></pre>
+
+  <p><code>elif</code> é uma abreviação de <code>else if</code></p>
+</section>
+
+<section id="about-elif">
+  <h2>Execução encadeada</h2>
+
+  <ul>
+    <li>Cada condição é checada na ordem.</li>
+    <li>Se a primeira é falsa, a próxima é checada.</li>
+    <li>Se uma delas é verdadeira, a condicional termina.</li>
+  </ul>
+
+  <p>Se mais de uma condição for verdadeira, apenas o primeiro ramo verdadeiro é executado.</p>
+</section>
+
+<section id="nested-conditions">
+  <h2>Condicionais aninhadas</h2>
+
+  <p>Podemos adicionar condições dentro de outras:</p>
+
+  <pre><code data-trim class="lang-python">
+  if x > 0:
+      if x < 10:
+          print(x, "está dentro da faixa")
+</code></pre>
+
+  <p>E, claro, ter condições no corpo do <code>else</code>:</p>
+
+  <pre><code data-trim class="lang-python">
+  if x < y:
+      print(x, "é menor que", y)
+  else:
+      if x > y:
+          print(x, "é maior que", y)
+      else:
+          print(x, "e", y, "são iguais")
+</code></pre>
+</section>
+
+<section id="nested-special">
+    <h3>Caso especial</h3>
+
+    <p>A seguinte condicional aninhada...</p>
+
+    <pre><code data-trim class="lang-python">
+    if x > 0:
+        if x < 10:
+            print(x, "está dentro da faixa")
+    </code></pre>
+
+    <p>...pode ser reescrita da seguinte forma:</p>
+
+    <pre><code data-trim class="lang-python">
+    if x > 0 and x < 10:
+        print(x, "está dentro da faixa")
+    </code></pre>
+  </section>
+
+<section id="logical-operators">
+  <h2>Operadores Lógicos</h2>
+
+  <p>As expressões booleanas ficam mais poderosas:</p>
+
+  <table>
+    <tr>
+      <th>Lógica</th>
+      <th>Python</th>
+    </tr>
+    <tr>
+      <td>conjunção</td>
+      <td><code>and</code></td>
+    </tr>
+    <tr>
+      <td>disjunção</td>
+      <td><code>or</code></td>
+    </tr>
+    <tr>
+      <td>negação</td>
+      <td><code>not</code></td>
+    </tr>
+  </table>
+</section>
+
+<section id="logical-operators-examples">
+  <h3>Operadores lógicos: expressões</h3>
+
+  <ul>
+    <li>
+      <code>x &gt; 0 <b>and</b> x &lt; 10</code>
+      <ul><li>Verdadeiro se <code>x</code> maior que 0 e menor que 10</li></ul>
+    </li>
+    <li>
+      <code>n % 2 == 0 <b>or</b> n % 3 == 0</code>
+      <ul><li>Verdadeiro se <code>n</code> é divisível por 2 ou por 3</li></ul>
+    </li>
+    <li>
+      <code><b>not</b>(x &gt; y)</code>
+      <ul><li>Verdadeiro se <code>x &lt;= y</code></li></ul>
+    </li>
+  </ul>
+</section>
+
+<section id="arguments-validation">
+  <h2>Validação de argumentos</h2>
+
+  <p>Podemos usar condicionais para validar os argumentos de uma função, evitando erros:</p>
+
+  <pre><code data-trim class="lang-python">
+    def exibe_raiz_quadrada(x):
+        if x <= 0:
+            print("Só positivos permitido")
+        else:
+            result = x**0.5
+            print("Raiz de", x, "é", result)
+  </code></pre>
+</section>
+
+<section id="input-validation">
+  <h2>Validação de entradas</h2>
+
+  <p>As entradas do usuário sempre precisam ser validadas:</p>
+
+  <pre><code data-trim class="lang-python">
+    s_number = input("Digite um número: ")
+
+    if str.isnumeric(s_number):
+        n = int(s_number)
+        if n % 2 == 0:
+            print("Número digitado é par")
+    else:
+        print("O que você digitou não é um número")
+  </code></pre>
+</section>
+
+<section id="exercises-conditionals">
+  <h2>Exercícios: condicionais</h2>
+
+  <ol>
+    <li>Escreva um programa para ler dois números inteiros e exibir o maior.</li>
+    <li>Escreva um programa para ler dois números inteiros e exibi-los em ordem crescente.</li>
+    <li>
+      Escreva a função <code>comparar(x, y)</code> em que:
+      <ul>
+        <li>retorne <code>1</code>, se <code>x</code> maior que <code>y</code></li>
+        <li>retorne <code>-1</code> se <code>x</code> menor que <code>y</code></li>
+        <li>retorne <code>0</code> se <code>x</code> igual a <code>y</code></li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<section id="repeating">
+  <h2>Estrutura de repetição</h2>
+
+  <p>Computadores são comumente utilizados para automatizar tarefas repetitivas.</p>
+  <p><b>Repetir tarefas</b> sem cometer erros é algo que os computadores fazem bem e as pessoas fazem mal.</p>
+</section>
+
+<section id="while-statement">
+  <h2>Instrução while</h2>
+
+  <p>Executa instruções <b>enquanto</b> uma condição é <code>True</code>.</p>
+
+  <p style="text-align: left">A sintaxe geral da instrução <code>while</code> é:</p>
+
+  <div class="columns">
+        <pre class="col"><code data-trim data-noescape class="lang-html">
+          <b style="color: #e3ceab">while</b> EXPRESSÃO BOOLEANA:
+              INSTRUÇÃO 1
+              ⋮
+              INSTRUÇÃO n
+        </code></pre>
+    <pre class="col" style="box-shadow: none; margin-left: -0.7em;"
+    ><code data-trim data-noescape class="nohighlight" style="font-family: sans-serif">
+        ↔ cabeçalho da instrução
+        🔵
+        🔵 corpo
+        🔵
+      </code></pre>
+  </div>
+</section>
+
+<section id="countdown">
+  <h2>Contagem Regressiva</h2>
+
+  <pre><code data-trim class="lang-python">
+    def contagem_regressiva(n):
+        while n > 0:
+            print(n)
+            n = n - 1
+        print("Fogo!")
+  </code></pre>
+
+  <blockquote><p>
+    Enquanto <code>n</code> for maior que 0, exiba o valor de <code>n</code> e reduza o valor
+    de <code>n</code> em 1, quando chegar a 0, diga &ldquo;Fogo!&rdquo;
+  </p></blockquote>
+</section>
+
+<section id="while-flow">
+  <h2>Fluxo de Execução: while</h2>
+
+  <ol class="important">
+    <li>Avaliar a expressão booleana da condição.</li>
+    <li>Se a condição é falsa, sai da instrução <code>while</code> e continua a execução na
+        instrução seguinte.</li>
+    <li>Se a condição é verdadeira, executa o corpo e, em seguida,
+        volta para o passo 1.
+    </li>
+  </ol>
+
+  <p>
+    Este tipo de fluxo é chamado de laço ou <em>loop</em>, porque o terceiro passo faz um
+    laço de volta a o topo.
+  </p>
+</section>
+
+<section id="infinite-loop">
+  <h2>Loop infinito</h2>
+
+  <p>Quando a condição se torna falsa o loop termina.</p>
+  <p>Mas se isso nunca ocorrer, o ciclo se repete para sempre, o que chamamos de <b>loop infinito</b>.</p>
+</section>
+
+<section id="finite-or-not-finite">
+  <h2>Finito ou infinito?</h2>
+
+  <p>Na contagem regressiva, vemos que o ciclo termina. Mas nem sempre é tão fácil dizer:</p>
+
+  <pre><code data-trim class="lang-python">
+    def collatz(x):
+        while x != 1:
+            print(x)
+            if x % 2 == 0:
+                x = x // 2
+            else:
+                x = 3 * x + 1
+  </code></pre>
+</section>
+
+<section id="break-statement">
+  <h2>Comando break</h2>
+
+  <p>Usamos o comando <code>break</code> para encerrar um laço imediatamente antes de
+     reavaliar a condição.</p>
+
+  <p>Por exemplo, para obter a entrada do usuário até que digite &ldquo;OK&rdquo;,
+     poderíamos escrever:</p>
+
+  <pre><code data-trim class="lang-python">
+    while True:
+        linha = input("Entrada: ")
+        if linha == "OK":
+            break
+        print(linha)
+
+    print("Terminado!")
+  </code></pre>
+</section>
+
+<section id="continue-statement">
+  <h2>Comando continue</h2>
+
+  <p>O comando <code>continue</code> faz a execução saltar para a avaliação da condição do laço atual:</p>
+
+  <pre><code data-trim class="lang-python">
+    def misterio(n):
+        i = 0
+        while i < n:
+            if i % 2 != 0:
+                i = i * 2
+                continue
+            print(i)
+            i = i + 1
+  </code></pre>
+</section>
+
+<section id="for-statement">
+  <h2>Instrução for</h2>
+
+  <p>Outra estrutura de repetição comum é o <code>for</code>. É muito útil em loops com valor incremental.</p>
+
+  <p>Por exemplo, a seguinte função usando <code>while</code>...</p>
+
+  <pre><code data-trim class="lang-python">
+    def exibe_ate(n):
+        i = 0
+        while i < n:
+            print(i)
+            i = i + 1
+  </code></pre>
+
+  <p>...pode ser escrita mais facilmente usando <code>for</code>:</p>
+
+  <pre><code data-trim class="lang-python">
+    def exibe_ate(n):
+        for i in range(0, n):
+            print(i)
+  </code></pre>
+</section>
+
+<section id="for-values">
+  <p>Em Python, a instrução <code>for</code> também é muito usada para iterar sobre uma lista de valores:</p>
+
+  <pre><code data-trim class="lang-python">
+    for nome in "Daniela", "Humberto", "Cíntia":
+        print(nome, "tem", len(nome), "letras!")
+  </code></pre>
+</section>
+
+<section id="exercises-repeating">
+  <h2>Exercícios: Repetição</h2>
+
+  <ol>
+    <li>Crie um programa que leia do usuário vários números e pare quando o usuário digitar 0.</li>
+    <li>Crie um programa em que leia n pares de números e mostre a relação entre os números
+        (<code>&gt;</code>, <code>&lt;</code>, <code>=</code>).</li>
+    <li>Crie um programa que leia 100 números e retorne a soma e a média desses valores.</li>
+    <li>Crie uma função que calcule a multiplicação de dois números inteiros sem utilizar o operador <code>*</code>.</li>
+    <li>Crie uma função para calcular o fatorial.</li>
+  </ol>
+</section>
+
+<style>
+  .reveal :not(pre) > code {
+    padding: 2px 4px;
+    font-size: 0.9em;
+    color: #373d40;
+    background-color: #f3f6fa;
+    border-radius: 0.3rem;
+  }
+
+  ol.important {
+    counter-reset: li;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  ol.important > li {
+    position: relative;
+    margin: 0 0 6px 2em;
+    padding: 4px 8px;
+    list-style: none;
+  }
+
+  ol.important > li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: -2px;
+    left: -1.8em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 1.7em;
+    margin-right: 8px;
+    padding: 4px;
+    color: #fff;
+    background: #5885bf;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>

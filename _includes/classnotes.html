@@ -2,7 +2,7 @@
                                     | where_exp:"item", "item.hidden != true"
                                     | where_exp:"item", "item.url != page.url"
                                     | where_exp:"item", "item.url contains page.url"
-                                    | sort: "date"
+                                    | sort: "part", "last"
                                     | group_by:"part" -%}
 
 <h1>Notas de aula</h1>
@@ -18,7 +18,9 @@
 
   <h2>{{ heading }}</h2>
   <ol class="{{ className }}">
-  {%- for p in part.items %}
+
+  {%- assign partItems = part.items | sort: "date" -%}
+  {%- for p in partItems %}
     <li><a href="{{ p.url }}">{{ p.topic | default: p.title }}</a></li>
   {%- endfor %}
   </ol>

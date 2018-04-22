@@ -10,8 +10,9 @@ header.date {
 div.highlighter-rouge[data-caption]:before,
 div.exemplo-out[data-caption]:before {
     content: attr(data-caption);
-    font-variant: small-caps;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;;
     font-weight: bold;
+    font-size: 0.8em;
 }
 
 div.exemplo-out {

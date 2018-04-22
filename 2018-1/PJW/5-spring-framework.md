@@ -526,4 +526,363 @@ Você pode baixar o código até esse ponto [aqui][car-validation].
 {% include warning-mode.html %}
 {% if jekyll.environment != 'production' %}
 
+## [GIT] Adiciona um id à entidade Car
+
+{: data-caption="Car.java" data-hi="2"}
+```
+public class Car {
+    private Long id;
+
+    @NotEmpty
+    private String name;
+
+    @Min(1000) @Max(5_000_000)
+    private BigDecimal price;
+
+    // getters & setters
+```
+
+{: data-caption="CarDao.java" data-hi="4,24,25"}
+```
+@Service
+public class CarDao {
+    private final List<Car> carList = new ArrayList<>();
+    private static long sequence = 0;
+
+    CarDao() {
+        Car car1 = new Car();
+        car1.setName("Mercedes SL");
+        car1.setPrice(BigDecimal.valueOf(123400));
+        this.add(car1);
+
+        Car car2 = new Car();
+        car2.setName("BMW M6 Coupé");
+        car2.setPrice(BigDecimal.valueOf(125000));
+        this.add(car2);
+
+        Car car3 = new Car();
+        car3.setName("Audi R8");
+        car3.setPrice(BigDecimal.valueOf(136100));
+        this.add(car3);
+    }
+
+    public void add(Car car) {
+        sequence += 1;
+        car.setId(sequence);
+        carList.add(car);
+    }
+
+    public List<Car> findAll() {
+        return carList;
+    }
+}
+```
+
+## [GIT] Adiciona interface para editar um carro
+
+{: data-caption="CarDao.java" data-hi="7-15"}
+```
+    public void add(Car car) {
+        sequence += 1;
+        car.setId(sequence);
+        carList.add(car);
+    }
+
+    public Car get(long id) {
+        for (Car car : carList) {
+            if (id == car.getId()) {
+                return car;
+            }
+        }
+
+        throw new IllegalArgumentException("Carro não encontrado: " + id);
+    }
+
+    public List<Car> findAll() {
+        return carList;
+    }
+}
+```
+
+{: data-caption="CarController.java" data-hi="13-19"}
+```
+    @RequestMapping(value = "/car/add", method = RequestMethod.POST)
+    public String carAdd(@ModelAttribute("car") @Valid Car car, BindingResult result) {
+        if (result.hasErrors()) {
+            // mostra o formulário novamente, com os erros
+            return "/car/add";
+        }
+
+        // validação bem sucedida
+        carDao.add(car);
+        return "redirect:/car/list";
+    }
+
+    @RequestMapping("/car/edit/{id}")
+    public String carEdit(@PathVariable("id") Long id, Model model) {
+        Car car = carDao.get(id);
+        model.addAttribute("car", car);
+
+        return "/car/add";
+    }
+}
+```
+
+{: data-caption="WEB-INF/jsp/car/add.jsp" data-hi="2,5"}
+```
+    <body>
+        <h1>${car.id == null ? 'Adicione' : 'Edite'} um carro</h1>
+
+        <form:form method="POST" modelAttribute="car">
+            <form:hidden path="id" />
+            <p>
+                Nome: <br>
+                <form:input path="name" />
+                <form:errors path="name" cssClass="error" />
+            </p>
+```
+
+## [GIT] Link para editar os itens da lista de carros
+
+{: data-caption="WEB-INF/jsp/car/list.jsp" data-hi="5,6"}
+```
+    <body>
+        <h1>Carros</h1>
+        <c:forEach items="${carList}" var="car">
+            <p>
+                <c:url var="editUrl" value="/car/edit/${car.id}" />
+                ${car.name}: $${car.price} <a href="${editUrl}">Editar</a>
+            </p>
+        </c:forEach>
+    </body>
+</html>
+```
+
+## [GIT] Adiciona funcionalidade de editar carros
+
+{: data-caption="CarDao.java" data-hi="11-20"}
+```
+    public Car get(long id) {
+        for (Car car : carList) {
+            if (id == car.getId()) {
+                return car;
+            }
+        }
+
+        throw new IllegalArgumentException("Carro não encontrado: " + id);
+    }
+
+    public void edit(Car car) {
+        for (int i = 0; i < carList.size(); i++) {
+            if (car.getId() == carList.get(i).getId()) {
+                carList.set(i, car);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Carro não encontrado: " + car.getId());
+    }
+
+    public List<Car> findAll() {
+        return carList;
+    }
+}
+```
+
+{: data-caption="CarController.java" data-hi="9-19"}
+```
+    @RequestMapping("/car/edit/{id}")
+    public String carEdit(@PathVariable("id") Long id, Model model) {
+        Car car = carDao.get(id);
+        model.addAttribute("car", car);
+
+        return "/car/add";
+    }
+
+    @RequestMapping(value = "/car/edit/{id}", method = RequestMethod.POST)
+    public String carEdit(@ModelAttribute("car") @Valid Car car, BindingResult result) {
+        if (result.hasErrors()) {
+            // mostra o formulário novamente, com os erros
+            return "/car/add";
+        }
+
+        // validação bem sucedida
+        carDao.edit(car);
+        return "redirect:/car/list";
+    }
+}
+```
+
+## [GIT] Prefixo comum para rotas do controller
+
+{: data-caption="CarController.java" data-hi="2,7,13,17,29,37"}
+```
+@Controller
+@RequestMapping("/car")
+public class CarController {
+    @Autowired
+    private CarDao carDao;
+
+    @RequestMapping("/list")
+    public void carList(Model model) {
+        List<Car> carList = carDao.findAll();
+        model.addAttribute("carList", carList);
+    }
+
+    @RequestMapping("/add")
+    public void carAdd(@ModelAttribute("car") Car car) {
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String carAdd(@ModelAttribute("car") @Valid Car car, BindingResult result) {
+        if (result.hasErrors()) {
+            // mostra o formulário novamente, com os erros
+            return "/car/add";
+        }
+
+        // validação bem sucedida
+        carDao.add(car);
+        return "redirect:/car/list";
+    }
+
+    @RequestMapping("/edit/{id}")
+    public String carEdit(@PathVariable("id") Long id, Model model) {
+        Car car = carDao.get(id);
+        model.addAttribute("car", car);
+
+        return "/car/add";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String carEdit(@ModelAttribute("car") @Valid Car car, BindingResult result) {
+        if (result.hasErrors()) {
+            // mostra o formulário novamente, com os erros
+            return "/car/add";
+        }
+
+        // validação bem sucedida
+        carDao.edit(car);
+        return "redirect:/car/list";
+    }
+}
+```
+
+## [GIT] Cria uma página inicial
+
+{: data-caption="WEB-INF/jsp/index.jsp (novo)"}
+```
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Bem vindo</title>
+    </head>
+    <body>
+        <h1>Bem vindo</h1>
+        <p>Uma magnífica página inicial, não é?</p>
+    </body>
+</html>
+```
+
+{: data-caption="HomeController.java (novo)"}
+```
+package primavera.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HomeController {
+    @RequestMapping("/")
+    public String home() {
+        return "index";
+    }
+}
+```
+
+## [GIT] Fazendo páginas multi-idiomas
+
+{: data-caption="WEB-INF/jsp/index.jsp" data-hi="2,8,11,12"}
+```
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><spring:message code="home.title"/></title>
+    </head>
+    <body>
+        <h1><spring:message code="home.title"/></h1>
+        <p><spring:message code="home.intro"/></p>
+    </body>
+</html>
+```
+
+{: data-caption="messages_pt.properties (novo)"}
+```
+home.title=Bem vindo
+home.intro=Uma magn\u00edfica p\u00e1gina inicial, concorda?
+```
+
+{: data-caption="messages_en.properties (novo)"}
+```
+home.title=Welcome
+home.intro=This is a magnificent home page, isn't it?
+```
+
+{: data-caption="AppConfig.java" data-hi="15-22"}
+```
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = {"primavera.dao", "primavera.controller"})
+public class AppConfig {
+
+    @Bean
+    public ViewResolver jspViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setViewClass(JstlView.class);
+        resolver.setPrefix("/WEB-INF/jsp/");
+        resolver.setSuffix(".jsp");
+        return resolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setUseCodeAsDefaultMessage(true);
+        return messageSource;
+    }
+
+}
+```
+
+## [GIT] Define idioma padrão
+
+{: data-caption="AppConfig.java" data-hi="10-15"}
+```
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setUseCodeAsDefaultMessage(true);
+        return messageSource;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.forLanguageTag("en"));
+        return localeResolver;
+    }
+
+}
+```
+
 {% endif %}

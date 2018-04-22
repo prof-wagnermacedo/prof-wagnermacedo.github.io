@@ -231,7 +231,7 @@ Para fazer a ligação entre as camadas _Model_ e _View_, temos a camada _**Cont
 Tem outra coisa importante para observar: no método `carList(Model)` utilizamos um objeto `model` para adicionar um
 atributo chamado `"carList"`, esse é utilizado pela _view_ com `${carList}`.
 
-{: data-caption="CarController.java"}
+{: data-caption="CarController.java (novo)"}
 ```
 package primavera.controller;
 
@@ -261,13 +261,11 @@ public class CarController {
 
 #### O arquivo JSP ainda não pode ser encontrado
 
-No _controller_, temos o caminho `/car/list`, esse é o caminho usado para encontrar a _view_ em
+No _controller_, definimos o caminho `"/car/list"`, esse também é o caminho usado para carregar a _view_
+em <code class="nowrap">WEB-INF/jsp<b>/car/list</b>.jsp</code>, mas para isso ocorrer, precisamos antes
+adicionar uma configuração à `AppConfig` para o Spring saber onde encontrar as _views_:
 
-<pre>WEB-INF/jsp<b>/car/list</b>.jsp</pre>
-
-Mas para isso ocorrer, precisamos antes adicionar uma configuração à `AppConfig`:
-
-{: data-caption="AppConfig.java" data-hi="5-14"}
+{: data-caption="AppConfig.java" data-hi="6-13"}
 ```
 @Configuration
 @EnableWebMvc
@@ -286,20 +284,22 @@ public class AppConfig {
 }
 ```
 
-#### A classe DAO não pode ser inicializada
+#### A classe DAO não foi inicializada
 
-Para resolver isso, adicione a string `"primavera.dao"` à lista de pacotes da anotação `@ComponentScan`:
+Para que o Spring processe a anotação `@Service` na classe DAO, é preciso informar na configuração para que o pacote
+`primavera.dao` também seja escaneado:
 
-{: data-caption="AppConfig.java" data-hi="1"}
-```
-@ComponentScan(basePackages = {"primavera.dao", "primavera.controller"})
-```
+<div data-caption="AppConfig.java" data-hi="1" class="highlighter-rouge">
+<pre class="highlight"><code>
+@ComponentScan(basePackages = {<b>"primavera.dao"</b>, "primavera.controller"})
+</code></pre>
+</div>
 
 ### O código até agora
 
-Você pode baixar o código até esse ponto [aqui][CarList].
+Você pode baixar o código até esse ponto [aqui][car-list].
 
-[CarList]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/629d1d1dbb9ce060414da8e3b944d80277eceb30.zip
+[car-list]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/629d1d1dbb9ce060414da8e3b944d80277eceb30.zip
 
 {% include warning-mode.html %}
 {% if jekyll.environment != 'production' %}

@@ -301,13 +301,243 @@ Você pode baixar o código até esse ponto [aqui][car-list].
 
 [car-list]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/629d1d1dbb9ce060414da8e3b944d80277eceb30.zip
 
-{% include warning-mode.html %}
-{% if jekyll.environment != 'production' %}
-
 ## Funcionalidade de adicionar carros
 
-1. Crie o método `add(Car)` na classe `CarDao`.
-2. Crie os métodos `carAdd()` e `carAdd(Car)` à classe `CarController`.
-3. Adicione o formulário HTML em `WEB-INF/jsp/car/add.jsp`.
+Vamos adicionar a possibilidade de adicionar carros à listagem. Precisamos de três coisas:
+
+1. Criar um método `add(Car)` na classe `CarDao`.
+2. Criar dois métodos `carAdd()` e `carAdd(Car)` à classe `CarController`.
+3. Adicionar um formulário HTML em `WEB-INF/jsp/car/add.jsp`.
+
+### Alterando o DAO
+
+{: data-caption="CarDao.java" data-hi="7-9"}
+```
+        Car car3 = new Car();
+        car3.setName("Audi R8");
+        car3.setPrice(BigDecimal.valueOf(136100));
+        carList.add(car3);
+    }
+
+    public void add(Car car) {
+        carList.add(car);
+    }
+
+    public List<Car> findAll() {
+        return carList;
+    }
+}
+```
+
+### Alterando o controller
+
+Precisamos de dois métodos no _controller_ configurados para o mesmo caminho `/car/add`, um deles irá apenas carregar o
+arquivo JSP utilizando o método HTTP GET, e o outro irá fazer o cadastro, mas aceitará apenas requisições HTTP POST.
+
+Observe a nova anotação `@ModelAttribute`, com a utilização dela, não precisamos obter os parâmetros do formulário
+manualmente, como fazíamos utilizando servlets.
+
+Isto quer dizer que o objeto do tipo `Car` no segundo método já virá preenchido.
+
+{: data-caption="CarController.java" data-hi="7-15"}
+```
+    @RequestMapping("/car/list")
+    public void carList(Model model) {
+        List<Car> carList = carDao.findAll();
+        model.addAttribute("carList", carList);
+    }
+
+    @RequestMapping("/car/add")
+    public void carAdd() {
+    }
+
+    @RequestMapping(value = "/car/add", method = RequestMethod.POST)
+    public String carAdd(@ModelAttribute Car car) {
+        carDao.add(car);
+        return "redirect:/car/list";
+    }
+
+}
+```
+
+### Adicionando o formulário de cadastro
+
+{: data-caption="WEB-INF/jsp/car/add.jsp (novo)"}
+```
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Carros</title>
+    </head>
+    <body>
+        <h1>Adicione um carro</h1>
+
+        <form:form method="POST">
+            <p>
+                Nome: <br>
+                <input type="text" name="name" />
+            </p>
+            <p>
+                Preço: <br>
+                <input type="number" name="price" />
+            </p>
+
+            <input type="submit" />
+        </form:form>
+    </body>
+</html>
+```
+
+### O código até agora
+
+Você pode baixar o código até esse ponto [aqui][car-add].
+
+[car-add]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/39770a9dded9547d09789ea77d7f53bbd887ac90.zip
+
+## Validação do formulário
+
+O framework Spring fornece uma forma conveniente para validar formulários.
+
+### Anotando a classe da entidade
+
+Primeiro, vamos adicionar à classe `Car` anotações que explicam os requisitos para cada campo:
+
+{: data-caption="Car.java" data-hi="2,5"}
+```
+public class Car {
+    @NotEmpty
+    private String name;
+
+    @Min(1000) @Max(5_000_000)
+    private BigDecimal price;
+
+}
+```
+
+As anotações dizem que `name` não pode estar vazio e `price` deve estar entre mil e cinco milhões.
+
+### Alterando o controller para garantir a entrada válida
+
+Precisamos adicionar outra anotação ao argumento do tipo `Car` e adicionar um segundo argumento do tipo `BindingResult`,
+para saber o resultado da validação, utilizamos esse objeto para mandar retornar ao formulário, informando ao usuário
+dos erros ocorridos.
+
+{: data-caption="CarController.java" data-hi="5-12"}
+```
+    @RequestMapping("/car/add")
+    public void carAdd() {
+    }
+
+    @RequestMapping(value = "/car/add", method = RequestMethod.POST)
+    public String carAdd(@ModelAttribute("car") @Valid Car car, BindingResult result) {
+        if (result.hasErrors()) {
+            // mostra o formulário novamente, com os erros
+            return "/car/add";
+        }
+
+        // validação bem sucedida
+        carDao.add(car);
+        return "redirect:/car/list";
+    }
+
+}
+```
+
+### Alterando o formulário para exibir os erros
+
+{: data-caption="WEB-INF/jsp/car/add.jsp" data-hi="9-11,16,20,25"}
+```
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Carros</title>
+        <style>
+            .error { color: red; }
+        </style>
+    </head>
+    <body>
+        <h1>Adicione um carro</h1>
+
+        <form:form method="POST" modelAttribute="car">
+            <p>
+                Nome: <br>
+                <input type="text" name="name" />
+                <form:errors path="name" cssClass="error" />
+            </p>
+            <p>
+                Preço: <br>
+                <input type="number" name="price" />
+                <form:errors path="price" cssClass="error" />
+            </p>
+
+            <input type="submit" />
+        </form:form>
+    </body>
+</html>
+```
+
+### Mantendo o formulário preenchido nos erros
+
+Para isso, usamos as tags do Spring `<form:input>` em vez dos `<input>` convencionais do HTML:
+
+{: data-caption="WEB-INF/jsp/car/add.jsp" data-hi="6,11"}
+```
+        <h1>Adicione um carro</h1>
+
+        <form:form method="POST" modelAttribute="car">
+            <p>
+                Nome: <br>
+                <form:input path="name" />
+                <form:errors path="name" cssClass="error" />
+            </p>
+            <p>
+                Preço: <br>
+                <form:input path="price" type="number" />
+                <form:errors path="price" cssClass="error" />
+            </p>
+
+            <input type="submit" />
+        </form:form>
+    </body>
+</html>
+```
+
+É preciso também uma pequena alteração no controller para não haver erros de execução:
+
+{: data-caption="CarController.java" data-hi="8"}
+```
+    @RequestMapping("/car/list")
+    public void carList(Model model) {
+        List<Car> carList = carDao.findAll();
+        model.addAttribute("carList", carList);
+    }
+
+    @RequestMapping("/car/add")
+    public void carAdd(@ModelAttribute("car") Car car) {
+    }
+
+    @RequestMapping(value = "/car/add", method = RequestMethod.POST)
+    public String carAdd(@ModelAttribute("car") @Valid Car car, BindingResult result) {
+        if (result.hasErrors()) {
+            // mostra o formulário novamente, com os erros
+            return "/car/add";
+```
+
+### O código até agora
+
+Você pode baixar o código até esse ponto [aqui][car-validation].
+
+[car-validation]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/51e1bc01fa4a3983f381991598a1392bfb8be250.zip
+
+{% include warning-mode.html %}
+{% if jekyll.environment != 'production' %}
 
 {% endif %}

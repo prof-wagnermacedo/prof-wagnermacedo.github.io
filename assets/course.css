@@ -295,7 +295,15 @@ div.show-more a:after {
         display: none;
     }
 
-    * {
+    *, .main-content code, pre.highlight code {
         color: black;
+    }
+
+    pre.highlight code {
+        white-space: pre-wrap;
+    }
+
+    div.highlighter-rouge {
+        page-break-inside: avoid;
     }
 }

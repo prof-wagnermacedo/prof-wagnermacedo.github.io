@@ -1,0 +1,47 @@
+---
+topic: Exercícios 4
+layout: course
+type: classnote
+date: 2018-04-24 19:00
+part: 2
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<p><em>
+    As seguintes questões são de prática com o <u>framework Spring</u>. Você deve utilizar o projeto trabalhado em sala
+    de aula como objeto de trabalho, caso não tenha, baixe-o
+    <a href="https://github.com/prof-wagnermacedo/SpringWebApp/archive/6092b1552c6b60053b37edb5dfa5dee996fe6224.zip">aqui</a>.
+</em></p>
+
+<hr>
+
+<p>
+    Desenvolva o código, altere qualquer arquivo que achar necessário e envie o <b>.zip</b> com o que conseguiu fazer,
+    juntamente com um arquivo texto explicando a solução utilizada em cada questão até o dia 29/04/2018 pelo
+    <a href="https://goo.gl/forms/Joabb8JLKZFPk5sM2">formulário de envio</a>.
+</p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Prática com o framework Spring", [
+        {q: 'Crie uma nova funcionalidade de excluir carros do cadastro.'},
+        {q: 'Adicione outro campo ao cadastro para informar a cor do carro.'},
+        {q: 'Faça as telas de cadastro disponíveis tanto em inglês quanto em português.'},
+    ]);
+
+    exam.finale();
+</script>
+
+<style>
+    .kind-exam-answer[contenteditable] {
+        display: none;
+    }
+</style>

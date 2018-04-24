@@ -825,7 +825,7 @@ public class HomeController {
 {: data-caption="messages_pt.properties (novo)"}
 ```
 home.title=Bem vindo
-home.intro=Uma magn\u00edfica p\u00e1gina inicial, concorda?
+home.intro=Uma magnífica página inicial, não é?
 ```
 
 {: data-caption="messages_en.properties (novo)"}
@@ -862,27 +862,7 @@ public class AppConfig {
 }
 ```
 
-## [GIT] Define idioma padrão
-
-{: data-caption="AppConfig.java" data-hi="10-15"}
-```
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:/messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setUseCodeAsDefaultMessage(true);
-        return messageSource;
-    }
-
-    @Bean
-    public LocaleResolver localeResolver() {
-        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.forLanguageTag("en"));
-        return localeResolver;
-    }
-
-}
-```
+O idioma padrão, caso não seja requisitado nenhum dos disponíveis é o padrão do sistema operacional. Se o seu sistema
+for em português, então o Spring usará português como o padrão.
 
 {% endif %}

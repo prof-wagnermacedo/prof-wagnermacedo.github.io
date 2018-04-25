@@ -210,3 +210,11 @@ p.pre-caption + pre {
     from { width: 1.2ch }
     to { width: 100% }
 }
+
+.reveal :not(pre) > code {
+    padding: 2px 4px;
+    font-size: 0.9em;
+    color: #353a3d;
+    background-color: #e8ebed;
+    border-radius: 0.3rem;
+}

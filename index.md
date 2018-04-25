@@ -22,5 +22,5 @@ title: Prof. Wagner Macêdo
 
 # Outros
 
-- [Configurando Ambientes Virtuais com pipenv](workshop-pipenv/)
+- [Configurando Ambientes Virtuais com pipenv](palestra-pipenv/)
 - [Workshop de Shell Script](workshop-shell/)

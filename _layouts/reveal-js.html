@@ -15,6 +15,7 @@
   <title>{{ page.title | default: "reveal.js" }}</title>
 
   <link rel="stylesheet" href="{{ '/assets/reveal.js/css/reveal.css' | relative_url }}">
+  {% if page.asciinema == true %}<link rel="stylesheet" href="{{ '/assets/asciinema-player.css' | relative_url }}" />{% endif %}
 
   {% assign theme = page.theme | default: 'black' %}
   <link rel="stylesheet" href="{{ '/assets/reveal.js/css/theme/' | append: theme | append: '.css' | relative_url }}" id="theme">
@@ -45,14 +46,13 @@
     {{ content }}
 
     <section class="duvidas">
-      {%- assign pageUrl = page.url | split: "."    | reverse
-                                    | slice: 1, 999 | reverse | join: "."
-                                    | absolute_url %}
+      {%- assign pageUrl = page.url | split: ".html" | join: ".html" -%}
+
       <h2>Dúvidas?</h2>
       <p>
         <strong>Este slide pode ser encontrado em:</strong>
         <br>
-        <a href="{{ pageUrl }}">{{ pageUrl }}</a>
+        <a href="{{ pageUrl }}">{{ pageUrl | absolute_url }}</a>
       </p>
     </section>
   </div>
@@ -90,5 +90,7 @@
         ]
     });
 </script>
+
+{% if page.asciinema == true %}<script src="{{ '/assets/asciinema-player.js' | relative_url }}"></script>{% endif %}
 </body>
 </html>

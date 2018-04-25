@@ -1,0 +1,187 @@
+---
+title: Configurando Ambientes Virtuais com pipenv
+layout: reveal-js
+asciinema: true
+theme: beige
+---
+
+<section>
+    <h1>{{ page.title }}</h1>
+    <h2>Wagner Macedo</h2>
+</section>
+
+<section>
+    <section><h1>História do empacotamento de Python</h1></section>
+    <section>
+        <h2>Antes da história</h2>
+        <p>Python surgiu oficialmente em 1991.</p>
+        <p>Até o ano de 2000, não existia ainda uma solução para o problema do empacotamento de bibliotecas.</p>
+        <blockquote>Adicionar uma dependência ao seu projeto era uma verdadeira odisséia 💪️</blockquote>
+    </section>
+    <section>
+        <h3>Como era instalada uma biblioteca?</h3>
+        <p>
+            Era preciso copiar os arquivos <b>.py</b> para os locais certos e, se houvesse algum pós-instalação, era
+            preciso seguir as instruções do autor da biblioteca (se houvesse 😱).
+        </p>
+    </section>
+    <section>
+        <h2>Distutils</h2>
+        <ul>
+            <li>Desenvolvimento iniciou em 1998</li>
+            <li>Introduziu o famoso <code>setup.py</code>
+                <ul>
+                    <li>Instalar um projeto</li>
+                    <li>Gerar um <em>tarball</em></li>
+                </ul>
+            </li>
+            <li><u>2000</u>: Adicionado ao Python 1.6</li>
+            <li>Não havia, ainda, um repositório central.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>PyPI</h2>
+        <ul>
+            <li><u>2003</u>: <b>PyPI</b> (<em>Python Packaging Index</em>)</li>
+            <li>Adicionou metadados ao <code>setup.py</code></li>
+        </ul>
+        <p>Era conhecido por <em>Cheeseshop</em> 😆</p>
+    </section>
+    <section>
+        <h2>Setuptools</h2>
+        <ul>
+            <li>Uma gama de extensões ao <em>Setuptools</em>
+                <ul>
+                    <li>Declaração de dependências</li>
+                    <li>Configurar scripts de instalação</li>
+                </ul>
+            </li>
+            <li><u>2004</u>: Formato de instalação binária (<code>egg</code>)</li>
+            <li><u>2005</u>: Surge o comando <code>easy_install</code>
+                <ul>
+                    <li>Instalação de pacotes da Internet 😎</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>O problema de pacotes compartilhados</h3>
+        <p>Os pacotes Python são todos instalados no mesmo local. Isso traz dois grandes problemas:</p>
+        <ol>
+            <li>Diferentes aplicações podem requerer diferentes versões de uma mesma biblioteca.</li>
+            <li>Saber as dependências mínimas de uma aplicação em desenvolvimento é muito difícil.</li>
+        </ol>
+    </section>
+    <section>
+        <h2>Virtualenv</h2>
+        <ul>
+            <li><u>2007</u>: Ambientes virtuais de Python
+                <ul>
+                    <li>Não compartilha os pacotes do sistema</li>
+                    <li>Pacotes visíveis apenas em cada <em>virtualenv</em>
+                        <ul>
+                            <li class="fragment highlight-blue">
+                                Reproduzível</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>Setuptools e a biblioteca padrão</h3>
+        <p>
+            As melhorias que o <em>Setuptools</em> trouxe para o empacotamento de Python não haviam entrado na
+            biblioteca padrão, onde a <em>Distutils</em> estava estagnando.
+        </p>
+        <p>
+            Essa situação ajudou a confundir os desenvolvedores de Python, principalmente os recém-chegados.
+        </p>
+    </section>
+    <section>
+        <h2>pip</h2>
+        <ul>
+            <li><u>2008</u>: <code>pip</code> foi introduzido
+                <ul>
+                    <li>Alternativa ao <code>easy_install</code></li>
+                    <li>Corrige problemas e complexidades</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Distribute</h2>
+        <ul>
+            <li><u>2008</u>: Fork de <em>Setuptools</em></li>
+            <li>Um projeto mais aberto</li>
+        </ul>
+    </section>
+    <section>
+        <h2>PyPA</h2>
+        <ul>
+            <li><u>2011</u>: <b>PyPA</b> (<em>Python Packaging Authority</em>)</li>
+            <li>Grupo de trabalho para manter:
+                <ul>
+                    <li><code>pip</code></li>
+                    <li><code>virtualenv</code></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Setuptools: outra vez!</h2>
+        <p>
+            Os projetos <em>Distribute</em> e <em>Setuptools</em> deram as mãos e juntaram os esforços, ficando apenas o
+            nome mais antigo e conhecido.
+        </p>
+    </section>
+    <section>
+        <h2>ensurepip</h2>
+        <ul>
+            <li><b>2014</b>: módulo oficial para instalar <code>pip</code>
+                <ul>
+                    <li>A partir de Python 3.4, basta chamar
+                    <pre style="font-size: 0.9em"
+                    ><code>python -m ensurepip</code></pre>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h2>Pipenv</h2>
+    <blockquote>
+        <p>
+            Pipenv is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo,
+            yarn, etc.) to the Python world.
+        </p>
+        <p>&mdash; Kenneth Reitz</p>
+    </blockquote>
+</section>
+
+<section>
+    <h3>Pipenv em poucas palavras</h3>
+    <p><code>pip</code> + <code>virtualenv</code> = <code>pipenv</code></p>
+</section>
+
+<section>
+    <h2>Sem o Pipenv 😢</h2>
+    <asciinema-player src="sem-pipenv.cast" font-size="medium" cols="90" rows="20"></asciinema-player>
+</section>
+
+<section>
+    <h2>Com o Pipenv 😃</h2>
+    <asciinema-player src="com-pipenv.cast" font-size="medium" cols="90" rows="20"></asciinema-player>
+</section>
+
+<section>
+    <h2>Referências</h2>
+    <ol>
+        <li>https://docs.pipenv.org/</li>
+        <li>https://blog.startifact.com/posts/older/a-history-of-python-packaging.html</li>
+        <li>https://www.pypa.io/en/latest/history/</li>
+        <li>http://glyph.twistedmatrix.com/2016/08/python-packaging.html</li>
+    </ol>
+</section>

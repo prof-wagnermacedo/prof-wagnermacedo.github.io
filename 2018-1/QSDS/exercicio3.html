@@ -1,0 +1,94 @@
+---
+topic: Exercícios 3
+layout: course
+type: classnote
+date: 2018-04-26 19:00
+part: 2
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.min.js"></script>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Desenvolvimento seguro", [
+        {
+            q: 'Qual vulnerabilidade o código Java a seguir tem? E o que pode ser feito para a sua correção?',
+            snippet: {
+                ext: 'java',
+                code:
+                    'String query = "SELECT account_balance FROM user_data WHERE user_name = "\n' +
+                    '       + request.getParameter("customerName");\n' +
+                    '\n' +
+                    'try {\n' +
+                    '   Statement statement = connection.createStatement();\n' +
+                    '   ResultSet results = statement.executeQuery( query );\n' +
+                    '}\n',
+            }
+        },
+        {
+            q: 'Qual alternativa representa o impacto típico da falha em restringir o acesso à URL?',
+            answers: [
+                'Os atacantes realizam ataques man-in-the-middle.',
+                'Os invasores personificam qualquer usuário no sistema.',
+                'Os atacantes invocam funções e serviços para os quais não têm autorização.',
+                'Os atacantes realizam todas as ações que as próprias vítimas têm permissão para executar.',
+            ],
+        },
+        {
+            q: 'Por que você deve usar CAPTCHA?',
+            answers: [
+                'Para criar IDs de sessão aleatoriamente criptográficas.',
+                'Para proteger as credenciais usando criptografia e hash.',
+                'Para proteger os sistemas de autenticação de ataques automatizados ou de força bruta.',
+                'Para garantir que os sistemas de autenticação implementem a funcionalidade de tempo limite de inatividade',
+            ],
+        },
+        {
+            q:
+                'O uso de criptografia muito importante para a segurança. O protocolo de criptografia utilizado no ' +
+                'HTTPS utiliza chaves assimétricas como um meio de aumentar a segurança. A maior vulnerabilidade ' +
+                'decorrente de utilizar apenas chaves simétricas para criptografia reside no fato de que a chave:',
+            answers: [
+                'precisa ser gravada com a mensagem, e isso torna difícil a leitura.',
+                'é padronizada, e isso impossibilita alterações.',
+                'é grande, e isso demanda muito processamento.',
+                'é pequena, e isso oferece pouca segurança.',
+                'precisa ser compartilhada, e isso possibilita extravio.',
+            ],
+        },
+        {
+            q:
+                'Sabendo-se que ataques do tipo SQL Injection provocam a execução de comandos diretos no banco de dados ' +
+                'da aplicação, uma das ações recomendadas para se diminuir o risco de ocorrência desses ataques é a de',
+            answers: [
+                'instalação de antivírus no servidor de banco de dados.',
+                'utilização de funções que retirem a interpretação de caracteres especiais nas consultas SQL.',
+                'mudança da linguagem de programação da aplicação.',
+                'configuração de um serviço de monitoramento SNMP.',
+                'mudança do servidor de banco de dados.',
+            ],
+        },
+        {
+            q:
+                '<p>Considere a recomendação abaixo.<p>' +
+                '<blockquote>É importante que todas as validações de entrada, bem como controles de acesso, sejam reforçadas no lado servidor.</blockquote>' +
+                '<p>Explique a importância dessa recomendação na segurança das aplicações web.</p>'
+        },
+        {
+            q: 'Qual a importância da aplicação web ser acessível somente por HTTPS?',
+        },
+        {
+            q: 'Por que é importante armazenar as senhas no banco de dados utilizando hash?',
+        }
+    ]);
+
+    exam.finale();
+</script>

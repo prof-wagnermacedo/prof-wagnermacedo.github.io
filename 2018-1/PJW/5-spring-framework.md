@@ -523,10 +523,19 @@ Você pode baixar o código até esse ponto [aqui][car-validation].
 
 [car-validation]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/51e1bc01fa4a3983f381991598a1392bfb8be250.zip
 
-{% include warning-mode.html %}
-{% if jekyll.environment != 'production' %}
+## Funcionalidade de editar carros
 
-## [GIT] Adiciona um id à entidade Car
+Nessa seção, vamos adicionar à aplicação a possibilidade de editar um carro.
+
+Isso será feito em três passos:
+
+1. Vamos adicionar um identificador à entidade `Car`. Para que o carro a ser editado possa ser encontrado facilmente, é
+   preciso adicionar um campo `id`.
+2. 
+
+### Identificador de carro
+
+Na classe `Car`, adicione um novo atributo (lembre-se adicionar os gets e sets):
 
 {: data-caption="Car.java" data-hi="2"}
 ```
@@ -542,7 +551,9 @@ public class Car {
     // getters & setters
 ```
 
-{: data-caption="CarDao.java" data-hi="4,24,25"}
+E na classe `CarDao`, crie uma variável estática para manter uma sequência dos carros adicionados:
+
+{: data-caption="CarDao.java" data-hi="4,10,15,20,24,25"}
 ```
 @Service
 public class CarDao {
@@ -578,7 +589,9 @@ public class CarDao {
 }
 ```
 
-## [GIT] Adiciona interface para editar um carro
+### Método de busca de carro
+
+Adicione à `CarDao` o método `get(long)` para achar na lista um carro de certo `id`:
 
 {: data-caption="CarDao.java" data-hi="7-15"}
 ```
@@ -604,6 +617,26 @@ public class CarDao {
 }
 ```
 
+### Interface para editar um carro
+
+O formulário de editar carros é idêntico ao de adicionar, por isso vamos reutilizar o JSP, fazendo algumas modificações:
+
+{: data-caption="WEB-INF/jsp/car/add.jsp" data-hi="2,5"}
+```
+    <body>
+        <h1>${car.id == null ? 'Adicione' : 'Edite'} um carro</h1>
+
+        <form:form method="POST" modelAttribute="car">
+            <form:hidden path="id" />
+            <p>
+                Nome: <br>
+                <form:input path="name" />
+                <form:errors path="name" cssClass="error" />
+            </p>
+```
+
+O formulário de edição de carros só poderá ser acessado pelos usuários se adicionar um novo método à classe `CarController`:
+
 {: data-caption="CarController.java" data-hi="13-19"}
 ```
     @RequestMapping(value = "/car/add", method = RequestMethod.POST)
@@ -628,37 +661,15 @@ public class CarDao {
 }
 ```
 
-{: data-caption="WEB-INF/jsp/car/add.jsp" data-hi="2,5"}
-```
-    <body>
-        <h1>${car.id == null ? 'Adicione' : 'Edite'} um carro</h1>
+Agora se você visitar, por exemplo, <http://localhost:8080/SpringWebApp/car/edit/1>, você verá o formulário preenchido
+com o _Mercedes SL_.
 
-        <form:form method="POST" modelAttribute="car">
-            <form:hidden path="id" />
-            <p>
-                Nome: <br>
-                <form:input path="name" />
-                <form:errors path="name" cssClass="error" />
-            </p>
-```
+### Ação para editar carros
 
-## [GIT] Link para editar os itens da lista de carros
+O formulário de edição ainda não altera os dados de um carro, para isso ocorrer, será necessário providenciar a **ação**
+a ser executada quando o usuário envia novos dados. 
 
-{: data-caption="WEB-INF/jsp/car/list.jsp" data-hi="5,6"}
-```
-    <body>
-        <h1>Carros</h1>
-        <c:forEach items="${carList}" var="car">
-            <p>
-                <c:url var="editUrl" value="/car/edit/${car.id}" />
-                ${car.name}: $${car.price} <a href="${editUrl}">Editar</a>
-            </p>
-        </c:forEach>
-    </body>
-</html>
-```
-
-## [GIT] Adiciona funcionalidade de editar carros
+Primeiramente, vamos adicionar um método `edit(Car)` à classe `CarDao`:
 
 {: data-caption="CarDao.java" data-hi="11-20"}
 ```
@@ -689,6 +700,8 @@ public class CarDao {
 }
 ```
 
+Depois, vamos adicionar à `CarController` o método que vai executar a ação de editar um carro.
+
 {: data-caption="CarController.java" data-hi="9-19"}
 ```
     @RequestMapping("/car/edit/{id}")
@@ -713,7 +726,33 @@ public class CarDao {
 }
 ```
 
-## [GIT] Prefixo comum para rotas do controller
+### Link para a tela de editar carro
+
+A funcionalidade para alterar carros já está pronta, mas é importante que o usuário tenha uma forma fácil para acessar
+o formulário. Para isso, faça a seguinte modificação:
+
+{: data-caption="WEB-INF/jsp/car/list.jsp" data-hi="5,6"}
+```
+    <body>
+        <h1>Carros</h1>
+        <c:forEach items="${carList}" var="car">
+            <p>
+                <c:url var="editUrl" value="/car/edit/${car.id}" />
+                ${car.name}: $${car.price} <a href="${editUrl}">Editar</a>
+            </p>
+        </c:forEach>
+    </body>
+</html>
+```
+
+## Prefixo comum para mapeamentos do controller
+
+Na classe `CarController`, todas as URLs iniciam por **"/car"**. Nesses casos, o programador pode economizar digitadas
+anotando a classe com `@RequestMapping("/prefixo/comum")`. Dessa forma, o caminho definido nos métodos são adicionados a
+esse prefixo.
+
+Para você entender melhor, com as modificações abaixo em `CarController`, o usuário acessará as páginas relativas ao
+carro da mesma forma que antes:
 
 {: data-caption="CarController.java" data-hi="2,7,13,17,29,37"}
 ```
@@ -767,7 +806,34 @@ public class CarController {
 }
 ```
 
-## [GIT] Cria uma página inicial
+## Fazendo páginas multi-idiomas
+
+Com o framework Spring, é relativamente fácil criar páginas com internacionalização, isto é, páginas que exibem no
+idioma mais adequado a depender do cliente.
+
+### Como o servidor web detecta o idioma do cliente?
+
+Antes, vamos entender como isso funciona: quando o browser acessa qualquer página, envia um cabeçalho chamado
+`Accept-Language` com os idiomas preferidos, se a aplicação estiver internacionalizada, irá verificar se tem um dos
+idiomas solicitados ou entrega um idioma padrão da aplicação. Se a aplicação não estiver internacionalizada, esse
+cabeçalho será ignorado.
+
+Por exemplo, o browser dos brasileiros normalmente enviam:
+
+```
+Accept-Language: pt-br, pt, en-us, en
+```
+
+Isso quer dizer as seguinte ordem de preferência:
+
+1. Português (Brasil)
+2. Português
+3. Inglês (Americano)
+4. Inglês
+
+### Uma página inicial
+
+Vamos exercitar a ideia de internacionalização com uma página inicial:
 
 {: data-caption="WEB-INF/jsp/index.jsp (novo)"}
 ```
@@ -802,7 +868,9 @@ public class HomeController {
 }
 ```
 
-## [GIT] Fazendo páginas multi-idiomas
+### Códigos de mensagens
+
+Para utilizar a internacionalização, substituimos as frases que queremos ser multi-idiomas por códigos de mensagens:
 
 {: data-caption="WEB-INF/jsp/index.jsp" data-hi="2,8,11,12"}
 ```
@@ -822,6 +890,12 @@ public class HomeController {
 </html>
 ```
 
+Crie, na área de _Pacotes de Códigos-fonte_ os seguintes arquivos de propriedades, no NetBeans, eles ficarão aparecendo
+no _<pacote&nbsp;default>_.
+
+Observe que os nomes dos arquivos contém a identificação do idioma (**pt** é português e **en** é inglês).
+Com esses dois arquivos, a nossa aplicação estará disponível em português e inglês.
+
 {: data-caption="messages_pt.properties (novo)"}
 ```
 home.title=Bem vindo
@@ -833,6 +907,10 @@ home.intro=Uma magnífica página inicial, não é?
 home.title=Welcome
 home.intro=This is a magnificent home page, isn't it?
 ```
+
+### Configuração de internacionalização
+
+É preciso uma configuração mínima, para que a internacionalização funcione:
 
 {: data-caption="AppConfig.java" data-hi="15-22"}
 ```
@@ -862,7 +940,12 @@ public class AppConfig {
 }
 ```
 
+### Idioma padrão
+
 O idioma padrão, caso não seja requisitado nenhum dos disponíveis é o padrão do sistema operacional. Se o seu sistema
 for em português, então o Spring usará português como o padrão.
+
+{% include warning-mode.html %}
+{% if jekyll.environment != 'production' %}
 
 {% endif %}

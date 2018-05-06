@@ -6,7 +6,7 @@ part: 2
 ---
 
 * TOC
-{:toc .no-h3" data-caption="(em construção)"}
+{:toc .no-h3"}
 
 ## Preparação
 
@@ -956,8 +956,3 @@ for em português, então o Spring usará português como o padrão.
 Você pode baixar o código até esse ponto [aqui][car-i18n].
 
 [car-i18n]: https://github.com/prof-wagnermacedo/SpringWebApp/archive/6092b1552c6b60053b37edb5dfa5dee996fe6224.zip
-
-{% include warning-mode.html %}
-{% if jekyll.environment != 'production' %}
-
-{% endif %}

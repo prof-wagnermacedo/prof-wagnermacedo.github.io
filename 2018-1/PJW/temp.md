@@ -127,3 +127,91 @@ public class CarDao {
 
 }
 ```
+
+### Obtendo um carro
+
+{: data-caption="CarDao.java" data-hi="14-17" }
+```
+@Repository
+public class CarDao {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    private static final RowMapper<Car> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Car.class);
+
+    public void add(Car car) {
+        throw new UnsupportedOperationException();
+    }
+
+    public Car get(long id) {
+        String sql = "SELECT * FROM Cars WHERE id=?";
+        Car car = jdbcTemplate.queryForObject(sql, ROW_MAPPER, id);
+
+        return car;
+    }
+
+```
+
+### Excluindo um carro
+
+{: data-caption="CarDao.java" data-hi="6-11" }
+```
+    public void edit(Car car) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void delete(long id) {
+        String sql = "DELETE FROM Cars WHERE id=?";
+        int rows = jdbcTemplate.update(sql, id);
+
+        if (rows == 0) {
+            throw new IllegalArgumentException("Carro não encontrado: " + id);
+        }
+    }
+
+    public List<Car> findAll() {
+```
+
+### Editando um carro
+
+{: data-caption="CarDao.java" data-hi="9-14" }
+```
+    public Car get(long id) {
+        String sql = "SELECT * FROM Cars WHERE id=?";
+        Car car = jdbcTemplate.queryForObject(sql, ROW_MAPPER, id);
+
+        return car;
+    }
+
+    public void edit(Car car) {
+        String sql = "UPDATE Cars SET name=?, price=?, color=? WHERE id=?";
+        int rows = jdbcTemplate.update(sql, car.getName(), car.getPrice(), car.getColor(), car.getId());
+
+        if (rows == 0) {
+            throw new IllegalArgumentException("Carro não encontrado: " + car.getId());
+        }
+    }
+
+    public void delete(long id) {
+```
+
+### Adicionando um carro
+
+{: data-caption="CarDao.java" data-hi="10-11" }
+```
+@Repository
+public class CarDao {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    private static final RowMapper<Car> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Car.class);
+
+    public void add(Car car) {
+        String sql = "INSERT INTO Cars (name, price, color) values (?, ?, ?);";
+        jdbcTemplate.update(sql, car.getName(), car.getPrice(), car.getColor());
+    }
+
+    public Car get(long id) {
+```

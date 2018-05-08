@@ -2,7 +2,7 @@
 topic: Acesso à Banco de Dados
 layout: course
 date: 2018-05-07 19:00
-part: 2
+part: 3
 ---
 
 * TOC

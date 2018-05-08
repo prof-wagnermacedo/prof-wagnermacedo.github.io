@@ -1,0 +1,82 @@
+---
+topic: Exercícios 4
+layout: course
+type: classnote
+date: 2018-05-08 20:00
+part: 2
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.min.js"></script>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Revisão da Unidade II", [
+        {
+            q: `<p>Uma certa aplicação utiliza URLs como a colocada a seguir.</p>
+                <pre>http://app.com/livros/java-como-programar?SESSIONID=2P0OC2JSNDLPSKHCJUN2JV</pre>
+                <p>Baseada nessa observação, comente sobre um problema de segurança dessa aplicação.</p>`,
+        },
+        {
+            q: 'Qual a importância de impedir um grande número de tentativas de login?',
+        },
+        {
+            q: `<p>Leia o texto a seguir e responda.</p>
+
+                <p><em>Os navegadores web atuais contam com um recurso chamado de navegação privativa ou navegação
+                anônima. Quando o usuário ativa esse recurso, uma nova janela é aberta para o usuário escolher o site
+                que ele deseja acessar. Esse modo de navegação é interessante, sob o ponto de vista de segurança, porque
+                nenhum cookie previamente armazenado no uso normal do navegador será usado ou compartilhado. Além disso,
+                o modo de navegação privativa não salva os cookies, históricos de acesso, listas de arquivos baixados e
+                caches de páginas visitadas. Nem mesmo as entradas de formulários e barras de pesquisa são salvos para
+                preenchimento automático.</em></p>
+
+                <p>Existem três riscos da lista do Top 10 2013 que podem ser evitados (parcialmente ou completamente)
+                por um usuário ao acessar uma aplicação vulnerável no modo de navegação privativa. Aponte pelo menos
+                dois desses riscos e explique o porque eles podem ser evitados.</p>`
+        },
+        {
+            q: 'Dos riscos do Top 10 2013 que não podem ser evitados pela navegação privativa, escolha dois e explique o porque eles não poderiam ser evitados.',
+        },
+        {
+            q: 'Como funciona a técnica de adicionar um sal (<em>salt</em>) na senha antes de aplicar o <em>hash</em>? E por que isso reforça a segurança?',
+        },
+        {
+            q: `Qual das seguintes ameaças ocorre quando um usuário mal-intencionado convence uma vítima a enviar uma
+                requisição com uma entrada mal-intencionada e o servidor repete a entrada de volta para o cliente?`,
+            answers: [
+                'XSS refletido',
+                'XSS persistente',
+                'Referência insegura e direta a objetos',
+                'Falha ao restringir o acesso à URL',
+            ],
+        },
+        {
+            q: `Que ameaça é mais provável de ocorrer quando uma ação no lado servidor é executada sem confirmações?`,
+            answers: [
+                'Referência insegura e direta a objetos',
+                'Injeção de SQL',
+                'Cross-site request forgery',
+                'Cross-site scripting',
+            ],
+        },
+        {
+            q: 'Qual das seguintes ações você deve fazer para testar a segurança do seu aplicativo da Web?',
+            answers: [
+                'Use mecanismos de política de segurança.',
+                'Use um modelo simples em cada camada da aplicação.',
+                'Defina uma flag segura para os cookies de sessão.',
+                'Use seu navegador para forjar requisições não autorizadas.',
+            ],
+        }
+    ]);
+
+    exam.finale();
+</script>

@@ -1,0 +1,99 @@
+---
+topic: Exercícios 5
+layout: course
+type: classnote
+date: 2018-05-14 19:00
+part: 2
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<p><em>
+    As questões abaixo são referentes a um novo projeto utilizando o framework Spring.
+</em></p>
+
+<hr>
+
+<p>
+    Desenvolva o código para solucionar o problema e envie o <b>.zip</b> com o que conseguiu fazer,
+    juntamente com um arquivo texto explicando sua solução para o e-mail do professor.
+</p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+{%- capture css -%}
+<style>
+    div.sinal {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    div.vermelho {
+        background: red;
+    }
+
+    div.amarelo {
+        background: yellow;
+    }
+
+    div.verde {
+        background: green;
+    }
+
+    div.sinal:not(.aceso) {
+        opacity: 0.25;
+    }
+</style>
+{%- endcapture -%}
+
+{%- capture html -%}
+<div class="sinal vermelho aceso"></div>
+<div class="sinal amarelo"></div>
+<div class="sinal verde"></div>
+{%- endcapture -%}
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Prática com o framework Spring", [
+        {
+            q:
+                '<p>Crie uma página acessível em <code>/sinal</code> que mostre três quadrados representando um sinal de trânsito, conforme exemplo abaixo.</p>' +
+                `<div class="exemplo" style="margin: 1em 0">{{ html }}</div>` +
+                `<p>Esses quadrados foram criados usando o seguinte código HTML:</p>` +
+                `<pre>{{ html | escape }}</pre>` +
+                '<p>Utilize o CSS disponível a seguir para ter o mesmo visual na sua página.</p>',
+            snippet: {
+                ext: 'css',
+                code: `{{ css }}`,
+            }
+        },
+        {
+            q:
+                '<p>Agora crie uma segunda página em <code>/painel</code>, onde você vai fornecer um formulário para modificar qual luz do sinal estará acesa quando alguém acessar a página em <code>/sinal</code>.</p>' +
+                '<p>Os dados do sinal deverão estar acessíveis em uma classe do tipo DAO com os métodos necessários para esse cenário.</p>'
+        },
+    ]);
+
+    exam.finale();
+</script>
+
+<hr>
+
+<p>
+O código com a solução das questões acima pode ser baixado
+<a href="https://github.com/prof-wagnermacedo/SpringWebApp/archive/a33d87512300cab83bab884dfdca391f1e338dbf.zip">aqui</a>
+</p>
+
+<style>
+    .kind-exam-answer[contenteditable] {
+        display: none;
+    }
+</style>
+
+{{ css }}

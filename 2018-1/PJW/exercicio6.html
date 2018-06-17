@@ -1,0 +1,67 @@
+---
+topic: Exercícios 6
+layout: course
+type: classnote
+date: 2018-06-12 19:00
+part: 3
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<p><em>
+    Nesse exercício, você irá utilizar a aplicação de sinais de trânsito trabalhada em sala de aula
+    e na 2ª Prova. Caso queira, pode usar a solução da prova do professor, baixável
+    <a href="https://github.com/prof-wagnermacedo/TrafficLights/archive/0.2.0.zip">aqui</a>
+</em></p>
+
+<hr>
+
+<p>
+    Desenvolva o código para solucionar o problema e envie o <b>.zip</b> com o que conseguiu fazer,
+    juntamente com um arquivo texto explicando sua solução para o e-mail do professor.
+</p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Prática com banco de dados", [
+        {
+            q:
+            '<p>Adicione a persistência com banco de dados à aplicação de sinais de trânsito.'    +
+            'Isto quer dizer que cada sinal de trânsito do sistema será uma linha em uma tabela ' +
+            'do banco de dados.</p>'                                                              +
+            '<p>Você pode utilizar a tabela a seguir para armazenar os sinais de trânsito.</p>',
+            snippet: {
+                ext: 'sql',
+                code: 'CREATE TABLE Semaforo (\n'                +
+                      '  id          INT IDENTITY PRIMARY KEY,\n' +
+                      '  estado      CHAR NOT NULL,\n'      +
+                      '  semaforo_id INT  NULL\n'         +
+                      ')',
+            },
+        },
+    ]);
+
+    exam.finale();
+</script>
+
+{% comment %}
+<hr>
+
+<p>
+    O código com a solução das questões acima pode ser baixado
+    <a href="https://github.com/prof-wagnermacedo/TrafficLights/archive/0.1.0.zip">aqui</a>
+</p>
+{% endcomment %}
+
+<style>
+    .kind-exam-answer[contenteditable] {
+        display: none;
+    }
+</style>

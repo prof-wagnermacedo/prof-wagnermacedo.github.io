@@ -1,0 +1,60 @@
+---
+topic: Exercícios 5
+layout: course
+type: classnote
+date: 2018-06-21 19:00
+part: 3
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Revisão da Unidade III", [
+        {
+            q: '<p>É possível avaliar a qualidade de software se o cliente ficar alterando continuamente aquilo que supostamente deveria estar pronto? Justifique.</p>',
+        },
+        {
+            q: '<p>Um programa pode ser correto e ainda assim não ser confiável? Explique.</p>'
+        },
+        {
+            q: '<p>Por que normalmente existe tensão entre um grupo de engenharia de software e um grupo de garantia da qualidade de software independente? Isso é salutar?</p>',
+        },
+        {
+            q: '<p>Usando as suas próprias palavras, descreva a diferença entre verificação e validação.</p>',
+        },
+        {
+            q: '<p>Porque um módulo muito dependente é difícil de testar em unidade?</p>',
+        },
+        {
+            q: '<p>Quem deve executar o teste de validação, o desenvolvedor do software ou o usuário do software? Justifique a sua resposta.</p>',
+        },
+        {
+            q: '<p>Dê dois exemplos nos quais o teste caixa-preta pode dar a impressão de que “está tudo OK”, enquanto os testes caixa-branca podem descobrir um erro.</p>',
+        },
+        {
+            q: '<p>Dê dois exemplos nos quais o teste caixa-branca pode dar a impressão de que “está tudo OK”, enquanto os testes caixa-preta podem descobrir um erro.</p>',
+        },
+        {
+            q: '<p>Compatibilidade é uma dimensão de qualidade importante. O que deve ser testado para garantir que exista compatibilidade em uma WebApp?</p>',
+        },
+        {
+            q: '<p>Em aplicações web, quais erros tendem a ser mais sérios — erros no cliente ou erros no servidor? Por quê?</p>',
+        },
+        {
+            q: '<p>Qual a diferença entre teste de conteúdo e teste de navegação em WebApps?</p>',
+        },
+        {
+            q: '<p>Quais os objetivos do teste de carga em uma aplicação web?</p>',
+        },
+    ]);
+
+    exam.finale();
+</script>

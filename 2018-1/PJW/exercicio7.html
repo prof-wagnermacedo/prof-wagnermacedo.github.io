@@ -1,0 +1,94 @@
+---
+topic: Exercícios 7
+layout: course
+type: classnote
+date: 2018-06-19 19:00
+part: 3
+---
+
+<link href="../../assets/KindExam.js/css/kind-exam.css" rel="stylesheet"/>
+<script src="../../assets/KindExam.js/kind-exam.js"></script>
+
+<p><em>
+    As questões abaixo são referentes a um novo projeto utilizando o framework Spring.
+</em></p>
+
+<hr>
+
+<p>
+    Desenvolva o código para solucionar o problema e envie o <b>.zip</b> com o que conseguiu fazer, juntamente com um
+    arquivo texto explicando sua solução para o e-mail do professor até segunda, 25/06/2018, antes da prova.
+</p>
+
+<p><em>
+    Esse exercício vale 2,0 pontos.
+</em></p>
+
+<hr>
+
+<div id="the-questions"></div>
+
+<!--suppress CssUnknownProperty, HtmlUnknownAttribute -->
+<script>
+    const exam = new Exam("#the-questions");
+
+    exam.section("Prática com banco de dados", [
+        {
+            q:
+            '<p>Crie um sistema para manter um cadastro de livros de forma persistente, conforme o DER abaixo.</p>' +
+            '<p><img src="../../assets/images/exercicios/der-livro-autor.png" alt="DER Livro-Autor"></p>' +
+            '<p>' +
+            'Lembre-se que, como a relação entre livro e autor é <em>n-n</em>, então será preciso criar uma tabela ' +
+            'intermediária para ligar as duas entidades.' +
+            '</p>',
+        },
+        {
+            q:
+            'Deverão ser fornecidas as funcionalidades básicas (CRUD) para cada entidade, isto é, deverá ser possível ' +
+            'adicionar, excluir e obter os dados de livros e autores.',
+        },
+        {
+            q:
+            'Deverá ser possível associar autores a um livro. Observe que isso não precisará ser feito necessariamente ' +
+            'na tela de adicionar livros.',
+        },
+        {
+            q:
+            '<p>A página principal da aplicação deverá exibir uma listagem de livros conforme o exemplo abaixo:</p>' +
+            '<table id="tb-livros">' +
+            '<tr><th>ISBN</th>          <th>Livro</th>                        <th>Ano</th>  <th>Autores</th></tr>' +
+            '<tr><td>9788544101001</td> <td><a>A Guerra dos Tronos</a></td>   <td>2005</td> <td><a>Martin</a></td></tr>' +
+            '<tr><td>9788576059240</td> <td><a>Redes de Computadores</a></td> <td>2011</td> <td><a>Tanembaum</a>, <a>Wetherall</a></td></tr>' +
+            '<tr><td>9788533613379</td> <td><a>O Senhor dos Anéis</a></td>    <td>2001</td> <td><a>Tolkien</a></td></tr>' +
+            '</table>' +
+            '<p>' +
+            'Os links deverão levar às respectivas páginas para exibir mais detalhes do livro ou do autor clicado.' +
+            '</p>',
+        }
+    ]);
+
+    exam.finale();
+</script>
+
+{% comment %}
+<hr>
+
+<p>
+    O código com a solução das questões acima pode ser baixado
+    <a href="https://github.com/prof-wagnermacedo/TrafficLights/archive/0.1.0.zip">aqui</a>
+</p>
+{% endcomment %}
+
+<style>
+    .kind-exam-answer[contenteditable] {
+        display: none;
+    }
+
+    #tb-livros {
+        font-weight: normal;
+    }
+
+    #tb-livros a {
+        cursor: pointer;
+    }
+</style>

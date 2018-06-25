@@ -18,7 +18,7 @@ O assunto da unidade vem dos seguintes capítulos do livro _Engenharia de Softwa
 - Capítulo 16: Garantia da Qualidade de Software
 - Capítulo 17: Estratégias de Teste de Software
 - Capítulo 18: Testando Aplicações Convencionais
-- Capítulo 19: Testando Aplicações Orientada a Objetos
+- ~~Capítulo 19: Testando Aplicações Orientada a Objetos~~
 - Capítulo 20: Testando Aplicações Web
 
 </div>

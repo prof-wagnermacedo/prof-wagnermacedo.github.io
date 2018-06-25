@@ -14,6 +14,8 @@ CREATE TABLE Dependentes (
   FOREIGN KEY (funcionario_id) REFERENCES Funcionarios (id)
 );
 
+SET IDENTITY_INSERT Funcionarios ON
+
 INSERT INTO Funcionarios (id, nome, salario)
 VALUES
   (1, 'Alana Ferreira', 2868.00),

@@ -22,5 +22,6 @@ title: Prof. Wagner Macêdo
 
 # Outros
 
+- [Publicando bibliotecas open source no PyPI](palestra-publicar-pypi/)
 - [Configurando Ambientes Virtuais com pipenv](palestra-pipenv/)
 - [Workshop de Shell Script](workshop-shell/)
